@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="2.0">
+	<wb-module deploy-name="harrenBO_Server">
+		<property name="context-root" value="harrenBO_Server"/>
+		<wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/resources"/>
+		<wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/java"/>
+		<wb-resource deploy-path="/" source-path="src/main/webapp"/>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.springframework/spring-test/4.0.6.RELEASE/b2f65445f300f1317fe694e6530cce39d7090ff6/spring-test-4.0.6.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context-support/4.0.6.RELEASE/cfdd2172538cfd5d540d4d6283abda83785ec624/spring-context-support-4.0.6.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.0.6.RELEASE/85ef4b91fcdd86d81e4a9b3e5f006dcb4128e6d/spring-web-4.0.6.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.springframework/spring-orm/4.0.6.RELEASE/e13077d6527b7e0c1c04293c1d1696436d053a61/spring-orm-4.0.6.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.springframework/spring-oxm/4.0.6.RELEASE/5f53c76bb764867e42168d6192e841039bdbbf97/spring-oxm-4.0.6.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/4.0.6.RELEASE/9020a09a96058133c822ff04f00e7fa0e0c3b82b/spring-webmvc-4.0.6.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aspects/4.0.6.RELEASE/198b4f801c533e7441ff038aedc9c2c0099738d3/spring-aspects-4.0.6.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/1.6.1.RELEASE/fa07f0cd58698af4286dff1c6d02a87fb61d52bf/spring-data-jpa-1.6.1.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.springframework.retry/spring-retry/1.1.0.RELEASE/f7e1ec1fd7c8fcaca490fd298c5b3fe711cb5ed9/spring-retry-1.1.0.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.springframework.amqp/spring-rabbit/1.3.5.RELEASE/be6640986bc439c55c6f41b6d832c3682329d5aa/spring-rabbit-1.3.5.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.springframework.amqp/spring-amqp/1.3.5.RELEASE/79c1d8b7820cab46c99ae06525c062a3434d0e1a/spring-amqp-1.3.5.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/log4j/log4j/1.2.17/5af35056b4d257e4b64b9e8069c0746e8b08629f/log4j-1.2.17.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-log4j12/1.7.7/58f588119ffd1702c77ccab6acb54bfb41bed8bd/slf4j-log4j12-1.7.7.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.6/ce1edb914c94ebc388f086c6827e8bdeec71ac2/commons-lang-2.6.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-collections4/4.0/da217367fd25e88df52ba79e47658d4cf928b0d1/commons-collections4-4.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.4/b1b6ea3b7e4aa4f492509a4952029cd8e48019ad/commons-io-2.4.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/4bfc12adfe4842bf07b657f0369c4cb522955686/commons-logging-1.2.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/javax.servlet/jstl/1.2/74aca283cd4f4b4f3e425f5820cda58f44409547/jstl-1.2.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/javax.servlet/servlet-api/2.5/5959582d97d8b61f4d154ca9e495aafd16726e34/servlet-api-2.5.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.4.1/b130bcfb5a9c410c3cbd2e0adec9437e69a39e2c/jackson-core-2.4.1.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.4.1/f07c773f7b3a03c3801d405cadbdc93f7548e321/jackson-databind-2.4.1.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.4.1/55605135bd7b836612e0bba7037c9669f6ccf89f/jackson-annotations-2.4.1.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-core-asl/1.9.13/3c304d70f42f832e0a86d45bd437f692129299a4/jackson-core-asl-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-mapper-asl/1.9.13/1ee2f2bed0e5dd29d1cb155a166e6f8d50bbddb7/jackson-mapper-asl-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.containers/jersey-container-servlet/2.8/8f7a2612a361d5dd40e10579ba7066d410b73daf/jersey-container-servlet-2.8.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.ext/jersey-mvc-jsp/2.8/5202c78d1c4c2890a5ea9864c6a87b31e8cef414/jersey-mvc-jsp-2.8.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.media/jersey-media-multipart/2.8/9b909c26f8d518e5d40fe2a5d91b8aefcd519401/jersey-media-multipart-2.8.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/2.3.2/8e635e82db2437804e19e746f460392d791856cf/jackson-jaxrs-json-provider-2.3.2.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.bundles.repackaged/jersey-guava/2.8/ec660ee7a58ec751a004f47690b4c6cf128ed300/jersey-guava-2.8.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.ext/jersey-spring3/2.8/e23dc77f00417df3b7753da1fdee7f78de3586a6/jersey-spring3-2.8.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-core/4.3.6.Final/e6f1e89880e645c66ef9c30d60a68f7e26f3152d/hibernate-core-4.3.6.Final.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-envers/4.3.6.Final/6d15db880d8babc8c0e319dceba0213b9415f446/hibernate-envers-4.3.6.Final.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-entitymanager/4.3.6.Final/f6865e88cbd03bda05d42e1696269921719c173d/hibernate-entitymanager-4.3.6.Final.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-validator/5.1.2.Final/8aecb33d3587f32c877827c2bdddae0d227a40ed/hibernate-validator-5.1.2.Final.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-c3p0/4.3.6.Final/f7574b32632f323bdc300f50ef583e3451053b48/hibernate-c3p0-4.3.6.Final.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.postgresql/postgresql/9.3-1101-jdbc41/f68c2783393afc9a642035964869417043d2c7dc/postgresql-9.3-1101-jdbc41.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/net.sf.ehcache/ehcache/2.8.3/f498778b93efc6352f4f3d23a47dae3f166c7541/ehcache-2.8.3.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/taglibs/standard/1.1.2/a17e8a4d9a1f7fcc5eed606721c9ed6b7f18acf7/standard-1.1.2.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/javax.mail/mail/1.4.7/9add058589d5d85adeb625859bf2c5eeaaedf12d/mail-1.4.7.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk/1.9.13/e581fd4de4ed1a2939019b1a20c3cd2170c38201/aws-java-sdk-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.google.apis/google-api-services-adexchangeseller/v1-rev204-1.21.0/dcceb9df41cae8a49a7238a8a5374808ac99193e/google-api-services-adexchangeseller-v1-rev204-1.21.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.google.oauth-client/google-oauth-client-jetty/1.13.1-beta/6c04cdf4ee2dbe983a6b80f313847a1451806462/google-oauth-client-jetty-1.13.1-beta.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.jsoup/jsoup/1.8.3/65fd012581ded67bc20945d85c32b4598c3a9cf1/jsoup-1.8.3.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.googlecode.json-simple/json-simple/1.1.1/c9ad4a0850ab676c5c64461a05ca524cdfff59f1/json-simple-1.1.1.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.datastax.cassandra/cassandra-driver-core/2.1.9/6d22bded9334b8d35ee510721daf79df5185a35c/cassandra-driver-core-2.1.9.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-cassandra/1.3.2.RELEASE/76b10b4d643732f793ed0f1e1d967d5df2df1d9b/spring-data-cassandra-1.3.2.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/io.netty/netty-all/4.0.35.Final/3e218bb08f57d153de661af686b638cee1684b14/netty-all-4.0.35.Final.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/4.0.6.RELEASE/28fa5e60c3d68132d83d9c1e7d9fccebb83c9104/spring-jdbc-4.0.6.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjweaver/1.8.1/da75e95c91703667b2ae20acdd3d8ee40ea7aabd/aspectjweaver-1.8.1.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjrt/1.8.0/302d0fe0abba26bbf5f31c3cd5337b3125c744e3/aspectjrt-1.8.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.rabbitmq/amqp-client/3.3.4/dc43828467f9efc5d065125757d3c31eac187d7d/amqp-client-3.3.4.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.3.2/31fbbff1ddbf98f3aa7377c94d33b0447c646b6e/httpcore-4.3.2.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.6/b7f0fc8f61ecadeb3695f0b9464755eee44374d4/commons-codec-1.6.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.containers/jersey-container-servlet-core/2.8/771e7adc6419d11296e9a8acbe4dca6e4747b894/jersey-container-servlet-core-2.8.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-common/2.8/fedbd80c17b80ad8b0e8269bac81dfb973de1241/jersey-common-2.8.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-server/2.8/cd0db449d56a0e6095f78d99b63ffdbf7d608e18/jersey-server-2.8.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/javax.ws.rs/javax.ws.rs-api/2.0/61f0983eb190954ccdede31e786a9e0bd9767c4a/javax.ws.rs-api-2.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/javax.inject/2.2.0/2a9e23e3d64a93ed7ba5515e6169f65f56965292/javax.inject-2.2.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.ext/jersey-mvc/2.8/1a972c82612577635024382cc4a6714d713f9dd9/jersey-mvc-2.8.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.jvnet.mimepull/mimepull/1.9.3/c55096ff89a27e22c2e081371d0570ac19cc6788/mimepull-1.9.3.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/2.3.2/14adfd8e7d9caacd97e1c0627486dd1cc70ff211/jackson-jaxrs-base-2.3.2.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.module/jackson-module-jaxb-annotations/2.3.2/228f4ed947cf3403c5f4315143b6c372c28e90f/jackson-module-jaxb-annotations-2.3.2.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2/2.2.0/33b8c3494ee75625630f196b896512b5124371c4/hk2-2.2.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/spring-bridge/2.2.0/d8dc54d9c58cfe829298d0dccc26bbf9038946e5/spring-bridge-2.2.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.jboss.logging/jboss-logging/3.1.3.GA/64499e907f19e5e1b3fdc02f81440c1832fe3545/jboss-logging-3.1.3.GA.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.jboss.logging/jboss-logging-annotations/1.2.0.Beta1/2f437f37bb265d9f8f1392823dbca12d2bec06d6/jboss-logging-annotations-1.2.0.Beta1.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.jboss.spec.javax.transaction/jboss-transaction-api_1.2_spec/1.0.0.Final/1f9fef7a9fcbb41cc390fc370a291cf30729e094/jboss-transaction-api_1.2_spec-1.0.0.Final.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/dom4j/dom4j/1.6.1/5d3ccc056b6f056dbf0dddfdf43894b9065a8f94/dom4j-1.6.1.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.hibernate.common/hibernate-commons-annotations/4.0.5.Final/2a581b9edb8168e45060d8bad8b7f46712d2c52c/hibernate-commons-annotations-4.0.5.Final.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.hibernate.javax.persistence/hibernate-jpa-2.1-api/1.0.0.Final/5e731d961297e5a07290bfaf3db1fbc8bbbf405a/hibernate-jpa-2.1-api-1.0.0.Final.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.javassist/javassist/3.18.1-GA/d9a09f7732226af26bf99f19e2cffe0ae219db5b/javassist-3.18.1-GA.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/antlr/antlr/2.7.7/83cd2cd674a217ade95a4bb83a8a14f351f48bd0/antlr-2.7.7.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.jboss/jandex/1.1.0.Final/e84a2122e76f0b6503be78094ddf2108057ac15f/jandex-1.1.0.Final.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/javax.validation/validation-api/1.1.0.Final/8613ae82954779d518631e05daa73a6a954817d5/validation-api-1.1.0.Final.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.fasterxml/classmate/1.0.0/434efef28c81162b17c540e634cffa3bd9b09b4c/classmate-1.0.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.mchange/c3p0/0.9.2.1/11b29ccb286d34eb804b7f6a3786809c9bd2e1b7/c3p0-0.9.2.1.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/javax.activation/activation/1.1/e6cb541461c2834bdea3eb920f1884d1eb508b50/activation-1.1.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-support/1.9.13/2da0449e6c79cb1020c26e6d52967d580372efe0/aws-java-sdk-support-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-simpledb/1.9.13/4c351e170421d4f9f7df5232229bc3a739a9f337/aws-java-sdk-simpledb-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-simpleworkflow/1.9.13/a11408932818b2b91f8f4b15bad8abb520eac1b0/aws-java-sdk-simpleworkflow-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-storagegateway/1.9.13/a13250b1c70435ebee5dee4487e3bd364034fde2/aws-java-sdk-storagegateway-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-route53/1.9.13/4bf4c7d181f1e1b3bc7821e1ac37fc56de730f48/aws-java-sdk-route53-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-s3/1.9.13/aff1f9b961f0eafb887347818df7cf3d6f371ab1/aws-java-sdk-s3-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-importexport/1.9.13/ec036968bc605fe58716aafa699d30dc38f893be/aws-java-sdk-importexport-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sts/1.9.13/c2ac4b3bdb9e537ec1711442152389def5a349b3/aws-java-sdk-sts-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sqs/1.9.13/2412ccf10de96f84ecf11401f85b05796a77e27e/aws-java-sdk-sqs-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-rds/1.9.13/72e1c67bb36ca798598c0e640bacb42ac29d2682/aws-java-sdk-rds-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-redshift/1.9.13/89f3d2b0aee75587cf6bb3f041c2e8eaab071087/aws-java-sdk-redshift-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticbeanstalk/1.9.13/1be7745b7d26257456c1a9160c29a1b6e88465cc/aws-java-sdk-elasticbeanstalk-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-glacier/1.9.13/4c795c4d7b0abe15dcd75edfe2238dbcec14045c/aws-java-sdk-glacier-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-iam/1.9.13/cc74a79758040f7f93c562fbc54500ab8b8dcf66/aws-java-sdk-iam-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-datapipeline/1.9.13/320efd2a36f3871962fef46ba15788d6fbe100de/aws-java-sdk-datapipeline-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticloadbalancing/1.9.13/7a40c5604846628e2a155527834f7aebf2f61a68/aws-java-sdk-elasticloadbalancing-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-emr/1.9.13/883cfe37a1a874d4fbe5298dda391bb699aa18a4/aws-java-sdk-emr-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticache/1.9.13/c11ff70a11070654f8d6d6a1108e3b9dae33ee4a/aws-java-sdk-elasticache-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elastictranscoder/1.9.13/61b15b6431878b871bc441a63d78e4416ad8ed30/aws-java-sdk-elastictranscoder-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ec2/1.9.13/b0d0bfb8c861cfde63c9e56490dea71df30164e8/aws-java-sdk-ec2-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-dynamodb/1.9.13/81eccfa460d6989641f9c1d017b47835599fea28/aws-java-sdk-dynamodb-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sns/1.9.13/1757dc512d190e7808090b0c71617aae9bafe3db/aws-java-sdk-sns-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudtrail/1.9.13/b16009873b4b6d2edcd9a361e761fe7cb0092a01/aws-java-sdk-cloudtrail-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudwatch/1.9.13/9fce5716109e6f8d923eaa5aff12d5388b5e8bbc/aws-java-sdk-cloudwatch-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-logs/1.9.13/9e9e14e6b0b32fbfbcaf9f1abca4095aa3e47f98/aws-java-sdk-logs-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cognitoidentity/1.9.13/75009675c9611a33218bd64689d717888b1d3ca/aws-java-sdk-cognitoidentity-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cognitosync/1.9.13/616b3c09d6de91312782b13753eb1d29d1256a64/aws-java-sdk-cognitosync-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-directconnect/1.9.13/549705d978bbe1c0569282e0fde6d6d599b89e24/aws-java-sdk-directconnect-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudformation/1.9.13/4168d78c20b5204ac2d24b3e0c9ffb4475a1ad78/aws-java-sdk-cloudformation-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudfront/1.9.13/8fd1eb0ee78430803636984497561633608ba19/aws-java-sdk-cloudfront-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kinesis/1.9.13/5a93fb7b910d5d09940781685710af7a3d6f6456/aws-java-sdk-kinesis-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-opsworks/1.9.13/779724e8d3c6a44d3c3d8c78e5bfac393bbc25b8/aws-java-sdk-opsworks-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ses/1.9.13/520ec876a461e051b90371277dd9bafd50d583d7/aws-java-sdk-ses-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-autoscaling/1.9.13/684852fc0d0df4f2f17e94c0ad8829142cf34f39/aws-java-sdk-autoscaling-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudsearch/1.9.13/3f7b278bb89b926ec1fd379b943caa2e99156a7b/aws-java-sdk-cloudsearch-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudwatchmetrics/1.9.13/9913016cfb340b91a1a1b649275e9331a850a8d6/aws-java-sdk-cloudwatchmetrics-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-swf-libraries/1.9.13/c67241a45c60c0bd6e22217508b4fb9e52e080ca/aws-java-sdk-swf-libraries-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-codedeploy/1.9.13/d7d0f996f26bf8fdafca218d758a9000a410f524/aws-java-sdk-codedeploy-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kms/1.9.13/4aa95ad71be08800a0561fa52e7def8802679687/aws-java-sdk-kms-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-config/1.9.13/5b9db18cf2bfe5b0c2abdd83088cdc6d5d77166d/aws-java-sdk-config-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-lambda/1.9.13/3bf8ea60dde862caeb9baf3240d93d4c89c368c0/aws-java-sdk-lambda-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-core/1.9.13/efa00f07348600aa818c4994eb24d879e55b739d/aws-java-sdk-core-1.9.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.google.oauth-client/google-oauth-client-java6/1.13.1-beta/35435bbee8b96184b2b45b460c3f5dc9f50d5f5e/google-oauth-client-java6-1.13.1-beta.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.mortbay.jetty/jetty/6.1.26/2f546e289fddd5b1fab1d4199fbb6e9ef43ee4b0/jetty-6.1.26.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/junit/junit/4.10/e4f1766ce7404a08f45d859fb9c226fc9e41a861/junit-4.10.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/io.netty/netty-handler/4.0.27.Final/91d5c8e25150759bdfce680f318e7b3e8a493b1f/netty-handler-4.0.27.Final.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.codahale.metrics/metrics-core/3.0.2/c6a7fb32776e984b64ff1a548e3044238ea5a931/metrics-core-3.0.2.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-cql/1.3.2.RELEASE/df1fbd036889df00e46aff990b42aa2582b454f4/spring-cql-1.3.2.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.datastax.cassandra/cassandra-driver-dse/2.1.5/795cd57674853ca83ad56cfcc5b948f807d3cf96/cassandra-driver-dse-2.1.5.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.2/479c1e06db31c432330183f5cae684163f186146/javax.annotation-api-1.2.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-api/2.2.0/62948cc26572ee26a3f2343fdcb9f9025f278ce6/hk2-api-2.2.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-locator/2.2.0/58242e53d1fde189e2957e7bd107fecd42fb875a/hk2-locator-2.2.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/osgi-resource-locator/1.0.1/4ed2b2d4738aed5786cfa64cba5a332779c4c708/osgi-resource-locator-1.0.1.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-client/2.8/6a419dd4f9ae854c0074d99a86287006b09fc3c7/jersey-client-2.8.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-utils/2.2.0/4a51122aaa338df59eecd06e3baa6d5de702046d/hk2-utils-2.2.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/config-types/2.2.0/1e02c576e8746a63d731c940cd89f15b8fd9ec1/config-types-2.2.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/core/2.2.0/45255daf9d400c061fb13a674619b23bb956528/core-2.2.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-config/2.2.0/359689a100645850da865a932dced9af7a4cb2ac/hk2-config-2.2.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-runlevel/2.2.0/dc23ba998979d03b033d76ac1a594f123a39d0cf/hk2-runlevel-2.2.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/class-model/2.2.0/b3dba6642803afc89cc860db1bc8e3c99a297fd3/class-model-2.2.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/xml-apis/xml-apis/1.0.b2/3136ca936f64c9d68529f048c2618bd356bf85c9/xml-apis-1.0.b2.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.mchange/mchange-commons-java/0.2.3.4/5eb5a801d96f65912bcf418a831fa23c663b029b/mchange-commons-java-0.2.3.4.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.mortbay.jetty/jetty-util/6.1.26/e5642fe0399814e1687d55a3862aa5a3417226a9/jetty-util-6.1.26.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.mortbay.jetty/servlet-api/2.5-20081211/22bff70037e1e6fa7e6413149489552ee2064702/servlet-api-2.5-20081211.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.1/860340562250678d1a344907ac75754e259cdb14/hamcrest-core-1.1.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/io.netty/netty-buffer/4.0.27.Final/91d5d38fd5cfa7b507e4f82297ba2bf7f30be805/netty-buffer-4.0.27.Final.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport/4.0.27.Final/fc1e00d9d2815f74df6af1cf79da65d6b2d6b102/netty-transport-4.0.27.Final.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec/4.0.27.Final/8ed3790b480d4370d22ad1b74a79a54663619b3/netty-codec-4.0.27.Final.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/aopalliance-repackaged/2.2.0/38e954f6c768b3f097b169ec6c937327c179a4a/aopalliance-repackaged-2.2.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.jvnet/tiger-types/1.4/9f75db7dea926f497e76eae2cea36eca74ea508/tiger-types-1.4.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/bean-validator/2.2.0/ac86aa7c6831a3427a360060579930e88db2d041/bean-validator-2.2.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-commons/1.11.2.RELEASE/6422e6f06584244d846d6bc74e5f2c163701b89a/spring-data-commons-1.11.2.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.1.9.RELEASE/dc298a04dacbab233c7eceee06b04f69d363404/spring-context-4.1.9.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.1.9.RELEASE/dd9f5c36a7f6482e43e6fd3cd625fd61d5308a17/spring-aop-4.1.9.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/4.1.9.RELEASE/2b18a75d2d1652d54355a56484cfc29bbde39750/spring-tx-4.1.9.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.1.9.RELEASE/ad15dfeb48d0127e424f1a3c0d15e4c81a5dc2b7/spring-beans-4.1.9.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.1.9.RELEASE/85a6d6031c4193d873144496e865b649a874cc47/spring-core-4.1.9.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.slf4j/jcl-over-slf4j/1.7.13/d78d2242e14e4182625152d225f76ae52b43491d/jcl-over-slf4j-1.7.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.13/7fcf30c25b8f4a9379b9dad0d3f487b25272c026/slf4j-api-1.7.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/1.3.9/40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf/jsr305-1.3.9.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.google.api-client/google-api-client/1.21.0/16a6b3c680f3bf7b81bb42790ff5c1b72c5bbedc/google-api-client-1.21.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.1.9.RELEASE/3f91ba075fe46a82b7d521f3eb547a480961f10c/spring-expression-4.1.9.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.3.4/a9a1fef2faefed639ee0d0fba5b3b8e4eb2ff2d8/httpclient-4.3.4.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.9.3/9e46be514a4ed60bcfbaaba88a3c668cf30476ab/joda-time-2.9.3.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.google.oauth-client/google-oauth-client/1.21.0/61ec42bbfc51aafde5eb8b4923c602c5b5965bc2/google-oauth-client-1.21.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/18.0/cce0823396aa693798f8882e64213b1772032b09/guava-18.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/io.netty/netty-common/4.0.27.Final/f9adee4559928c2e75d58b33e109c17342cb0991/netty-common-4.0.27.Final.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client-jackson2/1.21.0/8ce17bdd15fff0fd8cf359757f29e778fc7191ad/google-http-client-jackson2-1.21.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.google.guava/guava-jdk5/17.0/463f8378feba44df7ba7cd9272d01837dad62b36/guava-jdk5-17.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/nadav/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client/1.21.0/42631630fe1276d4d6d6397bb07d53a4e4fec278/google-http-client-1.21.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+	</wb-module>
+</project-modules>

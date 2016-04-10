@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+<title>Placements</title>
+<script src="js/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="js/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="js/i18n/grid.locale-en.js" type="text/javascript"></script>
+<script type='text/javascript' src="http://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/js/jquery.jqGrid.min.js"></script>
+<link rel="stylesheet" href="css/ui.jqgrid.css"/>
+<link rel="stylesheet" href="css/jquery-ui/jquery-ui.css"/>
+<link rel="stylesheet" href="css/jquery-ui/jquery-ui.structure.css"/>
+<link rel="stylesheet" href="css/jquery-ui/jquery-ui.theme.css"/>
+<link rel="stylesheet" href="css/style.css" type="text/css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.styleTable { border-collapse: separate; }
+	.styleTable TD { font-weight: normal !important; padding: .4em; border-top-width: 0px !important; }
+	.styleTable TH { text-align: center; padding: .8em .4em; }
+	.styleTable TD.first, .styleTable TH.first { border-left-width: 0px !important; }
+</style>
+
+<script>
+<!-- http://blog.stevebudan.com/steve-budan/jqgrid.html      http://www.trirand.com/blog/jqgrid/jqgrid.html-->
+$(document).ready(function(){
+	var adType = {'1':'Rich Media','2':'Display','3':'Mobile Web'},
+	    adSize = {'1':'120x600(left slider)','2':'120x600(right slider)','3':'160x600(left slider)','4':'160x600(right slider)','5':'728x90(stayon)','6':'800x440(lightbox)'
+	              ,'7':'120x600','8':'160x600','9':'300x250','10':'468x60','11':'728x90','12':'Pop-up'
+	              ,'13':'300x25','14':'320x50','15':'728x90'},
+	  adSizeRM = {'1':'120x600(left slider)','2':'120x600(right slider)','3':'160x600(left slider)','4':'160x600(right slider)','5':'728x90(stayon)','6':'800x440(lightbox)'},
+	   adSizeD = {'7':'120x600','8':'160x600','9':'300x250','10':'468x60','11':'728x90','12':'Pop-up'},
+	   adSizeM = {'13':'300x25','14':'320x50','15':'728x90'},
+	  adOfType = {'1':adSizeRM,'2':adSizeD,'3':adSizeM},
+	   lastSel = -1,
+       grid = $("#list2"),
+       resetStatesValues = function () {
+           // set 'value' property of the editoptions to initial size
+           grid.jqGrid('setColProp', 'size', { editoptions: { value: adSize} });
+       };
+
+       grid.jqGrid(
+			{ 	url:'client/placementsTable',
+				datatype: "json",
+				colNames:['Name','Impressions', 'Clicks', 'CTR', 'eCPM', 'Income','Note', 'Website url', 'Ad type','Ad size','Placement categories',''], 
+				colModel:[ 
+						{name:'name',  index:'Name',  editable:true,
+							key:true, width:100, editrules: {edithidden:true}, editoptions: {size:50, maxlength: 256}},
+						{name:'impressions', index:'Impressions', editable:false,  width:180, search:false},
+						{name:'clicks', index:'Clicks', editable:false,  width:180, search:false},
+						{name:'ctr', index:'CTR', editable:false,  width:180, search:false},
+						{name:'ecpm', index:'eCPM', editable:false,  width:180, search:false},
+						{name:'income', index:'Income', editable:false,  width:180, search:false},
+						{name:'note', index:'Note', hidden: true, editable: true, editrules: { edithidden: true }, hidedlg: true,  width:180, search:false},
+						{name:'url', index:'Website url', hidden: true, editable: true, editrules: { edithidden: true }, hidedlg: true,  width:180, search:false},
+						{name:'type', index:'Ad type', hidden: true, editable: true, editrules: { edithidden: true }, hidedlg: true,  width:180, search:false, formatter: 'select',
+edittype:'select', editoptions: {
+    value: adType,
+    dataInit: function (elem) {
+        var v = $(elem).val();
+        // to have short list of options which corresponds to the country
+        // from the row we have to change temporary the column property
+        grid.jqGrid('setColProp', 'Ad size', { editoptions: { value: adOfType[v]} });
+    },
+    dataEvents: [
+        {
+            type: 'change',
+            fn: function (e) {
+                // build 'adSize' options based on the selected 'Country' value
+                var v = $(e.target).val(),
+                    sc = adOfType[v],
+                    newOptions = '',
+                    sizeId,
+                    form,
+                    row;
+                for (sizeId in sc) {
+                    if (sc.hasOwnProperty(sizeId)) {
+                        newOptions += '<option role="option" value="' + sizeId + '">' +
+                            adSize[sizeId] + '</option>';
+                    }
+                }
+
+                resetStatesValues();
+
+                // populate the subset of contries
+                if ($(e.target).is('.FormElement')) {
+                    // form 		    			   addcaption:%20"Add%20Record",editing
+                    form = $(e.target).closest('form.FormGrid');
+                    $("select#size.FormElement", form[0]).html(newOptions);
+                } else {
+                    // inline editing
+                    row = $(e.target).closest('tr.jqgrow');
+                    $("select#" + $.jgrid.jqID(row.attr('id')) + "_size", row[0]).html(newOptions);
+                }
+            }
+        }
+    ]
+}
+},
+
+						{name:'size', index:'Ad size', hidden: true, editable: true, editrules: { edithidden: true }, hidedlg: true,  width:180, search:false, formatter: 'select',
+	edittype:'select', editoptions:{value:adSize}},
+						{name:'placement_category',index:'Placement Categories',width:120,align:'center',editable: true,
+							edittype:'custom', editoptions:{ custom_element:MultiCheckElem, custom_value:MultiCheckVal, list:''}},
+						{name:'acceptAgreament', index:'', hidden: true, editable: true, editrules: { required: true, edithidden: true }, hidedlg: true,  edittype:'custom',
+							editoptions:{ custom_element:agreementElem, custom_value:agreementVal}}
+				], 
+				pager: $('#gridPager'),
+				rowNum:30,
+				height:'100%',
+				width:'750',
+				rowList:[10,20,30], 
+				
+				sortname: 'name',
+				viewrecords: true,
+				sortorder: "desc",
+				jsonReader: {bSubmit: 'Save',
+					repeatitems: false
+				},
+				toolbar:[true,"top"],
+				ondblClickRow: editRow,
+				caption:"Placements" });
+	
+	$("#list2").jqGrid('filterToolbar');
+	
+	//button'sclass=
+	$("#t_list2").append("<input type='button' id='add_button' value='New Placement' style='height:20px;font-size:12px'/>"); 
+	$("#add_button").click(
+			function(){
+			editRow('new');
+			}); 
+	$("#t_list2").append("<input type='button' id='del_button' value='Delete' style='height:20px;font-size:12px'/>"); 
+	$("#del_button").click(
+			function(){
+				var row_id_s = jQuery('#list2').jqGrid('getGridParam','selrow');
+				//var appSum = jQuery('#listcustom2').jqGrid('getCell',row_id_s,0);
+				
+				jQuery("#list2").jqGrid('delGridRow', row_id_s, 
+					  {recreateForm:true,closeAfterEdit:true, 
+		    		   closeOnEscape:true,reloadAfterSubmit:false,
+		    		   url: "../table/'" 
+		    		  } );
+			}); 
+	$("#t_list2").append("<input type='button' id='clearFilter_button' value='Clear Filter' style='height:20px;font-size:12px'/>"); 
+	$("#clearFilter_button").click(
+			function(){
+				jQuery("#list2")[0].clearToolbar();
+			}); 
+	
+	function editRow(rowid) {
+	    jQuery("#list2").jqGrid('editGridRow', rowid,
+	    		  {recreateForm:true,closeAfterEdit:true, closeAfterAdd:true, 
+	    		   closeOnEscape:true,reloadAfterSubmit:false,
+	    		   width: "800",
+	    		   addCaption: "New Placement",
+	    		   bSubmit: 'Create',
+	    		   resize: true,
+	    		   url: "table/",
+	    		   afterSubmit : function(response, postdata)  {
+	    			   var message = "Record was edited/added sucsefully";
+	    			   try {
+	    				   var obj = JSON.parse( response.responseText );
+		    			   var new_id = obj.rows[0].itemName;
+		    			  
+	    			   } catch (error) {
+	    				   var success=false;
+	    				   message = "error" + error.msg;
+	    			   }
+	    			     
+		    		   
+		    		   return [success,message,new_id];
+	    		   	} 
+	    		  }	);
+	}
+	
+	$( "#list2" ).navGrid('#gridPager',{edit:false,add:false,del:false,refresh:true,search:false, view:false});
+
+}); 
+
+
+//element. From what I have gathered, jqGrid calls this the first time the form is launched. After
+//that, only the "custom_value" function is called.20
+//
+//The full list of checkboxes is in the jqGrid "editoptions" section "list" tag (in the options
+//parameter).
+//————————————————————
+function MultiCheckElem( value, options )
+{
+//———-
+// for each checkbox in the list
+//   build the input element
+//   set the initial "checked" status
+// endfor
+//———-elem.length
+var ctl = '<div>';
+//var ckboxAry = options.list.split(',');
+var array1= ["Arts","Autos & Vehicles","Beauty & Personal Care","Blog/Forum", "Business & Finance","Classifieds/Career"];
+var array2 = ["Computers & Electronics","Dating","Downloads/File Sharing", "Education","Entertainment","Food & drinks","Gambling"];
+var array3 = ["Gaming", "Health", "Hobbies/Leisure/Special Interests/Greetings","Home & garden/Do-it-yourself","Industry","Internet & telecom","Men/Women/Family & Religion","Movies&Television","Music","News","Pets & animals"];
+var array4 = ["Real estate","Reference","Language & literature","Science","environment & technology","Shopping","Social Networking","Society & government","Sports","Streaming/Photo Sharing","Travel","Weather"];
+var array5 = array1.concat(array2);
+var array6 = array3.concat(array4);
+var ckboxAry = array5.concat(array6);
+for (var i=0; i<ckboxAry.length;){
+  
+  ctl = ctl+'<div class="row table">'
+  for (var j=i; j<ckboxAry.length && j< (i+4);j++){
+	  var item = ckboxAry[j];
+
+	 // var space = '&nbsp;'
+		  
+	  //for(var k=(40-item.length) ;k > 0 ; k--){
+		//  space = space+'&nbsp;'
+	  //}
+	 ctl = ctl +' <div class="checkboxDiv ">'
+     ctl = ctl +'<input type="checkbox" ';
+
+     if ( value.indexOf(item + '|') != -1 )
+        ctl += 'checked="checked" ';
+     ctl += 'value="' + item + '"> ' + item + '</input>'+'</div>';//+space;
+	     
+  }
+  ctl = ctl+'</br>'
+  i= i+4;
+  ctl = ctl+'</div>' 
+}
+ctl = ctl + '</div>'
+return $(ctl)[0];
+}
+
+
+
+//————————————————————
+//Description:
+//MultiCheckVal is the "custom_value" function for the custom multiple check box input element. It
+//appears that jqGrid invokes this function the first time the form is submitted and, the rest of
+//the time, when the form is launched (action = set) and when it is submitted (action = 'get').
+//————————————————————
+function MultiCheckVal(elem, action, val)
+{
+var items = '';
+if (action == 'get') // the form has been submitted
+{
+	//———-
+    // for each input element
+    //   if it's checked, add it to the list of items
+    // endfor
+    //———-
+    var inputs = $("input", $(elem)[0]);
+    for (var i in inputs)
+    {
+       if (inputs[i].tagName == 'INPUT' && inputs[i].checked )
+      	     items += inputs[i].value + ',';
+    }
+
+    // items contains a comma delimited list that is returned as the result of the element
+    items = items.replace(/,$/, '');
+}
+else // the form is launched
+{
+   //———-
+   // for each input element
+   //   based on the input value, set the checked status
+   // endfor
+   //———-
+   for (var i in elem)
+   {
+      if (elem[i].tagName == 'INPUT')
+      {
+         if (val.indexOf(elem[i].value + '|') == -1)
+            elem[i].checked = false;
+         else
+            elem[i].checked = true;
+      }
+   } // endfor
+}
+
+return items;
+}
+
+function agreementElem( value, options ){
+	var ac = '<div>';
+	ac += '<div class="row table">';
+	ac += '<input type="checkbox" name="ac" value="">';
+	ac += 'I won'+'&#39;'+'t implement ElmundoNme ads in a page that contains prohibited content and will not generate non-human traffic or manipulate ElmundoNme tags in order to produce false activity';
+	ac += '</div>'
+	ac = ac + '</div>'
+	 
+return $(ac)[0];
+}
+function agreementVal( value, options ){
+	var items = '';
+return items;
+}
+</script>
+</head>
+	
+<body>
+	<table id="list2"></table>
+	<div id="gridPager" ></div>
+</body>
+</html>
+
+
+

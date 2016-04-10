@@ -1,0 +1,22 @@
+
+<script type="text/javascript">
+                                (function () {
+                                var ga_account = null; // null - disable, "UA-XXXX-X" - enable
+                                var client_id = (new Date()).valueOf().toString();
+                                var page_url = location.href;  //replace with relevant macro if needed
+                                var service_url = "http://localhost:9090/adserve/video/service?"
+                                var content = "cc2c9e01-caae-4abc-8975-72f3dccf46c7";
+                                var width = 350;
+                                var height = 250;
+ 
+                                if (ga_account != null)
+                                {
+                                                playerUrl += "&ga.cp.sink=" + ga_account;
+ 
+                                                var gaUrl = "http://www.google-analytics.com/collect?v=1" + "&tid=" + ga_account + "&cid=" + client_id + "&t=event&ec=Checkpoint&el=" + escape(page_url) + "&ev=0&ea=embed_code_exec";
+                                                document.write("<img style='display: none' src='" + gaUrl + "' />");
+                                }
+                                var iframe = "<iframe frameborder='0' width='" + width + "' height='" + height + "' src='" + service_url +"media="+content+ "'></iframe>";
+                                document.write(iframe);
+                                })();
+                           </script>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+					    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+						http://www.springframework.org/schema/data/jpa
+                        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+                        http://www.springframework.org/schema/tx  
+    					http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+    					http://www.springframework.org/schema/aop
+    					http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	<context:annotation-config />
+	<context:component-scan base-package="com.harrenmedia" />
+
+	<!-- <tx:annotation-driven transaction-manager="transactionManager" order="200"/> 
+		<tx:advice id="txAdvice" transaction-manager="transactionManager"> <tx:attributes> 
+		<tx:method name="find*" read-only="true"/> <tx:method name="get*" read-only="true"/> 
+		<tx:method name="scroll*" read-only="true"/> <tx:method name="search*" read-only="true"/> 
+		<tx:method name="*"/> </tx:attributes> </tx:advice> <aop:config> <aop:pointcut 
+		id="allServices" expression="execution(* com.softweave..service..*Service.*(..))"/> 
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="allServices" order="200"/> 
+		</aop:config> -->
+	<jpa:repositories base-package="com.harrenmedia.persistence" />
+
+	<bean id="transactionTemplate"
+		class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="propagationBehaviorName" value="PROPAGATION_REQUIRES_NEW" />
+	</bean>
+
+	<!-- Connection Factory <bean id="connectionFactory" class="org.springframework.amqp.rabbit.connection.CachingConnectionFactory"> 
+		<constructor-arg> <value>${rabbitmq.url}</value> </constructor-arg> <property 
+		name="username" value="${rabbitmq.username}"/> <property name="password" 
+		value="${rabbitmq.password}"/> <property name="port" value="${rabbitmq.port}"/> 
+		</bean> <bean id="eventsListener" class="com.softweave.winafar.service.impl.gateway.listener.EventsListener"/> -->
+
+	<!-- SET default mail properties -->
+	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="mailSender">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="nadavfin" />
+		<property name="password" value="pokahontas" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="httpClient" class="org.apache.http.impl.client.DefaultHttpClient">
+		<constructor-arg>
+			<bean class="org.apache.http.impl.conn.PoolingClientConnectionManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+		<constructor-arg>
+			<bean
+				class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory">
+				<constructor-arg ref="httpClient" />
+			</bean>
+		</constructor-arg>
+
+	</bean>
+	
+	<bean id="objectMapper" class="org.codehaus.jackson.map.ObjectMapper" />
+
+	<bean id="mbeanServer" class="org.springframework.jmx.support.MBeanServerFactoryBean" />
+	<context:mbean-export />
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close" p:driverClass="${db.driver}"
+		p:jdbcUrl="${db.url.prefix}${db.host.separator}${db.hostname}${db.port.separator}${db.port}${db.separator}${db.name}"
+		p:user="${db.user}" p:password="${db.pass}" p:initialPoolSize="21"
+		p:maxPoolSize="21" p:acquireRetryAttempts="5" p:acquireRetryDelay="3000"
+		p:idleConnectionTestPeriod="300">
+	</bean>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="persistenceUnitName" value="persistenceUnit" />
+		<property name="persistenceProviderClass"
+			value="org.hibernate.jpa.HibernatePersistenceProvider" />
+		<property name="packagesToScan" value="com.harrenmedia.persistence.entity" />
+		<property name="jpaProperties">
+			<props>
+				<!-- Hibernate Configuration -->
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl}</prop>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.ejb.naming_strategy">${hibernate.ejb.naming_strategy}</prop>
+				<prop key="hibernate.id.new_generator_mappings">${hibernate.id.new_generator_mappings}</prop>
+
+				<!-- Hibernate Envers Configuration -->
+				<prop key="org.hibernate.envers.audit_table_suffix">${org.hibernate.envers.audit_table_suffix}</prop>
+				<prop key="org.hibernate.envers.store_data_at_delete">${org.hibernate.envers.store_data_at_delete}
+				</prop>
+				<prop key="hibernate.listeners.envers.autoRegister">${hibernate.listeners.envers.autoRegister}</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,13 @@
+*target*
+*.war
+*.ear
+*.class
+
+# eclipse specific git ignore
+bin/**
+build/**
+
+
+
+
+/build/

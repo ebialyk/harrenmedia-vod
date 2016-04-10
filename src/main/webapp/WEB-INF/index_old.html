@@ -1,0 +1,318 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ElmundoNme Ad</title>
+<link rel="stylesheet" href="css/normalize.css" />
+<link href="css/bootstrap-datepicker.css" rel="stylesheet" />
+<link
+	href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css"
+	rel="stylesheet" />
+
+<link rel="stylesheet" href="css/ui.jqgrid.css" />
+<link rel="stylesheet" href="css/jquery-ui/jquery-ui.min.css" />
+<link rel="stylesheet" href="css/jquery-ui/jquery-ui.structure.min.css" />
+<link rel="stylesheaderheet"
+	href="css/jquery-ui/jquery-ui.theme.min.css" />
+<link href="css/style.css" rel="stylesheet" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.styleTable {
+	border-collapse: separate;
+}
+
+.styleTable TD {
+	font-weight: normal !important;
+	padding: .4em;
+	border-top-width: 0px !important;
+}
+
+.styleTable TH {
+	text-align: center;
+	padding: .8em .4em;
+}
+
+.styleTable TD.first, .styleTable TH.first {
+	border-left-width: 0px !important;
+}
+</style>
+</head>
+
+<body>
+
+	<script type="text/x-handlebars">
+<div id="page">
+<!--Header-->
+ <div class="header">
+ 	  <div class="headerFir">
+		<div class="contactus">
+			{{#link-to 'contactus'}} Contact Us {{/link-to}}
+	    </div>
+    {{#if controller.session.isLoggedIn}}
+		<div class="loginout">
+		 	 <div {{action "logOut"}}>Logout</div>
+		</div>
+	{{else}}
+		<div class="loginout">
+		{{#link-to 'login'}} Login {{/link-to}}
+		</div>
+	{{/if}}
+
+ 	</div>
+ 	
+	<div class="navbar headerSec">
+      
+	<ul class="nav">
+ 		<li><a href="index.html" ><img class="logo" src="images/logo1.png" alt="ElmundoNme" title="Home" width="104" height="35"></a></li>
+        
+          <li>{{#link-to 'about'}}About{{/link-to}}</li>
+        </ul>
+    
+   		
+ 		<div class="settings">
+ 			<img src="images/Settings-icon.png" width="104" title="Account/Settings" height="35">
+  		</div>
+	</div>
+ </div><!--Header-->
+	
+{{outlet}}
+</div>
+</script>
+
+	<script type="text/x-handlebars" id="dashboard"> 
+	<!-- Main view-->
+ <div class="mainConteiner">
+ 	<!-- Sidebar -->
+		<div class="leftMenu">
+				<ui class="menu_simple">
+              	  	 <li >{{#link-to 'chart'}} <SPAN STYLE="color: #D0D1D3; font-size: 20px">Home</SPAN> {{/link-to}}</li>
+               		 <li>{{#link-to 'placement'}} Placement {{/link-to}}</li>
+               		 <li>{{#link-to 'reports'}} Reports {{/link-to}}</li>
+               		 <li>{{#link-to 'revenue'}} Revenue {{/link-to}}</li>
+               		 <li>{{#link-to 'support'}} Support {{/link-to}}</li>
+               		 <li>{{#link-to 'about'}} About {{/link-to}}</li>
+               		 <li>{{#link-to 'contact'}} Contact Us {{/link-to}}</li>
+            	</ul>
+        </div>
+		<div class="rightMenu">
+			{{outlet}}
+		<div>
+  </div><!-- Main view-->
+	
+</script>
+
+	<script type="text/x-handlebars" id="about">
+<div>
+<div>
+What is all about, what Shkodo gives you
+</div>
+</div>
+</script>
+
+	<script type="text/x-handlebars" id="chart">
+{{view App.MyChart}}
+</script>
+	<script type="text/x-handlebars" id="placement">
+
+{{view App.MyTable}}
+</script>
+
+	<script type="text/x-handlebars" id="reports">
+{{view App.MyReportTable}}
+</script>
+
+	<script type="text/x-handlebars" id="login">
+<div class="contant contantLogin">
+<div id="HeaderWithLine">
+Login
+</div>
+<div class="loginBox">
+{{#if controller.session.isLoggedIn}}
+      <p>You are already logged in!</p>
+	{{else}}
+	  <form {{action login on="submit"}}>
+        
+        <label>{{input value=username class="formInput" id="userName" type="text" placeholder="Email address"}}</label>
+        <label>{{input value=password class="formInput" id="pw" type="password" placeholder="Password"}}</label>
+        {{input class="btn btnOrange" type="submit" value="Login"}}
+		<div class="forgetPW" {{action "forgetpw"}}>Forgot your password?</div>
+      </form>
+ 	{{#if errorMessage}}
+        <div class="alert alert-error">{{errorMessage}}</div>
+ 	{{/if}}
+{{/if}}
+</div><!--loginBox -->
+</div>
+</script>
+
+	<script type="text/x-handlebars" id="forgetpw">
+<div class="contant contantForgetPW">
+<div id="HeaderWithLine">
+Reset Your Password
+</div>
+		<div class="subMenuContainer">
+	  <form {{action resetPW on="submit"}}>
+        <div> Please enter your E-mail address: </div>
+        <label>{{input value=email class="formInput" id="emailForgetPw" type="text" placeholder="Email address"}}</label>
+        {{input class="btn btnOrange" id="btnForgetPW" type="submit" value="Reset Password"}}
+      </form>
+	{{#if forgetPWError}}
+        <div class="alert"><p>{{forgetPWError}}{{#link-to 'register'}} register {{/link-to}} or {{#link-to 'contactus'}} contact us {{/link-to}}</p></div>
+ 	{{/if}}
+ 	</div>
+
+</div>
+</script>
+
+	<script type="text/x-handlebars" id="forgetpwemailsent">
+<div class="contant contantForgetPW">
+		<div class="subMenuContainer">
+        <div class="subtitleForgetPwMessageEmailSent"> {{emailSentSuccess}} </div>
+ 	</div>
+</script>
+
+<script type="text/x-handlebars" id="resetpw">
+<div class="contant contantForgetPW">
+<div id="HeaderWithLine">
+New Password Update Form
+</div>
+	<div class="subMenuContainer">
+		{{#if errorTokenValidation}}
+        <div class="alert"><p>{{errorTokenValidation}}</div>
+ 		{{/if}}
+		{{#if errorUpdatePassword}}
+        <div class="alert"><p>{{errorUpdatePassword}}&nbsp; {{#link-to 'contactus'}} contact us {{/link-to}}</p></div>
+ 		{{/if}}
+{{isTokenValid}}
+	{{#if statusToken}}
+	  	<form {{action updatePW on="submit"}}>
+        	<div> Please enter your new password:</div>
+			<label>{{input value=pw class="formInput" id="newpassword" type="text" placeholder="New password"}}</label>
+       		<label>{{input value=cpw class="formInput" id="confirmpassword" type="text" placeholder="Confirm password"}}</label>
+        	{{input class="btn btnOrange" id="btnForgetPW" type="submit" value="Reset Password"}}
+      </form>
+	{{/if}}
+	
+
+	
+ 	</div>
+
+</div>
+</script>
+	<script type="text/x-handlebars" id="resetpwsuccess">
+<div class="contant contantForgetPW">
+        <div class="notification txtaligncenter">{{updatePwSuccessfully}} &nbsp; {{#link-to  'login' class='notificationLink'}} login {{/link-to}}</div>
+	</div>
+</script>
+
+
+	<script type="text/x-handlebars" id="register">
+<div class="contant ">
+	<div id="HeaderWithLine">
+	Get Started Now
+	</div>
+ <div class="subMenuContainer">
+	<div class="subtitle"> Shkudu helps you to leverage your site over the top</div>
+
+	{{#if errorMessage}}
+        <div class="alert">{{errorMessage}}</div>
+ 	{{/if}}
+	<div class="leftMenuRegister">
+	  <form {{action register on="submit"}}>
+        <span class="red">*</span>
+        <label>{{input value=fName id="fName" type="text" placeholder="First name"}}</label>
+		<span class="red">*</span>
+ 		<label>{{input value=lName id="lName" type="text" placeholder="Last name"}}</label>
+		<span class="red">*</span>
+	 	<label>{{input value=email id="email" type="text" placeholder="Email"}}</label>
+		<span class="red">*</span>
+ 		<label>{{input value=password  id="password" type="password" placeholder="Password"}}</label>
+		<span class="red">*</span>
+ 		<label>{{input value=confirmPw id="confirmPw" type="password" placeholder="Confirm password"}}</label>
+		<span class="red">*</span>
+		<label>{{view Ember.Select 
+	contentBinding="App.CountryController" 
+	selectionBinding="App.selectedCountryController.country" 
+	optionLabelPath="content.name" 
+	optionValuePath="content.id"}}</label>
+		<!--<span class="red">*</span>
+		<label>{{input value=country id="country" type="text" placeholder="Country"}}</label> -->
+		<span class="red">*</span>
+ 		<label>{{input value=phone id="phone" type="text" placeholder="Phone number"}}</label>
+		<!--<span class="red">*</span>
+ 		<label>{{input value=pMethod id="paymentMethod" type="text" placeholder="Payment method"}}</label> -->
+		{{input class="btn btnOrange top" id="btnForgetPW" type="submit" value="Submit"}}
+      </form>
+	</div>
+	<div class="rightMenuRegister">
+		waiting for picture...
+	</div>
+ </div>
+</div>
+</script>
+	<script type="text/x-handlebars" id="registersuccess">
+<div class="contant contantForgetPW">
+        <div class="subtitleForgetPwMessageEmailSent txtaligncenter divsizenotification centerarea">{{activationEmailSent}} </div>
+	</div>
+</script>
+
+	<script type="text/x-handlebars" id="activateaccount">
+<div class="contant contantForgetPW">
+{{#if isActive}}
+	<div class="circleButton centerarea">
+		<img class="ok" src="images/ok.png" alt="Account activate successfully" title="Account activate successfully" width="50" height="50">
+	</div>
+		
+		{{#if success}}
+        	<div class="notification txtaligncenter"> {{success}}&nbsp; {{#link-to  'login' class='notificationLink'}} login {{/link-to}}</div>
+		{{/if}}
+	
+{{else}}
+	<div class="circleButton centerarea">
+		<img class="ok" src="images/no.png" alt="Account activation failed" title="Account activation failed" width="50" height="50">
+	</div>
+
+			{{#if error}}
+    	    <div class="notification txtaligncenter"> {{error}} {{#link-to 'contactus' class='notificationLink'}} contact us {{/link-to}}</div></div>
+			{{/if}}
+{{/if}}
+</div>
+	
+
+</div>
+</script>
+
+
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script src="js/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="js/bower_components/handlebars/handlebars.min.js"></script>
+	<script src="js/bower_components/ember/ember.min.js"></script>
+	<script src="js/ember-data.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/util.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/i18n/grid.locale-en.js" type="text/javascript"></script>
+	<script type='text/javascript'
+		src="http://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/js/jquery.jqGrid.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			myCustomCheck = function(value, colname) {
+				if (colname === "Name") {
+					if (!(value !== "" && value !== undefined)) {
+						return [ false, "Please type the placement name" ];
+					}
+				} else if (colname === "Website url") {
+					if (!(value !== "" && value !== undefined)) {
+						return [ false, "Please type your website url" ];
+					}
+				}
+
+				return [ true ];
+			}
+
+		});
+	</script>
+
+</body>
+</html>
