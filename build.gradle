@@ -70,9 +70,6 @@ dependencies{
 	compile 'com.google.oauth-client:google-oauth-client-jetty:1.13.1-beta'
 	compile 'org.jsoup:jsoup:1.8.3'
 	compile 'com.googlecode.json-simple:json-simple:1.1.1'
-	compile 'com.datastax.cassandra:cassandra-driver-core:2.1.9'
-	compile 'org.springframework.data:spring-data-cassandra:1.3.2.RELEASE'
-	compile 'io.netty:netty-all:4.0.35.Final'
 }
 
 

@@ -1,447 +1,390 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Mediaflyer</title>
+<meta charset=utf-8>
+<title>LandingPage</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="css/bootstrap-datepicker.css" rel="stylesheet" />
+  
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel='stylesheet' type='text/css'>
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+  <script>
+    var confirmOnExit = true;
+	//show the player and open the create account dialog after 7 seconds
+    function showElements() {
+      setTimeout(function(){ 
+          //var x = document.getElementById("loading").style.display = "none";
+          document.getElementById("screen").style.display = "block";
+          document.getElementById("loading").style.position = "absolute";
+       }, 1500);
 
-<link rel="icon" href="images/favicon.ico">
-<link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
-<link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
+      setTimeout(function () {
+    	  openCreateAccountDialog();
 
-<link rel="stylesheet" href="css/normalize.css" />
-<link href="css/bootstrap-datepicker.css" rel="stylesheet" />
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-<link
-	href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css"
-	rel="stylesheet" />
+      },7000);
+    }
 
-<link rel="stylesheet" href="css/ui.jqgrid.css" />
-<link rel="stylesheet" href="css/jquery-ui/jquery-ui.min.css" />
-<link rel="stylesheet" href="css/jquery-ui/jquery-ui.structure.min.css" />
-<link rel="stylesheaderheet"
-	href="css/jquery-ui/jquery-ui.theme.min.css" />
-<link href="css/style.css" rel="stylesheet" />
-<link href="css/header_footer.css" rel="stylesheet" />
+    function openCreateAccountDialog() {
+    	document.getElementById("CreateAccount").style.display = "flex";
+        document.getElementById("mask").style.display = "block";
+        document.getElementById("circularG").style.display = "none";
+        document.getElementById("loadSpan").style.display = "none";
+        document.getElementById("contentBar").style.display = "none";
+        document.getElementById("loading").style.display = "none";
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<style type="text/css">
-/*.styleTable {
-	border-collapse: separate;
-}
+        document.getElementById("w8").style.display = "none";
+    }
+       
+    //prevent to leave the page before ends the inscription
+    window.onbeforeunload = confirmExit;
+    function confirmExit() {
+    	if (confirmOnExit) {
+        	return "You have attempted to leave this page. Are you sure?";
+        }
+    }
+    
+	//Validate the create Account data and open the Verification page
+    function openVerificationPage() {
+    	document.getElementById("LandingPage").style.display = "none";
+	    document.getElementById("VerificationPage").style.display = "flex";
+	    document.getElementById("body").className = "whiteBg";
+    }
+    function validatedCreateAccount() {
+    	//Get data from url 
+    	
+    	//url format ?aff=affiliateNumber&country=countryNumber&theme=themeCode&titleMovie=movieTitle
+    	urlParams = parseURLParams(window.location.href);    	
+    	
+    	var affiliateCode = urlParams.aff[0];
+    	var countryCode = urlParams.country[0];
+    	var email = document.getElementById("email");
+    	var psw = document.getElementById("psw");
+    	var psw2 = document.getElementById("psw2");
+    	
+    	var okEmail = false;
+    	var okPsw = false;
+    	var okPsw2 = false;
+    	var okPswEquals = false;
+    	
+    	
+    	
+    	//not allow empty fields
+    	if(email.value === undefined || email.value == "") {
+    		email.className = "error";
+    		email.title = "Please enter an email";
+    	} else if(!validEmail(email.value)){  //validate entered email
+    		email.className = "error";
+    		email.title = "Please enter a valid email";
+    	} else { //no email errors
+    		email.className = "";
+    		email.title = "";
+    		okEmail = true;
+    	}  
+    	if(psw.value === undefined || psw.value == "") {
+    		psw.className = "error";
+    		psw.title = "Please enter a password";
+    	} else {
+    		psw.className = "";
+    		psw.title = "";
+    		okPsw = true;
+    	}  
+    	if(psw2.value === undefined || psw2.value == "") {
+    		psw2.className = "error";
+    		psw2.title = "Please confirm your password";
+    	} else {
+    		psw2.className = "";
+    		psw2.title = "";
+    		okPsw2 = true;
+    	}  
+    	
+    	if(psw.value === psw2.value) { //validate password and confirm password are equals
+    		okPswEquals = true;
+    	} else {
+    		psw.className = "error";
+    		psw2.className = "error";
+    		psw.title = "password and confirm password are not the same, please type again";
+    		psw2.title = "password and confirm password are not the same, please type again";
+    	}
+    	
+    	if(okEmail && okPsw && okPsw2 && okPswEquals) {
+    		
+    		data = {email: email.value, pw: psw.value, pwConfirm: psw2.value, affiliate: affiliateCode, country: countryCode};
+    		$.ajax({
+				url: "rest/client/register",
+    			type: "POST",
+    			dataType: "json", // expected format for response
+    			contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+				data : data,
+				success : function(response) { 
+					if(response.status == 15){
+						openVerificationPage();
+					}
+					else {
+						alert(response.message);
+					}
+				},
+				error : function(response, status, error) {
+					alert(response.message);
+				}
+			});
+    	}
+	}
+    function validEmail(mail) {
+    	 var re = /[A-z0-9._%+-]+@[A-z0-9.-]+.[A-z]{2,4}/;
+    	    return re.test(mail);
+    }
+    
+    function verifyAccount() {
+      document.getElementById("VerificationPage").style.display = "none";
+      document.getElementById("page3").style.display = "flex";
+      document.getElementById("body").className = "";
+      setTimeout(function(){
+        window.open ('movies.html','_self',false)
+        confirmOnExit = false;
+      },2000);
 
-.styleTable TD {
-	font-weight: normal !important;
-	padding: .4em;
-	border-top-width: 0px !important;
-}
+    }
+	
+    //start the count down timer
+    window.onload = function() {  
+    	urlParams = parseURLParams(window.location.href);  
+    	var title = urlParams.titleMovie[0];
+    	document.getElementById("movieTitle").innerHTML = title;
+    	var display = document.querySelector('#time'),
+	    timer = new CountDownTimer(480);
+	    timer.onTick(format).onTick(restart).start();
+	
+	    function restart() {
+	    	if (this.expired()) {
+	        	setTimeout(function() { timer.start(); }, 1000);
+	        }
+	    }
 
-.styleTable TH {
-	text-align: center;
-	padding: .8em .4em;
-}
+	    function format(minutes, seconds) {
+	      minutes = minutes < 10 ? "0" + minutes : minutes;
+	      seconds = seconds < 10 ? "0" + seconds : seconds;
+	      display.textContent = minutes + ':' + seconds;
+	    }
+  	};
 
-.styleTable TD.first, .styleTable TH.first {
-	border-left-width: 0px !important;
-}*/
-/* Jqgrid textarea http://stackoverflow.com/questions/13103544/how-to-restrict-jqgrid-textarea-height-in-grid-only*/ 
-tr.jqgrow>td.textInDiv>div {
-    max-height: 40px;
-    overflow: auto
-}
-.EditTable td textarea {
-width: 600px;
-height: 300px;
-}
-td.form-view-data>span>div {
-    max-height: 150px;
-    overflow: auto
-}
-</style>
+  	function parseURLParams(url) {
+  	    var queryStart = url.indexOf("?") + 1,
+  	        queryEnd   = url.indexOf("#") + 1 || url.length + 1,
+  	        query = url.slice(queryStart, queryEnd - 1),
+  	        pairs = query.replace(/\+/g, " ").split("&"),
+  	        parms = {}, i, n, v, nv;
+
+  	    if (query === url || query === "") {
+  	        return;
+  	    }
+
+  	    for (i = 0; i < pairs.length; i++) {
+  	        nv = pairs[i].split("=");
+  	        n = decodeURIComponent(nv[0]);
+  	        v = decodeURIComponent(nv[1]);
+
+  	        if (!parms.hasOwnProperty(n)) {
+  	            parms[n] = [];
+  	        }
+
+  	        parms[n].push(nv.length === 2 ? v : null);
+  	    }
+  	    return parms;
+  	}
+  </script>
 </head>
-
-<body>
-
-	<script type="text/x-handlebars">
-<div id="page">
-
-   <div class="headerFir baseContentHeader">
-
-		<div class="contactus">
-			{{#link-to 'contactus'}} Contact Us {{/link-to}}
-	    </div>
-
-    {{#if controller.session.isloggedin}}
-		<div class="loginout">
-		 	 <div {{action "logOut"}}>Logout</div>
-		</div>
-	{{else}}
-		<div class="loginout">
-		{{#link-to 'login'}} Login {{/link-to}}
-		</div>
-	{{/if}}
-
- 	</div>
-<!--Header-->
-
-{{#if controller.session.isloggedin}}
-		{{else}}
-<div id="headerSecTohideshow" class="header headerSec">
- <div class="headermenu baseContent">
- 	
-	<div class="navbar" role="navigation">
-      
-		<ul class="nav">
- 		<li><a href="index.html" ><img class="logom" src="images/logo_full.png" alt="Mediaflyer" title="Home" width="70" height="50"></a></li>
-          <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Features  <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Global coverage</a></li>
-            <li><a href="#">Best value</a></li>
-            <li><a href="#">Easy</a></li>
-          </ul>
-          <li>{{#link-to 'about'}}About{{/link-to}}</li>
-		<li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Support <span class="caret"></span></a> 
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Resources</a></li>
-          </ul>
-		<li>{{#link-to 'about'}}Why Mediaflyer{{/link-to}}</li>
-        </ul>
-    </div>
-<div id="getStartedContainer">
-			<button {{action "support"}} class='headerGetStarted'>Get Started
-				&nbsp;&nbsp;</button></div>
-   		<!--
- 		<div class="settings">
- 			<img src="images/Settings-icon.png" width="104" title="Account/Settings" height="35">
-  		</div>-->
-	
- </div>
- </div>
-
-{{/if}}
-
-</div><!--HeaderSec-->
-{{outlet}}
-
-<div class="footer">
-<div class="foot	erbaseContent">
-<div class="container-fluid">
- <div class="row-fluid">
-	  <div class="span6 footerleft">
-		<div class="intouch">
-			<span><img class="mail" src="images/icon-email.png"></span>
-			<span class="title fottertext">Get in touch with us!</span>
-			<div class="contact-text">Mediaflyer, a smarter self-serve ad platform company that looks at 
-									site owners a little differently. We are veteran developers, 
-									marketers, technologists and business professionals who are 
-									globally minded, customer focused, and constantly driven to 
-									innovate. 
-			</div>
-			<div class="inputButtonSubscribe boxi">{{input value=username class="formInput" id="subscribe" type="text" placeholder="Email address"}}</div> 
-			<div class="boxi"><button id="subscribeSubmit" {{action "subscribe"}} class="btn btn-warning" name="subscribeSubmit" value="subscribeSubmit" type="submit">Subscribe</button></div>
-		</div>
-	  </div>
-
- 	<div class=" ">
-	<div class="span2 intouchsubmenu">
-	<div class="footersubmenuheadline fottertext">Mediaflyer Benefits</div>
-	<label>{{#link-to 'about' class="textcolor fontsmall"}} Easy {{/link-to}}</label>
-	<label>{{#link-to 'about' class="textcolor fontsmall"}} Best Value {{/link-to}}</label>
-	</div>
-	<div class="span2 intouchsubmenu">
-	<div class="footersubmenuheadline fottertext">Resources</div>
-	<label>{{#link-to 'about' class="textcolor fontsmall"}} FAQ  {{/link-to}}</label>
-	<label>{{#link-to 'about' class="textcolor fontsmall"}} Glossery {{/link-to}}</label>
-	</div>
-	<div class="span2 intouchsubmenu">
-	<div class="footersubmenuheadline fottertext">Company Info</div>
-	<label>{{#link-to 'about' class="textcolor fontsmall"}} Customer Success {{/link-to}}</label>
-	<label>{{#link-to 'about' class="textcolor fontsmall"}} Contact Us  {{/link-to}}</label>
-	<label>{{#link-to 'about' class="textcolor fontsmall"}} Privacy Policy {{/link-to}}</label>
-	</div>
-
-  <div>
- </div>
- </div><!--row ends -->
- <div class="row-fluid">
-  <div class="span12">
-<div class="boxi"><button id="contactusbutton" {{action "contactus"}} class="footerbutton" name="subscribeSubmit" value="subscribeSubmit" type="submit">Contact Us</button></div>
-<div class="boxi"><button id="supportbutton" {{action "support"}} class="footerbutton" name="subscribeSubmit" value="subscribeSubmit" type="submit">Support</button></div>
-  </div>
- </div>
-
- <div class="row-fluid">
-  <div class="span12 social">
-	<a href="https://twitter.com/BlueSnapInc" target="_blank"><img src="images/icons-twitter.png"></a>
-	<a href="https://www.facebook.com/bluesnapmerchants?ref=hl" target="_blank"><img src="images/icons-facebook.png"></a>
-	<a href="https://www.linkedin.com/company/bluesnap" target="_blank"><img src="images/icons-linkedin.png"></a>
-	<a href="https://www.youtube.com/user/BlueSnapVideo" target="_blank"><img src="images/icons-youtube.png"></a>
-	<a href="http://blog.bluesnap.com/" target="_blank"><img src="images/icons-blog.png"></a>
-  </div>
- </div>
- <div class="row-fluid">
-  <div class="span12 copyright">
-	<icon class="glyphicon glyphicon-copyright-mark"></icon>
-	2014 Mediaflyer Inc. All rights reserved.
-
-  </div>
- 
-</div><!--container-fluid ends-->
-</div><!--baseContent ends-->
-</div><!--footer ends-->
-</script>
-
-	<script type="text/x-handlebars" id="index">
-<div class="contentIndex">
-	<div class="indexPanel"> 
-		Optimize Website Traffic <br/> To Get the Best Value
-	</div>
-	<div class="boxi"><button id="getStartedBig" {{action "subscribe"}} class="btn btn-warning" name="subscribeSubmit" value="subscribeSubmit" type="submit">Get Started</button></div>
-
-	
-	<div class="indexPanel topBig trafficDiv"> 
-		Maximize your profit
-	</div>
-
-	<div class="middleBox"> 
-		<div class="container-fluid">
- 			<div class="row-fluid">
-				<div class="span4">
-					<span class="glyphicon glyphicon-globe glyphiconDes"></span>
-				</div>
-				<div class="span4">
-					<span class="glyphicon glyphicon-credit-card glyphiconDes"></span>
-				</div>
-				<div class="span4">
-					<span class="glyphicon glyphicon-ok glyphiconDes"></span>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-</script>
-
-	<script type="text/x-handlebars" id="dashboard"> 
-<link rel="stylesheet" href="css/menu.css" />
-<div class="menuContainer"> 
-<div >
-<ul id="nav">
-<li class="current" {{action "movetohome"}}>{{#link-to ''}} <img class="logom" src="images/logo_full.png" alt="Mediaflyer" title="Home" width="70" height="50"> {{/link-to}}</li>
-<li>{{#link-to 'placement'}} Display ad {{/link-to}}</li>
-<li>{{#link-to 'videoplacement'}} Video ad {{/link-to}}</li>
-<li>{{#link-to 'reports'}} Reports {{/link-to}}</li>
-<li>{{#link-to 'chart'}} Revenue {{/link-to}}</li>
-<li>{{#link-to 'support'}} Support {{/link-to}}</li>
-<li>{{#link-to 'about'}} About {{/link-to}}</li>
-</ul>
-	<div class="content contentDashboard">
-		<div class="centerdiv">
-			{{outlet}}
-		</div>
-	</div>
-</div>
-
-</div>
-
-	
-</script>
-
-	<script type="text/x-handlebars" id="about">
-<div class="baseContent">
-<div>
-What is all about, what Mediaflyer gives you
-</div>
-</div>
-</script>
-
-	<script type="text/x-handlebars" id="chart">
-	{{view App.MyChart}}
-</script>
-	<script type="text/x-handlebars" id="placement">
-
-{{view App.DisplayPlacementTable}}
-</script>
-
-<script type="text/x-handlebars" id="videouploadplacement">
-{{view App.VideoPlacementTable}}
-</script>
-
-<script type="text/x-handlebars" id="videoplacement">
-{{view App.VideoPlacementNoFileTable}}
-</script>
-
-	<script type="text/x-handlebars" id="reports">
-{{view App.MyReportTable}}
-</script>
-
-	<script type="text/x-handlebars" id="login">
-
-<div class="content contentLogin">
-<div id="HeaderWithLine">
-Login
-</div>
-<div class="loginBox">
-{{#if controller.session.isloggedin}}
-      <p>You are already logged in!</p>
-	please proceed to the {{#link-to 'chart'}} Dashboard {{/link-to}}
-	{{else}}
-	  <form {{action login on="submit"}}>
+<body onload="showElements()" id="body">
+  <script type="text/x-handlebars">
+  <div id="LandingPage">
+    <div id="content">
+      <div id="header" onclick="openCreateAccountDialog()">
+        <div id="titles">
+          <div class="title"><div id="logo"></div><span>start watching movies instantly!</span></div>
+          <div class="subtitle" id="movieTitle">HD Steaming(720) "THE BEST & THE BEAST"</div>
+        </div>
+        <div class="download">
+          <button class="greenBtn">
+            <span class="title">DOWNLOAD</span>
+            <span class="subtitle">TO YOUR COMPUTER</span>
+          </button>
+          <div id="stars"><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i></div>
+        </div>
+      </div>
+      <div class="playerContainer">
+        <div class="width ratio16-9">
+          <div class="content">
+            <div class="loading" id="loading">
+              <div class="windows8" id="w8">
+                <div class="wBall" id="wBall_1">
+                  <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_2">
+                  <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_3">
+                  <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_4">
+                  <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_5">
+                  <div class="wInnerBall"></div>
+                </div>
+              </div>
+            </div>
+            <div class="screen" id="screen">
+              <div class="movie"></div>
+              <div class="movieTimer" onclick="openCreateAccountDialog()">
+                <div id="circularG">
+                  <div id="circularG_1" class="circularG"></div>
+                  <div id="circularG_2" class="circularG"></div>
+                  <div id="circularG_3" class="circularG"></div>
+                  <div id="circularG_4" class="circularG"></div>
+                  <div id="circularG_5" class="circularG"></div>
+                  <div id="circularG_6" class="circularG"></div>
+                  <div id="circularG_7" class="circularG"></div>
+                  <div id="circularG_8" class="circularG"></div>
+                </div><span id="loadSpan">Loading...</span>
+                <div class="contentBar fullwidth" id="contentBar">
+                  <span class="expand "></span>
+                  <span class="expand expandRed"></span>
+                </div>
+              </div>
+            </div>
+            <div class="controllers" onclick="openCreateAccountDialog()"></div>
+          </div>
+        </div>
+      </div>
+      <div id="languages">
         
-        <label>{{input value=username class="formInput" id="userName" type="text" placeholder="Email address"}}</label>
-        <label>{{input value=password class="formInput" id="pw" type="password" placeholder="Password"}}</label>
-        {{input class="btn btnOrange" type="submit" value="Login"}}
-		<div class="forgetPW" {{action "forgetpw"}}>Forgot your password?</div>
-      </form>
- 	{{#if errorMessage}}
-        <div class="alert alert-error">{{errorMessage}}</div>
- 	{{/if}}
-{{/if}}
-</div><!--loginBox -->
-</div>
+      </div>
+      
+      <div class="mask" id="mask"></div>
+      <div id="CreateAccount"> 
+      	<div class="registrationWrapper">
+        	<div id="registration">
+          		<p>Only registered Friends can watch all the movies!</p>
+          		<p class="enlargedText">you must create a <span class="green">FREE</span> account to <span class="green">STREAM</span> this movie</p>
+          		<input type="email" id="email" placeholder="E-mail" >
+          		<input type="password" id="psw" maxlength="12" placeholder="Password">
+          		<input type="Password" id="psw2" maxlength="12" placeholder="Confirm Password">
+          		<button class="greenBtn" onclick="validatedCreateAccount()">CREATE MY FREE ACCOUNT NOW</button>
+        	</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="VerificationPage">
+    <div id="content">
+      <div id="header" class="grayBg">
+        <div id="title" class="title"></div>
+      </div>
+      <div class="verificationContainer">
+        <div class="explanation">
+          <div class="title">Why do we ask you for your billing information?</div>
+          <p>Because our library is only licensed to distribute our content to certain countries, we ask that you provide your mailling address by providing us with a valid credit card number. <b>NO CHARGES GUARANTEED</b>. No charges will appear on your credit card statement unless you upgrade to a Premium Membership or make a purchase.</p>
+          <hr>
+          <ul><li>Click and watch</li>
+          <li>Steam movies in HD</li>
+          <li>Watch on any device</li>
+          <li>Hassle Free Cancellation</li>
+          <li>Free of charge</li></ul>
+          <hr>
+          <div class="title">Privacy Guaranteed</div>
+          <p>In order to keep your personal information private, we use encryption security tehnology. Our site employs <b>Secure Sockets Layering (SSL)</b> to encript your personal information such as credit card number, name, and address before it travels over the internet. Your data is encrypted and password-protected to make sure no one ever sees your personal information!!! </p>
+          <div class="title">No Hidden Fees</div>
+          <p>We always provide our members with a detailed purchase history in order for them to know exactly what they are paying for. Your payment method information is requiered to future purchases only. <b>NO CHARGES</b> will appear on your credit card statement unless you upgrade to a Premium Membership or make a purchase. By creating an account, you agree our <span class="underlined">Terms & Conditions</span></p>
+        </div>
+        <div class="creditCardForm">
+          <div class="timer">Our special offer will be available only in the next <span id="time"></span>
+          </div>
+          <div class="verificationForm">
+            <span class="title">Account Verification</span>
+            <div class="subtitle">
+              <img src="images/MF_pre-reg_verification-VBlue1.png" alt=""><span class="little">Normal memebership</span>
+              <div class="stars"><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i></div> <div><span class="free">FREE</span><span class="price">$0.00</span></div></div>
+              <table class="fields">
+                <tr>
+                  <td>First Name</td>
+                  <td class="inputField"><input type="text" id="FName" name="FName" minlength="2" maxlength="30" required="true"></td>
+                  <td><div class="okIcon"></div></td>
+                </tr>
+                <tr>
+                  <td>Last Name</td>
+                  <td class="inputField"><input type="text" id="LName" name="LName"></td>
+                  <td><div class="okIcon"></div></td>
+                </tr>
+                <tr>
+                  <td>Country</td>
+                  <td class="inputField">{{view Ember.Select 
+                      contentBinding="App.CountryController" 
+                      selectionBinding="App.CountrySelectedController.name" 
+                      optionLabelPath="content.name" 
+                      optionValuePath="content.name"}}</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Zip/postal</td>
+                  <td class="inputField"><input type="text" id="Zip" name="Zip"></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td colspan="2"><div class="cardIcons"></div></td>
+                </tr>
+                <tr>
+                  <td>Credit Card</td>
+                  <td class="inputField"><input type="text" id="CNumber" name="CNumber"></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Expiry Date</td>
+                  <td id="ExpDT" class="inputField">{{view Ember.Select 
+                      contentBinding="App.MonthsController" 
+                      optionLabelPath="content.name" 
+                      optionValuePath="content.id"}}
+                      {{view Ember.Select 
+                      contentBinding="App.YearsController" 
+                      optionLabelPath="content.name" 
+                      optionValuePath="content.id"}}
+                  <td></td>
+                </tr>
+                <tr>
+                  <td ><span>CVV</span><br><span class="info"><a>What is CVV?</a></span></td>
+                  <td class="inputField smallInput"><input class="smallInput" type="text"></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td class="inputField"><button class="greenBtn" onclick="verifyAccount()">VERIFY MY ACCOUNT</button></td>
+                  <td></td>
+                </tr>
+              </table>
+              </div>
+          </div>
+        </div>
+        <div class="footer"><div class="footerBody"></div></div>
+      </div>
+      
+    </div>
 
-</script>
+  </div>
 
-	<script type="text/x-handlebars" id="forgetpw">
-<div class="content contentForgetPW">
-<div id="HeaderWithLine">
-Reset Your Password
-</div>
-		<div class="subMenuContainer">
-	  <form {{action resetPW on="submit"}}>
-        <div> Please enter your E-mail address: </div>
-        <label>{{input value=email class="formInput" id="emailForgetPw" type="text" placeholder="Email address"}}</label>
-        {{input class="btn btnOrange" id="btnForgetPW" type="submit" value="Reset Password"}}
-      </form>
-	{{#if forgetPWError}}
-        <div class="alert"><p>{{forgetPWError}}{{#link-to 'register'}} register {{/link-to}} or {{#link-to 'contactus'}} contact us {{/link-to}}</p></div>
- 	{{/if}}
- 	</div>
+  <div id="page3">
+  <div class="container">
+    <div class="logo"></div>
+    <div class="tnx">Thank you.
+    <p>a verification email has been send to you, <br> you will be redirect to the movie library now. Enjoy</p></div>
+  </div>
+  </div>
 
-</div>
-</script>
-
-	<script type="text/x-handlebars" id="forgetpwemailsent">
-<div class="content contantForgetPW">
-		<div class="subMenuContainer">
-        <div class="subtitleForgetPwMessageEmailSent"> {{emailSentSuccess}} </div>
- 	</div>
-</script>
-
-	<script type="text/x-handlebars" id="resetpw">
-<div class="content contantForgetPW">
-<div id="HeaderWithLine">
-Create New Password
-</div>
-	<div class="subMenuContainer">
-		{{#if errorTokenValidation}}
-        <div class="alert"><p>{{errorTokenValidation}}</div>
- 		{{/if}}							
-		{{#if errorUpdatePassword}}
-        <div class="alert"><p>{{errorUpdatePassword}}</p></div>
- 		{{/if}}
-{{isTokenValid}}
-	{{#if statusToken}}
-	  	<form {{action updatePW on="submit"}}>
-			<label>{{input value=pw class="formInput" id="newpassword" type="password" placeholder="New password"}}</label>
-       		<label>{{input value=cpw class="formInput" id="confirmpassword" type="password" placeholder="Confirm password"}}</label>
-        	{{input class="btn btnOrange" id="btnForgetPW" type="submit" value="Submit"}}
-      </form>
-	{{/if}}
-	
- 	</div>
-
-</div>
-</script>
-	<script type="text/x-handlebars" id="resetpwsuccess">
-<div class="content contantForgetPW">
-        <div class="notification txtaligncenter">{{updatePwSuccessfully}} &nbsp; {{#link-to  'login' class='notificationLink'}} login {{/link-to}}</div>
-	</div>
-</script>
+  </script>
 
 
-	<script type="text/x-handlebars" id="register">
-<link href="css/style.css" rel="stylesheet" />
-<div class="content ">
-	<div id="HeaderWithLine">
-	Get Started Now
-	</div>
- <div class="subMenuContainer">
-	<div class="subtitle"> Mediaflyer helps you to leverage your site over the top</div>
-
-	{{#if errorMessage}}
-        <div class="alert">{{errorMessage}}</div>
- 	{{/if}}
-	<div class="leftMenuRegister">
-	  <form {{action register on="submit"}}>
-        <span class="red">*</span>
-        <label>{{input value=fName id="fName" type="text" placeholder="First name"}}</label>
-		<span class="red">*</span>
- 		<label>{{input value=lName id="lName" type="text" placeholder="Last name"}}</label>
-		<span class="red">*</span>
-	 	<label>{{input value=email id="email" type="text" placeholder="Email"}}</label>
-		<span class="red">*</span>
- 		<label>{{input value=password  id="password" type="password" placeholder="Password"}}</label>
-		<span class="red">*</span>
- 		<label>{{input value=confirmPw id="confirmPw" type="password" placeholder="Confirm password"}}</label>
-		<span class="red">*</span>
-		<label>{{view Ember.Select 
-	contentBinding="App.CountryController" 
-	selectionBinding="App.selectedCountryController.country" 
-	optionLabelPath="content.name" 
-	optionValuePath="content.id"}}</label>
-		<!--<span class="red">*</span>
-		<label>{{input value=country id="country" type="text" placeholder="Country"}}</label> -->
-		<span class="red">*</span>
- 		<label>{{input value=phone id="phone" type="text" placeholder="Phone number"}}</label>
-		<!--<span class="red">*</span>
- 		<label>{{input value=pMethod id="paymentMethod" type="text" placeholder="Payment method"}}</label> -->
-		{{input class="btn btnOrange top" id="btnForgetPW" type="submit" value="Submit"}}
-      </form>
-	</div>
-	<div class="rightMenuRegister">
-		waiting for picture...
-	</div>
- </div>
-</div>
-</script>
-	<script type="text/x-handlebars" id="registersuccess">
-<div class="content contantForgetPW">
-        <div class="subtitleForgetPwMessageEmailSent txtaligncenter divsizenotification centerarea">{{activationEmailSent}} </div>
-	</div>
-</script>
-
-	<script type="text/x-handlebars" id="activateaccount">
-<div class="content contantForgetPW">
-{{#if isActive}}
-	<div class="circleButton centerarea">
-		<img class="ok" src="images/ok.png" alt="Account activate successfully" title="Account activate successfully" width="50" height="50">
-	</div>
-		
-		{{#if success}}
-        	<div class="notification txtaligncenter"> {{success}}&nbsp; <a  href="http://localhost:8080/adweb/#/login" target="_blank"> <span class="notificationLink"> login </span> </a></div>
-		{{/if}}
-	
-{{else}}
-	<div class="circleButton centerarea">
-		<img class="ok" src="images/no.png" alt="Account activation failed" title="Account activation failed" width="50" height="50">
-	</div>
-
-			{{#if error}}
-    	    <div class="notification txtaligncenter"> {{error}} {{#link-to 'contactus' class='notificationLink'}} contact us {{/link-to}}</div></div>
-			{{/if}}
-{{/if}}
-</div>
-	
-
-</div>
-</script>
-
-	<script src="js/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="js/bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	<script src="js/bower_components/handlebars/handlebars.min.js"></script>
@@ -451,11 +394,14 @@ Create New Password
 	<script src="js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="js/fontsmoothie.min.js"></script>
 	<script src="js/util.js"></script>
-	<script src="js/app.js"></script>
 	<script src="js/i18n/grid.locale-en.js" type="text/javascript"></script>
 	<script type='text/javascript'
 		src="http://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/js/jquery.jqGrid.min.js"></script>
-	
+	  <script src="js/showdown.js"></script>
+	  <script src="js/moment.js"></script>
+	  <script src="js/countdowntimer.js"></script>
+	  <script src="js/app.js"></script>
+
 
 </body>
 </html>

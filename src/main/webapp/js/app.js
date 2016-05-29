@@ -15,27 +15,11 @@ App = Ember.Application.create({
 });
 
 App.Router.map(function() {
-	this.resource('contactus');
-	this.resource('contact');
-	this.resource('about');
-	this.resource('login');
-	this.resource('register');
-	this.resource('registersuccess');
-	this.resource('activateaccount');
-	this.resource('forgetpw');
-	this.resource('forgetpwemailsent');
-	this.resource('resetpw');
-	this.resource('resetpwsuccess');
-	this.resource('support');
-	this.resource('dashboard', function() {
-		this.resource('videouploadplacement');
-		this.resource('videoplacement');
-		this.resource('placement');
-		this.resource('reports');
-		this.resource('chart');
-		this.resource('revenue');
+	this.resource('CreateAccount');
+	this.resource('moviesPage');
+	
 	});
-})
+
 
 // Objects
 App.Session = Ember.Object.extend({
@@ -53,6 +37,18 @@ App.selectedCountryController = Ember.Object.create({
 	country : null
 });
 
+App.Language = Ember.Object.extend({
+	id : null,
+	name : null
+});
+
+App.selectedLanguageController = Ember.Object.create({
+	language : null
+});
+
+App.selectedMovieController = Ember.Object.create({
+	movie : null
+});
 // Routesthis.set('isExpanded', true);
 App.ApplicationRoute = Ember.Route.extend({
 	beforeModel : function() {
@@ -66,12 +62,6 @@ App.ApplicationRoute = Ember.Route.extend({
 		 */
 
 	}
-});
-
-App.LoginRoute = Ember.Route.extend({
-/*
- * renderTemplate : function() { this.render('login'); }
- */
 });
 
 App.DashboardRoute = Ember.Route.extend({
@@ -103,25 +93,7 @@ App.DashboardRoute = Ember.Route.extend({
 			}
 		});
 		
-	}/*,
-	events : {
-		error : function(reason, transition) {
-			if (reason.status === 401) {
-				this.controllerFor('application').session.set('isloggedin',
-						false);
-				this.controllerFor('login').set('token', null);
-				alert('You must log in!');
-				this.transitionTo('login');
-			} else if(reason.status === 200){
-				this.transitionTo('chart');
-			} else {
-				alert('Something went wrong');
-			}
-		},
-		ok : function(reason, transition) {
-			alert("fdjksljfaskl");
-		}
-	}*/
+	}
 });
 
 // Controllers
@@ -152,6 +124,190 @@ App.ApplicationController = Ember.Controller.extend({
 
 		support : function() {
 			this.transitionToRoute('support');
+		},
+		selectMovie : function(movie) {
+			if(App.selectedMovieController != movie) {
+			App.selectedMovieController = movie;
+			document.getElementById("ninja-slider").style.display = "none";
+		    document.getElementById("littleSlider").style.display = "block";
+		    document.getElementById("hrGray").style.display = "none";
+		    document.getElementById("genres").style.display = "none";
+		    document.getElementById("moviePreview").style.display = "flex";
+		    document.getElementById('moviePreview').focus();
+		    
+		    var mp = document.getElementById('moviePreview');
+		    var moviePreviewOld = document.getElementById('moviePreviewWrapper');
+		    
+			    //Create the Image container
+			    var movieImageDiv = document.createElement('div');
+			    movieImageDiv.className = "movieImage";
+			    
+				    //Create the Image
+				    var movieImage = document.createElement('img');
+				    movieImage.id = 'moviePreviewImg';
+				    movieImage.setAttribute('src', movie.Image);
+				    
+				    //Set the image inside the container
+				    movieImageDiv.appendChild(movieImage);
+				 
+				 //Create the movie data div
+				 var movieData = document.createElement('div');
+				 movieData.className = 'movieData';
+				 	
+				 	//Create the title Div
+					 var moviePreviewTitle = document.createElement('div');
+					 moviePreviewTitle.className = 'title';
+					 moviePreviewTitle.id = 'moviePreviewTitle';
+					 
+					 	//Create the span inside
+					 	var moviePreviewTitleSpan = document.createElement('span');
+					 	moviePreviewTitleSpan.textContent = movie.Name;
+					 						 	
+					 	//set the span inside the title
+					 	moviePreviewTitle.appendChild(moviePreviewTitleSpan);
+					 	
+					//Create the cast subtitle Div
+					var castSubtitle = document.createElement('div');
+					castSubtitle.className = 'subtitle';
+						 
+						 //Create the span inside
+						 var castSubtitleSpan = document.createElement('span');
+						 castSubtitleSpan.textContent = 'CAST';
+						 						 	
+						 //set the span inside the title
+						 castSubtitle.appendChild(castSubtitleSpan);
+					
+					//Create the 'cast' content div
+					var castDiv = document.createElement('div');
+					castDiv.className = 'content';
+					
+						//create p inside
+						var castp = document.createElement('p');
+						castp.id = 'moviePreviewContent';
+						castp.innerHTML = (movie.Cast).replace(/,/g, "</br>");
+						
+						//set the p inside the div
+						castDiv.appendChild(castp);
+						
+				//Create the summary subtitle Div
+				var summarySubTitle = document.createElement('div');
+				summarySubTitle.className = 'subtitle';
+							 
+					//Create the span inside
+					var summarySubTitleSpan = document.createElement('span');
+					summarySubTitleSpan.textContent = 'PLOT SUMMARY';
+							 						 	
+					//set the span inside the title
+					summarySubTitle.appendChild(summarySubTitleSpan);
+						
+					//Create the 'summary' content div
+					var summaryDiv = document.createElement('div');
+					summaryDiv.className = 'content';
+						
+						//create p inside
+						var summaryp = document.createElement('p');
+						summaryp.id = 'moviePreviewDSC';
+						summaryp.innerHTML = movie.Description;
+							
+						//set the p inside the div
+						summaryDiv.appendChild(summaryp);
+						
+				//create the button
+				var button = document.createElement('button');
+				button.className = 'playNow';
+				button.innerHTML = '<i class="material-icons">play_circle_outline</i> Watch Now';
+				button.onclick = function() {
+					alert(movie.Id);
+					return false;
+				}
+	
+				//add elements to movie data
+				movieData.appendChild(moviePreviewTitle);
+				movieData.appendChild(castSubtitle);
+				movieData.appendChild(castDiv);
+				movieData.appendChild(summarySubTitle);
+				movieData.appendChild(summaryDiv);
+				movieData.appendChild(button);
+
+				
+			//Create a trailer div
+			var movieTrailerDiv  = 	document.createElement('div');
+			movieTrailerDiv.className = 'movieTrailer';
+			
+			/*start movie trailer div content*/
+				//create stars div
+				var starsDiv = document.createElement('div');
+				starsDiv.className = 'stars';
+				
+					//create stars
+					starsDiv.innerHTML = '<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i><i class="material-icons">star_border</i>';
+				
+				//create trailer title
+				var trailerTitle = document.createElement('div');
+				trailerTitle.className = 'title';
+				trailerTitle.innerHTML = 'Watch trailer';
+				
+				//create iframe triller
+				var ifrm = document.createElement("IFRAME"); 
+				ifrm.setAttribute("src", "https://www.youtube.com/embed/HUMhTmpRm7U/"); 
+				ifrm.setAttribute("frameBorder", "0");
+				   ifrm.style.width = 215+"px"; 
+				   ifrm.style.height = 143+"px"; 
+				   
+				//create gallery div
+				   
+				var galleryTitle = document.createElement("div"); 
+				galleryTitle.className = 'title';
+				galleryTitle.innerHTML = "Gallery";
+				   
+				var galleryDiv = document.createElement("div"); 
+				galleryDiv.className = 'galleryImages';
+				var images = [];
+				if(movie.MoreImages) {images = movie.MoreImages.split(',');}
+				 
+				
+				var divImg;
+				var img; 
+				
+				for (var i = 0; i < 4; i++) {
+					divImg = document.createElement("div");
+					img = document.createElement("img");
+					divImg.appendChild(img);
+					
+					if(i < images.length) {
+						img.setAttribute("src",images[i]);
+					} else {
+						img.setAttribute("src","images/no.png");
+					}
+					
+					
+					galleryDiv.appendChild(divImg);
+				}
+				
+					
+			/*end movie trailer div content*/
+			movieTrailerDiv.appendChild(starsDiv);
+			movieTrailerDiv.appendChild(trailerTitle);
+			movieTrailerDiv.appendChild(ifrm);
+			movieTrailerDiv.appendChild(galleryTitle);
+			movieTrailerDiv.appendChild(galleryDiv);
+
+			
+		    //Create a new movie preview wrapper
+		    var moviePreviewNew = document.createElement('div');
+		    moviePreviewNew.id = 'moviePreviewWrapper';
+		    moviePreviewNew.className ='moviePreviewWrapper';
+		    
+		    //Set the elements inside the wrapper
+		    moviePreviewNew.appendChild(movieImageDiv);
+		    moviePreviewNew.appendChild(movieData);
+		    moviePreviewNew.appendChild(movieTrailerDiv);
+		    
+		    // replace existing wrapper with the new one
+		    mp.removeChild(moviePreviewOld);
+		    mp.appendChild(moviePreviewNew);
+			}
+			
 		}
 	},
 	
@@ -177,6 +333,8 @@ App.RegisterController = Ember.Controller
 						.get('country');
 				this.set('country', selectedCountry.name);
 				this.set('countryCode', selectedCountry.id);
+				
+				
 
 				var data = this.getProperties('fName', 'lName', 'email',
 						'password', 'phone', 'confirmPw', 'country',
@@ -486,31 +644,7 @@ App.LoginController = Ember.Controller.extend({
 	}
 });
 
-/*// views
-App.RemoveHeader = Ember.View.extend({
-	didInsertElement : function() {
-		this._super();
-		Ember.run.scheduleOnce('afterRender', this, this.didRenderElement);
-		Ember.run.next(function() {
 
-			this.$("#headerSecTohideshow").hide();
-
-		});
-	}
-});
-
-App.ShowHeader = Ember.View.extend({
-	didInsertElement : function() {
-		this._super();
-		Ember.run.scheduleOnce('afterRender', this, this.didRenderElement);
-		Ember.run.next(function() {
-
-			this.$("#headerSecTohideshow").show();
-
-		});
-	}
-});
-*/
 App.MyChart = Ember.View
 		.extend({
 			didInsertElement : function() {
@@ -543,71 +677,6 @@ App.DisplayPlacementTable = Ember.View
 			}
 		});
 
-App.VideoPlacementTable = Ember.View
-.extend({
-	didInsertElement : function() {
-		this._super();
-		Ember.run.scheduleOnce('afterRender', this,
-				this.didRenderElement);
-	},
-	didRenderElement : function() {
-		this
-				.$()
-				.html(
-						'<div id="gridWrapper"><table id="list5"></table><div id="gridPager" ></div></div>');
-		myVideoPlacementTableCallback();
-	}
-});
-
-App.VideoPlacementNoFileTable = Ember.View
-.extend({
-	didInsertElement : function() {
-		this._super();
-		Ember.run.scheduleOnce('afterRender', this,
-				this.didRenderElement);
-	},
-	didRenderElement : function() {
-		this
-				.$()
-				.html(
-						'<div id="gridWrapper"><table id="list6"></table><div id="gridPager" ></div></div>');
-		myVideoPlacementNoFileTableCallback();
-	}
-});
-
-/*App.UploadView = Ember.View.extend({
-	templateName: 'imageupload',
-	dragEnter : function(event) {
-		event.preventDefault();
-		this.$('p:first').remove();
-	},
-	dragOver : function(event) {
-		event.preventDefault();
-	},
-	drop : function(event) {
-		 event.preventDefault();
-		    var files = event.dataTransfer.files;
-		    var formData = new FormData();
-		    for (var i = 0; i < files.length; i++) {
-		      formData.append('file', files[i]);
-		    }
-		    xhr = new XMLHttpRequest();
-		    xhr.open('POST', 'rest/client/uploadFile');
-		    xhr.upload.onprogress = function (event) {
-		      if (event.lengthComputable) {
-		        var complete = (event.loaded / event.total * 100 | 0);
-		        this.$('progress').value = complete;
-		      }
-		    }
-		    xhr.onload = function() {
-		      App.File.store.push('file', {
-		        id: 1,
-		        name: 'Name'
-		      });
-		    }
-		    xhr.send(formData);
-	}
-})*/
 
 App.MyReportTable = Ember.View
 		.extend({
@@ -626,6 +695,1266 @@ App.MyReportTable = Ember.View
 				myReportTableCallback();
 			}
 		});
+
+App.LanguageController = Ember.ArrayController.create({
+	content : [ 
+	App.Language.create({
+		id : "EN",
+		name : 'English',
+		src : 'images/MF-allpages-ENflag.png'
+	}), App.Language.create({
+		id : "ES",
+		name : 'Spanish',
+		src : 'images/MF-allpages-ESflag.png'
+
+	}), 
+
+	]
+});
+
+
+App.Movies = Ember.Object.extend({
+
+});
+App.MoviesController = Ember.ArrayController.create({
+	content : [
+	App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "images/Movies/Bad-To-The-Jones.jpg,images/Movies/Bad-To-The-Jones.jpg,images/Movies/Bad-To-The-Jones.jpg",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),App.Movies.create({
+		"Id":1,
+		"Name":"Bad To The Jones",
+		"Description":"This film is an action packed Urban Sci Fi. It is a unique niche and genre. The film has CGI and Special effects. The Zombie genre is also red hot. The original webisode version of this received millions of hits on youtube and has a built in audience. There will be a massive internet campaign with over 10 million impressions launched. The film was originally produced yet unreleased in 2011. It was recut with new added scenes in 2015. Synopsis: Bad To The Jones is a story about Craig and Tyrone Jones, two argumentative brothers on a quest to save their sister during a zombie apocalypse. Along the way they encounter some new and old friends that help them on their journey. Pitted against more zombies than they have ever seen and a new, stronger, more powerful breed, the Jones brothers will have fight for something bigger than they ever could have imagined. In doing so they will have to prove that they are not only bad to the bone, but Bad To The Jones.",
+		"Cast":"Marlon Ladd, Chris Paul, Cara Black",
+		"Director":"Marlon Ladd",
+		"Writer":"Marlon Ladd",
+		"Year":2015,
+		"Genre":"Action, Sci-Fi, Horror",
+		"URL":null,
+		"Image": "images/Movies/Bad-To-The-Jones.jpg",
+		"MoreImages": "",
+	}),
+	
+	
+	]	
+});
+
+App.CategorySelectedController = Ember.Object.extend ({
+	name : "All Movies"
+});
+App.Category = Ember.Object.extend({
+	id : null,
+	name : null
+});
+
+App.CategoryController = Ember.ArrayController.create({
+	content : [ 
+	App.Category.create({
+		id : "0",
+		name : 'All Movies'
+	}),App.Category.create({
+		id : "1",
+		name : 'Drama'
+	}), App.Category.create({
+		id : "2",
+		name : 'Romance'
+	}),  App.Category.create({
+		id : "3",
+		name : 'Terror'
+	}),  App.Category.create({
+		id : "4",
+		name : 'Thriller'
+	}),  App.Category.create({
+		id : "5",
+		name : 'Comedy'
+	}), 
+	]
+});
 
 App.CountryController = Ember.ArrayController.create({
 	content : [ App.Country.create({
