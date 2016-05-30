@@ -1,11 +1,14 @@
 /*General*/
 html,body {
 	background-color: #000;
-    width: 100vw;
+    width: 99vw;
     height: 97vh;
     margin: auto;
     padding: 0;
     min-height: 600px;
+}
+textarea {
+	resize: none;
 }
 .mask {
 	display: none;
@@ -121,6 +124,12 @@ html,body {
 .footer .menu span {
 	font-size: 11px;
 }
+/*Error input style*/
+input.error , select.error , textarea.error{
+			border: 1px solid red;
+		    background-color: floralwhite;
+		    color: red;
+		 }
 /*Landing Page - movie*/
 #content {
     margin: auto;
@@ -855,11 +864,7 @@ html,body {
 		    height: 36px;
 		    padding-left: 20px;
 		 }
-		 #CreateAccount div#registration input.error {
-			border: 1px solid red;
-		    background-color: floralwhite;
-		    color: red;
-		 }
+		 
 		 #CreateAccount div#registration p {
 			color: #fff;
 		    font-size: 14px;
@@ -1461,7 +1466,7 @@ button.redBtn {
 	cursor: pointer;
 }
 #supportPage {
-
+	display:none;
 }
 #supportPage .content {
 	max-width: 920px;
@@ -1584,6 +1589,9 @@ button.redBtn {
 #supportPage #cancelText {
 	display: none;
 }
+#supportPage .form #CancelFields {
+	display: none;
+}
 #warningScreen {
 	display: none;
 	position: absolute;
@@ -1638,9 +1646,7 @@ button.redBtn {
     color: red;
     width: 100%;
 }
-#warningScreen .form #CancelFields {
-	display: none;
-}
+
 #warningScreen .closeBtn {
 	display: flex;
 	justify-content: flex-end;
@@ -1952,4 +1958,8 @@ button.redBtn {
 
 #SignUpPage td.cvv  input{
 	max-width: 100px;
+}
+#MoviePage {
+	width:920px;
+	margin:auto;
 }

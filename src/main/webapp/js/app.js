@@ -11,12 +11,11 @@ App = Ember.Application.create({
 	LOG_VIEW_LOOKUPS : true,
 	LOG_STACKTRACE_ON_DEPRECATION : true,
 	LOG_VERSION : true,
-	debugMode : true
+	debugMode : false
 });
 
 App.Router.map(function() {
 	this.resource('CreateAccount');
-	this.resource('moviesPage');
 	
 	});
 
@@ -32,7 +31,6 @@ App.Country = Ember.Object.extend({
 	id : null,
 	name : null
 });
-
 App.selectedCountryController = Ember.Object.create({
 	country : null
 });
@@ -41,14 +39,45 @@ App.Language = Ember.Object.extend({
 	id : null,
 	name : null
 });
-
 App.selectedLanguageController = Ember.Object.create({
 	language : null
 });
 
-App.selectedMovieController = Ember.Object.create({
-	movie : null
+App.Subject = Ember.Object.extend({
+	id : null,
+	name : null
 });
+App.selectedSubjectController = Ember.Object.create ({
+	subject : null
+});
+App.Subject2 = Ember.Object.extend({
+	id : null,
+	name : null
+});
+App.selectedSubjec2tController = Ember.Object.create ({
+	subject : {
+		id : 0,
+		name : 'Cancel Account'
+	}
+});
+
+App.Movies = Ember.Object.extend({
+	Id : null,
+	Name : null,
+	Description : null,
+	Cast : null,
+	Director : null,
+	Writer : null,
+	Year : null,
+	Genre : null,
+	URL : null,
+	Image : null,
+	MoreImages : null
+});
+App.selectedMovieController = Ember.Object.create({
+	movies : null
+});
+
 // Routesthis.set('isExpanded', true);
 App.ApplicationRoute = Ember.Route.extend({
 	beforeModel : function() {
@@ -96,6 +125,7 @@ App.DashboardRoute = Ember.Route.extend({
 	}
 });
 
+
 // Controllers
 App.ApplicationController = Ember.Controller.extend({
 	logOut : function() {
@@ -124,6 +154,10 @@ App.ApplicationController = Ember.Controller.extend({
 
 		support : function() {
 			this.transitionToRoute('support');
+		},
+		sendSupport : function() {
+			var self = this;
+			
 		},
 		selectMovie : function(movie) {
 			if(App.selectedMovieController != movie) {
@@ -217,8 +251,14 @@ App.ApplicationController = Ember.Controller.extend({
 				button.className = 'playNow';
 				button.innerHTML = '<i class="material-icons">play_circle_outline</i> Watch Now';
 				button.onclick = function() {
-					alert(movie.Id);
-					return false;
+					var url = "movie.html?mid=" + movie.Id + "&theme=00200&code=00000&movieName=" + movie.Name + "&movieURL="+"trailers/Bad To The Jones (Trailer).mp4";
+
+			    	var a = document.createElement("a");
+			        a.target = "_blank";
+			        a.href = url;
+			        a.click();
+			    	return false;
+			    	
 				}
 	
 				//add elements to movie data
@@ -572,6 +612,8 @@ App.ForgetpwController = Ember.Controller.extend({
 
 });
 
+
+
 App.LoginController = Ember.Controller.extend({
 
 	savedTransition : null,
@@ -711,11 +753,44 @@ App.LanguageController = Ember.ArrayController.create({
 
 	]
 });
-
-
-App.Movies = Ember.Object.extend({
-
+App.SubjectsController = Ember.ArrayController.create({
+	content : [ 
+	App.Subject.create({
+		id : "1",
+		name : 'General',
+	}), App.Subject.create({
+		id : "2",
+		name : 'Technical problems',	
+	}),  App.Subject.create({
+		id : "3",
+		name : 'Join as affilliate',	
+	}),  App.Subject.create({
+		id : "4",
+		name : 'Forget password',	
+	}), 
+	]
 });
+App.Subjects2Controller = Ember.ArrayController.create({
+	content : [ 
+	App.Subject.create({
+		id : "0",
+		name : 'Cancel Account',
+	}),App.Subject.create({
+		id : "1",
+		name : 'General',
+	}), App.Subject.create({
+		id : "2",
+		name : 'Technical problems',	
+	}),  App.Subject.create({
+		id : "3",
+		name : 'Join as affilliate',	
+	}),  App.Subject.create({
+		id : "4",
+		name : 'Forget password',	
+	}), 
+	]
+});
+
 App.MoviesController = Ember.ArrayController.create({
 	content : [
 	App.Movies.create({
@@ -1921,12 +1996,19 @@ App.MoviesController = Ember.ArrayController.create({
 	}),
 	
 	
-	]	
+	],
+	filterByGenre: (function(genre) {
+		return this.get('content').filterBy('Genre',genre);
+	}).property('content.@each')
 });
 
+	
+	
 App.CategorySelectedController = Ember.Object.extend ({
 	name : "All Movies"
 });
+
+
 App.Category = Ember.Object.extend({
 	id : null,
 	name : null

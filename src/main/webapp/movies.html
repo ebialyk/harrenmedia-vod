@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8>
+<title>MuvFlix</title>
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+
+<link href="css/ninja-slider.css" rel="stylesheet" type="text/css" />
+<script src="js/ninja-slider.js" type="text/javascript"></script>
+
+<link rel="stylesheet" type="text/css" href="css/slick.css">
+<link rel="stylesheet" type="text/css" href="css/slick-theme.css">
+<script>
+	function openGenres() {
+		hideAll();
+		document.getElementById("genres").style.display = "flex";
+		document.getElementById("moreMovies").style.display = "block";
+	}
+	function openBestsellers() {
+		hideAll();
+		document.getElementById("ninja-slider").style.display = "block";
+		document.getElementById("littleSlider").style.display = "block";
+		document.getElementById("hrGray").style.display = "block";
+		document.getElementById("moreMovies").style.display = "block";
+	}
+	function openMovies() {
+		hideAll();
+		document.getElementById("moreMovies").style.display = "block";
+	}
+	function openMovie(id, code) {
+		var url = "movie.html?mid=" + id + "&theme=00200&code=" + code;
+		window.open('movie.html', '_blank', false)
+	}
+	function openSupport() {
+		hideAll();
+		clearForm();
+		document.getElementById("supportPage").style.display = "block";
+		document.getElementById("cancelAccount").style.display = "block";
+	}
+	function cancelAccount() {
+		var email = document.getElementById("Mail").value = "";
+		var psw = document.getElementById("Password").value = "";
+		document.getElementById("warningScreen").style.display = "flex";
+		document.getElementById("mask").style.display = "flex";
+	}
+	function clearForm() {
+		document.getElementById("supportName").value = "";
+		document.getElementById("supportEmail").value = "";
+		document.getElementById("cardDigits").value = "";
+		document.getElementById("supportContent").value = "";
+		document.getElementById("subjectSupport").value = "";
+		document.getElementById("subjectSupport2").value = "";
+
+		document.getElementById("supportName").className = "";
+		document.getElementById("supportEmail").className = "";
+		document.getElementById("cardDigits").className = "";
+		document.getElementById("supportContent").className = "";
+		document.getElementById("subjectSupport").className = "";
+		document.getElementById("subjectSupport2").className = "";
+
+		document.getElementById("supportName").title = "";
+		document.getElementById("supportEmail").title = "";
+		document.getElementById("cardDigits").title = "";
+		document.getElementById("supportContent").title = "";
+		document.getElementById("subjectSupport").title = "";
+		document.getElementById("subjectSupport2").title = "";
+	}
+	function accountVerification() {
+		var email = document.getElementById("Mail");
+		var psw = document.getElementById("Password");
+
+		var okMail = false;
+		var okPsw = false;
+
+		if (email.value === undefined || email.value == "") {//no empty email
+			email.className = "error";
+			email.title = "Please type your email";
+		} else if (!validEmail(email.value)) { //validate entered email
+			email.className = "error";
+			email.title = "Please enter a valid email";
+		} else {
+			email.className = "";
+			email.title = "";
+			okMail = true;
+		}
+		if (psw.value === undefined || psw.value == "") {//no empty message
+			psw.className = "error";
+			psw.title = "Please type your name";
+		} else {
+			psw.className = "";
+			psw.title = "";
+			okPsw = true;
+		}
+
+		if (okMail && okPsw) {
+			var data = {
+				email : email.value,
+				psw : psw.value
+			};
+
+			$
+					.ajax({
+						url : "rest/client/accountVerification",
+						type : "POST",
+						dataType : "json", // expected format for response
+						contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+						data : data,
+						success : function(response) {
+							if (response.status === 50) {
+								closeDialog()
+								document.getElementById("CancelFields").style.display = "table-row";
+								document.getElementById("subjectFields").style.display = "none";
+								document.getElementById("contactUs").style.display = "none";
+								document.getElementById("cancelText").style.display = "flex";
+								document.getElementById("supportContent").placeholder = "Please cancel my account.";
+								document.getElementById("subjectSupport2").style.display = "block";
+								document.getElementById("subjectSupport2").value = 0;
+							} else {
+								alert(response.message);
+							}
+						},
+						error : function(response, status, error) {
+							alert(response.message);
+						}
+					});
+		}
+
+	}
+	function sendSupportRequest() {
+		var name = document.getElementById("supportName");
+		var email = document.getElementById("supportEmail");
+		var cardDigits = document.getElementById("cardDigits");
+		var message = document.getElementById("supportContent");
+		var subjectSupport = document.getElementById("subjectSupport");
+		var subjectSupport2 = document.getElementById("subjectSupport2");
+
+		var cancelRequest = (document.getElementById("subjectSupport2").style.display != "none");
+
+		var okName = false;
+		var okMail = false;
+		var okCardD = false;
+		var okMsg = false;
+		var okSubj1 = false;
+		var okSubj2 = false;
+
+		if (name.value === undefined || name.value == "") {//no empty name
+			name.className = "error";
+			name.title = "Please type your name";
+		} else {
+			name.className = "";
+			name.title = "";
+			okName = true;
+		}
+		if (message.value === undefined || message.value == "") {//no empty message
+			message.className = "error";
+			message.title = "Please type your name";
+		} else {
+			message.className = "";
+			message.title = "";
+			okMsg = true;
+		}
+		if (email.value === undefined || email.value == "") {//no empty email
+			email.className = "error";
+			email.title = "Please type your email";
+		} else if (!validEmail(email.value)) { //validate entered email
+			email.className = "error";
+			email.title = "Please enter a valid email";
+		} else {
+			email.className = "";
+			email.title = "";
+			okMail = true;
+		}
+
+		if ((cardDigits.value === undefined || cardDigits.value == "")
+				&& cancelRequest) { //validate card digits
+			cardDigits.className = "error";
+			cardDigits.title = "Please type the last 4 digits of your credit card";
+		} else {
+			cardDigits.className = "";
+			cardDigits.title = "";
+			okCardD = true;
+		}
+
+		if (cancelRequest) {
+			if (subjectSupport2.value == "") {
+				subjectSupport2.className = "error";
+				subjectSupport2.title = "Please select a subject";
+			} else {
+				subjectSupport2.className = "";
+				subjectSupport2.title = "";
+				msgCode = subjectSupport2.value;
+				okSubj2 = true;
+			}
+		} else {
+			if (subjectSupport.value == "") {
+				subjectSupport.className = "error";
+				subjectSupport.title = "Please select a subject";
+			} else {
+				subjectSupport.className = "";
+				subjectSupport.title = "";
+				msgCode = subjectSupport.value;
+				okSubj1 = true;
+			}
+		}
+
+		if (okName && okMail && okCardD && okMsg
+				&& ((okSubj1 && !cancelRequest) || (okSubj2 && cancelRequest))) {
+			var data = {
+				name : name.value,
+				email : email.value,
+				cDigits : cardDigits.value,
+				msgCode : msgCode,
+				msg : message.value
+			};
+
+			$.ajax({
+				url : "rest/client/support",
+				type : "POST",
+				dataType : "json", // expected format for response
+				async : false,
+				data : data,
+				success : function(response) {
+					if (response.status === 40) {
+						alert(response.message);
+						openBestsellers();
+					} else {
+						alert(response.message);
+					}
+				},
+				error : function(response, status, error) {
+					alert(response.message);
+				}
+			});
+		}
+	}
+	function validEmail(mail) {
+		var re = /[A-z0-9._%+-]+@[A-z0-9.-]+.[A-z]{2,4}/;
+		return re.test(mail);
+	}
+	function hideAll() {
+		document.getElementById("ninja-slider").style.display = "none";
+		document.getElementById("littleSlider").style.display = "none";
+		document.getElementById("hrGray").style.display = "none";
+		document.getElementById("moviePreview").style.display = "none";
+		document.getElementById("genres").style.display = "none";
+		document.getElementById("bringMore").style.display = "none";
+		document.getElementById("supportPage").style.display = "none";
+		document.getElementById("mask").style.display = "none";
+		document.getElementById("warningScreen").style.display = "none";
+		document.getElementById("moreMovies").style.display = "none";
+		document.getElementById("subjectSupport2").style.display = "none";
+
+	}
+	function closeDialog() {
+		document.getElementById("warningScreen").style.display = "none";
+		document.getElementById("mask").style.display = "none";
+	}
+</script>
+</head>
+<body>
+	<script type="text/x-handlebars">
+	
+  <div id="moviesPage">
+   <div class="header">
+    <div class="headerBody">
+      <div id="logo"></div>
+      <div class="tabs">
+        <ul>
+          <li onclick="openBestsellers()">Bestsellers</li>
+          <li onclick="openGenres()">Genres</li>
+          <li onclick="openMovies()">Movies</li>
+          <li onclick="openSupport()">Customer support</li>
+        </ul>
+      </div>
+      <div class="login">Logout</div>
+      <div class="languages">{{view Ember.Select 
+                      contentBinding="App.LanguageController" 
+                      selectionBinding="App.LanguageSelectedController.name" 
+                      optionLabelPath="content.id" 
+                      optionValuePath="content.id"}}</div>
+      </div>
+    </div>
+    <!--movie preview div-->
+	<div id="moviePreview" tabindex="-1">	
+    	<div class="moviePreviewWrapper" id="moviePreviewWrapper">
+ 	    </div>
+    </div>
+	<!--end of movie preview div-->
+
+	<!--genres div-->
+    <div class="genres" id="genres">GENRES
+      <div class="genresContent">
+        <div class="genre">
+          <div class="top"></div>
+          <div class="bottom g1">Drama</div>
+        </div>
+        <div class="genre">
+          <div class="top"></div>
+          <div class="bottom g2">Action</div>
+        </div>
+        <div class="genre">
+          <div class="top"></div>
+          <div class="bottom g3">Comedy</div>
+        </div>
+        <div class="genre">
+          <div class="top"></div>
+          <div class="bottom g4">Romance</div>
+        </div>
+        <div class="genre">
+          <div class="top"></div>
+          <div class="bottom g5">Sci-Fi</div>
+        </div>
+      </div>
+    </div>
+	<!--end of genres div-->
+
+	<!--main slider-->
+    <div id="ninja-slider">
+        <div class="slider-inner">
+            <ul>
+                <li><a><img class="ns-img" src="images/MF-bestmovies-main-banner.png" /></a></li>
+            </ul>
+        </div>
+    </div>
+    <!--end of main slider-->
+
+    <hr class="gray" id="hrGray">
+
+	<!--secondary slider //list of movies-->
+    <div class="littleMoviesSlider" id="littleSlider">
+    	<div class="sliderWrapper">
+    		<div class="title"><span>Editor's pick</span></div>
+      		<section class="regular slider">
+      		{{#each movie in App.MoviesController}}
+        		<div><img {{ bindAttr src=movie.Image }} {{ action 'selectMovie' movie}}></div>
+      		{{/each}}
+      		</section>
+    	</div>
+    </div>
+	<!--end of secondary slider //list of movies-->
+
+	<!--List of movies-->
+    <div class="moreMovies" id="moreMovies">
+      <div class="moreMoviesWrapper">
+      	<div class="title"><span>All movies</span><div><span>Category: </span>{{view Ember.Select 
+                      contentBinding="App.CategoryController" 
+                      selectionBinding="App.CategorySelectedController.Name" 
+                      optionLabelPath="content.name" 
+                      optionValuePath="content.id"}}</div>
+      	</div>
+
+      	{{#each movie in App.MoviesController}}
+      	<div class="movie" {{ action 'selectMovie' movie}}>
+        	<img {{ bindAttr src=movie.Image }} alt="">
+          	<div class="movieTitle">{{movie.Name}}</div>
+          	<div class="subtitle">
+            	<div class="stars">
+					<i class="material-icons">star</i><i class="material-icons">star</i>
+					<i class="material-icons">star</i><i class="material-icons">star</i>
+					<i class="material-icons">star</i>
+        		</div>
+        		<div class="movieCategory">{{movie.Genre}}</div>
+        	</div>
+      	</div>
+      	{{/each}}
+      </div>
+     </div>
+	<!-- End of List of movies-->
+
+    <div class="bringMore" id="bringMore"></div>
+   	
+	<!--support page-->
+      <div id="supportPage">
+        <div class="content">
+      		<div class="supportForm">
+        		<div class="title">Support</div>
+		        <div class="contactUs" id="contactUs">
+		          <div class="title">Contact us:</div>
+		          <div class="subtitle">If you have any questions, please fill in the form below. <br> Our 20/7 support team will help you shortly</div>
+		        </div>
+		        <div id="cancelText" class="contactUs">
+		          <div class="title"> </div>
+		          <div class="subtitle">To cancel your account, please fill in the form and the last 4 digits of your credit card</div>
+		        </div>
+		        <table class="form">
+		          <tr>
+		            <td><input type="text" placeholder="Your name" class="mandatoryFieldForm" id="supportName"></td>
+		            <td><input type="text" placeholder="E-mail" class="mandatoryFieldForm" id="supportEmail"></td>
+		          </tr>
+		          <tr id="subjectFields">
+		            <td class="formTitle">Subject</td>
+		            <td>{{view Ember.Select 
+		                      contentBinding="App.SubjectsController" 
+		                      selectionBinding="App.selectedSubjectController" 
+		                      optionLabelPath="content.name" 
+		                      optionValuePath="content.id"
+							  value="App.selectedSubjectController" 
+							  id="subjectSupport"
+						}}</td>
+		          </tr>
+		          <tr id="CancelFields">
+		            <td>{{view Ember.Select 
+		                      contentBinding="App.Subjects2Controller" 
+		                      selectionBinding="App.selectedSubject2Controller" 
+		                      optionLabelPath="content.name" 
+		                      optionValuePath="content.id"
+							  value="App.selected2SubjectController" 
+							  id="subjectSupport2"
+						}}</td>
+		            <td><input type="text" name="cardDigits" id="cardDigits" placeholder="Last 4 digits of your Credit card"></td>
+		          </tr>
+		          <tr>
+		            <td colspan="2"> <textarea name="" id="supportContent" cols="30" rows="10" class="mandatoryFieldForm" placeholder="Write your message here"></textarea> </td>
+		          </tr>
+		          <tr><td class="note">*These fields are requiered</td><td><button class="redBtn" onClick="sendSupportRequest()">SEND</button></td></tr>
+		        </table>
+		      </div>
+		      <div class="faqs">
+		        <div class="announcements lock"><div class="title">Safe browsing experience</div><div class="subtitle">your safety and security are important to us and we do our best to insure that.</div></div>
+		        <div class="announcements ribbon"><div class="title">Let us know what you think,</div><div class="subtitle">in muvflix we are always improving our service and support, we will appreciate anyy comment or let us know we are doing good.</div></div>
+		        <div class="title"><span>FAQ's</span> <div><button class="cancelAccount" id="cancelAccount" onclick="cancelAccount()">Cancel Account</button></div></div>
+		        <div class="subtitle">Account</div>
+		          <ul>
+		          <li>How do I change my password?</li>
+		          <li>How do I cancel my account?</li>
+		          <li>How do I change the subscription I have signed up for?</li>
+		          <li>Can I change the email address of my account?</li>
+		          <li>Why was I immediately charged an amount when signing up with a credit/debit card?</li>
+		          <li>Can I sing up for more than one account?</li>
+		        </ul>
+		        <div class="subtitle">Technical problems</div>
+		        <ul>
+		          <li>The movie is not working, why?</li>
+		          <li>How do I turn on/off the subtitles?</li>
+		          <li>I can't find the movie I am looking for.</li>
+		        </ul>
+		      </div>
+    	</div>
+  </div>
+  <!-- End support page -->
+  <div id="mask" class="mask" onclick="closeDialog()"></div>  
+ 
+  <div id="warningScreen">
+  	<div class="formWrapper">
+  		<div class="closeBtn"><i class="material-icons" onclick="closeDialog()">close</i></div>
+	    <div class="form">
+		    <div class="formHeader">
+		      <div class="title">Cancel my account</div>
+		      <div class="subtitle">Please verify your details below</div>
+		    </div>
+			<table>
+		      <tr><td><input type="text" placeholder="Your E-mail" id="Mail"></td><td><input type="password" placeholder="Enter your Password" id="Password"></td></tr>
+		      <tr>
+		        <td><button onclick="accountVerification()">Cancel my account</button></td>
+		        <td></td>
+		      </tr>
+		    </table>
+		    <div class="warning">
+		      <div class="title">*Warning</div>
+		      <div class="subtitle">Once your account is canceled you will not be able to watch online movies with this service.</div>
+		    </div>
+	    </div>
+	  </div>
+	</div>
+	
+	
+	<!--  Footer -->
+<div class="footer">
+   <div class="footerBody">
+    <div class="logo"><div>Need help? Support@movflix.com</div></div>
+    <div class="menu">
+      <ul>
+        <li><a href="TermsAndConditions.html" target="_blank">Terms of Use</a></li>|
+         <li><a href="PrivacyPolicy.html" target="_blank">Privacy</a></li>|
+        <li>Contact Us</li>
+      </ul>
+      <span>Copyright 2015 xxxxxxxxxxxxxxx</span>
+      </div>
+      </div>
+    </div>
+</div>
+  </script>
+	<script src="js/bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script src="js/bower_components/handlebars/handlebars.min.js"></script>
+	<script src="js/bower_components/ember/ember.min.js"></script>
+	<script src="js/ember-data.min.js"></script>
+	<script src="js/ajaxfileupload.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/fontsmoothie.min.js"></script>
+	<script src="js/util.js"></script>
+	<script src="js/i18n/grid.locale-en.js" type="text/javascript"></script>
+	<script type='text/javascript'
+		src="http://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/js/jquery.jqGrid.min.js"></script>
+	<script src="js/slick.js"></script>
+
+	<script type="text/javascript">
+		$(document).on('ready', function() {
+			$(".regular").slick({
+				dots : false,
+				infinite : true,
+				slidesToShow : 5,
+				slidesToScroll : 3
+			});
+			$(".center").slick({
+				dots : true,
+				infinite : true,
+				centerMode : true,
+				slidesToShow : 3,
+				slidesToScroll : 3
+			});
+			$(".variable").slick({
+				dots : false,
+				infinite : true,
+				slidesToShow : 5,
+				slidesToScroll : 3
+			});
+
+			$('#currentTrailer').hover(function toggleControls() {
+				if (this.hasAttribute("controls")) {
+					this.removeAttribute("controls")
+				} else {
+					this.setAttribute("controls", "controls")
+				}
+			});
+
+		});
+	</script>
+	<script src="js/app.js"></script>
+
+
+</body>
+</html>
