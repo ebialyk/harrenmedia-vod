@@ -251,12 +251,8 @@ App.ApplicationController = Ember.Controller.extend({
 				button.className = 'playNow';
 				button.innerHTML = '<i class="material-icons">play_circle_outline</i> Watch Now';
 				button.onclick = function() {
-					var url = "movie.html?mid=" + movie.Id + "&theme=00200&code=00000&movieName=" + movie.Name + "&movieURL="+"trailers/Bad To The Jones (Trailer).mp4";
-
-			    	var a = document.createElement("a");
-			        a.target = "_blank";
-			        a.href = url;
-			        a.click();
+					var url = "trailers/Bad To The Jones (Trailer).mp4";
+					 openMovie(url);
 			    	return false;
 			    	
 				}

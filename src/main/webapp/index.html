@@ -12,188 +12,11 @@
   
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-  <script>
-    var confirmOnExit = true;
-	//show the player and open the create account dialog after 7 seconds
-    function showElements() {
-      setTimeout(function(){ 
-          //var x = document.getElementById("loading").style.display = "none";
-          document.getElementById("screen").style.display = "block";
-          document.getElementById("loading").style.position = "absolute";
-       }, 1500);
+      <script src="js/bower_components/jquery/dist/jquery.min.js"></script>
+       <script src="js/utils.js"></script> 
+	  <script src="js/index.js"></script>
+	 
 
-      setTimeout(function () {
-    	  openCreateAccountDialog();
-
-      },7000);
-    }
-
-    function openCreateAccountDialog() {
-    	document.getElementById("CreateAccount").style.display = "flex";
-        document.getElementById("mask").style.display = "block";
-        document.getElementById("circularG").style.display = "none";
-        document.getElementById("loadSpan").style.display = "none";
-        document.getElementById("contentBar").style.display = "none";
-        document.getElementById("loading").style.display = "none";
-
-        document.getElementById("w8").style.display = "none";
-    }
-       
-    //prevent to leave the page before ends the inscription
-    window.onbeforeunload = confirmExit;
-    function confirmExit() {
-    	if (confirmOnExit) {
-        	return "You have attempted to leave this page. Are you sure?";
-        }
-    }
-    
-	//Validate the create Account data and open the Verification page
-    function openVerificationPage() {
-    	document.getElementById("LandingPage").style.display = "none";
-	    document.getElementById("VerificationPage").style.display = "flex";
-	    document.getElementById("body").className = "whiteBg";
-    }
-    function validatedCreateAccount() {
-    	//Get data from url 
-    	
-    	//url format ?aff=affiliateNumber&country=countryNumber&theme=themeCode&titleMovie=movieTitle
-    	urlParams = parseURLParams(window.location.href);    	
-    	
-    	var affiliateCode = urlParams.aff[0];
-    	var countryCode = urlParams.country[0];
-    	var email = document.getElementById("email");
-    	var psw = document.getElementById("psw");
-    	var psw2 = document.getElementById("psw2");
-    	
-    	var okEmail = false;
-    	var okPsw = false;
-    	var okPsw2 = false;
-    	var okPswEquals = false;
-    	
-    	//not allow empty fields
-    	if(email.value === undefined || email.value == "") {
-    		email.className = "error";
-    		email.title = "Please enter an email";
-    	} else if(!validEmail(email.value)){  //validate entered email
-    		email.className = "error";
-    		email.title = "Please enter a valid email";
-    	} else { //no email errors
-    		email.className = "";
-    		email.title = "";
-    		okEmail = true;
-    	}  
-    	if(psw.value === undefined || psw.value == "") {
-    		psw.className = "error";
-    		psw.title = "Please enter a password";
-    	} else {
-    		psw.className = "";
-    		psw.title = "";
-    		okPsw = true;
-    	}  
-    	if(psw2.value === undefined || psw2.value == "") {
-    		psw2.className = "error";
-    		psw2.title = "Please confirm your password";
-    	} else {
-    		psw2.className = "";
-    		psw2.title = "";
-    		okPsw2 = true;
-    	}  
-    	
-    	if(psw.value === psw2.value) { //validate password and confirm password are equals
-    		okPswEquals = true;
-    	} else {
-    		psw.className = "error";
-    		psw2.className = "error";
-    		psw.title = "password and confirm password are not the same, please type again";
-    		psw2.title = "password and confirm password are not the same, please type again";
-    	}
-    	
-    	if(okEmail && okPsw && okPsw2 && okPswEquals) {
-    		
-    		data = {email: email.value, pw: psw.value, pwConfirm: psw2.value, affiliate: affiliateCode, country: countryCode};
-    		$.ajax({
-				url: "rest/client/register",
-    			type: "POST",
-    			dataType: "json", // expected format for response
-    			contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
-				data : data,
-				success : function(response) { 
-					if(response.status == 15){
-						openVerificationPage();
-					}
-					else {
-						alert(response.message);
-					}
-				},
-				error : function(response, status, error) {
-					alert(response.message);
-				}
-			});
-    	}
-	}
-    function validEmail(mail) {
-    	 var re = /[A-z0-9._%+-]+@[A-z0-9.-]+.[A-z]{2,4}/;
-    	    return re.test(mail);
-    }
-    
-    function verifyAccount() {
-      document.getElementById("VerificationPage").style.display = "none";
-      document.getElementById("page3").style.display = "flex";
-      document.getElementById("body").className = "";
-      setTimeout(function(){
-        window.open ('movies.html','_self',false)
-        confirmOnExit = false;
-      },2000);
-
-    }
-	
-    //start the count down timer
-    window.onload = function() {  
-    	urlParams = parseURLParams(window.location.href);  
-    	var title = urlParams.titleMovie[0];
-    	document.getElementById("movieTitle").innerHTML = title;
-    	var display = document.querySelector('#time'),
-	    timer = new CountDownTimer(480);
-	    timer.onTick(format).onTick(restart).start();
-	
-	    function restart() {
-	    	if (this.expired()) {
-	        	setTimeout(function() { timer.start(); }, 1000);
-	        }
-	    }
-
-	    function format(minutes, seconds) {
-	      minutes = minutes < 10 ? "0" + minutes : minutes;
-	      seconds = seconds < 10 ? "0" + seconds : seconds;
-	      display.textContent = minutes + ':' + seconds;
-	    }
-  	};
-
-  	function parseURLParams(url) {
-  	    var queryStart = url.indexOf("?") + 1,
-  	        queryEnd   = url.indexOf("#") + 1 || url.length + 1,
-  	        query = url.slice(queryStart, queryEnd - 1),
-  	        pairs = query.replace(/\+/g, " ").split("&"),
-  	        parms = {}, i, n, v, nv;
-
-  	    if (query === url || query === "") {
-  	        return;
-  	    }
-
-  	    for (i = 0; i < pairs.length; i++) {
-  	        nv = pairs[i].split("=");
-  	        n = decodeURIComponent(nv[0]);
-  	        v = decodeURIComponent(nv[1]);
-
-  	        if (!parms.hasOwnProperty(n)) {
-  	            parms[n] = [];
-  	        }
-
-  	        parms[n].push(nv.length === 2 ? v : null);
-  	    }
-  	    return parms;
-  	}
-  </script>
 </head>
 <body onload="showElements()" id="body">
   <script type="text/x-handlebars">
@@ -270,7 +93,7 @@
           		<input type="email" id="email" placeholder="E-mail" >
           		<input type="password" id="psw" maxlength="12" placeholder="Password">
           		<input type="Password" id="psw2" maxlength="12" placeholder="Confirm Password">
-          		<button class="greenBtn" onclick="validatedCreateAccount()">CREATE MY FREE ACCOUNT NOW</button>
+          		<button class="greenBtn" onclick="CreateAccountValidation()">CREATE MY FREE ACCOUNT NOW</button>
         	</div>
         </div>
       </div>
@@ -382,7 +205,6 @@
   </script>
 
 
-    <script src="js/bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	<script src="js/bower_components/handlebars/handlebars.min.js"></script>
