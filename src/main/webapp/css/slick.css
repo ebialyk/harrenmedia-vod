@@ -99,6 +99,7 @@
 .slick-initialized .slick-slide
 {
     display: block;
+    cursor: pointer;
 }
 .slick-loading .slick-slide
 {

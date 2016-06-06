@@ -35,7 +35,6 @@
         </ul>
       </div>
       <div class="login" id="logout" onclick="logout()">Logout</div>
-	  <div class="login" id="login" onclick="openLogin()">LogIn</div>
       <div class="languages">{{view Ember.Select 
                       contentBinding="App.LanguageController" 
                       selectionBinding="App.LanguageSelectedController.name" 
@@ -182,20 +181,29 @@
 		        <div class="announcements lock"><div class="title">Safe browsing experience</div><div class="subtitle">your safety and security are important to us and we do our best to insure that.</div></div>
 		        <div class="announcements ribbon"><div class="title">Let us know what you think,</div><div class="subtitle">in muvflix we are always improving our service and support, we will appreciate anyy comment or let us know we are doing good.</div></div>
 		        <div class="title"><span>FAQ's</span> <div><button class="cancelAccount" id="cancelAccount" onclick="cancelAccount()">Cancel Account</button></div></div>
-		        <div class="subtitle">Account</div>
-		          <ul>
-		          <li>How do I change my password?</li>
-		          <li>How do I cancel my account?</li>
-		          <li>How do I change the subscription I have signed up for?</li>
-		          <li>Can I change the email address of my account?</li>
-		          <li>Why was I immediately charged an amount when signing up with a credit/debit card?</li>
-		          <li>Can I sing up for more than one account?</li>
+		       
+ 				<div class="subtitle">Account</div>
+	          	<ul>
+				{{#each faq in App.AccountFaqs }}
+					<li {{ action 'openDSC' faq}}> {{faq.title}} </li>
+					<div id="tooltip">
+						<div class="closeBtn"><i class="material-icons" onclick="closeDialog()">close</i></div>
+						<div id="tooltipTitle">{{faq.title}}</div>
+						<div id="tooltipDSC">{{faq.description }}</div>
+					</div>
+				{{/each}}
 		        </ul>
+
 		        <div class="subtitle">Technical problems</div>
 		        <ul>
-		          <li>The movie is not working, why?</li>
-		          <li>How do I turn on/off the subtitles?</li>
-		          <li>I can't find the movie I am looking for.</li>
+		          {{#each faq in App.TechnicalFaqs }}
+					<li {{ action 'openDSC' faq}}> {{faq.title}} </li>
+					<div id="tooltip">
+						<div class="closeBtn"><i class="material-icons" onclick="closeDialog()">close</i></div>
+						<div id="tooltipTitle">{{faq.title}}</div>
+						<div id="tooltipDSC">{{faq.description }}</div>
+					</div>
+				{{/each}}
 		        </ul>
 		      </div>
     	</div>
@@ -245,7 +253,6 @@
     </div>
   </div>
   </div>
-	
 	<!--  Footer -->
 	<div class="footer">
    		<div class="footerBody">
@@ -272,6 +279,8 @@
 		</video>
 	</div>
 </div>
+
+
 </div>
 
   </script>

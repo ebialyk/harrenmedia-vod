@@ -18,14 +18,14 @@
 	 
 
 </head>
-<body onload="showElements()" id="body">
+<body id="body">
   <script type="text/x-handlebars">
   <div id="LandingPage">
     <div id="content">
       <div id="header" onclick="openCreateAccountDialog()">
         <div id="titles">
           <div class="title"><div id="logo"></div><span>start watching movies instantly!</span></div>
-          <div class="subtitle" id="movieTitle">HD Steaming(720) "THE BEST & THE BEAST"</div>
+          <div class="subtitle" id="movieTitle">HD Steaming(720)</div>
         </div>
         <div class="download">
           <button class="greenBtn">
@@ -91,8 +91,8 @@
           		<p>Only registered Friends can watch all the movies!</p>
           		<p class="enlargedText">you must create a <span class="green">FREE</span> account to <span class="green">STREAM</span> this movie</p>
           		<input type="email" id="email" placeholder="E-mail" >
-          		<input type="password" id="psw" maxlength="12" placeholder="Password">
-          		<input type="Password" id="psw2" maxlength="12" placeholder="Confirm Password">
+          		<input type="password" id="psw" maxlength="12" pattern=".{5,12}" required  placeholder="Password">
+          		<input type="Password" id="psw2" maxlength="12" pattern=".{5,12}" required  placeholder="Confirm Password">
           		<button class="greenBtn" onclick="CreateAccountValidation()">CREATE MY FREE ACCOUNT NOW</button>
         	</div>
         </div>
@@ -118,7 +118,7 @@
           <div class="title">Privacy Guaranteed</div>
           <p>In order to keep your personal information private, we use encryption security tehnology. Our site employs <b>Secure Sockets Layering (SSL)</b> to encript your personal information such as credit card number, name, and address before it travels over the internet. Your data is encrypted and password-protected to make sure no one ever sees your personal information!!! </p>
           <div class="title">No Hidden Fees</div>
-          <p>We always provide our members with a detailed purchase history in order for them to know exactly what they are paying for. Your payment method information is requiered to future purchases only. <b>NO CHARGES</b> will appear on your credit card statement unless you upgrade to a Premium Membership or make a purchase. By creating an account, you agree our <span class="underlined">Terms & Conditions</span></p>
+          <p>We always provide our members with a detailed purchase history in order for them to know exactly what they are paying for. Your payment method information is requiered to future purchases only. <b>NO CHARGES</b> will appear on your credit card statement unless you upgrade to a Premium Membership or make a purchase. By creating an account, you agree our <a class="underlined" href="TermsAndConditions.html" target="_blank" >Terms & Conditions</a></p>
         </div>
         <div class="creditCardForm">
           <div class="timer">Our special offer will be available only in the next <span id="time"></span>
