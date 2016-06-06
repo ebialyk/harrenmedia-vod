@@ -81,7 +81,10 @@ function accountVerification() {
 	}
 	if (psw.value === undefined || psw.value == "") {// no empty message
 		psw.className = "error";
-		psw.title = "Please type your name";
+		psw.title = "Please type your password";
+	} else if(validPassword(psw)) {
+		psw.className = "error";
+		psw.title = "Please type a valid password";
 	} else {
 		psw.className = "";
 		psw.title = "";
@@ -284,7 +287,7 @@ function checkLoggedInUser(user) {
 		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 		data : data,
 		success : function(response) {
-			if (response.status == 51) {
+			if (response.status == 51 ) {
 				//document.getElementById("login").style.display = "none";
 				document.getElementById("logout").style.display = "block";
 			} else {
@@ -308,13 +311,10 @@ function logout() {
 		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 		data : data,
 		success : function(response) {
-			if (response.status == 51) {
+			
 				window.open('/starter/mainPage.html', '_self', false)
 				localStorage.removeItem('user');
 
-			} else {
-				return false;
-			}
 		},
 		error : function(response, status, error) {
 			alert('Unexpected Error please try again');

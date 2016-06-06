@@ -52,13 +52,17 @@ App.Subject = Ember.Object.extend({
 	id : null,
 	name : null
 });
-App.selectedSubjectController = Ember.Object.create({
-	subject : null
-});
 App.Subject2 = Ember.Object.extend({
 	id : null,
 	name : null
 });
+App.selectedSubjectController = Ember.Object.create({
+	subject : {
+		id : 1,
+		name : 'General'
+	}
+});
+
 App.selectedSubjec2tController = Ember.Object.create({
 	subject : {
 		id : 0,
@@ -78,7 +82,7 @@ App.Movies = Ember.Object.extend({
 	URL : null,
 	Image : null,
 	MoreImages : null,
-	Trailer: null
+	Trailer : null
 });
 App.selectedMovieController = Ember.Object.create({
 	movies : null
@@ -160,7 +164,7 @@ App.ApplicationController = Ember.Controller
 					document.getElementById("tooltipTitle").innerHTML = faq.description;
 					document.getElementById("tooltipDSC").innerHTML = faq.description;
 				},
-				
+
 				selectMovie : function(movie) {
 					if (App.selectedMovieController != movie) {
 						App.selectedMovieController = movie;
@@ -289,13 +293,14 @@ App.ApplicationController = Ember.Controller
 
 						// create iframe triller
 						var ifrm = document.createElement("IFRAME");
-						ifrm.setAttribute("src",
-								"https://www.youtube.com/embed/HUMhTmpRm7U?rel=0&amp;controls=1&amp;showinfo=0");
+						ifrm
+								.setAttribute("src",
+										"https://www.youtube.com/embed/HUMhTmpRm7U?rel=0&amp;controls=1&amp;showinfo=0");
 						ifrm.setAttribute("frameBorder", "0");
-						ifrm.setAttribute("allowfullscreen",'')
+						ifrm.setAttribute("allowfullscreen", '')
 						ifrm.style.width = 215 + "px";
 						ifrm.style.height = 143 + "px";
-						
+
 						// create gallery div
 
 						var galleryTitle = document.createElement("div");

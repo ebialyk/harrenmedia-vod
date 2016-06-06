@@ -1,3 +1,9 @@
+function validPassword(psw) {
+	if(psw.lenght < 5)
+		return false;
+	
+	return true;
+}
 function validEmail(mail) {
 	var re = /[A-z0-9._%+-]+@[A-z0-9.-]+.[A-z]{2,4}/;
 	return re.test(mail);

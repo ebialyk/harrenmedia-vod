@@ -126,8 +126,8 @@
 
   <div id="mask" class="mask"  onclick="closeDialog()"></div>  
   <div id="loginScreen">
-  <div class="formWrapper">
-<div class="closeBtn"><i class="material-icons" onclick="closeDialog()">close</i></div>
+  	<div class="formWrapper">
+		<div class="closeBtn"><i class="material-icons" onclick="closeDialog()">close</i></div>
 
     <div class="form">
       <table>
@@ -167,11 +167,11 @@
         <div class="creditCardForm">
           	<div class="verificationForm">
             	<span class="title">Please fill out all the following fields to create an account</span>
-            	<p class="note">*Username and password are case sensitive, and password nust to be at least 6 characters long</p>
+            	<p class="note">*Username and password are case sensitive, and password must to be at least 5 characters long</p>
 	            <div class="form">
-	              <input type="text" placeholder="E-mail">
-	              <input type="password" placeholder="Password">
-	              <input type="password" placeholder="Confirm password">
+	              <input type="mail" placeholder="E-mail" required id="email">
+	              <input type="password" placeholder="Password" pattern=".{5,12}" required id="psw">
+	              <input type="password" placeholder="Confirm password" pattern=".{5,12}" required id="psw2">
 	              <p class="note">By clicking the "Sing-Up" button, you are agree to our <a href="TermsAndCondition.html" target="_black">Terms & Conditions</a> and certify than you are 18 year of age</p>
 	              <button class="greenBtn" onclick="SignUp()">Sign Up</button>
 	            </div>
@@ -181,7 +181,7 @@
         </div>
     </div>
     <div class="btnWrapper">
-    	<button class="greenBtn bigBtn">
+    	<button class="greenBtn bigBtn" onclick="openLogin()">
     		<span class="title">Start your 5-Day free trial NOW</span>
     		<span class="subtitle">Click here to Continue</span>
     	</button>
@@ -280,7 +280,7 @@
 				        </tr>
 				        <tr>
 				            <td></td>
-				            <td class="inputField"><button class="greenBtn">Continue</button></td>
+				            <td class="inputField"><button class="greenBtn" onclick="verifyAccount()">Continue</button></td>
 				            <td></td>
 				        </tr>
 				    </table>
@@ -291,6 +291,86 @@
     </div>
       
 </div>
+
+<!--support page-->
+      <div id="supportPage">
+        <div class="content">
+      		<div class="supportForm">
+        		<div class="title">Support</div>
+		        <div class="contactUs" id="contactUs">
+		          <div class="title">Contact us:</div>
+		          <div class="subtitle">If you have any questions, please fill in the form below. <br> Our 20/7 support team will help you shortly</div>
+		        </div>
+		        <div id="cancelText" class="contactUs">
+		          <div class="title"> </div>
+		          <div class="subtitle">To cancel your account, please fill in the form and the last 4 digits of your credit card</div>
+		        </div>
+		        <table class="form">
+		          <tr>
+		            <td><input type="text" placeholder="Your name" class="mandatoryFieldForm" id="supportName" required></td>
+		            <td><input type="email" placeholder="E-mail" class="mandatoryFieldForm" id="supportEmail" required></td>
+		          </tr>
+		          <tr id="subjectFields">
+		            <td class="formTitle">Subject</td>
+		            <td>{{view Ember.Select 
+		                      contentBinding="App.SubjectsController" 
+		                      selectionBinding="App.selectedSubjectController" 
+		                      optionLabelPath="content.name" 
+		                      optionValuePath="content.id"
+							  value="App.selectedSubjectController" 
+							  id="subjectSupport"
+						}}</td>
+		          </tr>
+		          <tr id="CancelFields">
+		            <td>{{view Ember.Select 
+		                      contentBinding="App.Subjects2Controller" 
+		                      selectionBinding="App.selectedSubject2Controller" 
+		                      optionLabelPath="content.name" 
+		                      optionValuePath="content.id"
+							  value="App.selected2SubjectController" 
+							  id="subjectSupport2"
+						}}</td>
+		            <td><input type="text" name="cardDigits" id="cardDigits" placeholder="Last 4 digits of your Credit card"></td>
+		          </tr>
+		          <tr>
+		            <td colspan="2"> <textarea name="" id="supportContent" cols="30" rows="10" class="mandatoryFieldForm" placeholder="Write your message here"></textarea> </td>
+		          </tr>
+		          <tr><td class="note">*These fields are requiered</td><td><button class="redBtn" onClick="sendSupportRequest()">SEND</button></td></tr>
+		        </table>
+		      </div>
+		      <div class="faqs">
+		        <div class="announcements lock"><div class="title">Safe browsing experience</div><div class="subtitle">your safety and security are important to us and we do our best to insure that.</div></div>
+		        <div class="announcements ribbon"><div class="title">Let us know what you think,</div><div class="subtitle">in muvflix we are always improving our service and support, we will appreciate anyy comment or let us know we are doing good.</div></div>
+		        <div class="title"><span>FAQ's</span> <div><button class="cancelAccount" id="cancelAccount" onclick="cancelAccount()">Cancel Account</button></div></div>
+		       
+ 				<div class="subtitle">Account</div>
+	          	<ul>
+				{{#each faq in App.AccountFaqs }}
+					<li {{ action 'openDSC' faq}}> {{faq.title}} </li>
+					<div id="tooltip">
+						<div class="closeBtn"><i class="material-icons" onclick="closeDialog()">close</i></div>
+						<div id="tooltipTitle">{{faq.title}}</div>
+						<div id="tooltipDSC">{{faq.description }}</div>
+					</div>
+				{{/each}}
+		        </ul>
+
+		        <div class="subtitle">Technical problems</div>
+		        <ul>
+		          {{#each faq in App.TechnicalFaqs }}
+					<li {{ action 'openDSC' faq}}> {{faq.title}} </li>
+					<div id="tooltip">
+						<div class="closeBtn"><i class="material-icons" onclick="closeDialog()">close</i></div>
+						<div id="tooltipTitle">{{faq.title}}</div>
+						<div id="tooltipDSC">{{faq.description }}</div>
+					</div>
+				{{/each}}
+		        </ul>
+		      </div>
+    	</div>
+  </div>
+  <!-- End support page -->
+
       <div class="footer">
    <div class="footerBody">
     <div class="logo"><div>Need help? Support@movflix.com</div></div>

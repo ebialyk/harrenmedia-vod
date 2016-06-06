@@ -1616,6 +1616,7 @@ button.redBtn {
     padding-left: 30px;
 	color: lightgray;
 	font-size: 14px;
+	cursor: pointer;
 }
 
 
@@ -1935,6 +1936,13 @@ button.redBtn {
 	width: 295px;
     height: 30px;
     padding-left: 20px;
+    padding: 4px 6px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #555555;
+    vertical-align: middle;
+    border-radius: 4px;
 }
 .SignInPage .form {
 	display: flex;
