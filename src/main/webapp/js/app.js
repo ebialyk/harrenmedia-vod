@@ -186,7 +186,14 @@ App.ApplicationController = Ember.Controller
 						// Create the Image
 						var movieImage = document.createElement('img');
 						movieImage.id = 'moviePreviewImg';
-						movieImage.setAttribute('src', movie.Image);
+						if(location.hostname == "localhost") 
+							url='';
+						else
+							url='../';
+						
+						url += movie.Image;
+						
+						movieImage.setAttribute('src', url);
 
 						// Set the image inside the container
 						movieImageDiv.appendChild(movieImage);
@@ -260,7 +267,12 @@ App.ApplicationController = Ember.Controller
 						button.className = 'playNow';
 						button.innerHTML = '<i class="material-icons">play_circle_outline</i> Watch Now';
 						button.onclick = function() {
-							var url = "trailers/Bad To The Jones (Trailer).mp4";
+							var url;
+							if(location.hostname == "localhost") 
+								url='';
+							else
+								url='../';
+							url += "trailers/Bad To The Jones (Trailer).mp4";
 							openMovie(url);
 							return false;
 
@@ -321,11 +333,19 @@ App.ApplicationController = Ember.Controller
 							divImg = document.createElement("div");
 							img = document.createElement("img");
 							divImg.appendChild(img);
-
+							var url ;
+							if(location.hostname == "localhost") 
+								url='';
+							else
+								url='../';
+							
+							
 							if (i < images.length) {
-								img.setAttribute("src", images[i]);
+								url +=  images[i];
+								img.setAttribute("src",url);
 							} else {
-								img.setAttribute("src", "images/no.png");
+								url +="images/no.png"
+								img.setAttribute("src", url);
 							}
 
 							galleryDiv.appendChild(divImg);

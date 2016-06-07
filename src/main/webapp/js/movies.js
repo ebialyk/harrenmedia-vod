@@ -82,7 +82,7 @@ function accountVerification() {
 	if (psw.value === undefined || psw.value == "") {// no empty message
 		psw.className = "error";
 		psw.title = "Please type your password";
-	} else if(validPassword(psw)) {
+	} else if(!validPassword(psw)) {
 		psw.className = "error";
 		psw.title = "Please type a valid password";
 	} else {
@@ -125,6 +125,8 @@ function accountVerification() {
 						alert(response.message);
 					}
 				});
+	} else {
+		alert(email.title + " " + psw.title);
 	}
 }
 function sendSupportRequest() {
@@ -269,11 +271,15 @@ window.onload = function() {
 		checkLoggedInUser(MAIL);
 
 		setTimeout(function() {
-			history.pushState({}, null, '/starter/movies.html');
+			if(location.hostname == "localhost") 
+				url='/starter/movies.html';
+			else
+				url='../movies.html';
+			history.pushState({}, null,url);
 		}, 2000);
 
 	} else {
-		window.open('/starter/mainPage.html', '_self', false)
+		window.open(url, '_self', false)
 	}
 }
 function checkLoggedInUser(user) {
@@ -288,10 +294,13 @@ function checkLoggedInUser(user) {
 		data : data,
 		success : function(response) {
 			if (response.status == 51 ) {
-				//document.getElementById("login").style.display = "none";
 				document.getElementById("logout").style.display = "block";
 			} else {
-				window.open('/starter/mainPage.html', '_self', false)
+				if(location.hostname == "localhost") 
+					url='/starter/mainPage.html';
+				else
+					url='../mainPage.html';
+				window.open(url, '_self', false)
 			}
 		},
 		error : function(response, status, error) {
@@ -311,8 +320,12 @@ function logout() {
 		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 		data : data,
 		success : function(response) {
-			
-				window.open('/starter/mainPage.html', '_self', false)
+			var url;
+			if(location.hostname == "localhost") 
+				url='/starter/mainPage.html';
+			else
+				url='../mainPage.html';
+				window.open(url, '_self', false)
 				localStorage.removeItem('user');
 
 		},

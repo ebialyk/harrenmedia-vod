@@ -9,20 +9,15 @@
 <link rel="stylesheet" href="css/adminStyle.css">
 <link href="css/bootstrap-datepicker.css" rel="stylesheet" />
 
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300"
-	rel='stylesheet' type='text/css'>
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
 
 <script src="js/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="js/angular.min.js"></script>
 <script src="js/xeditable.js"></script>
-<script src="js/angular-mocks.js"></script>
 
+<script type="text/javascript" src="js/angular-resource.min.js"></script> 
 
-
-
+<script src="js/api.js"></script>
 <script src="js/app.AJS.js"></script>
 <script src="js/admin.js"></script>
 <style>
@@ -79,49 +74,30 @@ li {
 			<button onclick="AddAffiliate()">Add Affiliate</button>
 		</div>
 		<button onclick="newAffiliate()">New</button>
-		<table>
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>NAME</th>
-					<th>COUNTRY</th>
-					<th>LANGUAGE</th>
-				</tr>
-			</thead>
-			<tbody id="records_table"></tbody>
-		</table>
-
-	</div>
-	</script>
-	
-	<script type="text/ng-template" id="Users.tpl.html">
-		<div  ng-controller="Ctrl" ng-init="alert('init')" onload="alert('load')">
-   <table class="table table-bordered table-hover table-condensed">
-    <tr style="font-weight: bold">
-      <td style="width:15%">ID</td>
-      <td style="width:20%">NAME</td>
-      <td style="width:20%">COUNTRY</td>
-      <td style="width:20%">LANGUAGE</td>
-    </tr>
-    <tr ng-repeat="affiliate in affiliates">
-      <td>
-        <!-- editable username (text with validation) -->
-        <span editable-text="user.name" e-name="name" e-form="rowform" onbeforesave="checkName($data, user.id)" e-required>
-          {{ user.name || 'empty' }}
-        </span>
-      </td>
-      <td>
-        <!-- editable status (select-local) -->
-        <span editable-select="user.country" e-name="country" e-form="rowform">
-          {{ user.country || 'empty' }}
-        </span>
-      </td>
-      <td>
-        <!-- editable group (select-remote) -->
-        <span editable-select="user.language" e-name="language" e-form="rowform" >
-          {{ user.language || 'empty' }}
-        </span>
-      </td>
+		<table class="table table-bordered table-hover table-condensed" id="affTable">
+    		<tr style="font-weight: bold">
+      			<td style="width:15%">ID</td>
+      			<td style="width:20%">NAME</td>
+      			<td style="width:20%">COUNTRY</td>
+      			<td style="width:20%">LANGUAGE</td>
+    		</tr>
+    	<tr ng-repeat="affiliate in affiliates">
+      	<td><span editable-text="affiliate.id" e-name="id" e-form="rowform"  e-required>
+          {{ affiliate.id || 'empty' }}
+        	</span>
+      	</td>
+      <td><span editable-text="affiliate.affiliateName" e-name="affiliateName" e-form="rowform"  e-required>
+          {{ affiliate.affiliateName || 'empty' }}
+        	</span>
+      	</td>
+		<td><span editable-text="affiliate.countryId" e-name="countryId" e-form="rowform"  e-required>
+          {{ affiliate.countryId || 'empty' }}
+        	</span>
+      	</td>
+		<td><span editable-text="affiliate.languageId" e-name="languageId" e-form="rowform"  e-required>
+          {{ affiliate.languageId || 'empty' }}
+        	</span>
+      	</td>
       <td style="white-space: nowrap">
         <!-- form -->
         <form editable-form name="rowform" onbeforesave="saveAffiliate($data, user.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == affiliate">
@@ -139,8 +115,15 @@ li {
       </td>
     </tr>
   </table>
-
   <button class="btn btn-default" ng-click="addAffiliate()">Add row</button>
+
+	</div>
+	</script>
+	
+	<script type="text/ng-template" id="Users.tpl.html">
+		<div  ng-controller="Ctrl" ng-init="alert('init')" onload="alert('load')">
+   
+  <button class="btn btn-default" onclick="newAffiliate()()">Add row</button>
 </div>
 
 	</script>

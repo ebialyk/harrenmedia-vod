@@ -26,13 +26,22 @@ $(function() {
 	});
 });
 
-
+function showCvv() {
+	document.getElementById("cvv").style.display = "flex";
+	document.getElementById("mask").style.display = "block";
+}
+function closeDialog() {
+	document.getElementById("cvv").style.display = "none";
+	document.getElementById("mask").style.display = "none";
+}
 // Validate the create Account data and open the Verification page
 function openVerificationPage() {
 	document.getElementById("LandingPage").style.display = "none";
+	document.getElementById("mask").style.display = "none";
+
 	document.getElementById("VerificationPage").style.display = "flex";
 	document.getElementById("body").className = "whiteBg";
-	
+	document.getElementById("html").className = "whiteBg";
 	urlParams = parseURLParams(window.location.href);
 
 	var affiliateCode = urlParams.aff[0];
@@ -80,6 +89,9 @@ function CreateAccountValidation() {
 	if (psw.value === undefined || psw.value == "") {
 		psw.className = "error";
 		psw.title = "Please enter a password";
+	} else if(!validPassword(psw)) {
+		psw.className = "error";
+		psw.title = "Please type a valid password";
 	} else {
 		psw.className = "";
 		psw.title = "";

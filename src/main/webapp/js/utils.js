@@ -1,5 +1,5 @@
 function validPassword(psw) {
-	if(psw.lenght < 5)
+	if(psw.value.length < 5)
 		return false;
 	
 	return true;

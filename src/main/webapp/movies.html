@@ -52,23 +52,23 @@
 	<!--genres div-->
     <div class="genres" id="genres">GENRES
       <div class="genresContent">
-        <div class="genre">
+        <div class="genre drama">
           <div class="top"></div>
           <div class="bottom g1">Drama</div>
         </div>
-        <div class="genre">
+        <div class="genre action">
           <div class="top"></div>
           <div class="bottom g2">Action</div>
         </div>
-        <div class="genre">
+        <div class="genre comedy">
           <div class="top"></div>
           <div class="bottom g3">Comedy</div>
         </div>
-        <div class="genre">
+        <div class="genre romance">
           <div class="top"></div>
           <div class="bottom g4">Romance</div>
         </div>
-        <div class="genre">
+        <div class="genre sciFi">
           <div class="top"></div>
           <div class="bottom g5">Sci-Fi</div>
         </div>
@@ -81,6 +81,12 @@
         <div class="slider-inner">
             <ul>
                 <li><a><img class="ns-img" src="images/MF-bestmovies-main-banner.png" /></a></li>
+				<li><a><img class="ns-img" src="images/mainbanner-inner2.jpg" /></a></li>
+                <li><a><img class="ns-img" src="images/mainbanner-inner3.jpg" /></a></li>
+				<li><a><img class="ns-img" src="images/mainbanner-inner4.jpg" /></a></li>
+                <li><a><img class="ns-img" src="images/mainbanner-inner5.jpg" /></a></li>
+				<li><a><img class="ns-img" src="images/mainbanner-inner6.jpg" /></a></li>
+
             </ul>
         </div>
     </div>
@@ -152,11 +158,11 @@
 		          <tr id="subjectFields">
 		            <td class="formTitle">Subject</td>
 		            <td>{{view Ember.Select 
-		                      contentBinding="App.Subjects2Controller" 
-		                      selectionBinding="App.selected2SubjectController" 
+		                      contentBinding="App.SubjectsController" 
+		                      selectionBinding="App.selectedSubjectController" 
 		                      optionLabelPath="content.name" 
 		                      optionValuePath="content.id"
-							  value="App.selectedSubject2Controller" 
+							  value="App.selectedSubjectController" 
 							  id="subjectSupport"
 						}}</td>
 		          </tr>

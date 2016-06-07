@@ -1,29 +1,7 @@
-function fillTable() {
-	var table = document.getElementById('records_table');
-	$.ajax({
-		url : "rest/admin/getAffiliates",
-		type : "POST",
-		dataType : "json", // expected format for response
-		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-
-		success : function(response) {
-			var trHTML = '';
-			for (var i = 0; i < response.length; i++) {
-				trHTML += '<tr><td>' + response[i].id + '</td><td>'
-						+ response[i].affiliateName + '</td><td>'
-						+ response[i].countryId + '</td><td>'
-						+ response[i].languageId + '</td></tr>';
-			}
-			table.innerHTML = trHTML;
-		},
-		error : function(response, status, error) {
-			alert("Error");
-		}
-	});
-}
-
 function newAffiliate() {
 	document.getElementById('newAffiliate').style.display = "block";
+	document.getElementById('affTable').style.display = "none";
+
 }
 function AddAffiliate() {
 	var table = document.getElementById('records_table');
@@ -45,16 +23,16 @@ function AddAffiliate() {
 		data : data,
 		success : function(response) {
 			if (response.status == 40) {
-				table.innerHTML = "";
 				//close window
-				document.getElementById('newAffiliate').style.display = "none";
 				
 				//clean fields
 				affName = document.getElementById("name").value = "";
 				country = document.getElementById("country").value = "";
 				language = document.getElementById("language").value = "";
 				
-				fillTable();
+				document.getElementById('newAffiliate').style.display = "none";
+				document.getElementById('affTable').style.display = "block";
+				
 			} else {
 				alert(response.message);
 			}
