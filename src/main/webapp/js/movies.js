@@ -8,7 +8,7 @@ function openGenres() {
 }
 function openBestsellers() {
 	hideAll();
-	document.getElementById("ninja-slider").style.display = "block";
+	document.getElementById("slider").style.display = "block";
 	document.getElementById("littleSlider").style.display = "block";
 	document.getElementById("hrGray").style.display = "block";
 	document.getElementById("moreMovies").style.display = "block";
@@ -241,7 +241,7 @@ function sendSupportRequest() {
 	}
 }
 function hideAll() {
-	document.getElementById("ninja-slider").style.display = "none";
+	document.getElementById("slider").style.display = "none";
 	document.getElementById("littleSlider").style.display = "none";
 	document.getElementById("hrGray").style.display = "none";
 	document.getElementById("moviePreview").style.display = "none";

@@ -168,7 +168,7 @@ App.ApplicationController = Ember.Controller
 				selectMovie : function(movie) {
 					if (App.selectedMovieController != movie) {
 						App.selectedMovieController = movie;
-						document.getElementById("ninja-slider").style.display = "none";
+						document.getElementById("slider").style.display = "none";
 						document.getElementById("littleSlider").style.display = "block";
 						document.getElementById("hrGray").style.display = "none";
 						document.getElementById("genres").style.display = "none";

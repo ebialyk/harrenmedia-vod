@@ -2287,8 +2287,11 @@ html.whiteBg, body.whiteBg {
 #mainPage .icons div.anywhere {
 	background-image: url(../images/MF_HP-anywhere-icon.jpg.png);
 }
-
-.slider-inner div.titles {
+.flexslider {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.slider div.titles {
 	color: white;
 	position: absolute;
 	right: 100px;
@@ -2299,12 +2302,12 @@ html.whiteBg, body.whiteBg {
 	align-items: flex-end;
 }
 
-.slider-inner div.titles .title {
+.slider div.titles .title {
 	font-size: 46px;
 	line-height: 37px;
 }
 
-.slider-inner div.titles .subtitle {
+.slider div.titles .subtitle {
 	font-size: small;
 }
 
