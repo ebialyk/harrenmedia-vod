@@ -37,7 +37,8 @@ function cancelAccount() {
 	var psw = document.getElementById("Password").value = "";
 	document.getElementById("warningScreen").style.display = "flex";
 	document.getElementById("mask").style.display = "flex";
-	tracking(0, 0, 5, 0, 0, email);
+	tracking(0, 0, 6, 0, 0, email, "");
+	
 }
 function clearForm() {
 	document.getElementById("supportName").value = "";
@@ -92,13 +93,13 @@ function accountVerification() {
 	}
 
 	if (okMail && okPsw) {
+		tracking(0, 0, 7, 0, 0, email, "");
 		var data = {
 			email : email.value,
 			psw : psw.value
 		};
 
-		$
-				.ajax({
+		$.ajax({
 					url : "rest/client/accountVerification",
 					type : "POST",
 					dataType : "json", // expected format for response
@@ -116,8 +117,9 @@ function accountVerification() {
 							document.getElementById("supportContent").placeholder = "Please cancel my account.";
 							document.getElementById("subjectSupport2").style.display = "block";
 							document.getElementById("subjectSupport2").value = 0;
-							tracking(0, 0, 6, 0, 0, email);
+							tracking(0, 0, 10, 0, 0, email,"");
 						} else {
+							tracking(0, 0, 11, 0, 0, email,"");
 							alert(response.message);
 						}
 					},
@@ -209,6 +211,7 @@ function sendSupportRequest() {
 
 	if (okName && okMail && okCardD && okMsg
 			&& ((okSubj1 && !cancelRequest) || (okSubj2 && cancelRequest))) {
+		tracking(0, 0, 12, 0, 0, email,"");
 		var data = {
 			name : name.value,
 			email : email.value,
@@ -228,9 +231,12 @@ function sendSupportRequest() {
 					alert(response.message);
 					openBestsellers();
 					if(msgCode == 0) {
-						tracking(0, 0, 7, 0, 0, email);
+						tracking(0, 0, 13, 0, 0, email);
 					}
 				} else {
+					if(msgCode == 0) {
+						tracking(0, 0, 14, 0, 0, email);
+					}
 					alert(response.message);
 				}
 			},

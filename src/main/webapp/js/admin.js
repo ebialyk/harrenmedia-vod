@@ -1,9 +1,17 @@
 function newAffiliate() {
 	document.getElementById('newAffiliate').style.display = "block";
-	document.getElementById('affTable').style.display = "none";
+//	document.getElementById('tableWrapper').style.display = "none";
 
 }
-function AddAffiliate() {
+function Cancel() {
+	document.getElementById('newAffiliate').style.display = "none";
+	document.getElementById('tableWrapper').style.display = "block";
+	
+	affName = document.getElementById("name").value = "";
+	country = document.getElementById("country").value = "";
+	language = document.getElementById("language").value = "";
+}
+function addAffiliate() {
 	var table = document.getElementById('records_table');
 	var affName = document.getElementById("name");
 	var country = document.getElementById("country");

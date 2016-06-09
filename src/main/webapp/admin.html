@@ -18,6 +18,7 @@
 <script type="text/javascript" src="js/angular-resource.min.js"></script> 
 
 <script src="js/api.js"></script>
+
 <script src="js/app.AJS.js"></script>
 <script src="js/admin.js"></script>
 <style>
@@ -64,82 +65,206 @@ li {
         </div>
     </div>
 
-    <script type="text/ng-template" id="Affiliates.tpl.html">
-	<div style>
-		<div id="newAffiliate">
-			<label for="name">Affiliate Name: </label><input type="text"
-				id="name"><br> <label for="language">Language:
-			</label><input type="text" id="language"><br> <label
-				for="country">Country: </label><input type="text" id="country"><br>
-			<button onclick="AddAffiliate()">Add Affiliate</button>
-		</div>
-		<button onclick="newAffiliate()">New</button>
-		<table class="table table-bordered table-hover table-condensed" id="affTable">
-    		<tr style="font-weight: bold">
-      			<td style="width:15%">ID</td>
-      			<td style="width:20%">NAME</td>
-      			<td style="width:20%">COUNTRY</td>
-      			<td style="width:20%">LANGUAGE</td>
-    		</tr>
-    	<tr ng-repeat="affiliate in affiliates">
-      	<td><span editable-text="affiliate.id" e-name="id" e-form="rowform"  e-required>
-          {{ affiliate.id || 'empty' }}
-        	</span>
-      	</td>
-      <td><span editable-text="affiliate.affiliateName" e-name="affiliateName" e-form="rowform"  e-required>
-          {{ affiliate.affiliateName || 'empty' }}
-        	</span>
-      	</td>
-		<td><span editable-text="affiliate.countryId" e-name="countryId" e-form="rowform"  e-required>
-          {{ affiliate.countryId || 'empty' }}
-        	</span>
-      	</td>
-		<td><span editable-text="affiliate.languageId" e-name="languageId" e-form="rowform"  e-required>
-          {{ affiliate.languageId || 'empty' }}
-        	</span>
-      	</td>
-      <td style="white-space: nowrap">
-        <!-- form -->
-        <form editable-form name="rowform" onbeforesave="saveAffiliate($data, user.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == affiliate">
-          <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
-            save
-          </button>
-          <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
-            cancel
-          </button>
-        </form>
-        <div class="buttons" ng-show="!rowform.$visible">
-          <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
-          <button class="btn btn-danger" ng-click="removeAffiliate($index)">del</button>
-        </div>  
-      </td>
-    </tr>
-  </table>
-  <button class="btn btn-default" ng-click="addAffiliate()">Add row</button>
+    <script type="text/ng-template" id="LoggedIn_Users.tpl.html">
+	<div class="admin-panel">
 
+	<h1>Logged In Users table</h1>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<button class="btn btn-primary left" ng-click="refreshLIUsers()">Refresh Data</button>
+		</div>
+		<table class="table table-hover"
+			data-cg-busy="{promise:promise,message:'please wait',templateUrl:'bower/angular-busy/angular-busy.html'}">
+			<thead>
+      				<th>ID</th>
+      				<th>IP</th>
+      				<th>LOGIN DATE</th>
+					<th>STATUS</th>
+					<th>USER ID</th>
+      				<th>USER MAIL</th>
+			</thead>
+	<tr ng-repeat="usr in loggedInUsers ">
+				<td><span>{{ usr.id }}</span></td>
+      				<td><span>{{ usr.ip }}</span></td>
+					<td><span>{{ usr.logInDate | date }}</span></td>
+					<td><span>{{ usr.status }}</span></td>
+					<td><span>{{ usr.userId }}</span></td>
+					<td><span>{{ showUser(usr.userId) }}</span></td>
+					
+			</tr>
+		</table>
 	</div>
+
+
+</div>		
 	</script>
 	
 	<script type="text/ng-template" id="Users.tpl.html">
-		<div  ng-controller="Ctrl" ng-init="alert('init')" onload="alert('load')">
-   
-  <button class="btn btn-default" onclick="newAffiliate()()">Add row</button>
-</div>
+<div class="admin-panel">
 
+	<h1>Users table</h1>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<button class="btn btn-primary left" ng-click="refreshUsers()">Refresh Data</button>
+		</div>
+		<table class="table table-hover"
+			data-cg-busy="{promise:promise,message:'please wait',templateUrl:'bower/angular-busy/angular-busy.html'}">
+			<thead>
+				<th>ID</th>
+      				<th>User Email</th>
+      				<th>userName</th>
+      				<th>affiliateId</th>
+					<th>registrationDate</th>
+					<th>cancelationDate</th>
+      				<th>status</th>
+					<th>userCountry</th>
+					<th>userPassword</th>
+			</thead>
+			<tr ng-repeat="usr in users ">
+				<td><span>{{ usr.id }}</span></td>
+      				<td><span>{{ usr.userEmail }}</span></td>
+					<td><span>{{ usr.userName  }}</span></td>
+					<td><span>{{ usr.affiliateId }}</span></td>
+					<td><span>{{ usr.registrationDate | date}}</span></td>
+					<td><span>{{ usr.cancelationDate | date }}</span></td>
+					<td><span>{{ usr.status }}</span></td>
+					<td><span>{{ usr.userCountry }}</span></td>
+					<td><span>{{ usr.userPassword }}</span></td>
+			</tr>
+		</table>
+	</div>
+
+
+</div>		
 	</script>
 	
-	<script type="text/ng-template" id="LoggedIn_Users.tpl.html">
-		<div id="viewThree">
-			<h1>View Three</h1>
-			<p>In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu.</p>
+	<script type="text/ng-template" id="Affiliates.tpl.html">
+		<div class="admin-panel">
+
+	<h1>Affiliates table</h1>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<button class="btn btn-primary left" onclick="newAffiliate()">Add Affiliate</button>
+			<button class="btn btn-primary left" ng-click="refreshAffiliates()">Refresh Data</button>
 		</div>
+		<table class="table table-hover"
+			data-cg-busy="{promise:promise,message:'please wait',templateUrl:'bower/angular-busy/angular-busy.html'}">
+			<thead>
+				<th>ID</th>
+      			<th>NAME</th>
+      			<th>COUNTRY</th>
+      			<th>LANGUAGE</th>
+				<th>CSS</th>
+				<th>POSTBACK</th>
+			</thead>
+			<tr ng-repeat="row in affiliates ">
+				<td><span>{{ row.id }}</span></td>
+				<td><span editable-text="row.affiliateName" e-name="affiliateName" e-form="rowform" onbeforesave="checkName($data, user.id)" e-required>
+          {{ row.affiliateName || 'empty' }}
+        </span></td>
+				<td><span  editable-text="row.affiliateName" e-name="affiliateName"
+					e-form="rowform" class="font-orange">{{ row.affiliateName }}</span></td>
+				<td><span editable-text="row.countryId">{{ row.countryId  }}</span></td>
+				<td><span editable-text="row.languageId">{{ row.languageId }}</span></td>
+				<td><span editable-text="row.cssTheme">{{ row.cssTheme }}</span></td>
+				<td><span editable-text="row.postback">{{ row.postback }}</span></td>
+			</tr>
+		</table>
+	</div>
+<div id="newAffiliate">
+			<label for="name">Affiliate Name:</label>
+			<input type="text" id="name" ng-model="aff.name"><br> 
+			<label for="language">Language:</label>
+			<input type="text" id="language" ng-model="aff.language"><br> 
+			<label for="country">Country: </label>
+			<input type="text" id="country" ng-model="aff.country"><br>
+
+			<button ng-click=save(aff) onclick="addAffiliate()">Add Affiliate</button>
+			<button onclick="Cancel()">Cancel</button>
+		</div>
+
+
+</div>
 	</script>
 	
 	<script type="text/ng-template" id="Clicks.tpl.html">
-		<div id="viewThree">
-			<h1>View Three</h1>
-			<p>In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu.</p>
+		<div class="admin-panel">
+
+	<h1>User Tracking table</h1>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<button class="btn btn-primary left" ng-click="refreshClicks()">Refresh Data</button>
 		</div>
+		<table class="table table-hover"
+			data-cg-busy="{promise:promise,message:'please wait',templateUrl:'bower/angular-busy/angular-busy.html'}">
+			<thead>
+				<th>ID</th>
+      				<th>affiliateId</th>
+      				<th>countryId</th>
+      				<th>cssTheme</th>
+					<th>languageId</th>
+					<th>step</th>
+      				<th>userId</th>
+
+			</thead>
+			<tr ng-repeat="usr in clicks ">
+				<td><span>{{ usr.id }}</span></td>
+      				<td><span>{{ usr.affiliateId }}</span></td>
+					<td><span>{{ usr.countryId  }}</span></td>
+					<td><span>{{ usr.cssTheme }}</span></td>
+					<td><span>{{ usr.languageId }}</span></td>
+					<td><span>{{ usr.place  }}</span></td>
+					<td><span>{{ usr.userId }}</span></td>
+			</tr>
+		</table>
+	</div>
+
+
+</div>		
+	</script>
+	<script type="text/ng-template" id="SupportRequest.tpl.html">
+		<div class="admin-panel">
+
+	<h1>User Tracking table</h1>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<button class="btn btn-primary left" ng-click="refreshSupportRequests()">Refresh Data</button>
+		</div>
+		<table class="table table-hover"
+			data-cg-busy="{promise:promise,message:'please wait',templateUrl:'bower/angular-busy/angular-busy.html'}">
+			<thead>
+				<th>ID</th>
+      				<th>creationDate</th>
+      				<th>Message</th>
+					<th>Message Code</th>
+					<th>responseDate</th>
+      				<th>status</th>
+					<th>userEmail</th>
+					<th>userId</th>
+					<th>userName</th>
+
+			</thead>
+			<tr ng-repeat="usr in supportRequests ">
+				<td><span>{{ usr.id }}</span></td>
+      				<td><span>{{ usr.creationDate | date }}</span></td>
+					<td><span>{{ usr.msg  }}</span></td>
+					<td><span>{{ usr.msgCode }}</span></td>
+					<td><span>{{ usr.responseDate | date}}</span></td>
+					<td><span>{{ usr.status }}</span></td>
+					<td><span>{{ usr.userEmail }}</span></td>
+					<td><span>{{ usr.userId }}</span></td>
+					<td><span>{{ usr.userName }}</span></td>
+			</tr>
+		</table>
+	</div>
+
+
+</div>		
 	</script>
 </div>
 

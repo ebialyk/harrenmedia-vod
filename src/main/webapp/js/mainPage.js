@@ -147,7 +147,8 @@ function SignUp() {
 			affiliate : "0",
 			country : "0"
 		};
-		$.ajax({
+		$
+				.ajax({
 					url : "rest/client/register",
 					type : "POST",
 					dataType : "json", // expected format for response
@@ -178,39 +179,72 @@ function openVerificationPage() {
 	document.getElementById("SignUpPage").style.display = "flex"
 }
 function verifyAccount() {
-	var affiliateCode = 0;
-	var countryCode = 0;
-	var cssTheme = 0;
-	var language = 0;
-	
+	var uName = document.getElementById("FName").value + " "
+			+ document.getElementById("LName").value;
+
 	data = {
 		email : MAIL,
-		pw : PSW
+		affiliate : 0,
+		country : 0,
+		userName : uName
 	};
-	$.ajax({
-		url : "rest/client/logIn",
-		type : "POST",
-		dataType : "json", // expected format for response
-		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-		data : data,
-		success : function(response) {
-			if (response.status == 51) {
-				
-				tracking(affiliateCode, countryCode, 4, cssTheme, language, MAIL);
-				setTimeout(function() {
-					url = 'movies.html';
-					localStorage.setItem('user', MAIL);
-					window.open(url, '_self', false)
-					confirmOnExit = false;
-				}, 100);
-			} else {
-				alert(response.message);
-			}
-		},
-		error : function(response, status, error) {
-			alert(response.message);
-		}
-	});
+	$
+			.ajax({
+				url : "rest/client/verifyAccount",
+				type : "POST",
+				dataType : "json", // expected format for response
+				contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+				data : data,
+				success : function(response) {
+					if (response.status == 15) {
+
+						tracking(0, 0, 4, 0, 0, MAIL, "");
+						setTimeout(
+								function() {
+									data = {
+										email : MAIL,
+										pw : PSW
+									}
+									$
+											.ajax({
+												url : "rest/client/logIn",
+												type : "POST",
+												dataType : "json", // expected
+																	// format
+																	// for
+																	// response
+												contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+												data : data,
+												success : function(response) {
+													if (response.status == 51) {
+														url = 'movies.html';
+														localStorage.setItem(
+																'user', MAIL);
+														window.open(url,
+																'_self', false)
+														confirmOnExit = false;
+														tracking(0, 0, 5, 0, 0,
+																MAIL, "");
+													} else {
+														alert(response.message);
+													}
+												},
+												error : function(response,
+														status, error) {
+													alert(response.message);
+												}
+											});
+								}, 100);
+					} else {
+						alert(response.message);
+					}
+				},
+				error : function(response, status, error) {
+					tracking(0, 0, 9, 0, 0, MAIL, "");
+					alert(response.message);
+				}
+
+			});
 }
 
 function openSupport() {
@@ -330,29 +364,30 @@ function sendSupportRequest() {
 			msg : message.value
 		};
 
-		$.ajax({
-			url : "rest/client/support",
-			type : "POST",
-			dataType : "json", // expected format for response
-			async : false,
-			data : data,
-			success : function(response) {
-				if (response.status === 40) {
-					alert(response.message);
-					hideAll();
-					document.getElementById("mainContainer").style.display = "block";
-	
-					if (msgCode == 0) {
-						tracking(0, 0, 7, 0, 0, email);
+		$
+				.ajax({
+					url : "rest/client/support",
+					type : "POST",
+					dataType : "json", // expected format for response
+					async : false,
+					data : data,
+					success : function(response) {
+						if (response.status === 40) {
+							alert(response.message);
+							hideAll();
+							document.getElementById("mainContainer").style.display = "block";
+
+							if (msgCode == 0) {
+								tracking(0, 0, 7, 0, 0, email);
+							}
+						} else {
+							alert(response.message);
+						}
+					},
+					error : function(response, status, error) {
+						alert(response.message);
 					}
-				} else {
-					alert(response.message);
-				}
-			},
-			error : function(response, status, error) {
-				alert(response.message);
-			}
-		});
+				});
 	}
 }
 

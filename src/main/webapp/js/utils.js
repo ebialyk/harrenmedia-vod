@@ -68,14 +68,15 @@ function login(mail, ps) {
 		}
 	});
 }
-function tracking(affiliate, country, place, cssTheme, languageId, userId) {
+function tracking(affiliate, country, place, cssTheme, languageId, userId, clickId) {
 	data = {
 		affiliate : affiliate, 
 		country : country, 
 		place : place, 
 		cssTheme : cssTheme, 
 		languageId : languageId, 
-		userId : userId	 	
+		email : userId,	 	
+		clickId : clickId
 	};
 	$.ajax({
 		url : "rest/client/tracking",

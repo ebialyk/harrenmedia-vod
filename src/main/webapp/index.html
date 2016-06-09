@@ -6,7 +6,7 @@
 <link rel="icon" href="favicon.ico">
 <link rel="stylesheet" href="css/normalize.css">
 <link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/style.css">
+
 <link href="css/bootstrap-datepicker.css" rel="stylesheet" />
 
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300"
@@ -15,6 +15,8 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <script src="js/bower_components/jquery/dist/jquery.min.js"></script>
+
+<link rel="stylesheet" href="css/style.css">
 <script src="js/utils.js"></script>
 <script src="js/index.js"></script>
 
@@ -85,17 +87,17 @@
       <div id="languages">
         
       </div>
-      
+      <div class="mask"></div>
      
       <div id="CreateAccount"> 
       	<div class="registrationWrapper">
-        	<div id="registration">
+        	<div id="registration" keydown=checkEnter()>
           		<p>Only registered Friends can watch all the movies!</p>
           		<p class="enlargedText">you must create a <span class="green">FREE</span> account to <span class="green">STREAM</span> this movie</p>
-          		<input type="email" id="email" placeholder="E-mail" >
-          		<input type="password" id="psw" maxlength="12" pattern=".{5,12}" required  placeholder="Password">
-          		<input type="Password" id="psw2" maxlength="12" pattern=".{5,12}" required  placeholder="Confirm Password">
-          		<button class="greenBtn" onclick="CreateAccountValidation()">CREATE MY FREE ACCOUNT NOW</button>
+          		<input type="email" id="email" placeholder="E-mail" data-index="1" >
+          		<input type="password" id="psw" maxlength="12" pattern=".{5,12}" required  placeholder="Password" data-index="2">
+          		<input type="Password" id="psw2" maxlength="12" pattern=".{5,12}" required  placeholder="Confirm Password" data-index="3">
+          		<button class="greenBtn" onclick="CreateAccountValidation()" data-index="4">CREATE MY FREE ACCOUNT NOW</button>
         	</div>
         </div>
       </div>

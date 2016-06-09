@@ -1,7 +1,60 @@
 var confirmOnExit = true;
 var MAIL;
 var PSW;
-//?aff=1&country=20&theme=0220&titleMovie=HD%20Steaming(720)%20"THE%20SECRET%20OF%20YOUR%20"&lang=0
+var CLICKID;
+var AFFILIATE;
+var CSS;
+var LANG;
+var COUNTRY;
+
+window.onload = function() {
+	// url format
+	// ?aff=affiliateNumber&country=countryNumber&theme=themeCode&titleMovie=movieTitle&lang=language&clickId=clickid
+	urlParams = parseURLParams(window.location.href);
+	
+	if(urlParams != null) {
+		var title = " " + urlParams.titleMovie[0];
+		AFF = urlParams.aff?urlParams.aff[0]:0;
+		COUNTRY = urlParams.country?urlParams.country[0]:0;
+		CSS = urlParams.theme?urlParams.theme[0]:"";
+		LANG = urlParams.lang?urlParams.lang[0]:0;
+		CLICKID = urlParams.clickId?urlParams.clickId[0]:"";
+		
+		document.getElementById("movieTitle").innerHTML += title;
+		
+		setTimeout(function() {
+			document.getElementById("screen").style.display = "block";
+			document.getElementById("loading").style.position = "absolute";
+		}, 1500);
+
+		setTimeout(function() {
+			openCreateAccountDialog();
+		}, 7000);
+
+		//tracking(affiliate,country, step, css, languageId, email, clickId
+		tracking(AFF, COUNTRY, 0, CSS, LANG, 0, CLICKID);
+
+	}
+	
+	var display = document.querySelector('#time'), timer = new CountDownTimer(
+			480);
+	timer.onTick(format).onTick(restart).start();
+
+	function restart() {
+		if (this.expired()) {
+			setTimeout(function() {
+				timer.start();
+			}, 1000);
+		}
+	}
+
+	function format(minutes, seconds) {
+		minutes = minutes < 10 ? "0" + minutes : minutes;
+		seconds = seconds < 10 ? "0" + seconds : seconds;
+		display.textContent = minutes + ':' + seconds;
+	}
+};
+
 function openCreateAccountDialog() {
 	document.getElementById("CreateAccount").style.display = "flex";
 	document.getElementById("mask").style.display = "block";
@@ -11,63 +64,14 @@ function openCreateAccountDialog() {
 	document.getElementById("loading").style.display = "none";
 
 	document.getElementById("w8").style.display = "none";
-}
-
-// prevent to leave the page before ends the inscription
-$(function() {
-	$(window).on('beforeunload', function() {
-		if (confirmOnExit)
-		return "Are you sure you want to leave the page?";
-	});
-
-	$(window).on('unload', function() {
-		if (confirmOnExit)
-			logOut(MAIL);
-	});
-});
-
-function showCvv() {
-	document.getElementById("cvv").style.display = "flex";
-	document.getElementById("mask").style.display = "block";
-}
-function closeDialog() {
-	document.getElementById("cvv").style.display = "none";
-	document.getElementById("mask").style.display = "none";
-}
-// Validate the create Account data and open the Verification page
-function openVerificationPage() {
-	document.getElementById("LandingPage").style.display = "none";
-	document.getElementById("mask").style.display = "none";
-
-	document.getElementById("VerificationPage").style.display = "flex";
-	document.getElementById("body").className = "whiteBg";
-	document.getElementById("html").className = "whiteBg";
-	urlParams = parseURLParams(window.location.href);
-
-	var affiliateCode = urlParams.aff[0];
-	var countryCode = urlParams.country[0];
-	var cssTheme = urlParams.theme[0];
-	var language = urlParams.lang[0];
 	
-	
-	tracking(affiliateCode, countryCode, 3, cssTheme, language, MAIL);
+	document.getElementById("email").focus();
 }
 function CreateAccountValidation() {
-	// Get data from url
-
-	// url format
-	// ?aff=affiliateNumber&country=countryNumber&theme=themeCode&titleMovie=movieTitle
-	urlParams = parseURLParams(window.location.href);
-
-	var affiliateCode = urlParams.aff[0];
-	var countryCode = urlParams.country[0];
-	var cssTheme = urlParams.theme[0];
-	var language = urlParams.lang[0];
+	
 	var email = document.getElementById("email");
 	var psw = document.getElementById("psw");
 	var psw2 = document.getElementById("psw2");
-	
-	
 
 	var okEmail = false;
 	var okPsw = false;
@@ -106,8 +110,7 @@ function CreateAccountValidation() {
 		okPsw2 = true;
 	}
 
-	if (psw.value === psw2.value) { // validate password and confirm password
-		// are equals
+	if (psw.value === psw2.value) { // validate password and confirm password are equals
 		okPswEquals = true;
 	} else {
 		psw.className = "error";
@@ -117,14 +120,13 @@ function CreateAccountValidation() {
 	}
 
 	if (okEmail && okPsw && okPsw2 && okPswEquals) {
-
-		tracking(affiliateCode, countryCode, 1, cssTheme, language, email.value);
+		tracking(AFF, COUNTRY, 1, CSS, LANG, email.value, CLICKID);
 		data = {
 			email : email.value,
 			pw : psw.value,
 			pwConfirm : psw2.value,
-			affiliate : affiliateCode,
-			country : countryCode
+			affiliate : AFF,
+			country : COUNTRY
 		};
 		$.ajax({
 			url : "rest/client/register",
@@ -137,8 +139,9 @@ function CreateAccountValidation() {
 					openVerificationPage();
 					MAIL = email.value;
 					PSW = psw.value;
-					tracking(affiliateCode, countryCode, 2, cssTheme, language, email.value);
+					tracking(AFF, COUNTRY, 2, CSS, LANG, MAIL, CLICKID);
 				} else {
+					tracking(AFF, COUNTRY, 8, CSS, LANG, email.value, CLICKID);
 					alert(response.message);
 				}
 			},
@@ -148,35 +151,72 @@ function CreateAccountValidation() {
 		});
 	}
 }
-function verifyAccount() {
+function openVerificationPage() {
+	document.getElementById("LandingPage").style.display = "none";
+	document.getElementById("mask").style.display = "none";
+
+	document.getElementById("VerificationPage").style.display = "flex";
+	document.getElementById("body").className = "whiteBg";
+	document.getElementById("html").className = "whiteBg";
+	urlParams = parseURLParams(window.location.href);
+
 	var affiliateCode = urlParams.aff[0];
 	var countryCode = urlParams.country[0];
 	var cssTheme = urlParams.theme[0];
 	var language = urlParams.lang[0];
 	
+	
+	tracking(AFF, COUNTRY, 3, CSS, LANG, MAIL, CLICKID);
+}
+function verifyAccount() {
+	var uName = document.getElementById("FName").value +" "+ document.getElementById("LName").value;
 	data = {
 		email : MAIL,
-		pw : PSW
+		affiliate : AFF,
+		country : COUNTRY,
+		userName : uName
 	};
 	$.ajax({
-		url : "rest/client/logIn",
+		url : "rest/client/verifyAccount",
 		type : "POST",
 		dataType : "json", // expected format for response
 		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 		data : data,
 		success : function(response) {
-			if (response.status == 51) {
+			if (response.status == 15) {
 				document.getElementById("VerificationPage").style.display = "none";
-				document.getElementById("page3").style.display = "flex";
-				document.getElementById("body").className = "";
-				tracking(affiliateCode, countryCode, 4, cssTheme, language, MAIL);
-				setTimeout(function() {
-					url = 'movies.html';
-					localStorage.setItem('user', MAIL);
-					window.open(url, '_self', false)
-					confirmOnExit = false;
-				}, 2000);
+					document.getElementById("page3").style.display = "flex";
+					document.getElementById("body").className = "";
+					tracking(AFF, COUNTRY,4, CSS, LANG, MAIL, CLICKID);
+					setTimeout(function() {
+						data = {
+								email : MAIL,
+								pw : PSW
+						}
+						$.ajax({
+							url : "rest/client/logIn",
+							type : "POST",
+							dataType : "json", // expected format for response
+							contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+							data : data,
+							success : function(response) {
+								if (response.status == 51) {
+										url = 'movies.html';
+										localStorage.setItem('user', MAIL);
+										window.open(url, '_self', false)
+										confirmOnExit = false;
+										tracking(AFF, COUNTRY,5, CSS, LANG, MAIL, CLICKID);
+								} else {
+									alert(response.message);
+								}
+							},
+							error : function(response, status, error) {
+								alert(response.message);
+							}
+						});
+					}, 2000);
 			} else {
+				tracking(AFF, COUNTRY, 9, CSS, LANG, MAIL, CLICKID);
 				alert(response.message);
 			}
 		},
@@ -184,52 +224,32 @@ function verifyAccount() {
 			alert(response.message);
 		}
 	});
+
 }
 
-// start the count down timer
-window.onload = function() {
-	
-	// url format
-	// ?aff=affiliateNumber&country=countryNumber&theme=themeCode&titleMovie=movieTitle&lang=language
-	urlParams = parseURLParams(window.location.href);
-	
-	if(urlParams != null) {
-		var title = " " + urlParams.titleMovie[0];
-		var affiliate = urlParams.aff[0];
-		var country = urlParams.country[0];
-		var cssTheme = urlParams.theme[0];
-		var language = urlParams.lang[0];
-		
-		document.getElementById("movieTitle").innerHTML += title;
-		
-		setTimeout(function() {
-			document.getElementById("screen").style.display = "block";
-			document.getElementById("loading").style.position = "absolute";
-		}, 1500);
+// prevent to leave the page before ends the inscription
+$(function() {
+	$(window).on('beforeunload', function() {
+		if (confirmOnExit)
+		return "Are you sure you want to leave the page?";
+	});
 
-		setTimeout(function() {
-			openCreateAccountDialog();
-		}, 7000);
-		
-		tracking(affiliate, country, 0, cssTheme, language, 0);
+	$(window).on('unload', function() {
+		if (confirmOnExit)
+			logOut(MAIL);
+	});
+});
 
-	}
-	
-	var display = document.querySelector('#time'), timer = new CountDownTimer(
-			480);
-	timer.onTick(format).onTick(restart).start();
+function showCvv() {
+	document.getElementById("cvv").style.display = "flex";
+	document.getElementById("mask").style.display = "block";
+}
+function closeDialog() {
+	document.getElementById("cvv").style.display = "none";
+	document.getElementById("mask").style.display = "none";
+}
+// Validate the create Account data and open the Verification page
 
-	function restart() {
-		if (this.expired()) {
-			setTimeout(function() {
-				timer.start();
-			}, 1000);
-		}
-	}
 
-	function format(minutes, seconds) {
-		minutes = minutes < 10 ? "0" + minutes : minutes;
-		seconds = seconds < 10 ? "0" + seconds : seconds;
-		display.textContent = minutes + ':' + seconds;
-	}
-};
+
+
