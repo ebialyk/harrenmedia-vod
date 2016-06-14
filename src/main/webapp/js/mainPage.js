@@ -1,29 +1,78 @@
 var MAIL;
 var PSW;
-
+function openBestsellers() {
+	hideAll();
+	document.getElementById("mainContainer").style.display = "block";
+}
+function ResetPassword() {
+	hideAll();
+	document.getElementById("mainContainer").style.display = "block";
+	document.getElementById("forgotPswScreen").style.display = "flex"
+	document.getElementById("mask").style.display = "flex"
+}
+function sendPassword() {
+	document.getElementById("mask").style.display = "flex";
+	$(".mask").addClass("waiting");
+	var email = document.getElementById("UserPsw");
+	data = {email : email.value};
+		$.ajax({
+			url : "rest/client/passwordRecovery",
+			type : "POST",
+			dataType : "json", // expected format for response
+			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+			data : data,
+			success : function(response) {
+				if (response.status == 51) {
+					MAIL = email.value;
+					PSW = psw.value;
+					$(".mask").removeClass("waiting");
+					hideAll();
+					openBestsellers();
+				} else {
+					document.getElementById("mask").style.display = "none";
+					$(".mask").removeClass("waiting");
+					alert(response.message);
+				}
+			},
+			error : function(response, status, error) {
+				document.getElementById("mask").style.display = "none";
+				$(".mask").removeClass("waiting");
+				alert(response.message);
+			}
+		});
+}
 function openLogin() {
 	hideAll();
 	document.getElementById("mainContainer").style.display = "block";
 	document.getElementById("loginScreen").style.display = "flex"
 	document.getElementById("mask").style.display = "flex"
+	
 	var email = document.getElementById("User");
 	var psw = document.getElementById("Psw");
 	email.value = "";
 	psw.value = "";
+	
+	email.focus();
 }
 function logIn() {
+	document.getElementById("mask").style.display = "flex";
+	$(".mask").addClass("waiting");
 	var email = document.getElementById("User");
 	var psw = document.getElementById("Psw");
 
 	var okMail = false;
 	var okPsw = false;
-
+	
+	var errorMsg="";
+	
 	if (email.value === undefined || email.value == "") {// no empty email
 		email.className = "error";
 		email.title = "Please type your email";
+		errorMsg +=  "Please type your email";
 	} else if (!validEmail(email.value)) { // validate entered email
 		email.className = "error";
 		email.title = "Please enter a valid email";
+		errorMsg +="Please enter a valid email";
 	} else {
 		email.className = "";
 		email.title = "";
@@ -32,6 +81,7 @@ function logIn() {
 	if (psw.value === undefined || psw.value == "") {// no empty message
 		psw.className = "error";
 		psw.title = "Please type your name";
+		errorMsg +="Please type your name";
 	} else {
 		psw.className = "";
 		psw.title = "";
@@ -67,29 +117,43 @@ function logIn() {
 					psw = "";
 
 				} else {
+					document.getElementById("mask").style.display = "none";
+					$(".mask").removeClass("waiting");
 					alert(response.message);
 				}
 			},
 			error : function(response, status, error) {
+				document.getElementById("mask").style.display = "none";
+				$(".mask").removeClass("waiting");
 				alert("something was wrong, please try again later");
 			}
 		});
+	} else {
+		document.getElementById("mask").style.display = "none";
+		$(".mask").removeClass("waiting");
+		alert(errorMsg);
 	}
 }
 
 function closeDialog() {
 	document.getElementById("loginScreen").style.display = "none";
 	document.getElementById("tooltip").style.display = "none";
+	document.getElementById("cvv").style.display = "none";
+	document.getElementById("forgotPswScreen").style.display = "none";
+
 	document.getElementById("mask").style.display = "none";
 }
 
 function SignIn() {
+	hideAll()
 	closeDialog();
 	document.getElementById("mainContainer").style.display = "none";
 	document.getElementById("SignInPage").style.display = "flex"
 }
 
 function SignUp() {
+	document.getElementById("mask").style.display = "flex";
+	$(".mask").addClass("waiting");
 	var email = document.getElementById("email");
 	var psw = document.getElementById("psw");
 	var psw2 = document.getElementById("psw2");
@@ -145,10 +209,10 @@ function SignUp() {
 			pw : psw.value,
 			pwConfirm : psw2.value,
 			affiliate : "0",
-			country : "0"
+			country : "0",
+			clickID : ""
 		};
-		$
-				.ajax({
+		$.ajax({
 					url : "rest/client/register",
 					type : "POST",
 					dataType : "json", // expected format for response
@@ -156,11 +220,13 @@ function SignUp() {
 					data : data,
 					success : function(response) {
 						if (response.status == 15) {
-							openVerificationPage();
+							
 							MAIL = email.value;
 							PSW = psw.value;
-
-							document.getElementById("SignInPage").style.display = "none";
+							
+							$(".mask").removeClass("waiting");
+							
+							hideAll();
 							document.getElementById("SignUpPage").style.display = "flex";
 						} else {
 							alert(response.message);
@@ -171,14 +237,16 @@ function SignUp() {
 					}
 				});
 
+	} else {
+		
+		document.getElementById("mask").style.display = "none";
+		$(".mask").removeClass("waiting");
 	}
 }
 
-function openVerificationPage() {
-	hideAll();
-	document.getElementById("SignUpPage").style.display = "flex"
-}
 function verifyAccount() {
+	document.getElementById("mask").style.display = "flex";
+	$(".mask").addClass("waiting");
 	var uName = document.getElementById("FName").value + " "
 			+ document.getElementById("LName").value;
 
@@ -199,6 +267,7 @@ function verifyAccount() {
 					if (response.status == 15) {
 
 						tracking(0, 0, 4, 0, 0, MAIL, "");
+						
 						setTimeout(
 								function() {
 									data = {
@@ -226,20 +295,28 @@ function verifyAccount() {
 														tracking(0, 0, 5, 0, 0,
 																MAIL, "");
 													} else {
+														document.getElementById("mask").style.display = "none";
+														$(".mask").removeClass("waiting");
 														alert(response.message);
 													}
 												},
 												error : function(response,
 														status, error) {
+													document.getElementById("mask").style.display = "none";
+													$(".mask").removeClass("waiting");
 													alert(response.message);
 												}
 											});
 								}, 100);
 					} else {
+						document.getElementById("mask").style.display = "none";
+						$(".mask").removeClass("waiting");
 						alert(response.message);
 					}
 				},
 				error : function(response, status, error) {
+					document.getElementById("mask").style.display = "none";
+					$(".mask").removeClass("waiting");
 					tracking(0, 0, 9, 0, 0, MAIL, "");
 					alert(response.message);
 				}
@@ -275,8 +352,13 @@ function clearForm() {
 	document.getElementById("subjectSupport").title = "";
 	document.getElementById("subjectSupport2").title = "";
 }
-
+function openPricing() {
+	hideAll();
+	document.getElementById("pricingPage").style.display = "block";
+}
 function sendSupportRequest() {
+	document.getElementById("mask").style.display = "flex";
+	$(".mask").addClass("waiting");
 	var name = document.getElementById("supportName");
 	var email = document.getElementById("supportEmail");
 	var cardDigits = document.getElementById("cardDigits");
@@ -373,6 +455,7 @@ function sendSupportRequest() {
 					data : data,
 					success : function(response) {
 						if (response.status === 40) {
+							$(".mask").removeClass("waiting");
 							alert(response.message);
 							hideAll();
 							document.getElementById("mainContainer").style.display = "block";
@@ -381,16 +464,26 @@ function sendSupportRequest() {
 								tracking(0, 0, 7, 0, 0, email);
 							}
 						} else {
+							document.getElementById("mask").style.display = "none";
+							$(".mask").removeClass("waiting");
 							alert(response.message);
 						}
 					},
 					error : function(response, status, error) {
+						document.getElementById("mask").style.display = "none";
+						$(".mask").removeClass("waiting");
 						alert(response.message);
 					}
 				});
+	} else {
+		document.getElementById("mask").style.display = "none";
+		$(".mask").removeClass("waiting");
 	}
 }
-
+function showCvv() {
+	document.getElementById("cvv").style.display = "flex";
+	document.getElementById("mask").style.display = "block";
+}
 function hideAll() {
 	document.getElementById("mainContainer").style.display = "none";
 	document.getElementById("mask").style.display = "none";
@@ -398,5 +491,8 @@ function hideAll() {
 	document.getElementById("SignInPage").style.display = "none";
 	document.getElementById("cancelAccount").style.display = "none";
 	document.getElementById("SignUpPage").style.display = "none";
-
+	document.getElementById("pricingPage").style.display = "none";
+	document.getElementById("supportPage").style.display = "none";
+	document.getElementById("cvv").style.display = "none";
+	document.getElementById("forgotPswScreen").style.display = "none";
 }

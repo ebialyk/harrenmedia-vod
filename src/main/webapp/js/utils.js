@@ -5,7 +5,8 @@ function validPassword(psw) {
 	return true;
 }
 function validEmail(mail) {
-	var re = /[A-z0-9._%+-]+@[A-z0-9.-]+.[A-z]{2,4}/;
+	var re = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
+;
 	return re.test(mail);
 }
 function getLoggedInUser() {
@@ -39,8 +40,13 @@ function parseURLParams(url) {
 		if (!parms.hasOwnProperty(n)) {
 			parms[n] = [];
 		}
-
-		parms[n].push(nv.length === 2 ? v : null);
+		
+		for(j=2;j<nv.length;j++){
+			if(nv[j]=="") {
+				v+="=";
+			}
+		}
+		parms[n].push(nv.length >= 2 ? v : null);
 	}
 	return parms;
 }
@@ -91,5 +97,7 @@ function tracking(affiliate, country, place, cssTheme, languageId, userId, click
 	});
 }
 
-
+function postBack(url, type, id) {
+	
+}
 

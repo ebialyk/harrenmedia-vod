@@ -5,6 +5,8 @@ function openGenres() {
 	hideAll();
 	document.getElementById("genres").style.display = "flex";
 	document.getElementById("moreMovies").style.display = "block";
+	document.getElementById("moreMovies").style.display = "block";
+	document.getElementById("G-LI").className = "selected";
 }
 function openBestsellers() {
 	hideAll();
@@ -12,10 +14,13 @@ function openBestsellers() {
 	document.getElementById("littleSlider").style.display = "block";
 	document.getElementById("hrGray").style.display = "block";
 	document.getElementById("moreMovies").style.display = "block";
+	document.getElementById("BS-LI").className = "selected";	
 }
 function openMovies() {
 	hideAll();
 	document.getElementById("moreMovies").style.display = "block";
+	document.getElementById("M-LI").className = "selected";
+	
 }
 function openMovie(url) {
 	var myVideo = document.getElementsByTagName('video')[0];
@@ -28,6 +33,7 @@ function openMovie(url) {
 }
 function openSupport() {
 	hideAll();
+	document.getElementById("CSLI").className = "selected";
 	clearForm();
 	document.getElementById("supportPage").style.display = "block";
 	document.getElementById("cancelAccount").style.display = "block";
@@ -93,7 +99,8 @@ function accountVerification() {
 	}
 
 	if (okMail && okPsw) {
-		tracking(0, 0, 7, 0, 0, email, "");
+		
+		tracking(0, 0, 7, 0, 0, email.value, "");
 		var data = {
 			email : email.value,
 			psw : psw.value
@@ -211,7 +218,7 @@ function sendSupportRequest() {
 
 	if (okName && okMail && okCardD && okMsg
 			&& ((okSubj1 && !cancelRequest) || (okSubj2 && cancelRequest))) {
-		tracking(0, 0, 12, 0, 0, email,"");
+		tracking(0, 0, 12, 0, 0, email.value,"");
 		var data = {
 			name : name.value,
 			email : email.value,
@@ -231,11 +238,11 @@ function sendSupportRequest() {
 					alert(response.message);
 					openBestsellers();
 					if(msgCode == 0) {
-						tracking(0, 0, 13, 0, 0, email);
+						tracking(0, 0, 13, 0, 0, email, "");
 					}
 				} else {
 					if(msgCode == 0) {
-						tracking(0, 0, 14, 0, 0, email);
+						tracking(0, 0, 14, 0, 0, email, "");
 					}
 					alert(response.message);
 				}
@@ -258,7 +265,11 @@ function hideAll() {
 	document.getElementById("warningScreen").style.display = "none";
 	document.getElementById("moreMovies").style.display = "none";
 	document.getElementById("subjectSupport2").style.display = "none";
-
+	var lis = document.getElementById("topMenu").getElementsByTagName("li");
+	
+	for (i = 0; i < lis.length; i++) {
+		lis[i].className = "";
+	}
 }
 function closeDialog() {
 	document.getElementById("warningScreen").style.display = "none";
@@ -273,18 +284,25 @@ function closeDialog() {
 }
 window.onload = function() {
 	MAIL = localStorage.getItem('user');
+	
+	var url;
+	
+	document.getElementById("BS-LI").className = "selected";	
 	if (MAIL != null && MAIL != undefined) {
 		checkLoggedInUser(MAIL);
-
+		if(location.hostname == "localhost") 
+			url='/starter/movies.html';
+		else
+			url='../movies.html';
 		setTimeout(function() {
-			if(location.hostname == "localhost") 
-				url='/starter/movies.html';
-			else
-				url='../movies.html';
 			history.pushState({}, null,url);
 		}, 2000);
 
 	} else {
+		if(location.hostname == "localhost") 
+			url='/starter/mainPage.html';
+		else
+			url='../mainPage.html';
 		window.open(url, '_self', false)
 	}
 }

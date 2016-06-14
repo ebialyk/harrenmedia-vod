@@ -1,11 +1,21 @@
 /*prev button*/
 .flex-prev {
-	left: -55px;
+	left: -50px;
+	opacity: 0;
 	 background-image: url("../images/MF-bestmovies-Larrow.png");
 }
 .flex-next {
-	right: -55px;
+	right: -50px;
+	opacity: 0;
 	background-image: url("../images/MF-bestmovies-Rarrow.png");
+}
+.flexslider2:hover .flex-prev {
+	left:10px;
+	opacity:0.7;
+}
+.flexslider2:hover .flex-next {
+	right:10px;
+	opacity:0.7;
 }
 .flex-container a:hover,
 .flex-slider a:hover {
@@ -110,7 +120,7 @@ html[xmlns] .flexslider .slides, html[xmlns] .flexslider2 .slides {
   top: 50%;
   z-index: 10;
   overflow: hidden;
-  opacity: 0.7;
+  opacity: 0;
   cursor: pointer;
   color: white;
   font-size: 0;
@@ -239,6 +249,6 @@ html[xmlns] .flexslider .slides, html[xmlns] .flexslider2 .slides {
 .flexslider2 {
 	width: 920px;
 	margin: auto;
-    padding-bottom: 43px;
-    padding-top: 50px;
+    padding-bottom: 0;
+    padding-top: 0;
 }

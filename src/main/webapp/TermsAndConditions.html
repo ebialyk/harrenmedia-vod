@@ -3,6 +3,8 @@
 <head>
 <meta charset=utf-8>
 <title>MuvFlix</title>
+<link rel="icon" href="favicon.ico">
+
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/style.css">
@@ -19,13 +21,9 @@
       <div id="logo"></div>
       <div class="tabs">
         <ul>
-          <li onclick="openBestsellers()">Bestsellers</li>
-          <li onclick="openGenres()">Genres</li>
-          <li>Movies</li>
-          <li>Customer support</li>
+          
         </ul>
       </div>
-      <div class="login">Logout</div>
       <div class="languages">{{view Ember.Select 
                       contentBinding="App.LanguageController" 
                       selectionBinding="App.LanguageSelectedController.name" 
@@ -35,62 +33,11 @@
     </div>
     <div class="content">
     	<div class="title">MUVFLIX Terms of Use</div>
-    	<p>Welcome to Muvflix! We are a subscription service that provides our members with access to movies and other content streamed over the Internet to certain Internet-connected TVs, computers and other devices ("Media Devices"). Our service also provides recommendations, reviews and other information regarding these movies and TV shows (the “Service”).</p>
-   		<p>This website (the “Website”) is made available to you by (Naspek International SA). Your access to and use of this Site is strictly subject to these Terms and Conditions of Use. By accessing this Site, the user ("YOU") agrees to be unconditionally bound by these Terms and Conditions of Use.</p>
-		<ol>
-			<li><b>Membership. </b> Your membership will continue month-to-month until terminated. Unless you cancel your membership before your monthly renewal date, you authorize us to charge your next month's membership fee to your Payment Method (see "Cancellation" below). To use the service you must have Internet access and a Ready device, and you must provide us with a current, valid, accepted method of payment, which you may update from time to time ("Payment Method"). You can find specific details regarding your membership with us by visiting our website and clicking on the "Your Account" link available at the bottom of the pages of the Website.</li>
-			<li><b>Free Trials</b>
-				<ol>
-					<li>Your membership may start with a free trial. The free trial period of your membership lasts for 5 days, or as otherwise specified during sign-up and is intended to allow new members and certain former members to try the service. You will be notified during sign-up whether you are eligible for a free trial.</li>
-					<li>We will bill your Payment Method for your monthly membership fee at the end of the free trial period unless you cancel your membership prior to the end of the free trial period. </li>
-				</ol>
-			</li>
-			<li><b>Billing</b>
-				<ol>
-					<li><u>Billing Cycle.</u> The membership fee for our service will be billed on a monthly basis to your Payment Method on the calendar day corresponding to the commencement of your paid membership. In some cases the timing of your billing may change, for example if your Payment Method has not successfully settled or if your paying membership began on a day not contained in a given month.</li>
-					<li><u>Payment Methods.</u>    If a payment is not successfully settled, due to expiration, insufficient funds, or otherwise, and you do not change your Payment Method or cancel your account, we may suspend your access to the Service until we have obtained a valid Payment Method. You authorize us to continue billing the Payment Method, as it may be updated and you remain responsible for any uncollected amounts. This may result in a change to your payment billing dates. For certain Payment Methods, the issuer of your Payment Method may charge you a foreign transaction fee or other charges. Check with your Payment Method service provider for details.</li>
-					<li><u>Cancellation.</u>You can cancel your membership at any time, and you will continue to have access to the Service through the end of your monthly billing period. We do not provide refunds or credits for any partial-month membership periods or unwatched movies or TV shows. To cancel, go to the "Support" page and follow the instructions for cancellation. If you cancel your membership, your account will automatically close at the end of your current billing period. If you signed up for the Website using your account with a third party as a Payment Method and wish to cancel your membership at any time, including during your free trial, you may need to do so through such third party, for example by visiting your account with the applicable third party and turning off auto-renew, or unsubscribing from, the Service through that third party. You may also find billing information about your membership by visiting your account with the applicable third party.</li>
-					<li><u>Changes to the Terms of Use.</u> Naspek International SA reserves the right, from time to time, with or without notice to you, to change these Terms of Use in our sole and absolute discretion. The most current version of these Terms of Use can be reviewed by visiting our website and clicking on "Terms" located at the bottom of the pages of the website. The most current version of the Terms of Use will supersede all previous versions.</li>
-				</ol>
-			</li>
-			<li><b>Service</b>
-				<ol>
-					<li>You must be 18 years of age, or the age of majority in your province, territory or country, to become a member of the Service. Minors may only use the service under the supervision of an adult.</li>
-					<li>The service and any content viewed through the service are for your personal and non-commercial use only. During your membership we grant you a limited, non-exclusive, non-transferable, license to access the Service and view movies and TV shows on a streaming-only basis. Except for the foregoing limited license, no right, title or interest shall be transferred to you. You agree not to use the Service for public performances.</li>
-					<li>You may view a movie or TV show through the Service primarily within the country in which you have established your account and only in geographic locations where we offer our service and have licensed such movie or TV show. The content that may be available to watch will vary by geographic location and will change from time to time. The number of devices on which you may simultaneously watch depends on your chosen subscription plan and is specified on the "Your Account" page.</li>
-					<li>We continually update the Service, including the content library. In addition, we continually test various aspects of our service, including our website, user interfaces, promotional features and availability of movies and TV shows. You can at any time opt-out of these tests by visiting the "Your Account" page and changing the "Test participation" settings.</li>
-					<li>You agree to use the Service, including all features and functionalities associated therewith, in accordance with all applicable laws, rules and regulations, or other restrictions on use of the service or content therein. You agree not to archive, download, reproduce, distribute, modify, display, perform, publish, license, create derivative works from, offer for sale, or use (except as explicitly authorized in these Terms of Use) content and information contained on or obtained from or through the Service. You also agree not to: circumvent, remove, alter, deactivate, degrade or thwart any of the content protections in the service; use any robot, spider, scraper or other automated means to access the Service; decompile, reverse engineer or disassemble any software or other products or processes accessible through the Service; insert any code or product or manipulate the content of the Service in any way; or, use any data mining, data gathering or extraction method. In addition, you agree not to upload, post, e-mail or otherwise send or transmit any material designed to interrupt, destroy or limit the functionality of any computer software or hardware or telecommunications equipment associated with the Service, including any software viruses or any other computer code, files or programs. We may terminate or restrict your use of our service if you violate these Terms of Use or are engaged in illegal or fraudulent use of the service.</li>
-					<li>The quality of the display of the streaming movies and TV shows may vary from computer to computer, and device to device, and may be affected by a variety of factors, such as your location, the bandwidth available through and/or speed of your Internet connection. The minimum connection speed for SD quality is 0.5 Mbps; however, we recommend a faster connection for improved video quality. HD and Ultra HD availability is subject to your Internet service and device capabilities. Not all content is available in HD or Ultra HD and not all subscription plans allow you to receive HD or Ultra HD content. A download speed of at least 5.0 Mbps per stream is recommended to receive HD content, which is defined as 720p or better. A download speed of at least 25.0 Mbps per stream is recommended to receive Ultra HD content, which is defined as resolution greater than 1080p. You are responsible for all Internet access charges. Please check with your Internet provider for information on possible Internet data usage charges. The time it takes to begin watching a movie or TV show will vary based on a number of factors, including your location, available bandwidth at the time, the movie or TV show you have selected and the configuration of your Media Device.</li>
-				</ol> 
-			</li>
-			<li>Passwords & Account Access
-
-				<ol>
-					<li>The member who created the account and whose Payment Method is charged (the "Account Owner") has access and control over the account. To maintain control over the account and to prevent anyone from accessing the account (which would include information on viewing history for the account), the Account Owner should not reveal the password nor the Payment Method details (e.g., last four digits of their credit or debit card, or their email address if they use PayPal) associated with the account to anyone. You are responsible for updating and maintaining the accuracy of the information you provide to us relating to your account.
-</li>
-					<li>You should be mindful of any communication requesting that you submit credit card or other account information. Providing your information in response to these types of communications can result in identity theft. Always access your sensitive account information by going directly to the Website and not through a hyperlink in an email or any other electronic communication, even if it looks official. We can terminate your account or place your account on hold in order to protect you, ourselves or our partners from identity theft or other fraudulent activity.</li>
-				</ol>
-			</li>
-			<li><b>Governing Law.</b>These Terms of Use shall be governed by and construed in accordance with the laws of the Netherlands.
-Third-Party Applications. You may encounter third party applications (including, without limitation, websites, widgets, software, or other software utilities) ("Applications") that interact with the Service. Your use of these Applications may be subject to third party terms of use or license terms.</li>
-			<li><b>Unsolicited Materials.</b>We do not accept unsolicited materials or ideas for movies or TV shows, and is not responsible for the similarity of any of its content or programming in any media to materials or ideas transmitted to us.</li>
-			<li><b>Customer Support.</b>To find more information about our service and its features or if you need assistance with your account, please visit the Support on our website (www.muvflix.com/support). In certain instances, Customer Service may best be able to assist you by using a remote access support tool through which we have full access to your computer. If you do not want us to have this access, you should not consent to support through the remote access tool, and we will assist you through other means. In the event of any conflict between these Terms of Use and information provided by Customer Support or other portions of our website, these Terms of Use will control.</li>
-			<li>Survival.<b>If any provision or provisions of these Terms of Use shall be held to be invalid, illegal, or unenforceable, the validity, legality and enforceability of the remaining provisions shall remain in full force and effect.</b></li>
-			<li><b>Changes to Terms of Use and Assignment.</b>We may, from time to time, change these Terms of Use. We will notify you at least 30 days before these new Terms of Use apply to you. We may assign or transfer our agreement with you including our associated rights and obligations at any time and you agree to cooperate with us in connection with such an assignment or transfer.</li>
-			<li><b>Electronic Communications.</b>We will send you information relating to your account (e.g. payment authorizations, invoices, changes in password or Payment Method, confirmation messages, notices) in electronic form only, for example via emails to your email address provided during registration.</li>
-			<li><b>Warranties and Limitations on Liability.</b>The Service is provided "as is" and without warranty. In particular, our service may not be uninterrupted or error-free. You waive all special and consequential damages against us, and any direct damages exceeding one month’s membership fee. These terms will not limit any non-waivable warranties or consumer protection rights that you may be entitled to under the laws of your country of residence.</li>
-			<li><b></b></li>
-		</ol>
-
-
- 
- 
- 
- 
- 
- 
- 
-
+    	<div><img src="images/eula/terms1.png"</div>
+		<div><img src="images/eula/terms2.png"</div>
+		<div><img src="images/eula/terms3.png"</div>
+		<div><img src="images/eula/terms4.png"</div>
+		<div><img src="images/eula/terms5.png"</div>
  	</div>
    <div class="footer">
    <div class="footerBody">
@@ -99,7 +46,6 @@ Third-Party Applications. You may encounter third party applications (including,
       <ul>
         <li><a href="TermsAndConditions.html" target="_blank">Terms of Use</a></li>|
          <li><a href="PrivacyPolicy.html" target="_blank">Privacy</a></li>|
-        <li>Contact Us</li>
       </ul>
       <span>Copyright 2015 xxxxxxxxxxxxxxx</span>
       </div>
@@ -117,16 +63,7 @@ Third-Party Applications. You may encounter third party applications (including,
 	<script src="js/bower_components/handlebars/handlebars.min.js"></script>
 	<script src="js/bower_components/ember/ember.min.js"></script>
 	<script src="js/ember-data.min.js"></script>
-	<script src="js/ajaxfileupload.js"></script>
-	<script src="js/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="js/fontsmoothie.min.js"></script>
-	<script src="js/util.js"></script>
-	<script src="js/i18n/grid.locale-en.js" type="text/javascript"></script>
-	<script type='text/javascript'
-		src="http://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/js/jquery.jqGrid.min.js"></script>
-	  <script src="js/showdown.js"></script>
-	  <script src="js/moment.js"></script>
-	  <script src="js/countdowntimer.js"></script>
+
 	  <script src="js/app.js"></script>
 
 </body>

@@ -27,6 +27,15 @@ textarea {
 	min-height: 600px;
 	cursor: pointer;
 }
+.waiting {
+	background-image: url(../images/wait.gif);
+	z-index: 999;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.red {
+	color:red;
+}
 .header { 
 	background-color: #2E2A29;
 }
@@ -63,6 +72,12 @@ textarea {
 	cursor: pointer;
 	font-size: 13px;
 }
+.header ul li:hover, .login:hover {
+	color:red;
+}
+.header ul li.selected {
+	color:#999;
+}
 .header .support {
 	color: red;
 	cursor: pointer;
@@ -72,6 +87,10 @@ textarea {
 	background-color: transparent;
 	border: none;
 	color: white;
+	margin: 0;
+}
+.header .languages select option {
+	background-color: black;
 }
 .footer {
 	background: #2f2b2a; 
@@ -519,7 +538,7 @@ input.error, select.error, textarea.error {
 	animation: fullexpand 30s ease-out;
 }
 .expandRed { 
-	width: 100%;
+	width: 80%;
 	background: red;
 	animation: midleExpand 30s ease-out;
 	animation-delay: -0.1s;
@@ -547,17 +566,16 @@ input.error, select.error, textarea.error {
 
 #CreateAccount div#registration {
 	width: 307px;
-	height: 342px;
-	border: none;
-	border-radius: 9px;
-	display: flex;
-	flex-direction: column;
-	background-color: transparent;
-	padding: 84px;
-	justify-content: space-around;
-	align-content: center;
-	padding-top: 75px;
-	margin-left: 29px;
+    border: none;
+    border-radius: 9px;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    padding: 84px;
+    justify-content: space-around;
+    align-content: center;
+    padding-top: 85px;
+    margin-left: 29px;
 }
 
 #CreateAccount div#registration input {
@@ -580,11 +598,12 @@ input.error, select.error, textarea.error {
 #CreateAccount div#registration .enlargedText {
 	font-size: 16px;
 	font-weight: bold;
+	padding-bottom: 20px;
 }
 
 #CreateAccount div#registration .greenBtn {
 	width: 100%;
-	height: calc(100%/ 8);
+	height: 46px;
 	font-weight: bold;
 	text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
 }
@@ -736,6 +755,11 @@ html.whiteBg, body.whiteBg {
 	justify-content: space-between;
 	font-weight: bold;
 }
+.verificationFrom .starsWrapper {
+	display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
 
 .verificationForm .subtitle .litle {
 	color: #6F6F6F;
@@ -793,6 +817,7 @@ html.whiteBg, body.whiteBg {
 	background-repeat: no-repeat;
 	width: 100%;
 	height: 50px;
+	background-size: 100%;
 }
 
 .inputField {
@@ -842,7 +867,7 @@ html.whiteBg, body.whiteBg {
 	background-image: url("../images/MF-Thankspage-Popcorn.png");
 	background-position: right center;
 	width: 700px;
-	height: 500px;
+	height: 325px;
 	margin: auto;
 	background-repeat: no-repeat;
 	display: flex;
@@ -858,13 +883,18 @@ html.whiteBg, body.whiteBg {
 	height: 55px;
 	background-repeat: no-repeat;
 }
-
+#page3 .logo {
+	background-image: url(../images/MF-allpages-TOPLOGO.png);
+    width: 476px;
+    height: 55px;
+    background-repeat: no-repeat;
+}
 .tnx {
-	padding-left: 12%;
-	font-size: 36px;
-	color: #fff;
-	width: 40%;
-	font-weight: bold;
+	padding-left: 105px;
+    font-size: 36px;
+    color: #fff;
+    width: 360px;
+    font-weight: bold;
 }
 
 .tnx p {
@@ -910,6 +940,7 @@ html.whiteBg, body.whiteBg {
 	justify-content: center;
 	margin: auto;
 	width: 920px;
+	padding-top: 10px;
 }
 
 #moviesPage .moreMovies .title {
@@ -970,6 +1001,7 @@ html.whiteBg, body.whiteBg {
 	width: 100%;
 	color: #FBAE00;
 	display: flex;
+	padding-top: 5px;
 }
 
 #moviesPage .moreMovies .movie .subtitle {
@@ -1022,9 +1054,11 @@ html.whiteBg, body.whiteBg {
 
 #moviesPage hr {
 	height: 7px;
-	background-color: #313131;
-	border: #313131;
-	margin: 0;
+    background-color: #313131;
+    border: #313131;
+    margin: 0;
+    width: 920px;
+    margin: auto;
 }
 
 #genres {
@@ -1032,7 +1066,9 @@ html.whiteBg, body.whiteBg {
 	flex-direction: column;
 	color: white;
 	margin: auto;
-	width: 920px;
+	width: 905px;
+    padding-left: 15px;
+    padding-top: 15px;
 }
 
 .genresContent {
@@ -1050,9 +1086,15 @@ html.whiteBg, body.whiteBg {
 	height: 150px;
 	border-radius: 100%;
 	background-color: transparent;
-	margin: 20px;
+	margin: 17px;
 	overflow: auto;
 	cursor: pointer;
+	background-position: center;
+	transition: all 1s;
+}
+#genres .genre:hover {
+    opacity: 0.5;
+    transition: all 1s;
 }
 .drama{
 	background-image: url(../images/genres-drama.png)
@@ -1125,7 +1167,6 @@ html.whiteBg, body.whiteBg {
 	display: flex;
 	height: 130px;
 	align-items: center;
-	background-color: #242424;
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
@@ -1136,13 +1177,13 @@ html.whiteBg, body.whiteBg {
 	color: white;
 	background-repeat: no-repeat;
 	background-position: center 10px;
-	border-left: 1.5px solid darkgray;
-	border-right: 1.5px solid darkgray;
+	border-left: 1.5px solid #666;
+	border-right: 1.5px solid #666;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	-webkit-background-size: 55px;
-	background-size: 55px;
+	-webkit-background-size: auto 50px;
+	background-size: auto 50px;
 	padding: 20px 12px;
 }
 
@@ -1157,7 +1198,7 @@ html.whiteBg, body.whiteBg {
 #mainPage .icons div .title {
 	font-size: medium;
 	text-align: center;
-	margin-top: 55px;
+	margin-top: 50px;
 }
 
 #mainPage .icons div .subtitle {
@@ -1215,9 +1256,9 @@ button.redBtn {
 }
 
 #mainPage .genresWrapper {
-	background-image: url(../images/MF_HP-lower-background.jpg);
+	background-image: url(../images/MF_HP-lower-background_temp.jpg);
 	width: 100%;
-	height: 630px;
+	height: 505px;
 	background-size: 100%;
 	display: flex;
 	flex-direction: column;
@@ -1238,14 +1279,16 @@ button.redBtn {
 
 #mainPage #genres {
 	display: flex;
-	color: transparent;
+    color: transparent;
+    height: 200px;
+    margin: 0;
 }
 
 #mainPage #genres .genresContent {
 	background-image: none;
 }
 
-#loginScreen {
+#loginScreen, #forgotPswScreen {
 	display: none;
 	position: absolute;
 	top: 0;
@@ -1257,14 +1300,14 @@ button.redBtn {
 	height: 97vh;
 }
 
-#loginScreen .formWrapper {
+#loginScreen .formWrapper,  #forgotPswScreen .formWrapper {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 	z-index: 100;
 }
 
-#loginScreen .form {
+#loginScreen .form ,  #forgotPswScreen .form{
 	background: #6d696c; 
 	background: -moz-radial-gradient(center, ellipse cover, #6d696c 24%, #363435 75%,
 		#363435 83%); 
@@ -1279,15 +1322,24 @@ button.redBtn {
 	border-radius: 5px;
 }
 
-#loginScreen .form table td:first-child {
+#loginScreen .form table td:first-child,  #forgotPswScreen .form table td:first-child {
 	padding-right: 10px;
 }
 
-#loginScreen .form table td.formTitle {
+#loginScreen .form table td.formTitle,  #forgotPswScreen  .form table td.formTitle{
 	color: white;
+    font-size: 16px;
+    font-weight: bold;
 }
+ #forgotPswScreen  .form table td .subtitle {
+ 	display: block;
+    font-size: 10px;
+ }
+  #forgotPswScreen  .form table {
+ 	text-align: center;
+  }  
 
-#loginScreen .form table button {
+#loginScreen .form table button ,  #forgotPswScreen .form table button{
 	background-color: #090504;
 	border: none;
 	border-radius: 3px;
@@ -1387,7 +1439,7 @@ button.redBtn {
 	display: none;
 	width: 300px;
 	background-color: transparent;
-	color: #fff;
+	color: lightgray;
 	text-align: center;
 	position: absolute;
 	z-index: 999;
@@ -1587,6 +1639,7 @@ button.redBtn {
 
 #moviePreview {
 	display: none;
+	outline: none !important; 
 }
 
 #moviePreview .moviePreviewWrapper {
@@ -1598,6 +1651,11 @@ button.redBtn {
 	width: 920px;
 	margin: auto;
 	display: flex;
+	background: #353536; /* Old browsers */
+	background: -moz-linear-gradient(45deg,  #353536 0%, #0e0e0e 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(45deg,  #353536 0%,#0e0e0e 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(45deg,  #353536 0%,#0e0e0e 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#353536', endColorstr='#0e0e0e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
 #moviePreview .movieImage {
@@ -1673,26 +1731,27 @@ button.redBtn {
 	background-color: gray;
 	overflow: hidden;
 }
-#pricingPage .content {
+#pricingPage {
+	display: none;
 	padding-top: 44px;
 	padding-bottom: 83px;
 	margin-bottom: 20px;
 	width: 920px;
 	margin: auto;
 }
-#pricingPage .content .title {
+#pricingPage  .title {
 	padding-bottom: 24px;
 	color: white;
 	font-size: 24px;
 }
-#pricingPage .content .subtitle {
+#pricingPage  .subtitle {
 	font-size: 15px;
 	padding-bottom: 5px;
 }
-#pricingPage .content .offers {
+#pricingPage  .offers {
 	display: flex;
 }
-#pricingPage .content .offers .offer {
+#pricingPage  .offers .offer {
 	width: 300px;
 	height: 228px;
 	background-color: #2D2928;
@@ -1703,17 +1762,17 @@ button.redBtn {
 	margin-left: 20px;
 	margin-right: 20px;
 }
-#pricingPage .content .offers .offer:first-child {
+#pricingPage .offers .offer:first-child {
 	margin-left: 0;
 }
-#pricingPage .content .offers .offer:last-child {
+#pricingPage  .offers .offer:last-child {
 	margin-right: 0;
 }
-#pricingPage .content .offers .offer .price {
+#pricingPage  .offers .offer .price {
 	color: white;
 	font-size: 48px;
 }
-#pricingPage .content .offers .offer .redBtn {
+#pricingPage  .offers .offer .redBtn {
 	height: 39px;
 	width: 160px;
 	font-size: 18px;
@@ -1757,6 +1816,7 @@ button.redBtn {
 	width: 920px;
 	background-color: white;
 	min-height: 460px;
+	margin-top: 20px;
 }
 .SignInPage .verificationContainer .explanation {
 	position: relative;
@@ -1818,6 +1878,11 @@ button.redBtn {
 	vertical-align: middle;
 	border-radius: 4px;
 }
+.SignInPage select {
+	 width: 246px;
+}
+   
+
 .SignInPage .form {
 	display: flex;
 	flex-direction: column;
@@ -1830,7 +1895,7 @@ button.redBtn {
 	margin-top: 26px;
 }
 .SignInPage .btnWrapper {
-	padding-top: 80px;
+	padding-top: 50px;
 	display: flex;
 	justify-content: center;
 }

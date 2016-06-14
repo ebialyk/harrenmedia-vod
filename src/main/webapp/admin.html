@@ -8,16 +8,16 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/adminStyle.css">
 <link href="css/bootstrap-datepicker.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/xeditable.css">
 
 
 
 <script src="js/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="js/angular.min.js"></script>
 <script src="js/xeditable.js"></script>
+<script type="text/javascript" src="js/checklist-model.js"></script>
 
 <script type="text/javascript" src="js/angular-resource.min.js"></script> 
-
-<script src="js/api.js"></script>
 
 <script src="js/app.AJS.js"></script>
 <script src="js/admin.js"></script>
@@ -65,11 +65,10 @@ li {
         </div>
     </div>
 
-    <script type="text/ng-template" id="LoggedIn_Users.tpl.html">
-	<div class="admin-panel">
-
+<!-- LOGGED IN USERS -->
+<script type="text/ng-template" id="LoggedIn_Users.tpl.html">
+<div class="admin-panel">
 	<h1>Logged In Users table</h1>
-	
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<button class="btn btn-primary left" ng-click="refreshLIUsers()">Refresh Data</button>
@@ -81,17 +80,14 @@ li {
       				<th>IP</th>
       				<th>LOGIN DATE</th>
 					<th>STATUS</th>
-					<th>USER ID</th>
       				<th>USER MAIL</th>
 			</thead>
 	<tr ng-repeat="usr in loggedInUsers ">
-				<td><span>{{ usr.id }}</span></td>
+				<td><span>{{ usr.loggedInUserId }}</span></td>
       				<td><span>{{ usr.ip }}</span></td>
-					<td><span>{{ usr.logInDate | date }}</span></td>
-					<td><span>{{ usr.status }}</span></td>
-					<td><span>{{ usr.userId }}</span></td>
-					<td><span>{{ showUser(usr.userId) }}</span></td>
-					
+					<td><span>{{ usr.logInDate | date:'dd/MM/yyyy HH:mm:ss Z' }}</span></td>
+					<td><span>{{ showUserStatus(usr.user.status) }}</span></td>
+					<td><span>{{ usr.user.userEmail }}</span></td>
 			</tr>
 		</table>
 	</div>
@@ -100,6 +96,7 @@ li {
 </div>		
 	</script>
 	
+<!-- USERS -->
 	<script type="text/ng-template" id="Users.tpl.html">
 <div class="admin-panel">
 
@@ -127,9 +124,9 @@ li {
       				<td><span>{{ usr.userEmail }}</span></td>
 					<td><span>{{ usr.userName  }}</span></td>
 					<td><span>{{ usr.affiliateId }}</span></td>
-					<td><span>{{ usr.registrationDate | date}}</span></td>
-					<td><span>{{ usr.cancelationDate | date }}</span></td>
-					<td><span>{{ usr.status }}</span></td>
+					<td><span>{{ usr.registrationDate | date:'dd/MM/yyyy HH:mm:ss Z' }}</span></td>
+					<td><span>{{ usr.cancelationDate | date:'dd/MM/yyyy HH:mm:ss Z' }}</span></td>
+					<td><span>{{ showUserStatus(usr.status) }}</span></td>
 					<td><span>{{ usr.userCountry }}</span></td>
 					<td><span>{{ usr.userPassword }}</span></td>
 			</tr>
@@ -140,49 +137,56 @@ li {
 </div>		
 	</script>
 	
+	<!-- AFFILIATES  -->
 	<script type="text/ng-template" id="Affiliates.tpl.html">
-		<div class="admin-panel">
-
+	<div class="admin-panel">
 	<h1>Affiliates table</h1>
-
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<button class="btn btn-primary left" onclick="newAffiliate()">Add Affiliate</button>
 			<button class="btn btn-primary left" ng-click="refreshAffiliates()">Refresh Data</button>
 		</div>
-		<table class="table table-hover"
-			data-cg-busy="{promise:promise,message:'please wait',templateUrl:'bower/angular-busy/angular-busy.html'}">
+		<table class="table table-bordered table-hover table-condensed">
 			<thead>
 				<th>ID</th>
       			<th>NAME</th>
       			<th>COUNTRY</th>
-      			<th>LANGUAGE</th>
 				<th>CSS</th>
 				<th>POSTBACK</th>
+				<th>POSTBACKTYPE</th>
+				<th>PRICE</th>
 			</thead>
 			<tr ng-repeat="row in affiliates ">
-				<td><span>{{ row.id }}</span></td>
-				<td><span editable-text="row.affiliateName" e-name="affiliateName" e-form="rowform" onbeforesave="checkName($data, user.id)" e-required>
-          {{ row.affiliateName || 'empty' }}
-        </span></td>
-				<td><span  editable-text="row.affiliateName" e-name="affiliateName"
-					e-form="rowform" class="font-orange">{{ row.affiliateName }}</span></td>
-				<td><span editable-text="row.countryId">{{ row.countryId  }}</span></td>
-				<td><span editable-text="row.languageId">{{ row.languageId }}</span></td>
-				<td><span editable-text="row.cssTheme">{{ row.cssTheme }}</span></td>
-				<td><span editable-text="row.postback">{{ row.postback }}</span></td>
+				<td><span>
+	          {{ row.affiliate.affiliateId || 'empty' }}</span></td>
+	      	<td><span editable-text="row.affiliate.affiliateName" e-name="name" e-form="rowform" e-required>
+	          {{ row.affiliate.affiliateName || 'empty' }}</span></td>
+				<td><span editable-text="row.country.countryName" e-name="country" e-form="rowform"  e-required>
+	          {{ row.country.countryName || 'empty' }}</span></td>
+				<td><span editable-text="row.cssTheme" e-name="cssTheme" 
+							e-form="rowform" e-required>{{ row.cssTheme }}</span></td>
+				<td><span editable-text="row.postback" e-name="postback" 
+							e-form="rowform" e-required>{{ row.postback }}</span></td>
+<td><span editable-text="row.postbackType" e-name="postbackType" 
+							e-form="rowform" e-required>{{ row.postbackType }}</span></td>
+				<td><span editable-text="row.price" e-name="price" 
+							e-form="rowform" e-required>{{ row.price }}</span></td>
+				
+	        		
+	      		</td>
 			</tr>
 		</table>
 	</div>
+	
 <div id="newAffiliate">
-			<label for="name">Affiliate Name:</label>
-			<input type="text" id="name" ng-model="aff.name"><br> 
-			<label for="language">Language:</label>
-			<input type="text" id="language" ng-model="aff.language"><br> 
-			<label for="country">Country: </label>
-			<input type="text" id="country" ng-model="aff.country"><br>
-
-			<button ng-click=save(aff) onclick="addAffiliate()">Add Affiliate</button>
+			<label for="name">Affiliate Name:</label> <input type="text" id="name" ng-model="aff.name"><br> 
+			<label for="language">Language:</label> <input type="text" id="language" ng-model="aff.language"><br> 
+			<label for="country">Country: </label> <input type="text" id="country" ng-model="aff.country"><br>
+			<label for="postBack">Postback: </label> <input type="text" id="postBack" ng-model="aff.postBack"><br>
+			<label for="postBackType">postBackType: </label> <select id="postBackType" ng-options="pb as pb.text for pb in postBackTypes track by pb.text" ng-model="aff.postBackType"></select><br>
+			<label for="css">CSS: </label> <input type="text" id="css" ng-model="aff.css"><br>
+			<label for="price">Price: </label> <input type="text" id="price" ng-model="aff.price"><br>
+			<button ng-click="saveAffiliate(aff)">Add Affiliate</button>
 			<button onclick="Cancel()">Cancel</button>
 		</div>
 
@@ -190,6 +194,7 @@ li {
 </div>
 	</script>
 	
+	<!-- TRACKING -->
 	<script type="text/ng-template" id="Clicks.tpl.html">
 		<div class="admin-panel">
 
@@ -202,23 +207,59 @@ li {
 		<table class="table table-hover"
 			data-cg-busy="{promise:promise,message:'please wait',templateUrl:'bower/angular-busy/angular-busy.html'}">
 			<thead>
-				<th>ID</th>
-      				<th>affiliateId</th>
-      				<th>countryId</th>
+					<th>IP</th>
+					<th>User Agent</th>
+      				<th>Affiliate</th>
+      				<th>Date</th>
+      				<th>Click ID</th>
+					<th>Country</th>
+					<th>Step</th>
       				<th>cssTheme</th>
-					<th>languageId</th>
-					<th>step</th>
-      				<th>userId</th>
+<th>Language</th>
+<th>User</th>
 
 			</thead>
-			<tr ng-repeat="usr in clicks ">
-				<td><span>{{ usr.id }}</span></td>
-      				<td><span>{{ usr.affiliateId }}</span></td>
-					<td><span>{{ usr.countryId  }}</span></td>
-					<td><span>{{ usr.cssTheme }}</span></td>
-					<td><span>{{ usr.languageId }}</span></td>
-					<td><span>{{ usr.place  }}</span></td>
-					<td><span>{{ usr.userId }}</span></td>
+			<tr ng-repeat="click in clicks ">
+				<td><span>{{ click.IP }}</span></td>
+				<td><span>{{ click.userAgent}}</span></td>
+      				<td><span>{{ click.affiliate.userEmail +" "+click.affiliate.userName  }}</span></td>
+					<td><span>{{ click.clickDt | date:'dd/MM/yyyy HH:mm:ss Z'   }}</span></td>
+					<td><span>{{ click.clickId }}</span></td>
+					<td><span>{{ click.country }}</span></td>
+					<td><span>{{ showTrackingCodes(click.step)  }}</span></td>
+					<td><span>{{ click.cssTheme }}</span></td>
+					<td><span>{{ click.user.userEmail }}</span></td>
+					<td><span>{{ click.language }}</span></td>
+			</tr>
+		</table>
+	</div>
+</div>		
+</script>
+<!-- POSTBACK -->
+	<script type="text/ng-template" id="PostBackTracking.tpl.html">
+		<div class="admin-panel" ng-controller="PostBackController">
+
+	<h1>PostBack Tracking table</h1>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<button class="btn btn-primary left" ng-click="refreshPostBacks()">Refresh Data</button>
+		</div>
+		<table class="table table-hover"
+			data-cg-busy="{promise:promise,message:'please wait',templateUrl:'bower/angular-busy/angular-busy.html'}">
+			<thead>
+				<th>clickID</th>
+      				<th>IP</th>
+      				<th>status</th>
+					<th>notes</th>
+					<th>affiliate.affiliateName</th>S
+			</thead>
+			<tr ng-repeat="usr in postBacks ">
+				<td><span>{{ usr.clickID }}</span></td>
+      				<td><span>{{ usr.IP }}</span></td>
+					<td><span>{{ usr.status  }}</span></td>
+					<td><span>{{ usr.notes }}</span></td>
+					<td><span>{{ usr.affiliate.affiliateName</span></td>
 			</tr>
 		</table>
 	</div>
@@ -226,19 +267,19 @@ li {
 
 </div>		
 	</script>
-	<script type="text/ng-template" id="SupportRequest.tpl.html">
-		<div class="admin-panel">
-
-	<h1>User Tracking table</h1>
 	
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<button class="btn btn-primary left" ng-click="refreshSupportRequests()">Refresh Data</button>
-		</div>
-		<table class="table table-hover"
-			data-cg-busy="{promise:promise,message:'please wait',templateUrl:'bower/angular-busy/angular-busy.html'}">
-			<thead>
-				<th>ID</th>
+	<!-- SUPPORT REQUESTS -->
+	<script type="text/ng-template" id="SupportRequest.tpl.html">
+	<div class="admin-panel" ng-controller="SupportController">
+		<h1>Support Requests table</h1>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<button class="btn btn-primary left" ng-click="refreshSupportRequests()">Refresh Data</button>
+			</div>
+			<table class="table table-hover"
+				data-cg-busy="{promise:promise,message:'please wait',templateUrl:'bower/angular-busy/angular-busy.html'}">
+				<thead>
+					<th>ID</th>
       				<th>creationDate</th>
       				<th>Message</th>
 					<th>Message Code</th>
@@ -247,25 +288,115 @@ li {
 					<th>userEmail</th>
 					<th>userId</th>
 					<th>userName</th>
-
-			</thead>
-			<tr ng-repeat="usr in supportRequests ">
-				<td><span>{{ usr.id }}</span></td>
-      				<td><span>{{ usr.creationDate | date }}</span></td>
-					<td><span>{{ usr.msg  }}</span></td>
-					<td><span>{{ usr.msgCode }}</span></td>
-					<td><span>{{ usr.responseDate | date}}</span></td>
-					<td><span>{{ usr.status }}</span></td>
-					<td><span>{{ usr.userEmail }}</span></td>
-					<td><span>{{ usr.userId }}</span></td>
-					<td><span>{{ usr.userName }}</span></td>
-			</tr>
-		</table>
-	</div>
-
-
-</div>		
+				</thead>
+				<tr ng-repeat="support in supportRequests ">
+					<td><span>{{ support.id }}</span></td>
+      				<td><span>{{ support.creationDate | date:'dd/MM/yyyy HH:mm:ss Z' }}</span></td>
+					<td><span>{{ support.msg  }}</span></td>
+					<td><span>{{ support.msgCode }}</span></td>
+					<td><span>{{ support.responseDate | date}}</span></td>
+					<td><span>{{ support.status }}</span></td>
+					<td><span>{{ support.userEmail }}</span></td>
+					<td><span>{{ support.userId }}</span></td>
+					<td><span>{{ support.userName }}</span></td>
+					<td ng-disabled={{support.status}}><button class="btn btn-primary left" ng-click="updateStatus(support)">Check as done</button><td>
+				</tr>
+			</table>
+		</div>
+	</div>		
 	</script>
+
+<!-- LANGUAGES -->
+<script type="text/ng-template" id="Languages.tpl.html">
+
+<div class="admin-panel"  ng-controller="LanguagesController">
+	<h1>Languages table</h1>
+	<div class="panel panel-default" ng-hide="update">
+		<div class="panel-heading">
+			<button class="btn btn-primary left" ng-click="newLanguage()">Add Language</button>
+			<button class="btn btn-primary left" ng-click="refreshLanguages()">Refresh Data</button>
+		</div>
+	   <table class="table table-bordered table-hover table-condensed">
+	    <tr style="font-weight: bold">
+	      <td>ID</td>
+	      <td>DSC</td>
+	    </tr>
+	    <tr ng-repeat="l in languages">
+	      <td>
+	        <span>{{ l.languageId || 'empty' }}</span>
+	      </td>
+	      <td>
+	        <span>{{ l.languageDsc || 'empty' }}</span>
+	      </td>
+	    </tr>
+	  </table>
+
+	  
+	</div>
+	<div id="newLanguage" ng-show="update">
+			<label for="name">Language:</label> <input type="text" id="name" ng-model="lang.name"><br> 
+			<button ng-click="addLanguage(lang)">Add Language</button>
+			<button ng-click="Cancel()">Cancel</button>
+		</div>
+	</script>
+	
+<!-- COUNTRIES -->
+<script type="text/ng-template" id="Countries.tpl.html">
+
+<div class="admin-panel"  ng-controller="CountriesController">
+	<h1>Countries table</h1>
+	<div class="panel panel-default" ng-hide="update">
+		<div class="panel-heading">
+			<button class="btn btn-primary left" ng-click="newCountry()">Add Country</button>
+			<button class="btn btn-primary left" ng-click="refreshCountries()">Refresh Data</button>
+		</div>
+	   <table class="table table-bordered table-hover table-condensed">
+	    <tr style="font-weight: bold">
+	      <td>ID</td>
+		  <td>NAME</td>
+	      <td>CODE</td>
+		  <td>ALLOWED</td>
+		  <td>LANGUAGES</td>
+	    </tr>
+	    <tr ng-repeat="country in countries">
+	      <td>
+	        <span>{{ country.country.countryId || 'empty' }}</span>
+	      </td>
+		  <td>
+	        <span>{{ country.country.countryName || 'empty' }}</span>
+	      </td>	
+		<td>
+	        <span>{{ country.country.countryCode || 'empty' }}</span>
+	      </td>	
+			<td>
+	        <span>{{ country.country.allowed || 'false' }}</span>
+	      </td>	
+	      <td>
+	        <span>{{ country.langs }}</span>
+	      </td>
+			<td>
+				<button class="btn btn-primary left" ng-click="upd(country)">Update</button>
+				<button class="btn btn-primary left" ng-click="del($index,country)">Delete</button>
+			</td>
+	    </tr>
+	  </table>
+
+	  
+	</div>
+	<div id="newCountry" ng-show="update" ng-model="selectedCountry">
+			<label for="name">Country name:</label> <input type="text" id="name" ng-model="selectedCountry.name"><br> 
+			<label for="code">Country code:</label> <input type="text" id="code" ng-model="selectedCountry.code"><br> 
+			<label for="allowed">Country allowed:</label> <input type="checkbox" ng-model="selectedCountry.allowed"
+           ng-true-value="'1'" ng-false-value="'0'"><br> 
+			<label for="languages">Languages:</label> 
+				<label ng-repeat="lang in languages" ng-model="selectedCountry.languages">
+  					<input type="checkbox" ng-model="lang.value" ng-true-value="'1'" ng-false-value="'0'" ng-click="checkMe(lang,$index)"> {{lang.languageDsc}}
+				</label><br> 
+			<button ng-click="addCountry(selectedCountry)">Add Country</button>
+			<button ng-click="Cancel()">Cancel</button>
+		</div>
+	</script>
+	
 </div>
 
 

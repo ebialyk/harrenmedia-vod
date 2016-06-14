@@ -3,6 +3,8 @@
 <head>
 <meta charset=utf-8>
 <title>MuvFlix</title>
+<link rel="icon" href="favicon.ico">
+
 <link rel="stylesheet" href="css/normalize.css">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/style.css">
@@ -18,16 +20,17 @@
   <div id="mainPage">
     <div class="header">
     <div class="headerBody">
-      <div id="logo"></div>
+      <div id="logo" onclick="openBestsellers()"></div>
       <div class="tabs">
         <ul>
           <li onclick="openLogin()">Bestsellers</li>
           <li onclick="openLogin()">Genres</li>
           <li onclick="openLogin()">Movies</li>
           <li onclick="openSupport()">Customer support</li>
+		  <li onclick="openPricing()">Pricing</li>
         </ul>
       </div>
-      <div class="login" onclick="openLogin()">Login</div>
+      <div class="login" onclick="openLogin()">Sign In</div> <div class="login red" onclick="SignIn()">FREE signup</div>
       <div class="languages">{{view Ember.Select 
                       contentBinding="App.LanguageController" 
                       selectionBinding="App.LanguageSelectedController.name" 
@@ -38,35 +41,11 @@
     <div class="container" id="mainContainer">
 	<section class="slider" id="slider">
         <div class="flexslider2">
-          <ul class="slides">
-              <li>
-                  
-                  <div class="titles">
-                    <div class="title">Watch movies online</div>
-                    <div class="subtitle">anywhere, from any device</div>
-                     <button class="redBtn" onclick="openLogin()">Join Free Now</button>
-                  </div>
-                 <img class="ns-img" src="images/MF_HP-banner1.jpg" />
-                </li>
-                <li>
-                  
-                  <div class="titles">
-                    <div class="title">Watch movies online</div>
-                    <div class="subtitle">anywhere, from any device</div>
-                     <button class="redBtn" onclick="openLogin()">Join Free Now</button>
-
-                  </div>
-<img class="ns-img" src="images/MF_HP-banner2.jpg" />
-                </li>
-                <li>
-                  
-                  <div class="titles">
-                    <div class="title">Watch movies online</div>
-                    <div class="subtitle">anywhere, from any device</div>
-                     <button class="redBtn" onclick="openLogin()">Join Free Now</button>
-                  </div>
-<img class="ns-img" src="images/MF_HP-banner3.jpg" />
-                </li>
+          <ul class="slides" onclick="SignIn()">
+              <li><img class="ns-img" src="images/mainbanner1.png" /></li>
+              <li><img class="ns-img" src="images/mainbanner2.png" /></li>
+              <li><img class="ns-img" src="images/mainbanner3.png" /></li>
+			  <li><img class="ns-img" src="images/mainbanner4.png" /></li>
           </ul>
         </div>
       </section>
@@ -116,7 +95,7 @@
           </div>
         </div>
       </div>
-    <button class="redBtn" onclick="openLogin()">Join Free Now</button>
+    <button class="redBtn" onclick="SignIn()">Join Free Now</button>
     </div>
 
     
@@ -125,26 +104,38 @@
   </div>
 
   <div id="mask" class="mask"  onclick="closeDialog()"></div>  
-  <div id="loginScreen">
-  	<div class="formWrapper">
+<div id="loginScreen">
+  <div class="formWrapper">
 		<div class="closeBtn"><i class="material-icons" onclick="closeDialog()">close</i></div>
-
     <div class="form">
-      <table>
-        <tr><td colspan="2" class="formTitle">Login</td></tr>
-        <tr><td><input type="text" placeholder="E-mail" id="User"></td><td><input type="password" placeholder="Password" id="Psw"></td></tr>
-        <tr>
-          <td></td>
-          <td><button  onclick="logIn()">Login</button></td>
-        </tr>
-      </table>
+    	<table>
+     		<tr><td colspan="2" class="formTitle">Login</td></tr>
+     		<tr><td><input type="email" placeholder="E-mail" id="User"></td><td><input type="password" placeholder="Password" id="Psw"></td></tr>
+     		<tr><td></td><td><button  onclick="logIn()">Login</button></td></tr>
+    	</table>
     </div>
     <div class="newUser">
-      <a>Forgot your password?</a>
-      <a onclick="SignIn()">No account? Register Now!</a>
+    	<a onclick="ResetPassword()">Forgot your password?</a>
+    	<a onclick="SignIn()">No account? Register Now!</a>
     </div>
   </div>
+</div>
+
+
+<div id="forgotPswScreen">
+  <div class="formWrapper">
+		<div class="closeBtn"><i class="material-icons" onclick="closeDialog()">close</i></div>
+    <div class="form">
+    	<table>
+     		<tr><td class="formTitle">Forgot your password?<span class="subtitle">Your password will be sent to your account email:</span></td></tr>
+     		<tr><td><input type="email" placeholder="E-mail" id="UserPsw"></td></tr>
+    		<tr><td><a class="subtitle" onclick="SignIn()">No account? Register Now!</a></td></tr>
+			<tr><td><button  onclick="sendPassword()">SEND</button></td></tr>
+    	</table>
+    </div>
+
   </div>
+</div>
 
  <div class="SignInPage" id="SignInPage">
 	<div class="verificationContainer">
@@ -169,7 +160,7 @@
             	<span class="title">Please fill out all the following fields to create an account</span>
             	<p class="note">*Username and password are case sensitive, and password must to be at least 5 characters long</p>
 	            <div class="form">
-	              <input type="mail" placeholder="E-mail" required id="email">
+	              <input type="email" placeholder="E-mail" required id="email">
 	              <input type="password" placeholder="Password" pattern=".{5,12}" required id="psw">
 	              <input type="password" placeholder="Confirm password" pattern=".{5,12}" required id="psw2">
 	              <p class="note">By clicking the "Sing-Up" button, you are agree to our <a href="TermsAndCondition.html" target="_black">Terms & Conditions</a> and certify than you are 18 year of age</p>
@@ -274,24 +265,30 @@
 				            <td></td>
 				        </tr>
 				        <tr>
-				            <td><span>CVV</span><br><span class="info">What is CVV?</span></td>
+				            <td><span>CVV</span><br><span class="info"><a onclick="showCvv()">What is CVV?</a></span></td>
 				            <td class="inputField cvv"><input type="text" maxlength="4"></td>
 				            <td></td>
 				        </tr>
 				        <tr>
-				            <td></td>
-				            <td class="inputField"><button class="greenBtn" onclick="verifyAccount()">Continue</button></td>
-				            <td></td>
+				            
+				            <td class="inputField" colspan="2"><button class="greenBtn" onclick="verifyAccount()" >Continue</button></td>
+				            
 				        </tr>
 				    </table>
+<div class="note">By clicking "continue" you are starting a 5 days trial period. After the trial period ends, your credit card will be automatically billed $49.90 every month. (30 days) from the date of your subscription and further notifications will be received via e-mail muvflix.com.</div>
               	</div>
           	</div>
         </div>
-        <div class="note">By clicking "continue" you are starting a 5 days trial period. After the trial period ends, your credit card will be automatically billed $49.90 every month. (30 days) from the date of your subscription and further notifications will be received via e-mail muvflix.com.</div>
+        
     </div>
       
 </div>
-
+<div id="cvv">
+		<div>
+		<div class="closeBtn"><i class="material-icons" onclick="closeDialog()">close</i></div>
+		<img src="images/cvv.png">
+		</div>
+	</div>
 <!--support page-->
       <div id="supportPage">
         <div class="content">
@@ -370,7 +367,34 @@
     	</div>
   </div>
   <!-- End support page -->
-
+<!--Pricing Page -->
+<div id="pricingPage">
+	<div  class="title"><span>Pricing</span></div>
+    <div class="subtitle">
+      <p>There are no commitment periods or cancellation fees, <br>
+          or other hidden fees. Choose the pricing plan that fit to your need, <br>
+          and let us know if we can answer any of your questions, <br>
+          our support is available for you 24/7.  
+      </p>
+    </div>
+    <div class="offers">
+      <div class="offer">
+        <div class="title">5-day FREE Trial</div>
+        <div class="price">$0.0</div>
+        <div><button class="redBtn">Join Free Now</button></div>
+      </div>
+      <div class="offer">
+        <div class="title">30 day access</div>
+        <div class="price">$49.95</div>
+        <div><button class="redBtn">Sign up</button></div>
+      </div>
+      <div class="offer">
+        <div class="title">1-year access</div>
+        <div class="price">$39.95</div>
+        <div><button class="redBtn">Sign up</button></div>
+      </div>
+	</div>      
+</div>
       <div class="footer">
    <div class="footerBody">
     <div class="logo"><div>Need help? Support@movflix.com</div></div>
@@ -378,7 +402,6 @@
       <ul>
         <li><a href="TermsAndConditions.html" target="_blank">Terms of Use</a></li>|
          <li><a href="PrivacyPolicy.html" target="_blank">Privacy</a></li>|
-        <li>Contact Us</li>
       </ul>
       <span>Copyright 2015 xxxxxxxxxxxxxxx</span>
       </div>

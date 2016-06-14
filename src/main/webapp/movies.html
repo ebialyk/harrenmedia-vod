@@ -3,6 +3,8 @@
 <head>
 <meta charset=utf-8>
 <title>MuvFlix</title>
+<link rel="icon" href="favicon.ico">
+
 <link rel="stylesheet" href="css/normalize.css">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/style.css">
@@ -22,13 +24,13 @@
   <div id="moviesPage">
    <div class="header">
     <div class="headerBody">
-      <div id="logo"></div>
+      <div id="logo" onclick="openBestsellers()" ></div>
       <div class="tabs">
-        <ul>
-          <li onclick="openBestsellers()">Bestsellers</li>
-          <li onclick="openGenres()">Genres</li>
-          <li onclick="openMovies()">Movies</li>
-          <li onclick="openSupport()">Customer support</li>
+        <ul id="topMenu">
+          <li id="BS-LI" onclick="openBestsellers()">Bestsellers</li>
+          <li id="G-LI" onclick="openGenres()">Genres</li>
+          <li id="M-LI" onclick="openMovies()">Movies</li>
+          <li id="CSLI" onclick="openSupport()">Customer support</li>
         </ul>
       </div>
       <div class="login" id="logout" onclick="logout()">Logout</div>
@@ -130,9 +132,8 @@
           	<div class="movieTitle">{{movie.Name}}</div>
           	<div class="subtitle">
             	<div class="stars">
-					<i class="material-icons">star</i><i class="material-icons">star</i>
-					<i class="material-icons">star</i><i class="material-icons">star</i>
-					<i class="material-icons">star</i>
+					<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star
+					</i><i class="material-icons">star</i><i class="material-icons">star</i>
         		</div>
         		<div class="movieCategory">{{movie.Genre}}</div>
         	</div>
@@ -160,7 +161,7 @@
 		        <table class="form">
 		          <tr>
 		            <td><input type="text" placeholder="Your name" class="mandatoryFieldForm" id="supportName"></td>
-		            <td><input type="text" placeholder="E-mail" class="mandatoryFieldForm" id="supportEmail"></td>
+		            <td><input type="email" placeholder="E-mail" class="mandatoryFieldForm" id="supportEmail"></td>
 		          </tr>
 		          <tr id="subjectFields">
 		            <td class="formTitle">Subject</td>
@@ -279,7 +280,6 @@
       			<ul>
         			<li><a href="TermsAndConditions.html" target="_blank">Terms of Use</a></li>|
          			<li><a href="PrivacyPolicy.html" target="_blank">Privacy</a></li>|
-        			<li>Contact Us</li>
       			</ul>
       			<span>Copyright 2015 xxxxxxxxxxxxxxx</span>
     		</div>

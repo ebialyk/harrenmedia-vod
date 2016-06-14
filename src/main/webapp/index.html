@@ -2,28 +2,27 @@
 <html id="html">
 <head>
 <meta charset=utf-8>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>LandingPage</title>
+
 <link rel="icon" href="favicon.ico">
-<link rel="stylesheet" href="css/normalize.css">
-<link rel="stylesheet" href="css/bootstrap.css">
-
-<link href="css/bootstrap-datepicker.css" rel="stylesheet" />
-
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300"
-	rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="http://s3-eu-west-1.amazonaws.com/vodresources/css/normalize.css">
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
-<script src="js/bower_components/jquery/dist/jquery.min.js"></script>
 
-<link rel="stylesheet" href="css/style.css">
-<script src="js/utils.js"></script>
-<script src="js/index.js"></script>
+<link rel="stylesheet" href="http://s3-eu-west-1.amazonaws.com/vodresources/css/bootstrap.css">
+
+<link rel="stylesheet" href="http://s3-eu-west-1.amazonaws.com/vodresources/css/style.css">
+<link rel="stylesheet" href="http://s3-eu-west-1.amazonaws.com/vodresources/css/mobile.css">
+
+<script src="http://s3-eu-west-1.amazonaws.com/vodresources/js/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="http://s3-eu-west-1.amazonaws.com/vodresources/js/utils.js"></script>
+<script src="http://s3-eu-west-1.amazonaws.com/vodresources/js/index.js"></script>
 
 
 </head>
 <body id="body">
-	<script type="text/x-handlebars">
   <div id="LandingPage">
     <div id="content">
       <div id="header" onclick="openCreateAccountDialog()">
@@ -74,7 +73,7 @@
                   <div id="circularG_7" class="circularG"></div>
                   <div id="circularG_8" class="circularG"></div>
                 </div><span id="loadSpan">Loading...</span>
-                <div class="contentBar fullwidth" id="contentBar">
+                <div class="contentBar" id="contentBar">
                   <span class="expand "></span>
                   <span class="expand expandRed"></span>
                 </div>
@@ -87,151 +86,21 @@
       <div id="languages">
         
       </div>
-      <div class="mask"></div>
+      <div class="mask" id="mask"></div>
      
       <div id="CreateAccount"> 
       	<div class="registrationWrapper">
-        	<div id="registration" keydown=checkEnter()>
+        	<div id="registration" >
           		<p>Only registered Friends can watch all the movies!</p>
           		<p class="enlargedText">you must create a <span class="green">FREE</span> account to <span class="green">STREAM</span> this movie</p>
           		<input type="email" id="email" placeholder="E-mail" data-index="1" >
           		<input type="password" id="psw" maxlength="12" pattern=".{5,12}" required  placeholder="Password" data-index="2">
-          		<input type="Password" id="psw2" maxlength="12" pattern=".{5,12}" required  placeholder="Confirm Password" data-index="3">
+          		<input type="Password" id="psw2" maxlength="12" pattern=".{5,12}" required  placeholder="Confirm Password" data-index="3" onkeydown=checkEnter(event)>
           		<button class="greenBtn" onclick="CreateAccountValidation()" data-index="4">CREATE MY FREE ACCOUNT NOW</button>
         	</div>
         </div>
       </div>
     </div>
   </div>
-  <div id="VerificationPage">
-    <div id="content">
-      <div id="header" class="grayBg">
-        <div id="title" class="title"></div>
-      </div>
-      <div class="verificationContainer">
-        <div class="explanation">
-          <div class="title">Why do we ask you for your billing information?</div>
-          <p>Because our library is only licensed to distribute our content to certain countries, we ask that you provide your mailling address by providing us with a valid credit card number. <b>NO CHARGES GUARANTEED</b>. No charges will appear on your credit card statement unless you upgrade to a Premium Membership or make a purchase.</p>
-          <hr>
-          <ul><li>Click and watch</li>
-          <li>Steam movies in HD</li>
-          <li>Watch on any device</li>
-          <li>Hassle Free Cancellation</li>
-          <li>Free of charge</li></ul>
-          <hr>
-          <div class="title">Privacy Guaranteed</div>
-          <p>In order to keep your personal information private, we use encryption security tehnology. Our site employs <b>Secure Sockets Layering (SSL)</b> to encript your personal information such as credit card number, name, and address before it travels over the internet. Your data is encrypted and password-protected to make sure no one ever sees your personal information!!! </p>
-          <div class="title">No Hidden Fees</div>
-          <p>We always provide our members with a detailed purchase history in order for them to know exactly what they are paying for. Your payment method information is requiered to future purchases only. <b>NO CHARGES</b> will appear on your credit card statement unless you upgrade to a Premium Membership or make a purchase. By creating an account, you agree our <a class="underlined" href="TermsAndConditions.html" target="_blank" >Terms & Conditions</a></p>
-        </div>
-        <div class="creditCardForm">
-          <div class="timer">Our special offer will be available only in the next <span id="time"></span>
-          </div>
-          <div class="verificationForm">
-            <span class="title">Account Verification</span>
-            <div class="subtitle">
-              <img src="images/MF_pre-reg_verification-VBlue1.png" alt=""><span class="little">Normal memebership</span>
-              <div class="stars"><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i></div> <div><span class="free">FREE</span><span class="price">$0.00</span></div></div>
-              <table class="fields">
-                <tr>
-                  <td>First Name</td>
-                  <td class="inputField"><input type="text" id="FName" name="FName" minlength="2" maxlength="30" required="true"></td>
-                  <td><div class="okIcon"></div></td>
-                </tr>
-                <tr>
-                  <td>Last Name</td>
-                  <td class="inputField"><input type="text" id="LName" name="LName"></td>
-                  <td><div class="okIcon"></div></td>
-                </tr>
-                <tr>
-                  <td>Country</td>
-                  <td class="inputField">{{view Ember.Select 
-                      contentBinding="App.CountryController" 
-                      selectionBinding="App.CountrySelectedController.name" 
-                      optionLabelPath="content.name" 
-                      optionValuePath="content.name"}}</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>Zip/postal</td>
-                  <td class="inputField"><input type="text" id="Zip" name="Zip"></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td colspan="2"><div class="cardIcons"></div></td>
-                </tr>
-                <tr>
-                  <td>Credit Card</td>
-                  <td class="inputField"><input type="text" id="CNumber" name="CNumber"></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>Expiry Date</td>
-                  <td id="ExpDT" class="inputField">{{view Ember.Select 
-                      contentBinding="App.MonthsController" 
-                      optionLabelPath="content.name" 
-                      optionValuePath="content.id"}}
-                      {{view Ember.Select 
-                      contentBinding="App.YearsController" 
-                      optionLabelPath="content.name" 
-                      optionValuePath="content.id"}}
-                  <td></td>
-                </tr>
-                <tr>
-                  <td ><span>CVV</span><br><span class="info"><a onclick="showCvv()">What is CVV?</a></span></td>
-                  <td class="inputField smallInput"><input class="smallInput" type="text"></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td class="inputField"><button class="greenBtn" onclick="verifyAccount()">VERIFY MY ACCOUNT</button></td>
-                  <td></td>
-                </tr>
-              </table>
-              </div>
-          </div>
-        </div>
-        <div class="footer"><div class="footerBody"></div></div>
-      </div>
-      
-    </div>
-
-  </div>
-	<div id="cvv">
-		<div>
-		<div class="closeBtn"><i class="material-icons" onclick="closeDialog()">close</i></div>
-		<img src="images/cvv.png">
-		</div>
-	</div>
-  <div id="page3">
-  <div class="container">
-    <div class="logo"></div>
-    <div class="tnx">Thank you.
-    <p>a verification email has been send to you, <br> you will be redirect to the movie library now. Enjoy</p></div>
-  </div>
-  </div>
- <div class="mask" id="mask" onclick="closeDialog()"></div>
-  </script>
-
-
-	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-	<script
-		src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-	<script src="js/bower_components/handlebars/handlebars.min.js"></script>
-	<script src="js/bower_components/ember/ember.min.js"></script>
-	<script src="js/ember-data.min.js"></script>
-	<script src="js/ajaxfileupload.js"></script>
-	<script src="js/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="js/fontsmoothie.min.js"></script>
-	<script src="js/util.js"></script>
-	<script src="js/i18n/grid.locale-en.js" type="text/javascript"></script>
-	<script type='text/javascript'
-		src="http://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/js/jquery.jqGrid.min.js"></script>
-	<script src="js/showdown.js"></script>
-	<script src="js/moment.js"></script>
-	<script src="js/countdowntimer.js"></script>
-	<script src="js/app.js"></script>
-
-
 </body>
 </html>

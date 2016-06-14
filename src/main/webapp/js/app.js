@@ -31,7 +31,91 @@ App.Support = Ember.Object.extend({
 	description : null,
 	category : null
 })
+App.Month = Ember.Object.extend({
+	id : null,
+	name : null
+});
+App.selectedMonthController = Ember.Object.create({
+	month : null
+});
+App.MonthsController = Ember.ArrayController.create({
+	content : [ App.Month.create({
+		id : "1",
+		name : '01',
+	}), App.Month.create({
+		id : "2",
+		name : '02',
+	}), App.Month.create({
+		id : "3",
+		name : '03',
+	}), App.Month.create({
+		id : "4",
+		name : '04',
+	}), App.Month.create({
+		id : "5",
+		name : '05',
+	}), App.Month.create({
+		id : "6",
+		name : '06',
+	}), App.Month.create({
+		id : "7",
+		name : '07',
+	}), App.Month.create({
+		id : "8",
+		name : '08',
+	}), App.Month.create({
+		id : "9",
+		name : '09',
+	}), App.Month.create({
+		id : "10",
+		name : '10',
+	}),App.Month.create({
+		id : "11",
+		name : '11',
+	}),App.Month.create({
+		id : "12",
+		name : '12',
+	}),]
+});
 
+
+App.Year = Ember.Object.extend({
+	id : null,
+	name : null
+});
+App.selectedYearController = Ember.Object.create({
+	year : null
+});
+App.YearsController = Ember.ArrayController.create({
+	content : [ App.Month.create({
+		id : "2016",
+		name : '2016',
+	}), App.Month.create({
+		id : "2017",
+		name : '2017',
+	}), App.Month.create({
+		id : "2018",
+		name : '2018',
+	}), App.Month.create({
+		id : "2019",
+		name : '2019',
+	}), App.Month.create({
+		id : "2020",
+		name : '2020',
+	}),  App.Month.create({
+		id : "2021",
+		name : '2021',
+	}), App.Month.create({
+		id : "2022",
+		name : '2022',
+	}), App.Month.create({
+		id : "2023",
+		name : '2023',
+	}), App.Month.create({
+		id : "2024",
+		name : '2024',
+	}),]
+});
 App.Country = Ember.Object.extend({
 	id : null,
 	name : null
@@ -811,41 +895,41 @@ App.AccountFaqs = Ember.ArrayController
 					App.Support.create({
 						"id" : 1,
 						"title" : "How do I change my password?",
-						"description" : "How do I change my password?",
+						"description" : "You can either reset or change your password by access to the support page and open a ticket in our system.",
 						"category" : 1
 					}),
 					App.Support.create({
 						"id" : 2,
 						"title" : "How do I cancel my account?",
-						"description" : "How do I cancel my account?",
+						"description" : "You can access the support page and change your password or cancel your account there.",
 						"category" : 1
 					}),
 					App.Support
 							.create({
 								"id" : 3,
 								"title" : "How do I change the subscription I have signed up for?",
-								"description" : "How do I change the subscription I have signed up for?",
+								"description" : "There is no such possibility at the moment. You can either continue your subscription or cancel it.",
 								"category" : 1
 							}),
 					App.Support
 							.create({
 								"id" : 4,
 								"title" : "Can I change the email address of my account?",
-								"description" : "Can I change the email address of my account?",
+								"description" : "No",
 								"category" : 1
 							}),
 					App.Support
 							.create({
 								"id" : 5,
 								"title" : "Why was I immediately charged an amount when signing up with a credit/debit card?",
-								"description" : "Why was I immediately charged an amount when signing up with a credit/debit card?",
+								"description" : "It's for verification purposes. When you sign up for the free trial we may charge a small amount (up to $2.00) from your card to verify it is operational and valid. The amount will be immediately refunded when you cancel the account.",
 								"category" : 1
 							}),
 					App.Support
 							.create({
 								"id" : 6,
 								"title" : "Can I sing up for more than one account?",
-								"description" : "Can I sing up for more than one account?",
+								"description" : "No, only one account per credit card/email is allowed.",
 								"category" : 1
 							}), ]
 
@@ -854,17 +938,17 @@ App.TechnicalFaqs = Ember.ArrayController.create({
 	content : [ App.Support.create({
 		"id" : 7,
 		"title" : "The movie is not working, why?",
-		"description" : "The movie is not working, why?",
+		"description" : "If you are using an older browser, check the flash plugin to watch movies. If your problem maintains, please contact us and describe it in detail.",
 		"category" : 2
 	}), App.Support.create({
 		"id" : 8,
 		"title" : "How do I turn on/off the subtitles?",
-		"description" : "How do I turn on/off the subtitles?",
+		"description" : "At the moment, some movies have subtitles and some do not, but you can not turn them on or off.",
 		"category" : 2
 	}), App.Support.create({
 		"id" : 9,
 		"title" : "I can't find the movie I am looking for.",
-		"description" : "I can't find the movie I am looking for.",
+		"description" : "Not all movies are available in all countries, but we are constantly working on expanding the movie database as much as possible.",
 		"category" : 2
 	}), ]
 
