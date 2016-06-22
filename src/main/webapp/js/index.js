@@ -12,6 +12,12 @@ window.onload = function() {
 	// ?aff=affiliateNumber&country=countryNumber&theme=themeCode&titleMovie=movieTitle&lang=language&clickid=clickid
 	//?aff=4001&country=20&theme=0220&titleMovie=THE%20SECRET%20OF%20YOUR%20&lang=0&clickid=ZjI2MTg1NzNjYzQ3NGYxN2EwYjIwMjI5ODAxOGI1NTcsLCwxMzg5NDgsSUwsNTUsLA=="
 	urlParams = parseURLParams(window.location.href);
+	var disableExternal = (location.hostname == "localhost");
+	
+	document.getElementById('amazonCSS').disabled  = disableExternal;
+    document.getElementById('amazonMobileCSS').disabled = disableExternal;
+    document.getElementById('LHCSS').disabled  = !disableExternal;
+    document.getElementById('LHMobileCSS').disabled = !disableExternal;
 	
 	resizeScreen();
 	
@@ -32,7 +38,7 @@ window.onload = function() {
 
 		setTimeout(function() {
 			openCreateAccountDialog();
-		}, 7000);
+		}, 5000);
 
 		//tracking(affiliate,country, step, css, languageId, email, clickId
 		tracking(AFF, COUNTRY, 0, CSS, LANG, 0, CLICKID);
@@ -46,18 +52,22 @@ $(window).on('resize', function(){
 });
 
 function resizeScreen() {
-	if($('html').width() < 736)
-	 $('.ratio16-9').height($('.ratio16-9').width()* 9 / 16);
+	if($('html').width() < 1000) {
+		$('.ratio16-9').height($('.ratio16-9').width()* 9 / 16);
+	}
+	else {
+		$('.ratio16-9').height('auto');
+	}
 }
 function openCreateAccountDialog() {
-	document.getElementById("CreateAccount").style.display = "flex";
-	document.getElementById("mask").style.display = "block";
 	document.getElementById("circularG").style.display = "none";
 	document.getElementById("loadSpan").style.display = "none";
 	document.getElementById("contentBar").style.display = "none";
 	document.getElementById("loading").style.display = "none";
-
 	document.getElementById("w8").style.display = "none";
+	
+	document.getElementById("CreateAccount").style.display = "flex";
+	document.getElementById("mask").style.display = "block";
 	
 	document.getElementById("email").focus();
 }
@@ -160,17 +170,9 @@ function CreateAccountValidation() {
 	}
 }
 function openVerificationPage() {
-	//document.getElementById("LandingPage").style.display = "none";
-	//document.getElementById("mask").style.display = "none";
-
-	
-	//document.getElementById("body").className = "whiteBg";
-	//document.getElementById("html").className = "whiteBg";
 	url = 'verification.html'+window.location.search;
 	confirmOnExit = false;
 	window.open(url, '_self', false)
-
-	
 	
 	tracking(AFF, COUNTRY, 3, CSS, LANG, MAIL, CLICKID);
 }

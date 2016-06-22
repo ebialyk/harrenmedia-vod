@@ -1,7 +1,7 @@
 /*General*/
 html, body {
 	background-color: #000;
-	width: 99vw;
+	width: 100vw;
 	height: 97vh;
 	margin: auto;
 	padding: 0;
@@ -182,6 +182,9 @@ input.error, select.error, textarea.error {
 	height: 25px;
 	width: 133px;
 }
+#logo:HOVER {
+	cursor: pointer;
+}
 .title  span {
 	font-size: 22px;
 	color: #fff;
@@ -278,13 +281,15 @@ input.error, select.error, textarea.error {
 	right: 0;
 }
 .playerContainer .content .loading {
-	height: calc(100% - 80px);
-	display: flex;
-	align-content: center;
-	justify-content: center;
-	border: 5px solid black; 
-	/*position: absolute;*/
-	width: 909px;
+	height: calc(100% - 75px);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    /* position: absolute; */
+    width: 908px;
+    border-radius: 8px 8px 0px 0px;
+    border: 5px solid #B5BDB9;
+    border-bottom: none;
 }
 .playerContainer .content .screen {
 	border: 5px solid #B5BDB9;
@@ -754,6 +759,12 @@ html.whiteBg, body.whiteBg {
 	font-size: 14px;
 	justify-content: space-between;
 	font-weight: bold;
+}
+
+.verificationForm .starsWrapper{
+	display: flex;
+    width: 100%;
+    justify-content: space-between;
 }
 .verificationFrom .starsWrapper {
 	display: flex;

@@ -6,9 +6,16 @@ var CSS;
 var LANG;
 var COUNTRY;
 var PSW;
-
+ 
 window.onload = function() {
 
+var disableExternal = (location.hostname == "localhost");
+	
+	document.getElementById('amazonCSS').disabled  = disableExternal;
+	document.getElementById('amazonMobileCSS').disabled  = disableExternal;
+	document.getElementById('LHCSS').disabled  = !disableExternal;
+	document.getElementById('LHMobileCSS').disabled  = !disableExternal;
+	
 	MAIL = localStorage.getItem('MAIL');
 	PSW = localStorage.getItem('PSW');
 	document.getElementById("VerificationPage").style.display = "flex";

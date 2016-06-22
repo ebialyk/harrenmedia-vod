@@ -78,7 +78,6 @@ App.MonthsController = Ember.ArrayController.create({
 	}),]
 });
 
-
 App.Year = Ember.Object.extend({
 	id : null,
 	name : null
@@ -177,13 +176,6 @@ App.ApplicationRoute = Ember.Route.extend({
 	beforeModel : function() {
 		this.controllerFor('application').session.set('isloggedin', false);
 
-		/*
-		 * if(this.controllerFor('login').get('token') == 'null'){
-		 * this.controllerFor('application').session.set('isloggedin', false);
-		 * }else{ this.controllerFor('application').session.set('isloggedin',
-		 * true); }
-		 */
-
 	}
 });
 
@@ -245,7 +237,7 @@ App.ApplicationController = Ember.Controller
 				openDSC : function(faq) {
 					document.getElementById("tooltip").style.display = "block";
 					document.getElementById("mask").style.display = "block";
-					document.getElementById("tooltipTitle").innerHTML = faq.description;
+					document.getElementById("tooltipTitle").innerHTML = faq.title;
 					document.getElementById("tooltipDSC").innerHTML = faq.description;
 				},
 

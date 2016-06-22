@@ -55,14 +55,11 @@
 			</props>
 		</property>
 	</bean>
-	
-	 -->
-	
 	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="mailSender">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
-		<property name="username" value="ebiale" />
-		<property name="password" value="Elena1980" />
+		<property name="username" value="nadavfin" />
+		<property name="password" value="pokahontas" />
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.transport.protocol">smtp</prop>
@@ -70,6 +67,24 @@
 				<prop key="mail.smtp.starttls.enable">true</prop>
 				<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
 				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+	 -->
+	
+	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="mailSender">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="ebiale" />
+		<property name="password" value="Elena1302" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+				<prop key="mail.debug">true</prop>
+				
 			</props>
 		</property>
 	</bean>

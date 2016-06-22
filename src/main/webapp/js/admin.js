@@ -1,3 +1,11 @@
+window.onload = function() {
+var disableExternal = (location.hostname == "localhost");
+	
+	document.getElementById('amazonCSS').disabled  = disableExternal;
+    document.getElementById('amazonAdminCSS').disabled = disableExternal;
+    document.getElementById('LHCSS').disabled  = !disableExternal;
+    document.getElementById('LHAdminCSS').disabled = !disableExternal;
+}
 function newAffiliate() {
 	document.getElementById('newAffiliate').style.display = "block";
 }
@@ -9,7 +17,6 @@ function Cancel() {
 	language = document.getElementById("language").value = "";
 }
 function addAffiliate() {
-	//var table = document.getElementById('records_table');
 	var affName = document.getElementById("name");
 	var country = document.getElementById("country");
 	var language = document.getElementById("language");
@@ -34,15 +41,10 @@ function addAffiliate() {
 		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 		data : data,
 		success : function(response) {
-	
 				affName = document.getElementById("name").value = "";
 				country = document.getElementById("country").value = "";
 				language = document.getElementById("language").value = "";
-				
 				document.getElementById('newAffiliate').style.display = "none";
-	//			table.style.display = "block";
-				
-			
 		},
 		error : function(response, status, error) {
 			alert(response.message);

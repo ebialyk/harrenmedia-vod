@@ -1,5 +1,11 @@
 var MAIL;
 var PSW;
+window.onload = function() {
+	var disableExternal = (location.hostname == "localhost");
+		
+		document.getElementById('amazonCSS').disabled  = disableExternal;
+	    document.getElementById('LHCSS').disabled  = !disableExternal;
+	}
 function openBestsellers() {
 	hideAll();
 	document.getElementById("mainContainer").style.display = "block";
@@ -203,7 +209,6 @@ function SignUp() {
 	}
 
 	if (okEmail && okPsw && okPsw2 && okPswEquals) {
-
 		data = {
 			email : email.value,
 			pw : psw.value,
@@ -213,32 +218,29 @@ function SignUp() {
 			clickID : ""
 		};
 		$.ajax({
-					url : "rest/client/register",
-					type : "POST",
-					dataType : "json", // expected format for response
-					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-					data : data,
-					success : function(response) {
-						if (response.status == 15) {
-							
-							MAIL = email.value;
-							PSW = psw.value;
-							
-							$(".mask").removeClass("waiting");
-							
-							hideAll();
-							document.getElementById("SignUpPage").style.display = "flex";
-						} else {
-							alert(response.message);
-						}
-					},
-					error : function(response, status, error) {
-						alert(response.message);
-					}
-				});
-
+			url : "rest/client/register",
+			type : "POST",
+			dataType : "json", // expected format for response
+			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+			data : data,
+			success : function(response) {
+				if (response.status == 15) {
+					MAIL = email.value;
+					PSW = psw.value;
+					
+					$(".mask").removeClass("waiting");
+					
+					hideAll();
+					document.getElementById("SignUpPage").style.display = "flex";
+				} else {
+					alert(response.message);
+				}
+			},
+			error : function(response, status, error) {
+				alert(response.message);
+			}
+		});
 	} else {
-		
 		document.getElementById("mask").style.display = "none";
 		$(".mask").removeClass("waiting");
 	}
@@ -256,72 +258,60 @@ function verifyAccount() {
 		country : 0,
 		userName : uName
 	};
-	$
-			.ajax({
-				url : "rest/client/verifyAccount",
-				type : "POST",
-				dataType : "json", // expected format for response
-				contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-				data : data,
-				success : function(response) {
-					if (response.status == 15) {
-
-						tracking(0, 0, 4, 0, 0, MAIL, "");
-						
-						setTimeout(
-								function() {
-									data = {
-										email : MAIL,
-										pw : PSW
+	$.ajax({
+		url : "rest/client/verifyAccount",
+		type : "POST",
+		dataType : "json", // expected format for response
+		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+		data : data,
+		success : function(response) {
+			if (response.status == 15) {
+				tracking(0, 0, 4, 0, 0, MAIL, "");
+				setTimeout(
+						function() {
+							data = {
+								email : MAIL,
+								pw : PSW
+							}
+							$.ajax({
+								url : "rest/client/logIn",
+								type : "POST",
+								dataType : "json", // expected format for response
+								contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+								data : data,
+								success : function(response) {
+									if (response.status == 51) {
+										url = 'movies.html';
+										localStorage.setItem('user', MAIL);
+										window.open(url,'_self', false)
+										confirmOnExit = false;
+										tracking(0, 0, 5, 0, 0,MAIL, "");
+									} else {
+										document.getElementById("mask").style.display = "none";
+										$(".mask").removeClass("waiting");
+										alert(response.message);
 									}
-									$
-											.ajax({
-												url : "rest/client/logIn",
-												type : "POST",
-												dataType : "json", // expected
-																	// format
-																	// for
-																	// response
-												contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-												data : data,
-												success : function(response) {
-													if (response.status == 51) {
-														url = 'movies.html';
-														localStorage.setItem(
-																'user', MAIL);
-														window.open(url,
-																'_self', false)
-														confirmOnExit = false;
-														tracking(0, 0, 5, 0, 0,
-																MAIL, "");
-													} else {
-														document.getElementById("mask").style.display = "none";
-														$(".mask").removeClass("waiting");
-														alert(response.message);
-													}
-												},
-												error : function(response,
-														status, error) {
-													document.getElementById("mask").style.display = "none";
-													$(".mask").removeClass("waiting");
-													alert(response.message);
-												}
-											});
-								}, 100);
-					} else {
-						document.getElementById("mask").style.display = "none";
-						$(".mask").removeClass("waiting");
-						alert(response.message);
-					}
-				},
-				error : function(response, status, error) {
-					document.getElementById("mask").style.display = "none";
-					$(".mask").removeClass("waiting");
-					tracking(0, 0, 9, 0, 0, MAIL, "");
-					alert(response.message);
-				}
-
-			});
+								},
+								error : function(response,status, error) {
+									document.getElementById("mask").style.display = "none";
+									$(".mask").removeClass("waiting");
+									alert(response.message);
+								}
+							});
+						}, 100);
+			} else {
+				document.getElementById("mask").style.display = "none";
+				$(".mask").removeClass("waiting");
+				alert(response.message);
+			}
+		},
+		error : function(response, status, error) {
+			document.getElementById("mask").style.display = "none";
+			$(".mask").removeClass("waiting");
+			tracking(0, 0, 9, 0, 0, MAIL, "");
+			alert(response.message);
+		}
+	});
 }
 
 function openSupport() {
@@ -446,35 +436,33 @@ function sendSupportRequest() {
 			msg : message.value
 		};
 
-		$
-				.ajax({
-					url : "rest/client/support",
-					type : "POST",
-					dataType : "json", // expected format for response
-					async : false,
-					data : data,
-					success : function(response) {
-						if (response.status === 40) {
-							$(".mask").removeClass("waiting");
-							alert(response.message);
-							hideAll();
-							document.getElementById("mainContainer").style.display = "block";
-
-							if (msgCode == 0) {
-								tracking(0, 0, 7, 0, 0, email);
-							}
-						} else {
-							document.getElementById("mask").style.display = "none";
-							$(".mask").removeClass("waiting");
-							alert(response.message);
-						}
-					},
-					error : function(response, status, error) {
-						document.getElementById("mask").style.display = "none";
-						$(".mask").removeClass("waiting");
-						alert(response.message);
+		$.ajax({
+			url : "rest/client/support",
+			type : "POST",
+			dataType : "json", // expected format for response
+			async : false,
+			data : data,
+			success : function(response) {
+				if (response.status === 40) {
+					$(".mask").removeClass("waiting");
+					alert(response.message);
+					hideAll();
+					document.getElementById("mainContainer").style.display = "block";
+					if (msgCode == 0) {
+						tracking(0, 0, 7, 0, 0, email);
 					}
-				});
+				} else {
+					document.getElementById("mask").style.display = "none";
+					$(".mask").removeClass("waiting");
+					alert(response.message);
+				}
+			},
+			error : function(response, status, error) {
+				document.getElementById("mask").style.display = "none";
+				$(".mask").removeClass("waiting");
+				alert(response.message);
+			}
+		});
 	} else {
 		document.getElementById("mask").style.display = "none";
 		$(".mask").removeClass("waiting");

@@ -1,4 +1,4 @@
-var app = angular.module('TabsApp', [ 'ngResource', 'xeditable','checklist-model' ]);
+var app = angular.module('TabsApp', [ 'ngResource', 'xeditable' ]);
 app.factory(
 	'Api',['$http','$resource','$q',function($http, $resource, $q) {
 		function apiError(data) {
@@ -236,7 +236,24 @@ app.factory(
 		}
 
 	} ]);
-
+app.controller('BannerController', ['$scope', function($scope) {
+	var external = !(location.hostname == "localhost");
+	var prefix ="";
+	if(external) {
+		prefix = "http://s3-eu-west-1.amazonaws.com/vodresources/"
+	}
+	$scope.banners = [
+	                  {	"src" : prefix+"images/MF-bestmovies-main-banner.png";	},
+	                  {	"src" : prefix+"images/mainbanner-inner2.jpg";	},
+	                  {	"src" : prefix+"images/mainbanner-inner3.jpg";	},
+	                  {	"src" : prefix+"images/mainbanner-inner4.jpg";	},
+	                  {	"src" : prefix+"images/mainbanner-inner5.jpg";	},
+	                  {	"src" : prefix+"images/mainbanner-inner6.jpg";	},
+	                  {	"src" : prefix+"images/mainbanner-inner7.jpg";	},
+	                  {	"src" : prefix+"images/mainbanner-inner8.jpg";	}
+	                  ];
+	
+}])
 app.controller('PostBackController', ['$scope','$filter','$http','Api',function($scope, $filter, $http, Api) {
 	$scope.postBacks = [];
 	$scope.refreshPostBacks = function() {
@@ -297,10 +314,10 @@ app.controller('SupportController', ['$scope','$filter','$http','Api',function($
 	}
 	
 	$scope.updateStatus = function(support) {
-		data = "supportRequestId"+support.
-			
-			@FormParam("supportRequestId") String supportRequestId,
-			@FormParam("status") String status
+//		data = "supportRequestId"+support.
+//			
+//			@FormParam("supportRequestId") String supportRequestId,
+//			@FormParam("status") String status
 	}
 	$scope.refreshSupportRequests();
 

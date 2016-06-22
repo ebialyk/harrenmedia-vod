@@ -283,6 +283,11 @@ function closeDialog() {
 
 }
 window.onload = function() {
+	var disableExternal = (location.hostname == "localhost");
+	
+	document.getElementById('amazonCSS').disabled  = disableExternal;
+	document.getElementById('LHCSS').disabled  = !disableExternal;
+	
 	MAIL = localStorage.getItem('user');
 	
 	var url;
