@@ -63,7 +63,7 @@ function parseURLParams(url) {
 
 function login(mail, ps) {
 	data = {
-		email : user,
+		email : mail,
 		ps : ps
 	}
 	$.ajax({

@@ -167,6 +167,17 @@ app.factory(
 					isArray : true
 				},
 			}),
+			InitCountryService : $resource('rest/admin/initCountries', {}, {
+				post : {
+					method : 'POST',
+					interceptor : {
+						responseError : function(data) {
+							apiError(data);
+						}
+					},
+					isArray : true
+				},
+			}),
 			ClickServices : $resource('rest/admin/getClicks', {}, {
 				get : {
 					method : 'GET',
@@ -243,14 +254,14 @@ app.controller('BannerController', ['$scope', function($scope) {
 		prefix = "http://s3-eu-west-1.amazonaws.com/vodresources/"
 	}
 	$scope.banners = [
-	                  {	"src" : prefix+"images/MF-bestmovies-main-banner.png";	},
-	                  {	"src" : prefix+"images/mainbanner-inner2.jpg";	},
-	                  {	"src" : prefix+"images/mainbanner-inner3.jpg";	},
-	                  {	"src" : prefix+"images/mainbanner-inner4.jpg";	},
-	                  {	"src" : prefix+"images/mainbanner-inner5.jpg";	},
-	                  {	"src" : prefix+"images/mainbanner-inner6.jpg";	},
-	                  {	"src" : prefix+"images/mainbanner-inner7.jpg";	},
-	                  {	"src" : prefix+"images/mainbanner-inner8.jpg";	}
+	                  {	"src" : prefix+"images/MF-bestmovies-main-banner.png"	},
+	                  {	"src" : prefix+"images/mainbanner-inner2.jpg"	},
+	                  {	"src" : prefix+"images/mainbanner-inner3.jpg"	},
+	                  {	"src" : prefix+"images/mainbanner-inner4.jpg"	},
+	                  {	"src" : prefix+"images/mainbanner-inner5.jpg"	},
+	                  {	"src" : prefix+"images/mainbanner-inner6.jpg"	},
+	                  {	"src" : prefix+"images/mainbanner-inner7.jpg"	},
+	                  {	"src" : prefix+"images/mainbanner-inner8.jpg"	}
 	                  ];
 	
 }])
@@ -359,6 +370,11 @@ app.controller('CountriesController', ['$scope','$filter','$http','Api',function
 			}
 			$scope.countries = data;
 			})
+	}
+	$scope.initCountries = function() {
+		Api.InitCountryService.post().$promise.then(function() {
+			$scope.refreshCountries();
+		});
 	}
 	$scope.newCountry = function() {
 		$scope.update = true;

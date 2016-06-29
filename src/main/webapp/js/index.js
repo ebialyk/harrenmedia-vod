@@ -10,27 +10,27 @@ var COUNTRY;
 window.onload = function() {
 	// url format
 	// ?aff=affiliateNumber&country=countryNumber&theme=themeCode&titleMovie=movieTitle&lang=language&clickid=clickid
-	//?aff=4001&country=20&theme=0220&titleMovie=THE%20SECRET%20OF%20YOUR%20&lang=0&clickid=ZjI2MTg1NzNjYzQ3NGYxN2EwYjIwMjI5ODAxOGI1NTcsLCwxMzg5NDgsSUwsNTUsLA=="
+	// ?aff=4001&country=20&theme=0220&titleMovie=THE%20SECRET%20OF%20YOUR%20&lang=0&clickid=ZjI2MTg1NzNjYzQ3NGYxN2EwYjIwMjI5ODAxOGI1NTcsLCwxMzg5NDgsSUwsNTUsLA=="
 	urlParams = parseURLParams(window.location.href);
 	var disableExternal = (location.hostname == "localhost");
-	
-	document.getElementById('amazonCSS').disabled  = disableExternal;
-    document.getElementById('amazonMobileCSS').disabled = disableExternal;
-    document.getElementById('LHCSS').disabled  = !disableExternal;
-    document.getElementById('LHMobileCSS').disabled = !disableExternal;
-	
+
+	document.getElementById('amazonCSS').disabled = disableExternal;
+	document.getElementById('amazonMobileCSS').disabled = disableExternal;
+	document.getElementById('LHCSS').disabled = !disableExternal;
+	document.getElementById('LHMobileCSS').disabled = !disableExternal;
+
 	resizeScreen();
-	
-	if(urlParams != null) {
+
+	if (urlParams != null) {
 		var title = " " + urlParams.titleMovie[0];
-		AFF = urlParams.aff?urlParams.aff[0]:0;
-		COUNTRY = urlParams.country?urlParams.country[0]:0;
-		CSS = urlParams.theme?urlParams.theme[0]:"";
-		LANG = urlParams.lang?urlParams.lang[0]:0;
-		CLICKID = urlParams.clickid?urlParams.clickid[0]:"";
-		
+		AFF = urlParams.aff ? urlParams.aff[0] : 0;
+		COUNTRY = urlParams.country ? urlParams.country[0] : 0;
+		CSS = urlParams.theme ? urlParams.theme[0] : "";
+		LANG = urlParams.lang ? urlParams.lang[0] : 0;
+		CLICKID = urlParams.clickid ? urlParams.clickid[0] : "";
+
 		document.getElementById("movieTitle").innerHTML += title;
-		
+
 		setTimeout(function() {
 			document.getElementById("screen").style.display = "block";
 			document.getElementById("loading").style.position = "absolute";
@@ -40,22 +40,29 @@ window.onload = function() {
 			openCreateAccountDialog();
 		}, 5000);
 
-		//tracking(affiliate,country, step, css, languageId, email, clickId
+		// tracking(affiliate,country, step, css, languageId, email, clickId
 		tracking(AFF, COUNTRY, 0, CSS, LANG, 0, CLICKID);
 
+	} else {
+		confirmOnExit = false;
+		if (location.hostname == "localhost") {
+			url = '/starter/mainPage.html';
+		}
+		else {
+			url = '../mainPage.html';
+		}
+		window.open(url, '_self', false)
 	}
-	
 }
 
-$(window).on('resize', function(){
+$(window).on('resize', function() {
 	resizeScreen();
 });
 
 function resizeScreen() {
-	if($('html').width() < 1000) {
-		$('.ratio16-9').height($('.ratio16-9').width()* 9 / 16);
-	}
-	else {
+	if ($('html').width() < 1000) {
+		$('.ratio16-9').height($('.ratio16-9').width() * 9 / 16);
+	} else {
 		$('.ratio16-9').height('auto');
 	}
 }
@@ -64,15 +71,14 @@ function openCreateAccountDialog() {
 	document.getElementById("loadSpan").style.display = "none";
 	document.getElementById("contentBar").style.display = "none";
 	document.getElementById("loading").style.display = "none";
-	document.getElementById("w8").style.display = "none";
-	
+
 	document.getElementById("CreateAccount").style.display = "flex";
 	document.getElementById("mask").style.display = "block";
-	
+
 	document.getElementById("email").focus();
 }
 function CreateAccountValidation() {
-	
+
 	var email = document.getElementById("email");
 	var psw = document.getElementById("psw");
 	var psw2 = document.getElementById("psw2");
@@ -81,7 +87,7 @@ function CreateAccountValidation() {
 	var okPsw = false;
 	var okPsw2 = false;
 	var okPswEquals = false;
-	
+
 	var alertTXT = "";
 
 	// not allow empty fields
@@ -102,7 +108,7 @@ function CreateAccountValidation() {
 		psw.className = "error";
 		psw.title = "Please enter a password";
 		alertTXT += "\nPlease enter a password";
-	} else if(!validPassword(psw)) {
+	} else if (!validPassword(psw)) {
 		psw.className = "error";
 		psw.title = "Please type a valid password";
 		alertTXT += "\nPlease type a valid password";
@@ -121,7 +127,8 @@ function CreateAccountValidation() {
 		okPsw2 = true;
 	}
 
-	if (psw.value === psw2.value) { // validate password and confirm password are equals
+	if (psw.value === psw2.value) { // validate password and confirm password
+									// are equals
 		okPswEquals = true;
 	} else {
 		psw.className = "error";
@@ -157,8 +164,12 @@ function CreateAccountValidation() {
 					localStorage.setItem('PSW', PSW);
 					tracking(AFF, COUNTRY, 2, CSS, LANG, MAIL, CLICKID);
 				} else {
-					tracking(AFF, COUNTRY, 8, CSS, LANG, email.value, CLICKID);
 					alert(response.message);
+					if (response.status == 61 || response.status == 62) {
+						window.open("http://google.com", '_self', false)
+					} else {
+						tracking(AFF, COUNTRY, 8, CSS, LANG, email.value, CLICKID);
+					}
 				}
 			},
 			error : function(response, status, error) {
@@ -170,10 +181,10 @@ function CreateAccountValidation() {
 	}
 }
 function openVerificationPage() {
-	url = 'verification.html'+window.location.search;
+	url = 'verification.html' + window.location.search;
 	confirmOnExit = false;
 	window.open(url, '_self', false)
-	
+
 	tracking(AFF, COUNTRY, 3, CSS, LANG, MAIL, CLICKID);
 }
 
@@ -181,7 +192,7 @@ function openVerificationPage() {
 $(function() {
 	$(window).on('beforeunload', function() {
 		if (confirmOnExit)
-		return "Are you sure you want to leave the page?";
+			return "Are you sure you want to leave the page?";
 	});
 
 	$(window).on('unload', function() {
@@ -193,8 +204,5 @@ $(function() {
 function checkEnter(e) {
 	if (e.which == 13 || e.keyCode == 13) {
 		CreateAccountValidation();
-    }
+	}
 }
-
-
-

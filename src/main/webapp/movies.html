@@ -106,7 +106,7 @@
           <ul class="slides">
 			{{#each movie in App.MoviesController}}
             <li>
-  	    	    <img {{ bindAttr src=movie.Image }} {{ action 'selectMovie' movie}} />
+  	    	    <img {{ bindAttr src= movie.title_pic_url }} {{ action 'selectMovie' movie}} />
   	    	</li>
 			{{/each}}
 
@@ -129,14 +129,14 @@
 
       	{{#each movie in App.MoviesController}}
       	<div class="movie" {{ action 'selectMovie' movie}}>
-        	<img {{ bindAttr src=movie.Image }} alt="">
-          	<div class="movieTitle">{{movie.Name}}</div>
+        	<img {{ bindAttr src=movie.title_pic_url }} alt="">
+          	<div class="movieTitle">{{movie.FILM_TITLE}}</div>
           	<div class="subtitle">
             	<div class="stars">
 					<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star
 					</i><i class="material-icons">star</i><i class="material-icons">star</i>
         		</div>
-        		<div class="movieCategory">{{movie.Genre}}</div>
+        		<div class="movieCategory">{{movie.GENRE}}</div>
         	</div>
       	</div>
       	{{/each}}
@@ -291,7 +291,9 @@
 		<div class="closeBtn"><i class="material-icons" onclick="closeDialog()">close</i></div>
 
 		<video controls id="video">
-    		<source type="video/mp4">
+    		<source type="video/m4v">
+			<source type="video/x-m4v">
+
     	Your browser does not support HTML5 video.
 		</video>
 	</div>

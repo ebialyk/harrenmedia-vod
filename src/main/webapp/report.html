@@ -85,7 +85,7 @@ li {
 					<th>STATUS</th>
       				<th>USER MAIL</th>
 			</thead>
-			<tr ng-repeat="usr in loggedInUsers ">
+	<tr ng-repeat="usr in loggedInUsers ">
 				<td><span>{{ usr.loggedInUserId }}</span></td>
       				<td><span>{{ usr.ip }}</span></td>
 					<td><span>{{ usr.logInDate | date:'dd/MM/yyyy HH:mm:ss Z' }}</span></td>
@@ -94,7 +94,6 @@ li {
 			</tr>
 		</table>
 	</div>
-	<div ng-hide="!loggedInUsers">No Records found</div>
 
 
 </div>		
@@ -136,7 +135,7 @@ li {
 			</tr>
 		</table>
 	</div>
-   <div ng-hide="!users">No Records found</div>
+
 
 </div>		
 	</script>
@@ -181,7 +180,7 @@ li {
 			</tr>
 		</table>
 	</div>
-	<div ng-hide="!affiliates">No Records found</div>
+	
 <div id="newAffiliate">
 			<label for="name">Affiliate Name:</label> <input type="text" id="name" ng-model="aff.name"><br> 
 			<label for="language">Language:</label> <input type="text" id="language" ng-model="aff.language"><br> 
@@ -237,7 +236,6 @@ li {
 			</tr>
 		</table>
 	</div>
-<div ng-hide="!clicks">No Records found</div>
 </div>		
 </script>
 <!-- POSTBACK -->
@@ -268,7 +266,7 @@ li {
 			</tr>
 		</table>
 	</div>
-<div ng-hide="!postBacks">No Records found</div>
+
 
 </div>		
 	</script>
@@ -308,8 +306,6 @@ li {
 				</tr>
 			</table>
 		</div>
-<div ng-hide="!supportRequests">No Records found</div>
-
 	</div>		
 	</script>
 
@@ -340,8 +336,6 @@ li {
 
 	  
 	</div>
-<div ng-hide="!languages">No Records found</div>
-
 	<div id="newLanguage" ng-show="update">
 			<label for="name">Language:</label> <input type="text" id="name" ng-model="lang.name"><br> 
 			<button ng-click="addLanguage(lang)">Add Language</button>
@@ -392,8 +386,6 @@ li {
 
 	  
 	</div>
-<div ng-hide="!countries">No Records found</div>
-
 	<div id="newCountry" ng-show="update" ng-model="selectedCountry">
 			<label for="name">Country name:</label> <input type="text" id="name" ng-model="selectedCountry.name"><br> 
 			<label for="code">Country code:</label> <input type="text" id="code" ng-model="selectedCountry.code"><br> 

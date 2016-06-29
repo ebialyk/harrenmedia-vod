@@ -21,13 +21,12 @@
  
 <script src="http://s3-eu-west-1.amazonaws.com/vodresources/js/bower_components/jquery/dist/jquery.min.js"></script>
  
-<script src="http://s3-eu-west-1.amazonaws.com/vodresources/js/utils.js" id="amazonUtilsJS"></script>
-<script src="http://s3-eu-west-1.amazonaws.com/vodresources/js/index.js" id="amazonIndexJS"></script>
+
 
 <script src="js/utils.js" id="LHUtilsJS"></script>
 <script src="js/index.js"  id="LHIndexJS"></script>
 </head>
-<body id="body">
+<body id="body" class="preload-01 preload-02">
   <div id="LandingPage">
     <div id="content">
       <div id="header" onclick="openCreateAccountDialog()">
@@ -47,36 +46,11 @@
         <div class="width ratio16-9">
           <div class="content">
             <div class="loading" id="loading">
-              <div class="windows8" id="w8">
-                <div class="wBall" id="wBall_1">
-                  <div class="wInnerBall"></div>
-                </div>
-                <div class="wBall" id="wBall_2">
-                  <div class="wInnerBall"></div>
-                </div>
-                <div class="wBall" id="wBall_3">
-                  <div class="wInnerBall"></div>
-                </div>
-                <div class="wBall" id="wBall_4">
-                  <div class="wInnerBall"></div>
-                </div>
-                <div class="wBall" id="wBall_5">
-                  <div class="wInnerBall"></div>
-                </div>
-              </div>
             </div>
             <div class="screen" id="screen">
               <div class="movie"></div>
               <div class="movieTimer" onclick="openCreateAccountDialog()">
                 <div id="circularG">
-                  <div id="circularG_1" class="circularG"></div>
-                  <div id="circularG_2" class="circularG"></div>
-                  <div id="circularG_3" class="circularG"></div>
-                  <div id="circularG_4" class="circularG"></div>
-                  <div id="circularG_5" class="circularG"></div>
-                  <div id="circularG_6" class="circularG"></div>
-                  <div id="circularG_7" class="circularG"></div>
-                  <div id="circularG_8" class="circularG"></div>
                 </div><span id="loadSpan">Loading...</span>
                 <div class="contentBar" id="contentBar">
                   <span class="expand "></span>
@@ -96,7 +70,7 @@
       <div id="CreateAccount"> 
       	<div class="registrationWrapper">
         	<div id="registration" >
-          		<p>Only registered Friends can watch all the movies!</p>
+          		<p>Only registered friends can watch all the movies!</p>
           		<p class="enlargedText">you must create a <span class="green">FREE</span> account to <span class="green">STREAM</span> this movie</p>
           		<input type="email" id="email" placeholder="E-mail" data-index="1" >
           		<input type="password" id="psw" maxlength="12" pattern=".{5,12}" required  placeholder="Password" data-index="2">

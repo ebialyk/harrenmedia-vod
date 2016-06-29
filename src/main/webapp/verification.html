@@ -12,34 +12,43 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<script src="http://s3-eu-west-1.amazonaws.com/vodresources/js/bower_components/jquery/dist/jquery.min.js"></script>
 	
+	<script src="https://api-test.wirecard.com/engine/hpp/paymentPageLoader.js" type="text/javascript"></script>
 	<link rel="stylesheet" href="http://s3-eu-west-1.amazonaws.com/vodresources/css/style.css" id="amazonCSS">
 	<link rel="stylesheet" href="http://s3-eu-west-1.amazonaws.com/vodresources/css/mobile.css" id="amazonMobileCSS">
 	
 	<link rel="stylesheet" href="css/style.css" id="LHCSS">
 	<link rel="stylesheet" href="css/mobile.css" id="LHMobileCSS">
-	
+	<script type="text/javascript" src="js/agregator.js"></script>
 	<script src="js/va.js" id="LHJS"></script>
 	<script src="js/utils.js" id="LHUtilsJS"></script>
-
+	
+	
 </head>
 <body id="body" class="whiteBg">
 	<script type="text/x-handlebars">
 <div id="VerificationPage">
 	<div id="content">
       <div id="header" class="grayBg">
-        <div id="title" class="title"></div>
+        <div id="title" class="title">Account Verification</div>
       </div>
+	<div class="bluebg">
+		<p>This is a free registration. Why am I asked for my credit card details? It's for verification purposes. If you do not cancel your account within the trial period, five days your account will be automatically extended to a premium account at the cost of $49.99 per month. When you sign up for the free trial muvflix may charge and refund one or more variable amounts to your account up to $2.00 in order verify the card is valid, and that you are the authorised and legitimate cardholder. These amounts will appear on your card statement along with the corresponding refund. If you cancel your account within the free trial period, you will only see the verification charges and their corresponding refunds in your statement.
+		</p>
+	</div>
+	<div class="explanation mobileExplanation">
+          <div class="title">Why do we ask you for your billing information?</div>
+          <p>Because our library is only licensed to distribute our content to certain countries, we ask that you provide your mailling address by providing us with a valid credit card number. <b>NO CHARGES GUARANTEED</b>. No charges will appear on your credit card statement unless you upgrade to a Premium Membership or make a purchase.</p>
+          
+          <div class="title">Privacy Guaranteed</div>
+          <p>In order to keep your personal information private, we use encryption security tehnology. Our site employs <b>Secure Sockets Layering (SSL)</b> to encript your personal information such as credit card number, name, and address before it travels over the internet. Your data is encrypted and password-protected to make sure no one ever sees your personal information!!! </p>
+          <div class="title">No Hidden Fees</div>
+          <p>We always provide our members with a detailed purchase history in order for them to know exactly what they are paying for. Your payment method information is requiered to future purchases only. <b>NO CHARGES</b> will appear on your credit card statement unless you upgrade to a Premium Membership or make a purchase. By creating an account, you agree our <a class="underlined" href="TermsAndConditions.html" target="_blank" >Terms & Conditions</a></p>
+     </div>
       <div class="verificationContainer">
         <div class="explanation">
           <div class="title">Why do we ask you for your billing information?</div>
           <p>Because our library is only licensed to distribute our content to certain countries, we ask that you provide your mailling address by providing us with a valid credit card number. <b>NO CHARGES GUARANTEED</b>. No charges will appear on your credit card statement unless you upgrade to a Premium Membership or make a purchase.</p>
-          <hr>
-          <ul><li>Click and watch</li>
-          <li>Steam movies in HD</li>
-          <li>Watch on any device</li>
-          <li>Hassle Free Cancellation</li>
-          <li>Free of charge</li></ul>
-          <hr>
+          
           <div class="title">Privacy Guaranteed</div>
           <p>In order to keep your personal information private, we use encryption security tehnology. Our site employs <b>Secure Sockets Layering (SSL)</b> to encript your personal information such as credit card number, name, and address before it travels over the internet. Your data is encrypted and password-protected to make sure no one ever sees your personal information!!! </p>
           <div class="title">No Hidden Fees</div>
@@ -49,77 +58,35 @@
           <div class="timer">Our special offer will be available only in the next <span id="time"></span>
           </div>
           <div class="verificationForm">
-			<div class="verificationTitle">
-            	<span class="title">Account Verification</span>
-            </div>
 			<div class="subtitle">
-              <img src="images/MF_pre-reg_verification-VBlue1.png" alt="">
+              <img src="images/MF_verification-Vgreen.png" alt="">
 				<div class="starsWrapper">
-				<span class="little">Normal memebership</span>
+				<span class="little">Normal Memebership</span>
               	<div class="stars"><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i></div> 
 				<div class="divFree"><span class="free">FREE</span><span class="price">$0.00</span></div></div>
 				</div>
 				
-              <table class="fields">
-                <tr>
-                  <td>First Name</td>
-                  <td class="inputField"><input type="text" id="FName" name="FName" minlength="2" maxlength="30" required="true"></td>
-                  <td><div class="okIcon"></div></td>
-                </tr>
-                <tr>
-                  <td>Last Name</td>
-                  <td class="inputField"><input type="text" id="LName" name="LName"></td>
-                  <td><div class="okIcon"></div></td>
-                </tr>
-                <tr>
-                  <td>Country</td>
-                  <td class="inputField">{{view Ember.Select 
-                      contentBinding="App.CountryController" 
-                      selectionBinding="App.CountrySelectedController.name" 
-                      optionLabelPath="content.name" 
-                      optionValuePath="content.name"}}</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>Zip/postal</td>
-                  <td class="inputField"><input type="text" id="Zip" name="Zip"></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td colspan="2"><div class="cardIcons"></div></td>
-                </tr>
-                <tr>
-                  <td>Credit Card</td>
-                  <td class="inputField"><input type="text" id="CNumber" name="CNumber"></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>Expiry Date</td>
-                  <td id="ExpDT" class="inputField">{{view Ember.Select 
-                      contentBinding="App.MonthsController" 
-                      optionLabelPath="content.name" 
-                      optionValuePath="content.id"}}
-                      {{view Ember.Select 
-                      contentBinding="App.YearsController" 
-                      optionLabelPath="content.name" 
-                      optionValuePath="content.id"}}
-                  <td></td>
-                </tr>
-                <tr>
-                  <td ><span>CVV</span><br><span class="info"><a onclick="showCvv()">What is CVV?</a></span></td>
-                  <td class="inputField smallInput"><input class="smallInput" type="text"></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="emptyField"></td>
-                  <td class="inputField" colspan="2"><button class="greenBtn" onclick="verifyAccount()" >VERIFY MY ACCOUNT</button></td>
-                  <td></td>
-                </tr>
-              </table>
+              <div id="seamless-target"></div>
+				<button class="greenBtn" onclick=" verifyAccount()">VERIFY MY ACCOUNT NOW</button>
               </div>
           </div>
         </div>
-        <div class="footer"><div class="footerBody"></div></div>
+        <div class="footerVA"><div class="footerBody"></div></div>
+		<div class="footer">
+   			<div class="footerBody">
+    			<div class="logo">
+    				<div>Need help? Support@movflix.com</div>
+    			</div>
+    			<div class="menu">
+      				<ul>
+        				<li><a href="TermsAndConditions.html" target="_blank">Terms of Use</a></li><span>|</span>
+         				<li><a href="PrivacyPolicy.html" target="_blank">Privacy</a></li><span>|</span>
+						<li><a target="_blank">Affiliates</a></li><span>|</span>
+      				</ul>
+      				<span>Copyright © 2015</span>
+      			</div>
+    		</div>
+		</div>
       </div>
       
     </div>

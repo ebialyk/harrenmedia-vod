@@ -9,7 +9,7 @@ var PSW;
  
 window.onload = function() {
 
-var disableExternal = (location.hostname == "localhost");
+	var disableExternal = (location.hostname == "localhost");
 	
 	document.getElementById('amazonCSS').disabled  = disableExternal;
 	document.getElementById('amazonMobileCSS').disabled  = disableExternal;
@@ -21,6 +21,64 @@ var disableExternal = (location.hostname == "localhost");
 	document.getElementById("VerificationPage").style.display = "flex";
 	var url;
 	
+	var now = new Date();
+	var now_utc = now.getUTCFullYear() + "" + setNumber(now.getUTCMonth() + 1)
+			+ "" + setNumber(now.getUTCDate()) + ""
+			+ setNumber(now.getUTCHours()) + ""
+			+ setNumber(now.getUTCMinutes()) + ""
+			+ setNumber(now.getUTCSeconds());
+	var reqID = "REQ" + now_utc;
+
+	function setNumber(num) {
+		if (num < 10) {
+			return "0" + num;
+		} else {
+			return num;
+		}
+	}
+
+	data = {
+		timestamp : now_utc
+	}
+	$
+			.ajax({
+				url : "rest/agregator/createSignature",
+				type : "POST",
+				dataType : "html", // expected format for response
+				contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+				data : data,
+				success : function(response) {
+					response = response.replace("{", '').trim()
+							.replace("}", '').trim().replace(/"/g, '').trim();
+					var res = response.split(",");
+
+					var sign = res[0].split(":")[1];
+					var reqId = res[1].split(":")[1];
+
+					WirecardPaymentPage
+							.seamlessRenderForm({
+								requestData : {
+									request_id : reqId,
+									request_time_stamp : now_utc,
+									merchant_account_id : "51b671b8-17da-4ab6-af90-d86d46d774c9",
+									transaction_type : "authorization",
+									requested_amount : "2.56",
+									requested_amount_currency : "EUR",
+									payment_method : "creditcard",
+									request_signature : sign,
+									template_name : "default-cc-template",
+								},
+								wrappingDivId : "seamless-target",
+								onSuccess : function(response) {
+								},
+								onError : function(response) {
+								},
+							});
+				},
+				error : function(response, status, error) {
+					alert(response.message);
+				}
+			});
 	
 	if (MAIL != null && MAIL != undefined) {
 		
@@ -31,7 +89,7 @@ var disableExternal = (location.hostname == "localhost");
 		setTimeout(function() {
 			history.pushState({}, null,url);
 		}, 100);
-
+		document.getElementById("VerificationPage").style.display = "flex";
 	} else {
 		if(location.hostname == "localhost") 
 			url='/starter/index.html';
@@ -70,87 +128,117 @@ var disableExternal = (location.hostname == "localhost");
 };
 
 function verifyAccount() {
-	var uName = document.getElementById("FName").value +" "+ document.getElementById("LName").value;
+	//var uName = document.getElementById("FName").value +" "+ document.getElementById("LName").value;
 	data = {
 		email : MAIL,
 		affiliate : AFF,
 		country : COUNTRY,
-		userName : uName
+		userName : ""
 	};
-	$.ajax({
-		url : "rest/client/verifyAccount",
-		type : "POST",
-		dataType : "json", // expected format for response
-		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-		data : data,
-		success : function(response) {
-			if (response.status == 15) {
-				document.getElementById("VerificationPage").style.display = "none";
-					document.getElementById("page3").style.display = "flex";
-					document.getElementById("body").className = "";
-					tracking(AFF, COUNTRY,4, CSS, LANG, MAIL, CLICKID);
-					data = {
+	WirecardPaymentPage.seamlessSubmitForm({
+		onSuccess : function(response) {
+			data = {
+					/*@FormParam("affiliate") String affiliate,
+			@FormParam("country") String country,
+			@FormParam("userName") String userName) {*/
+				affiliate : AFF,
+				country : COUNTRY,
+				authorization_code : response.authorization_code,
+				card_type : response.card_type,
+				completion_time_stamp : response.completion_time_stamp,
+				expiration_month : response.expiration_month,
+				expiration_year : response.expiration_year,
+				first_name : response.first_name,
+				last_name : response.last_name,
+				masked_account_number : response.masked_account_number,
+				merchant_account_id : response.merchant_account_id,
+				parent_transaction_id : response.parent_transaction_id,
+				payment_method : response.payment_method,
+				request_id : response.request_id,
+				requested_amount : response.requested_amount,
+				requested_amount_currency : response.requested_amount_currency,
+				response_signature : response.response_signature,
+				self : response.self,
+				status_code_1 : response.status_code_1,
+				status_description_1 : response.status_description_1,
+				status_severity_1 : response.status_severity_1,
+				token_id : response.token_id,
+				transaction_id : response.transaction_id,
+				transaction_state : response.transaction_state,
+				transaction_type : response.transaction_type
+			}
+			
+			$.ajax({
+				url : "rest/client/verifyAccount",
+				type : "POST",
+				dataType : "json", // expected format for response
+				contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+				data : data,
+				success : function(response) {
+					if (response.status == 15) {
+						document.getElementById("VerificationPage").style.display = "none";
+						document.getElementById("page3").style.display = "flex";
+						document.getElementById("body").className = "";
+						tracking(AFF, COUNTRY,4, CSS, LANG, MAIL, CLICKID);
+						data = {
 							affiliate: AFF,
 							clickID: CLICKID
-					}
-					//check for sending postback
-					$.ajax({
-						url: "rest/client/postback",
-						type : "POST",
-						dataType : "json", // expected format for response
-						contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-						data : data,
-						success : function(response) {
-							if(response.url != "") {
-								ID = response.id;
-								$.ajax({
-									url : response.url,
-									type : response.type,
-									success : function(response) {
-										setTimeout(function() {
-											data = {
-												email : MAIL,
-												pw : PSW
-											}
-											login(data);
-										}, 2000);
-									},
-									error : function(response, status, error) {
-										setTimeout(function() {
-											data = {
-												email : MAIL,
-												pw : PSW
-											}
-											login(data);
-										}, 2000);	
-									}
-								});
-							} else {
-								setTimeout(function() {
-									data = {
-										email : MAIL,
-										pw : PSW
-									}
-									login(data);
-								}, 2000);
+						}
+						setTimeout(function() {
+							data = {
+								email : MAIL,
+								pw : PSW
 							}
-						},
-					error : function(response, status, error) {
+							chkForLogin(data);
+						}, 2000);	
+						if (CLICKID != null && CLICKID != undefined && CLICKID != "") {
+						//check for sending postback
+						$.ajax({
+							url: "rest/client/postback",
+							type : "POST",
+							dataType : "json", // expected format for response
+							contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+							data : data,
+							success : function(response) {
+								if(response.url != "") {
+									ID = response.id;
+									
+									$.ajax({
+										url : response.url,
+										type : response.type,
+										success : function(response) {
+											
+										},
+										error : function(response, status, error) {
+											
+										}
+									});
+								}
+							},
+							error : function(response, status, error) {
+								alert(response.message);
+							}
+						});
+						}
+					} else {
+						tracking(AFF, COUNTRY, 9, CSS, LANG, MAIL, CLICKID);
 						alert(response.message);
 					}
-				});
-			} else {
-				tracking(AFF, COUNTRY, 9, CSS, LANG, MAIL, CLICKID);
-				alert(response.message);
-			}
+				},
+				error : function(response, status, error) {
+					alert(response.message);
+				}
+			});
 		},
-		error : function(response, status, error) {
-			alert(response.message);
-		}
+		onError : function(response) {
+			alert(response);
+		},
 	});
-
+	
+	
+	
 }
-function login(data) {
+function chkForLogin(data) {
 	$.ajax({
 		url : "rest/client/logIn",
 		type : "POST",
