@@ -22,7 +22,9 @@ window.onload = function() {
 	resizeScreen();
 
 	if (urlParams != null) {
-		var title = " " + urlParams.titleMovie[0];
+		var title = " ";
+		if (urlParams.titleMovie[0] != "{PLEASE_PUT_THE_MOVIE_NAME_HERE}")
+			title += urlParams.titleMovie[0];
 		AFF = urlParams.aff ? urlParams.aff[0] : 0;
 		COUNTRY = urlParams.country ? urlParams.country[0] : 0;
 		CSS = urlParams.theme ? urlParams.theme[0] : "";
@@ -40,16 +42,17 @@ window.onload = function() {
 			openCreateAccountDialog();
 		}, 5000);
 
+		
 		// tracking(affiliate,country, step, css, languageId, email, clickId
 		tracking(AFF, COUNTRY, 0, CSS, LANG, 0, CLICKID);
 
 	} else {
 		confirmOnExit = false;
 		if (location.hostname == "localhost") {
-			url = '/starter/mainPage.html';
+			url = '/starter/';
 		}
 		else {
-			url = '../mainPage.html';
+			url = '../';
 		}
 		window.open(url, '_self', false)
 	}
@@ -79,6 +82,7 @@ function openCreateAccountDialog() {
 }
 function CreateAccountValidation() {
 
+	document.getElementById("loadingMask").style.display = "block";
 	var email = document.getElementById("email");
 	var psw = document.getElementById("psw");
 	var psw2 = document.getElementById("psw2");
@@ -137,8 +141,9 @@ function CreateAccountValidation() {
 		psw2.title = "password and confirm password are not the same, please type again";
 		alertTXT += "\npassword and confirm password are not the same, please type again";
 	}
-
+	
 	if (okEmail && okPsw && okPsw2 && okPswEquals) {
+		
 		tracking(AFF, COUNTRY, 1, CSS, LANG, email.value, CLICKID);
 		data = {
 			email : email.value,
@@ -166,7 +171,8 @@ function CreateAccountValidation() {
 				} else {
 					alert(response.message);
 					if (response.status == 61 || response.status == 62) {
-						window.open("http://google.com", '_self', false)
+						email.value = "";
+						email.readOnly = true;
 					} else {
 						tracking(AFF, COUNTRY, 8, CSS, LANG, email.value, CLICKID);
 					}
@@ -175,9 +181,12 @@ function CreateAccountValidation() {
 			error : function(response, status, error) {
 				alert(response.message);
 			}
+		}).done(function() {
+			document.getElementById("loadingMask").style.display = "none";
 		});
 	} else {
 		alert(alertTXT);
+		document.getElementById("loadingMask").style.display = "none";
 	}
 }
 function openVerificationPage() {

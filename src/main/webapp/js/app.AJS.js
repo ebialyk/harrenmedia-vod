@@ -358,6 +358,7 @@ app.controller('CountriesController', ['$scope','$filter','$http','Api',function
 	}
 
 	$scope.refreshCountries = function() {
+		$scope.countryMessage = "Searching countries... Please wait."
 		Api.CountryService.get().$promise.then(function(data) {
 			for (var i = 0; i < data.length; i++) {
 				var langs = data[i].languages;
@@ -369,6 +370,12 @@ app.controller('CountriesController', ['$scope','$filter','$http','Api',function
 				data[i].langs = lang
 			}
 			$scope.countries = data;
+			
+			if (data.length > 0) {
+				$scope.countryMessage = "";
+			} else {
+				$scope.countryMessage = "No Records Found";
+			}
 			})
 	}
 	$scope.initCountries = function() {
@@ -401,7 +408,7 @@ app.controller('CountriesController', ['$scope','$filter','$http','Api',function
 			languages += langs[i].languageId + ",";
 		}
 		var data = 'countryName='+country.name+'&countryCode='+country.code+
-			'&allowed='+country.allowed+'&languages='+languages;
+			'&allowed='+country.allowed+'&languages='+languages+'&amount='+country.amount+'&currency='+country.currency;
 	    return Api.CountryService.post(data).$promise.then(function(result) {
 	    	$scope.update = false;
 			$scope.country = "";
@@ -416,6 +423,8 @@ app.controller('CountriesController', ['$scope','$filter','$http','Api',function
 		$scope.selectedCountry.name = country.country.countryName;
 		$scope.selectedCountry.allowed = country.country.allowed ? '1':'0';
 		$scope.selectedCountry.code = country.country.countryCode;
+		$scope.selectedCountry.amount = country.country.amount;
+		$scope.selectedCountry.currency = country.country.currency;
 		$scope.selectedCountry.countryId = country.country.countryId;
 			
 		$scope.selectedLanguages.languages =  country.languages;

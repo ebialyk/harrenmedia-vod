@@ -231,7 +231,9 @@ function SignUp() {
 					$(".mask").removeClass("waiting");
 					
 					hideAll();
-					document.getElementById("SignUpPage").style.display = "flex";
+					
+					window.open('/starter/verificationAccount.html','_self', false);
+					//document.getElementById("SignUpPage").style.display = "flex";
 				} else {
 					alert(response.message);
 				}
@@ -283,7 +285,7 @@ function verifyAccount() {
 									if (response.status == 51) {
 										url = 'movies.html';
 										localStorage.setItem('user', MAIL);
-										window.open(url,'_self', false)
+										window.open(url,'_self', false);
 										confirmOnExit = false;
 										tracking(0, 0, 5, 0, 0,MAIL, "");
 									} else {

@@ -366,6 +366,8 @@ li {
 	      <td>CODE</td>
 		  <td>ALLOWED</td>
 		  <td>LANGUAGES</td>
+		  <td>AMOUNT</td>
+		  <td>CURRENCY</td>
 	    </tr>
 	    <tr ng-repeat="country in countries">
 	      <td>
@@ -383,6 +385,12 @@ li {
 	      <td>
 	        <span>{{ country.langs }}</span>
 	      </td>
+		  <td>
+	        <span>{{ country.country.amount }}</span>
+	      </td>
+		  <td>
+	        <span>{{ country.country.amountCurrency }}</span>
+	      </td>
 			<td>
 				<button class="btn btn-primary left" ng-click="upd(country)">Update</button>
 				<button class="btn btn-primary left" ng-click="del($index,country)">Delete</button>
@@ -392,11 +400,14 @@ li {
 
 	  
 	</div>
-<div ng-hide="!countries">No Records found</div>
+{{countryMessage}}
 
 	<div id="newCountry" ng-show="update" ng-model="selectedCountry">
 			<label for="name">Country name:</label> <input type="text" id="name" ng-model="selectedCountry.name"><br> 
-			<label for="code">Country code:</label> <input type="text" id="code" ng-model="selectedCountry.code"><br> 
+			<label for="code">Country code:</label> <input type="text" id="code" ng-model="selectedCountry.code"><br>
+			<label for="amount">Amount:</label> <input type="text" id="amount" ng-model="selectedCountry.amount"><br> 
+ 			<label for="currency">Currency:</label> <select id="currency" ng-options="currency as currency.text for currency in Currencies track by currency.text" ng-model="selectedCountry.amountCurrency"></select><br>
+
 			<label for="allowed">Country allowed:</label> <input type="checkbox" ng-model="selectedCountry.allowed"
            ng-true-value="'1'" ng-false-value="'0'"><br> 
 			<label for="languages">Languages:</label> 

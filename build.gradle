@@ -57,7 +57,7 @@ dependencies{
 	compile "org.hibernate:hibernate-entitymanager:4.3.6.Final"
 	compile "org.hibernate:hibernate-validator:5.1.2.Final"
 	compile "org.hibernate:hibernate-c3p0:4.3.6.Final"
-	compile "org.postgresql:postgresql:9.3-1101-jdbc41"
+	compile "org.postgresql:postgresql:9.4-1201-jdbc41"
 	compile "net.sf.ehcache:ehcache:2.8.3"
 	compile "org.springframework.data:spring-data-commons:1.3.2.RELEASE"
 	compile "taglibs:standard:1.1.2"

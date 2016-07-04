@@ -1,10 +1,11 @@
 window.onload = function() {
 var disableExternal = (location.hostname == "localhost");
 	
-	document.getElementById('amazonCSS').disabled  = disableExternal;
-    document.getElementById('amazonAdminCSS').disabled = disableExternal;
-    document.getElementById('LHCSS').disabled  = !disableExternal;
-    document.getElementById('LHAdminCSS').disabled = !disableExternal;
+	if(!disableExternal) {
+    	window.open("../", '_self', false)
+    } else {
+    	document.getElementById('body').style.display = "block";
+    }
 }
 function newAffiliate() {
 	document.getElementById('newAffiliate').style.display = "block";

@@ -30,6 +30,22 @@ function openMovie(url) {
 	myVideo.style.paddingTop = "20px";
 	document.getElementById("mask").style.display = "flex";
 	document.getElementById("movieWrapper").style.display = "flex";
+	
+	 
+	 if(url == "") {
+		 $('#video').removeClass('loading');
+		 $('#video').addClass('videoNotFound');
+	 } else {
+		 $('#video').removeClass('videoNotFound');
+		 $('#video').on('loadstart', function (event) {
+			    $(this).addClass('loading');
+			  });
+		 $('#video').on('canplay', function (event) {
+			    $(this).removeClass('loading');
+			    $(this).attr('poster', '');
+			  });
+	 }
+	
 }
 function openSupport() {
 	hideAll();
@@ -305,9 +321,9 @@ window.onload = function() {
 
 	} else {
 		if(location.hostname == "localhost") 
-			url='/starter/mainPage.html';
+			url='/starter/';
 		else
-			url='../mainPage.html';
+			url='../';
 		window.open(url, '_self', false)
 	}
 }
@@ -326,9 +342,9 @@ function checkLoggedInUser(user) {
 				document.getElementById("logout").style.display = "block";
 			} else {
 				if(location.hostname == "localhost") 
-					url='/starter/mainPage.html';
+					url='/starter/';
 				else
-					url='../mainPage.html';
+					url='../';
 				window.open(url, '_self', false)
 			}
 		},
@@ -351,9 +367,9 @@ function logout() {
 		success : function(response) {
 			var url;
 			if(location.hostname == "localhost") 
-				url='/starter/mainPage.html';
+				url='/starter/';
 			else
-				url='../mainPage.html';
+				url='../';
 				window.open(url, '_self', false)
 				localStorage.removeItem('user');
 

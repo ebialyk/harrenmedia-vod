@@ -27,11 +27,25 @@ textarea {
 	min-height: 600px;
 	cursor: pointer;
 }
-.waiting {
-	background-image: url(../images/wait.gif);
+#loadingMask {
+	display: none;
+	opacity: 0.6;
+	background-color: black;
+	position: fixed;
+	top: 0;
+	height: 100vh;
+	width: 100vw;
+	left: 0;
 	z-index: 999;
-    background-repeat: no-repeat;
+	background-image: url("../images/ring.gif");
+	background-repeat: no-repeat;
     background-position: center;
+}
+video.loading {
+  	background: black url(../images/ring.gif) center center no-repeat;
+}
+video.videoNotFound {
+	background: black url(../images/NotAvailable.gif) center center no-repeat;
 }
 .red {
 	color:red;

@@ -134,7 +134,7 @@
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-c3p0/4.3.6.Final/f7574b32632f323bdc300f50ef583e3451053b48/hibernate-c3p0-4.3.6.Final.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/org.postgresql/postgresql/9.3-1101-jdbc41/f68c2783393afc9a642035964869417043d2c7dc/postgresql-9.3-1101-jdbc41.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/org.postgresql/postgresql/9.4-1201-jdbc41/870b0e689b514304461a9c1aba11920dc5de4321/postgresql-9.4-1201-jdbc41.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/net.sf.ehcache/ehcache/2.8.3/f498778b93efc6352f4f3d23a47dae3f166c7541/ehcache-2.8.3.jar">
