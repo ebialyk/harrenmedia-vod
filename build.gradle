@@ -73,7 +73,9 @@ dependencies{
 }
 
 
-
+war {
+  exclude('**/admin.html')
+}
 
 
 

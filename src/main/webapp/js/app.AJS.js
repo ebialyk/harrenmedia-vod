@@ -145,6 +145,17 @@ app.factory(
 					isArray : false
 				}
 			}),
+			TransactionServices : $resource('rest/transactions',	{}, {
+				get : {
+					method : 'GET',
+					interceptor : {
+						responseError : function(data) {
+							apiError(data);
+						}
+					},
+					isArray : true
+				},
+			}),
 			UserServices : $resource('rest/admin/getUsers',	{}, {
 				get : {
 					method : 'GET',
@@ -247,24 +258,7 @@ app.factory(
 		}
 
 	} ]);
-app.controller('BannerController', ['$scope', function($scope) {
-	var external = !(location.hostname == "localhost");
-	var prefix ="";
-	if(external) {
-		prefix = "http://s3-eu-west-1.amazonaws.com/vodresources/"
-	}
-	$scope.banners = [
-	                  {	"src" : prefix+"images/MF-bestmovies-main-banner.png"	},
-	                  {	"src" : prefix+"images/mainbanner-inner2.jpg"	},
-	                  {	"src" : prefix+"images/mainbanner-inner3.jpg"	},
-	                  {	"src" : prefix+"images/mainbanner-inner4.jpg"	},
-	                  {	"src" : prefix+"images/mainbanner-inner5.jpg"	},
-	                  {	"src" : prefix+"images/mainbanner-inner6.jpg"	},
-	                  {	"src" : prefix+"images/mainbanner-inner7.jpg"	},
-	                  {	"src" : prefix+"images/mainbanner-inner8.jpg"	}
-	                  ];
-	
-}])
+
 app.controller('PostBackController', ['$scope','$filter','$http','Api',function($scope, $filter, $http, Api) {
 	$scope.postBacks = [];
 	$scope.refreshPostBacks = function() {
@@ -272,8 +266,112 @@ app.controller('PostBackController', ['$scope','$filter','$http','Api',function(
 			$scope.postBacks = data;
 		})
 	}
-	  $scope.refreshPostBacks();
+	$scope.refreshPostBacks();
 } ]);
+
+app.controller('LoggedInController', ['$scope','$filter','$http','Api',function($scope, $filter, $http, Api) {
+	$scope.loggedInUsers = [];
+
+	$scope.refreshLIUsers = function() {Api.LoggedInUserServices.get().$promise.then(function(data) {
+		$scope.loggedInUsers = data;
+		})
+	}
+	
+	$scope.refreshLIUsers();
+} ]);
+
+app.controller('UserController', ['$scope','$filter','$http','Api',function($scope, $filter, $http, Api) {
+	$scope.users = [];
+
+	$scope.refreshUsers = function() {Api.UserServices.get().$promise.then(function(data) {
+		$scope.users = data;
+		})
+	}
+	
+	$scope.refreshUsers();
+} ]);
+
+
+app.controller('TransactionController', ['$scope','$filter','$http','Api',function($scope, $filter, $http, Api) {
+	$scope.transactions = [];
+
+	$scope.refreshTransactions = function() {Api.TransactionServices.get().$promise.then(function(data) {
+		$scope.transactions = data;
+		})
+	}
+	
+	$scope.checkPayment = function(t){
+		sendPayment(t);
+	}
+	$scope.refreshTransactions();
+} ]);
+
+app.controller('ClickController', ['$scope','$filter','$http','Api',function($scope, $filter, $http, Api) {
+	$scope.clicks = [];
+
+	$scope.trackingCodes = [
+	                        {"code":99,"dsc":"open landing page"},
+	                        {"code":1,"dsc":"create account -send mail"},
+	                        {"code":2,"dsc":"account created -mail accepted"},
+	                        {"code":3,"dsc":"verify account -send c.c"},
+	                        {"code":4,"dsc":"account verified -accepted cc"},
+	                        {"code":5,"dsc":"logged in"},
+	                        {"code":6,"dsc":"cancel account requested"},
+	                        {"code":7,"dsc":"cancel account – sent mail verification"},
+	                        {"code":8,"dsc":"error on create account -mail not accepted"},
+	                        {"code":9,"dsc":"account not verified"},
+	                        {"code":10,"dsc":"cancel account: account verified"},
+	                        {"code":11,"dsc":"cancel account: account not verified"},
+	                        {"code":12,"dsc":"cancel account – sent cancellation form"},
+	                        {"code":13,"dsc":"cancel account – cancellation received"},
+	                        {"code":14,"dsc":"cancel account – cancellation rejected"}];
+	
+	$scope.showTrackingCodes = function(tracking) {
+		var selected = [];
+		if(tracking == 0) 
+			tracking = 99
+		if (tracking) {
+			selected = $filter('filter')($scope.trackingCodes, {
+				code : tracking
+			}, true);
+		}
+		return selected.length ? selected[0].dsc : 'Not found';		
+	};
+	
+	$scope.refreshClicks = function() {Api.ClickServices.get().$promise.then(function(data) {
+		$scope.clicks = data;
+		})
+	}
+	
+	$scope.refreshClicks();
+
+	
+} ]);
+
+
+app.controller('AffiliateController', ['$scope','$filter','$http','Api',function($scope, $filter, $http, Api) {
+	$scope.affiliates = [];
+
+	$scope.refreshAffiliates = function() {Api.AffiliateService.get().$promise.then(function(data) {
+		$scope.affiliates = data;
+		})
+	}
+	// new Affiliate
+	$scope.saveAffiliate = function(aff) {
+		var data = 'affName='+aff.name+'&country='+aff.country+
+		'&language='+aff.language+'&postBack='+aff.postBack+'&postBackType='+aff.postBackType.text+
+		'&css='+aff.css+'&price='+aff.price
+		
+	    return Api.AffiliateService.post(data).$promise.then(function(result) {
+	    	$scope.refreshAffiliates();
+	    }, function(error) {
+		    alert('תקלה, רשומה לא נשמרה');
+	    })   
+	  };
+	
+	$scope.refreshAffiliates();
+} ]);
+
 
 
 app.controller('LanguagesController', ['$scope','$filter','$http','Api',function($scope, $filter, $http, Api) {
@@ -471,7 +569,12 @@ app.controller('TabsCtrl', ['$scope','$filter','$http','Api',function($scope, $f
 	} , {
 		title : 'PostBack Tracking ',
 		url : 'PostBackTracking.tpl.html'
-	} ];
+	} , {
+		title : 'Transactions ',
+		url : 'Transactions.tpl.html'
+	}
+	
+	];
 	$scope.currentTab = 'Affiliates.tpl.html';
 	$scope.onClickTab = function(tab) {
 		$scope.currentTab = tab.url;
@@ -479,27 +582,6 @@ app.controller('TabsCtrl', ['$scope','$filter','$http','Api',function($scope, $f
 	$scope.isActiveTab = function(tabUrl) {
 		return tabUrl == $scope.currentTab;
 	}
-	$scope.affiliates = [];
-	$scope.users = [];
-	$scope.loggedInUsers = [];
-	$scope.clicks = [];
-
-	$scope.trackingCodes = [
-	                        {"code":99,"dsc":"open landing page"},
-	                        {"code":1,"dsc":"create account -send mail"},
-	                        {"code":2,"dsc":"account created -mail accepted"},
-	                        {"code":3,"dsc":"verify account -send c.c"},
-	                        {"code":4,"dsc":"account verified -accepted cc"},
-	                        {"code":5,"dsc":"logged in"},
-	                        {"code":6,"dsc":"cancel account requested"},
-	                        {"code":7,"dsc":"cancel account – sent mail verification"},
-	                        {"code":8,"dsc":"error on create account -mail not accepted"},
-	                        {"code":9,"dsc":"account not verified"},
-	                        {"code":10,"dsc":"cancel account: account verified"},
-	                        {"code":11,"dsc":"cancel account: account not verified"},
-	                        {"code":12,"dsc":"cancel account – sent cancellation form"},
-	                        {"code":13,"dsc":"cancel account – cancellation received"},
-	                        {"code":14,"dsc":"cancel account – cancellation rejected"}];
 	
 	$scope.userStatus = [{"code":99,"dsc":"Not Active"},
 	                     {"code":1,"dsc":"Approved by CC"},
@@ -522,47 +604,6 @@ app.controller('TabsCtrl', ['$scope','$filter','$http','Api',function($scope, $f
 		return selected.length ? selected[0].dsc : 'Not found';		
 	};
 	
-	$scope.showTrackingCodes = function(tracking) {
-		var selected = [];
-		if(tracking == 0) 
-			tracking = 99
-		if (tracking) {
-			selected = $filter('filter')($scope.trackingCodes, {
-				code : tracking
-			}, true);
-		}
-		return selected.length ? selected[0].dsc : 'Not found';		
-	};
-	
-	$scope.refreshAffiliates = function() {Api.AffiliateService.get().$promise.then(function(data) {
-		$scope.affiliates = data;
-		})
-	}
-	// new Affiliate
-	$scope.saveAffiliate = function(aff) {
-		var data = 'affName='+aff.name+'&country='+aff.country+
-		'&language='+aff.language+'&postBack='+aff.postBack+'&postBackType='+aff.postBackType.text+
-		'&css='+aff.css+'&price='+aff.price
-		
-	    return Api.AffiliateService.post(data).$promise.then(function(result) {
-	    	$scope.refreshAffiliates();
-	    }, function(error) {
-		    alert('תקלה, רשומה לא נשמרה');
-	    })   
-	  };
-		
-	$scope.refreshUsers = function() {Api.UserServices.get().$promise.then(function(data) {
-		$scope.users = data;
-		})
-	}
-	$scope.refreshLIUsers = function() {Api.LoggedInUserServices.get().$promise.then(function(data) {
-		$scope.loggedInUsers = data;
-		})
-	}
-	$scope.refreshClicks = function() {Api.ClickServices.get().$promise.then(function(data) {
-		$scope.clicks = data;
-		})
-	}
 	
 	$scope.showUser = function(userId) {
 		var selected = [];
@@ -573,69 +614,6 @@ app.controller('TabsCtrl', ['$scope','$filter','$http','Api',function($scope, $f
 		}
 		return selected.length ? selected[0].userName + ' '+ selected[0].userEmail : 'לא נמצא';		
 	};
-	
-	$scope.refreshAffiliates();
-	$scope.refreshUsers();
-	$scope.refreshLIUsers();
-	$scope.refreshClicks();
-	
-	
-	
-	/** *********************************************** */
-	$scope.U = [
-	        	    {id: 1, name: 'awesome user1', status: 2},
-	        	    {id: 2, name: 'awesome user2', status: undefined},
-	        	    {id: 3, name: 'awesome user3', status: 2}
-	        	  ]; 
-
-	        	  $scope.statuses = [
-	        	    {value: 1, text: 'status1'},
-	        	    {value: 2, text: 'status2'},
-	        	    {value: 3, text: 'status3'},
-	        	    {value: 4, text: 'status4'}
-	        	  ]; 
-
-	        	  
-	        	 
-	        	  $scope.showStatus = function(user) {
-	        	    var selected = [];
-	        	    if(user.status) {
-	        	      selected = $filter('filter')($scope.statuses, {value: user.status});
-	        	    }
-	        	    return selected.length ? selected[0].text : 'Not set';
-	        	  };
-
-	        	  $scope.checkName = function(data, id) {
-	        	    if (id === 2 && data !== 'awesome') {
-	        	      return "Username 2 should be `awesome`";
-	        	    }
-	        	  };
-
-	        	  $scope.saveUser = function(data, id) {
-	        	    // $scope.user not updated yet
-	        	    angular.extend(data, {id: id});
-	        	    return $http.post('/saveUser', data);
-	        	  };
-
-	        	  // remove user
-	        	  $scope.removeUser = function(index) {
-	        	    $scope.users.splice(index, 1);
-	        	  };
-
-	        	  // add user
-	        	  $scope.addUser = function() {
-	        	    $scope.inserted = {
-	        	      id: $scope.users.length+1,
-	        	      name: '',
-	        	      status: null,
-	        	    };
-	        	    $scope.users.push($scope.inserted);
-	        	  };
 		
 } ]);
 
-app.run(function(editableOptions) { editableOptions.theme = 'bs3';});
-
-	app.controller('Ctrl', function($scope, $filter, $http) {
-	 
-	});

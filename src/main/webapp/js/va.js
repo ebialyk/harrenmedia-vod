@@ -7,7 +7,7 @@ var LANG;
 var COUNTRY;
 var PSW;
  
-window.onload = function() {
+window.onload = function() {		
 
 	var disableExternal = (location.hostname == "localhost");
 	
@@ -16,8 +16,18 @@ window.onload = function() {
 	document.getElementById('LHCSS').disabled  = !disableExternal;
 	document.getElementById('LHMobileCSS').disabled  = !disableExternal;
 	
-	MAIL = localStorage.getItem('MAIL');
-	PSW = localStorage.getItem('PSW');
+	
+	urlParams = parseURLParams(window.location.href);
+	
+	if(urlParams != null) {
+		AFF = urlParams.aff?urlParams.aff[0]:0;
+		COUNTRY = urlParams.country?urlParams.country[0]:0;
+		CSS = urlParams.theme?urlParams.theme[0]:"";
+		LANG = urlParams.lang?urlParams.lang[0]:0;
+		CLICKID = urlParams.clickid?urlParams.clickid[0]:"";
+		MAIL = urlParams.user?urlParams.user[0]:"";
+	}
+	
 	document.getElementById("VerificationPage").style.display = "flex";
 	var url;
 	
@@ -37,68 +47,63 @@ window.onload = function() {
 		}
 	}
 
-	data = {
-		timestamp : now_utc
+	data = { 
+		timestamp : now_utc,
+		country : COUNTRY,
+		affiliate : AFF,
+		transactionType :  "authorization",
+		
 	}
 	document.getElementById("loadingMask").style.display = "block";
 
 	$.ajax({
-				url : "rest/agregator/createSignature",
-				type : "POST",
-				dataType : "html", // expected format for response
-				contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-				data : data,
-				success : function(response) {
-					response = response.replace("{", '').trim()
-							.replace("}", '').trim().replace(/"/g, '').trim();
-					var res = response.split(",");
+		url : "rest/agregator/createSignature",
+		type : "POST",
+		dataType : "html", // expected format for response
+		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+		data : data,
+		success : function(response) {
+			response = response.replace("{", '').trim()
+					.replace("}", '').trim().replace(/"/g, '')
+					.trim();
+			var res = response.split(",");
+			var sign = res[0].split(":")[1];
+			var reqId = res[1].split(":")[1];
+			var transactionType = res[2].split(":")[1];
+			var amount = res[3].split(":")[1];
+			var currency = res[4].split(":")[1];
 
-					var sign = res[0].split(":")[1];
-					var reqId = res[1].split(":")[1];
-
-					WirecardPaymentPage
-							.seamlessRenderForm({
-								requestData : {
-									request_id : reqId,
-									request_time_stamp : now_utc,
-									merchant_account_id : "51b671b8-17da-4ab6-af90-d86d46d774c9",
-									transaction_type : "authorization",
-									requested_amount : "20",
-									requested_amount_currency : "USD",
-									payment_method : "creditcard",
-									request_signature : sign,
-									template_name : "default-cc-template",
-								},
-								wrappingDivId : "seamless-target",
-								onSuccess : function(response) {
-								},
-								onError : function(response) {
-								},
-							});
+			WirecardPaymentPage.seamlessRenderForm({
+				requestData : {
+					request_id : reqId,
+					request_time_stamp : now_utc,
+					merchant_account_id : "51b671b8-17da-4ab6-af90-d86d46d774c9",
+					transaction_type : transactionType,
+					requested_amount : amount,
+					requested_amount_currency : currency,
+					payment_method : "creditcard",
+					request_signature : sign,
+					template_name : "default-cc-template",
 				},
-				error : function(response, status, error) {
-					alert(response.message);
-				}
-			}).done(function() {
-				document.getElementById("loadingMask").style.display = "none";
+				wrappingDivId : "seamless-target",
+				onSuccess : function(response) {
+				},
+				onError : function(response) {
+				},
 			});
+		},
+		error : function(response, status, error) {
+			alert(response.message);
+		}
+	}).done(function() {
+		document.getElementById("loadingMask").style.display = "none";
+	});
 	
-	urlParams = parseURLParams(window.location.href);
-	
-	if(urlParams != null) {
-		AFF = urlParams.aff?urlParams.aff[0]:0;
-		COUNTRY = urlParams.country?urlParams.country[0]:0;
-		CSS = urlParams.theme?urlParams.theme[0]:"";
-		LANG = urlParams.lang?urlParams.lang[0]:0;
-		CLICKID = urlParams.clickid?urlParams.clickid[0]:"";
-
-	}
 	if (MAIL != null && MAIL != undefined) {
-		
 		if(location.hostname == "localhost") 
 			url='/starter/verification.html';
 		else
-			url='../verification.html';
+			url='https://ver.muvflix.com/verification.html';
 		setTimeout(function() {
 			history.pushState({}, null,url);
 		}, 100);
@@ -107,13 +112,11 @@ window.onload = function() {
 		if(location.hostname == "localhost") 
 			url='/starter/landingPage.html';
 		else
-			url='../landingPage.html';
+			url='http://muvflix.com/landingPage.html';
 		window.open(url, '_self', false)
 	}
 	
-	
-	var display = document.querySelector('#time'), timer = new CountDownTimer(
-			480);
+	var display = document.querySelector('#time'), timer = new CountDownTimer(480);
 	timer.onTick(format).onTick(restart).start();
 
 	function restart() {
@@ -139,8 +142,7 @@ function verifyAccount() {
 				email : MAIL,
 				affiliate : AFF,
 				country : COUNTRY,
-				affiliate : AFF,
-				country : COUNTRY,
+				clickID: CLICKID,
 				authorization_code : response.authorization_code,
 				card_type : response.card_type,
 				completion_time_stamp : response.completion_time_stamp,
@@ -184,8 +186,7 @@ function verifyAccount() {
 						}
 						setTimeout(function() {
 							data = {
-								email : MAIL,
-								pw : PSW
+								email : MAIL
 							}
 							chkForLogin(data);
 						}, 2000);	
@@ -197,13 +198,8 @@ function verifyAccount() {
 								dataType : "json", 
 								contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 								data : data,
-								success : function(response) {
-									
-								},
-								error : function(response, status, error) {
-									
-								}
-								
+								success : function(response) {},
+								error : function(response, status, error) {}
 							});
 						}
 					} else {
@@ -223,24 +219,28 @@ function verifyAccount() {
 			document.getElementById("loadingMask").style.display = "none";
 		},
 	});
-	
-	
-	
 }
 function chkForLogin(data) {
 	$.ajax({
-		url : "rest/client/logIn",
+		url : "rest/client/setLoggedIn",
 		type : "POST",
 		dataType : "json", // expected format for response
 		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 		data : data,
 		success : function(response) {
 			if (response.status == 51) {
-					url = 'movies.html';
-					localStorage.setItem('user', MAIL);
-					
-					window.open(url, '_self', false);
-					history.pushState({}, null,'landingPage.html');
+				if(location.hostname == "localhost")  {
+					url = '/starter/movies.html';
+				}	else {
+					url = 'http://muvflix.com/movies.html';
+				}
+				localStorage.setItem('user', MAIL);
+				window.open(url, '_self', false);
+				if(location.hostname == "localhost") {
+					history.pushState({}, null,'/landingPage.html');
+				} else {	
+					history.pushState({}, null,'http://muvflix.com/landingPage.html');
+				}
 					confirmOnExit = false;
 					tracking(AFF, COUNTRY,5, CSS, LANG, MAIL, CLICKID);
 			} else {
@@ -265,15 +265,7 @@ $(function() {
 	});
 });
 
-function showCvv() {
-	document.getElementById("cvv").style.display = "flex";
-	document.getElementById("mask").style.display = "block";
-}
 function closeDialog() {
 	document.getElementById("cvv").style.display = "none";
 	document.getElementById("mask").style.display = "none";
 }
-
-
-
-

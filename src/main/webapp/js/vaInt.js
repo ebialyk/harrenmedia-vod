@@ -1,6 +1,5 @@
 var confirmOnExit = true;
 var MAIL;
-var PSW;
 
 window.onload = function() {
 
@@ -11,8 +10,12 @@ window.onload = function() {
 	document.getElementById('LHCSS').disabled = !disableExternal;
 	document.getElementById('LHMobileCSS').disabled = !disableExternal;
 
-	MAIL = localStorage.getItem('MAIL');
-	PSW = localStorage.getItem('PSW');
+	urlParams = parseURLParams(window.location.href);
+	
+	if(urlParams != null) {
+		MAIL = urlParams.user?urlParams.user[0]:"";
+	}
+	
 	document.getElementById("VerificationPage").style.display = "flex";
 	var url;
 
@@ -32,8 +35,13 @@ window.onload = function() {
 		}
 	}
 
-	data = { timestamp : now_utc }
+	data = { 
+		timestamp : now_utc,
+		transactionType :  "authorization",
+		
+	}
 	document.getElementById("loadingMask").style.display = "block";
+
 	$.ajax({
 		url : "rest/agregator/createSignature",
 		type : "POST",
@@ -47,15 +55,18 @@ window.onload = function() {
 			var res = response.split(",");
 			var sign = res[0].split(":")[1];
 			var reqId = res[1].split(":")[1];
+			var transactionType = res[2].split(":")[1];
+			var amount = res[3].split(":")[1];
+			var currency = res[4].split(":")[1];
 
 			WirecardPaymentPage.seamlessRenderForm({
 				requestData : {
 					request_id : reqId,
 					request_time_stamp : now_utc,
 					merchant_account_id : "51b671b8-17da-4ab6-af90-d86d46d774c9",
-					transaction_type : "authorization",
-					requested_amount : "20",
-					requested_amount_currency : "USD",
+					transaction_type : transactionType,
+					requested_amount : amount,
+					requested_amount_currency : currency,
 					payment_method : "creditcard",
 					request_signature : sign,
 					template_name : "default-cc-template",
@@ -78,7 +89,7 @@ window.onload = function() {
 		if (location.hostname == "localhost")
 			url = '/starter/verificationAccount.html';
 		else
-			url = '../verificationAccount.html';
+			url = 'https://ver.muvflix.com/verificationAccount.html';
 		setTimeout(function() {
 			history.pushState({}, null, url);
 		}, 100);
@@ -87,7 +98,7 @@ window.onload = function() {
 		if (location.hostname == "localhost")
 			url = '/starter/';
 		else
-			url = '../';
+			url = 'http://muvflix.com/';
 		window.open(url, '_self', false)
 	}
 
@@ -153,8 +164,7 @@ function verifyAccount() {
 						
 						setTimeout(function() {
 							data = {
-								email : MAIL,
-								pw : PSW
+								email : MAIL
 							}
 						chkForLogin(data);
 						}, 2000);
@@ -174,14 +184,14 @@ function verifyAccount() {
 }
 function chkForLogin(data) {
 	$.ajax({
-		url : "rest/client/logIn",
+		url : "rest/client/setLoggedIn",
 		type : "POST",
 		dataType : "json", // expected format for response
 		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 		data : data,
 		success : function(response) {
 			if (response.status == 51) {
-				url = 'movies.html';
+				url = 'http://muvflix.com/movies.html';
 				localStorage.setItem('user', MAIL);
 
 				window.open(url, '_self', false);

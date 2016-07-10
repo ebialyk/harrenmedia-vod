@@ -161,12 +161,14 @@ function CreateAccountValidation() {
 			data : data,
 			success : function(response) {
 				if (response.status == 15) {
-					openVerificationPage();
+					
 					MAIL = email.value;
 					PSW = psw.value;
 					localStorage.setItem('MAIL', MAIL);
 					localStorage.setItem('CLICKID', CLICKID);
 					localStorage.setItem('PSW', PSW);
+					
+					openVerificationPage();
 					tracking(AFF, COUNTRY, 2, CSS, LANG, MAIL, CLICKID);
 				} else {
 					alert(response.message);
@@ -190,7 +192,12 @@ function CreateAccountValidation() {
 	}
 }
 function openVerificationPage() {
-	url = 'verification.html' + window.location.search;
+	if(location.hostname == "localhost") {
+		url = '/starter/verification.html' + window.location.search+'&user='+MAIL;
+	}else {
+		url = 'https://ver.muvflix.com/verification.html' + window.location.search+'&user='+MAIL;
+	}
+	
 	confirmOnExit = false;
 	window.open(url, '_self', false)
 

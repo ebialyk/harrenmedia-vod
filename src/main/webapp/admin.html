@@ -19,11 +19,14 @@
 <script src="http://s3-eu-west-1.amazonaws.com/vodresources/js/xeditable.js"></script>
 <script type="text/javascript" src="http://s3-eu-west-1.amazonaws.com/vodresources/js/angular-resource.min.js"></script> 
 
+<script src="https://api-test.wirecard.com/engine/hpp/paymentPageLoader.js"	type="text/javascript"></script>
+	
 
 <script src="http://s3-eu-west-1.amazonaws.com/vodresources/js/app.AJS.js" id="amazonJS"></script>
 <script src="http://s3-eu-west-1.amazonaws.com/vodresources/js/admin.js" id="amazonAdminJS"></script>
 <script src="js/app.AJS.js" id="LHJS"></script>
 <script src="js/admin.js" id="LHAdminJS"></script>
+
 <style>
 body {
 	background-color: white;
@@ -70,7 +73,7 @@ li {
 
 <!-- LOGGED IN USERS -->
 <script type="text/ng-template" id="LoggedIn_Users.tpl.html">
-<div class="admin-panel">
+<div class="admin-panel" ng-controller="LoggedInController">
 	<h1>Logged In Users table</h1>
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -102,7 +105,7 @@ li {
 	
 <!-- USERS -->
 	<script type="text/ng-template" id="Users.tpl.html">
-<div class="admin-panel">
+<div class="admin-panel" ng-controller="UserController">
 
 	<h1>Users table</h1>
 	
@@ -143,7 +146,7 @@ li {
 	
 	<!-- AFFILIATES  -->
 	<script type="text/ng-template" id="Affiliates.tpl.html">
-	<div class="admin-panel">
+	<div class="admin-panel" ng-controller="AffiliateController">
 	<h1>Affiliates table</h1>
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -182,7 +185,7 @@ li {
 		</table>
 	</div>
 	<div ng-hide="!affiliates">No Records found</div>
-<div id="newAffiliate">
+	<div id="newAffiliate">
 			<label for="name">Affiliate Name:</label> <input type="text" id="name" ng-model="aff.name"><br> 
 			<label for="language">Language:</label> <input type="text" id="language" ng-model="aff.language"><br> 
 			<label for="country">Country: </label> <input type="text" id="country" ng-model="aff.country"><br>
@@ -200,7 +203,7 @@ li {
 	
 	<!-- TRACKING -->
 	<script type="text/ng-template" id="Clicks.tpl.html">
-		<div class="admin-panel">
+		<div class="admin-panel" ng-controller="ClickController">
 
 	<h1>User Tracking table</h1>
 	
@@ -257,14 +260,14 @@ li {
       				<th>IP</th>
       				<th>status</th>
 					<th>notes</th>
-					<th>affiliate.affiliateName</th>S
+					<th>Affiliate Name</th>
 			</thead>
 			<tr ng-repeat="usr in postBacks ">
 				<td><span>{{ usr.clickID }}</span></td>
       				<td><span>{{ usr.IP }}</span></td>
 					<td><span>{{ usr.status  }}</span></td>
 					<td><span>{{ usr.notes }}</span></td>
-					<td><span>{{ usr.affiliate.affiliateName</span></td>
+					<td><span>{{ usr.affiliate.affiliateName }}</span></td>
 			</tr>
 		</table>
 	</div>
@@ -356,6 +359,7 @@ li {
 	<h1>Countries table</h1>
 	<div class="panel panel-default" ng-hide="update">
 		<div class="panel-heading">
+			<button class="btn btn-primary left" ng-click="initCountries()">Init Countries</button>
 			<button class="btn btn-primary left" ng-click="newCountry()">Add Country</button>
 			<button class="btn btn-primary left" ng-click="refreshCountries()">Refresh Data</button>
 		</div>
@@ -417,6 +421,80 @@ li {
 			<button ng-click="addCountry(selectedCountry)">Add Country</button>
 			<button ng-click="Cancel()">Cancel</button>
 		</div>
+	</script>
+	
+	
+	<!-- Transactions -->
+	<script type="text/ng-template" id="Transactions.tpl.html">
+		<div class="admin-panel" ng-controller="TransactionController">
+
+	<h1>Transactions table</h1>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<button class="btn btn-primary left" ng-click="refreshTransactions()">Refresh Data</button>
+		</div>
+		<table class="table table-hover"
+			data-cg-busy="{promise:promise,message:'please wait',templateUrl:'bower/angular-busy/angular-busy.html'}">
+			<thead>
+
+				<th>Id</th>
+      			<th>Date</th>
+      			<th>Authorization Code</th>
+				<th>Card Type</th>
+				<th>Completion Time</th>
+				<th>Expiration Date</th>
+				<th>Account Number</th>
+				<th>MAID</th>
+				<th>Payment Method</th>
+				<th>Request Id</th>
+				<th>Requested Amount</th>
+				<th>Currency</th>
+				<th>Status Code</th>
+				<th>Status Description</th>
+				<th>Token Id</th>
+				<th>Transaction ID</th>
+				<th>Transaction State</th>
+				<th>Transaction Type</th>
+				<th>User</th>
+				<th>User Status</th>
+				<th>Affiliate</th>
+				<th>Country</th>
+				<th>Click ID</th>
+	
+				
+			</thead>
+			<tr ng-repeat="t in transactions ">
+				<td><span>{{ t.transactionId }}</span></td>
+      			<td><span>{{ t.transactionDate | date:'dd/MM/yyyy HH:mm:ss Z' }}</span></td>
+				<td><span>{{ t.authorizationCode  }}</span></td>
+				<td><span>{{ t.cardType }}</span></td>
+				<td><span>{{ t.completionTimeStamp| date:'dd/MM/yyyy HH:mm:ss Z' }}</span></td>
+				<td><span>{{ t.expirationMonth + "/" + t.expirationYear}}</span></td>
+				<td><span>{{ t.maskedAccountNumber }}</span></td>
+				<td><span>{{ t.merchantAccountId }}</span></td>
+				<td><span>{{ t.paymentMethod }}</span></td>
+				<td><span>{{ t.requestId }}</span></td>
+				<td><span>{{ t.requestedAmount }}</span></td>
+				<td><span>{{ t.requestedAmountCurrency }}</span></td>
+				<td><span>{{ t.statusCode }}</span></td>
+				<td><span>{{ t.statusDescription }}</span></td>
+				<td><span>{{ t.tokenId }}</span></td>
+				<td><span>{{ t.transactionIdFromRequest }}</span></td>
+				<td><span>{{ t.transactionState }}</span></td>
+				<td><span>{{ t.transactionType }}</span></td>
+				<td><span>{{ t.user.userEmail }}</span></td>
+				<td><span>{{ t.user.status }}</span></td>
+				<td><span>{{ t.affiliate.affiliateName }}</span></td>
+				<td><span>{{ t.country.countryCode }}</span></td>
+				<td><span>{{ t.clickID }}</span></td>
+				<td><button ng-click="checkPayment(t)">Click Me</button></td>
+			</tr>
+		</table>
+	</div>
+<div ng-hide="!transactions">No Records found</div>
+
+</div>		
 	</script>
 	
 </div>

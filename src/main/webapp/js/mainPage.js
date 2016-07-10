@@ -232,8 +232,12 @@ function SignUp() {
 					
 					hideAll();
 					
-					window.open('/starter/verificationAccount.html','_self', false);
-					//document.getElementById("SignUpPage").style.display = "flex";
+					if(location.hostname == "localhost") {
+						url = '/starter/verification.html' + window.location.search+'?user='+MAIL;
+					}else {
+						url = 'https://ver.muvflix.com/verificationAccount.html' + window.location.search+'?user='+MAIL;
+					}
+					window.open(url, '_self', false);
 				} else {
 					alert(response.message);
 				}
