@@ -6,6 +6,27 @@ var AFF;
 var CSS;
 var LANG;
 var COUNTRY;
+var COUNTRYCODE;
+$('html').css('display', 'none');
+$.ajax({
+	url : "rest/client/checkByIp",
+	type : "GET",
+	dataType : "json", // expected format for response
+	contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+	success : function(response) {
+		if (response != undefined && response.countryId != null) {
+			$('html').css('display', 'block');
+			COUNTRYCODE = response.countryId;
+		} else {
+			confirmOnExit = false;
+			window.open("https://www.google.co.il/", '_self', false);
+		}
+	},
+	error : function(response, status, error) {
+		confirmOnExit = false;
+		window.open("https://www.google.co.il/", '_self', false);
+	}
+});
 
 window.onload = function() {
 	// url format
@@ -42,7 +63,6 @@ window.onload = function() {
 			openCreateAccountDialog();
 		}, 5000);
 
-		
 		// tracking(affiliate,country, step, css, languageId, email, clickId
 		tracking(AFF, COUNTRY, 0, CSS, LANG, 0, CLICKID);
 
@@ -50,8 +70,7 @@ window.onload = function() {
 		confirmOnExit = false;
 		if (location.hostname == "localhost") {
 			url = '/starter/';
-		}
-		else {
+		} else {
 			url = '../';
 		}
 		window.open(url, '_self', false)
@@ -132,7 +151,7 @@ function CreateAccountValidation() {
 	}
 
 	if (psw.value === psw2.value) { // validate password and confirm password
-									// are equals
+		// are equals
 		okPswEquals = true;
 	} else {
 		psw.className = "error";
@@ -141,9 +160,9 @@ function CreateAccountValidation() {
 		psw2.title = "password and confirm password are not the same, please type again";
 		alertTXT += "\npassword and confirm password are not the same, please type again";
 	}
-	
+
 	if (okEmail && okPsw && okPsw2 && okPswEquals) {
-		
+
 		tracking(AFF, COUNTRY, 1, CSS, LANG, email.value, CLICKID);
 		data = {
 			email : email.value,
@@ -153,51 +172,60 @@ function CreateAccountValidation() {
 			country : COUNTRY,
 			clickID : CLICKID
 		};
-		$.ajax({
-			url : "rest/client/register",
-			type : "POST",
-			dataType : "json", // expected format for response
-			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-			data : data,
-			success : function(response) {
-				if (response.status == 15) {
-					
-					MAIL = email.value;
-					PSW = psw.value;
-					localStorage.setItem('MAIL', MAIL);
-					localStorage.setItem('CLICKID', CLICKID);
-					localStorage.setItem('PSW', PSW);
-					
-					openVerificationPage();
-					tracking(AFF, COUNTRY, 2, CSS, LANG, MAIL, CLICKID);
-				} else {
-					alert(response.message);
-					if (response.status == 61 || response.status == 62) {
-						email.value = "";
-						email.readOnly = true;
-					} else {
-						tracking(AFF, COUNTRY, 8, CSS, LANG, email.value, CLICKID);
-					}
-				}
-			},
-			error : function(response, status, error) {
-				alert(response.message);
-			}
-		}).done(function() {
-			document.getElementById("loadingMask").style.display = "none";
-		});
+		$
+				.ajax(
+						{
+							url : "rest/client/register",
+							type : "POST",
+							dataType : "json", // expected format for response
+							contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+							data : data,
+							success : function(response) {
+								if (response.status == 15) {
+
+									MAIL = email.value;
+									PSW = psw.value;
+									localStorage.setItem('MAIL', MAIL);
+									localStorage.setItem('CLICKID', CLICKID);
+									localStorage.setItem('PSW', PSW);
+
+									openVerificationPage();
+									tracking(AFF, COUNTRY, 2, CSS, LANG, MAIL,
+											CLICKID);
+								} else {
+									alert(response.message);
+									if (response.status == 61
+											|| response.status == 62) {
+										email.value = "";
+										email.readOnly = true;
+									} else {
+										tracking(AFF, COUNTRY, 8, CSS, LANG,
+												email.value, CLICKID);
+									}
+								}
+							},
+							error : function(response, status, error) {
+								alert(response.message);
+							}
+						})
+				.done(
+						function() {
+							document.getElementById("loadingMask").style.display = "none";
+						});
 	} else {
 		alert(alertTXT);
 		document.getElementById("loadingMask").style.display = "none";
 	}
 }
 function openVerificationPage() {
-	if(location.hostname == "localhost") {
-		url = '/starter/verification.html' + window.location.search+'&user='+MAIL;
-	}else {
-		url = 'https://ver.muvflix.com/verification.html' + window.location.search+'&user='+MAIL;
+	if (location.hostname == "localhost") {
+		url = '/starter/verification.html' + window.location.search + '&user='
+				+ MAIL;
+	} else {
+		url = 'https://ver.muvflix.com/verification.html'
+				+ window.location.search + '&user=' + MAIL;
 	}
-	
+
 	confirmOnExit = false;
 	window.open(url, '_self', false)
 

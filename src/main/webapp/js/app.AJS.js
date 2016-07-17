@@ -1,4 +1,4 @@
-var app = angular.module('TabsApp', [ 'ngResource', 'xeditable' ]);
+var app = angular.module('TabsApp', [ 'ngResource', 'xeditable','datepicker' ]);
 app.factory(
 	'Api',['$http','$resource','$q',function($http, $resource, $q) {
 		function apiError(data) {
@@ -34,7 +34,6 @@ app.factory(
 				},
 				post : {
 					method : 'POST',
-					
 					headers : {
 						'Content-Type' : 'application/x-www-form-urlencoded'
 						},
@@ -47,6 +46,9 @@ app.factory(
 				},
 				remove : {
 					method : 'DELETE',
+					headers : {
+						'Content-Type' : 'application/x-www-form-urlencoded'
+					},
 					interceptor : {
 						responseError : function(data) {
 							apiError(data);
@@ -79,7 +81,6 @@ app.factory(
 				},
 				post : {
 					method : 'POST',
-					
 					headers : {
 						'Content-Type' : 'application/x-www-form-urlencoded'
 						},
@@ -92,6 +93,9 @@ app.factory(
 				},
 				remove : {
 					method : 'DELETE',
+					headers : {
+						'Content-Type' : 'application/x-www-form-urlencoded'
+					},
 					interceptor : {
 						responseError : function(data) {
 							apiError(data);
@@ -124,7 +128,6 @@ app.factory(
 				},
 				post : {
 					method : 'POST',
-					
 					headers : {
 						'Content-Type' : 'application/x-www-form-urlencoded'
 						},
@@ -137,6 +140,9 @@ app.factory(
 				},
 				remove : {
 					method : 'DELETE',
+					headers : {
+						'Content-Type' : 'application/x-www-form-urlencoded'
+					},
 					interceptor : {
 						responseError : function(data) {
 							apiError(data);
@@ -156,6 +162,115 @@ app.factory(
 					isArray : true
 				},
 			}),
+			PaymentServices : $resource('rest/agregator/sendPayment',	{}, {
+				post : {
+					method : 'POST',
+					headers : {
+						'Content-Type' : 'application/x-www-form-urlencoded'
+					},
+					interceptor : {
+						responseError : function(data) {
+							apiError(data);
+						}
+					},
+					isArray : true
+				},
+			}),
+			AgregarorService : $resource('rest/agregatorTable',{}, {
+				get : {
+					method : 'GET',
+					interceptor : {
+						responseError : function(data) {
+							apiError(data);
+						}
+					},
+					isArray : true
+				},
+				put : {
+					method : 'PUT',
+					headers : {
+						'Content-Type' : 'application/x-www-form-urlencoded'
+					},
+					interceptor : {
+						responseError : function(data) {
+							apiError(data);
+						}
+					},
+					isArray : false
+				},
+				post : {
+					method : 'POST',
+					headers : {
+						'Content-Type' : 'application/x-www-form-urlencoded'
+						},
+					interceptor : {
+						responseError : function(data) {
+							apiError(data);
+						}
+					},
+					isArray : false
+				},
+				remove : {
+					method : 'DELETE',
+					headers : {
+						'Content-Type' : 'application/x-www-form-urlencoded'
+					},
+					interceptor : {
+						responseError : function(data) {
+							apiError(data);
+						}
+					},
+					isArray : false
+				}
+			}),
+			
+			IPService : $resource('rest/allowedIP',{}, {
+				get : {
+					method : 'GET',
+					interceptor : {
+						responseError : function(data) {
+							apiError(data);
+						}
+					},
+					isArray : true
+				},
+				put : {
+					method : 'PUT',
+					headers : {
+						'Content-Type' : 'application/x-www-form-urlencoded'
+					},
+					interceptor : {
+						responseError : function(data) {
+							apiError(data);
+						}
+					},
+					isArray : false
+				},
+				post : {
+					method : 'POST',
+					headers : {
+						'Content-Type' : 'application/x-www-form-urlencoded'
+						},
+					interceptor : {
+						responseError : function(data) {
+							apiError(data);
+						}
+					},
+					isArray : false
+				},
+				remove : {
+					method : 'DELETE',
+					headers : {
+						'Content-Type' : 'application/x-www-form-urlencoded'
+					},
+					interceptor : {
+						responseError : function(data) {
+							apiError(data);
+						}
+					},
+					isArray : false
+				}
+			}),
 			UserServices : $resource('rest/admin/getUsers',	{}, {
 				get : {
 					method : 'GET',
@@ -166,6 +281,34 @@ app.factory(
 					},
 					isArray : true
 				},
+			}),
+			BillingServices : $resource('rest/billing/getAllUsersForBilling', {}, {
+				post: {
+					method : 'POST',
+					headers : {
+						'Content-Type' : 'application/x-www-form-urlencoded'
+						},
+					interceptor : {
+						responseError : function(data) {
+							apiError(data);
+						}
+					},
+					isArray : true
+				}
+			}),
+			DeclinedUserServices : $resource('rest/billing/getAllDeclinedUsers', {}, {
+				get: {
+					method : 'GET',
+					headers : {
+						'Content-Type' : 'application/x-www-form-urlencoded'
+						},
+					interceptor : {
+						responseError : function(data) {
+							apiError(data);
+						}
+					},
+					isArray : true
+				}
 			}),
 			LoggedInUserServices : $resource('rest/admin/getLoggedInUsers', {}, {
 				get : {
@@ -181,6 +324,9 @@ app.factory(
 			InitCountryService : $resource('rest/admin/initCountries', {}, {
 				post : {
 					method : 'POST',
+					headers : {
+						'Content-Type' : 'application/x-www-form-urlencoded'
+					},
 					interceptor : {
 						responseError : function(data) {
 							apiError(data);
@@ -247,6 +393,9 @@ app.factory(
 				},
 				remove : {
 					method : 'DELETE',
+					headers : {
+						'Content-Type' : 'application/x-www-form-urlencoded'
+					},
 					interceptor : {
 						responseError : function(data) {
 							apiError(data);
@@ -259,15 +408,123 @@ app.factory(
 
 	} ]);
 
-app.controller('PostBackController', ['$scope','$filter','$http','Api',function($scope, $filter, $http, Api) {
+app.controller('PostBackController', ['$scope','$filter','$http','Api','$window',function($scope, $filter, $http, Api, $window) {
 	$scope.postBacks = [];
 	$scope.refreshPostBacks = function() {
+		$scope.message = "Loading postbacks, please wait"
 		Api.PostBackServices.get().$promise.then(function(data) {
 			$scope.postBacks = data;
+			
+			if(data.length > 0) {
+				$scope.message = "";
+			} else {
+				$scope.message = "No postbacks found";
+			}
 		})
 	}
 	$scope.refreshPostBacks();
 } ]);
+
+app.controller('BillingController', ['$scope','$filter','$http','Api','$window',function($scope, $filter, $http, Api, $window) {
+	
+	$scope.billings = [];
+	$scope.currentDt = moment().format('DD.MM.YYYY');
+    $scope.stDate = parseInt(moment().format('DD'));
+    
+	$scope.refreshBillings = function() {
+		var data = '&date='+$scope.currentDt+'&day='+$scope.stDate;
+		$scope.message = "loading billings..."
+		Api.BillingServices.post(data).$promise.then(function(data) {
+			for (var i = 0; i < data.length; i++) {
+				lastBilling = 0;
+				for (var j = 0; j < data[i].transactions.length; j++) {
+					if(lastBilling < data[i].transactions[j].completionTimeStamp && 
+							data[i].transactions[j].transactionType != 'authorization')
+						lastBilling = data[i].transactions[j].completionTimeStamp;
+						billingAmount = data[i].transactions[j].requestedAmount + " "+ data[i].transactions[j].requestedAmountCurrency
+						
+
+				}
+				data[i].lastBilling = lastBilling;
+				data[i].lastBillingAmount = billingAmount;
+				$scope.billings.push(data[i]);
+			}
+			$scope.billings = data;
+			
+			if(data.length > 0) {
+				$scope.message = "billing: registration date: "+$scope.currentDt +" pay day: "+ $scope.stDate;
+			} else {
+				$scope.message = "no billings found for the selected date";
+			}
+		})
+	}
+	 $("#currentDt").on("change", function() {
+		 $scope.currentDt = $("#currentDt").val();
+	    });
+	$scope.startDates = [];
+	
+	for (var int = 0; int < 31; int++) {
+		$scope.startDates.push(int+1);
+	}
+	$scope.sendPayment = function(t) {
+		$scope.message = "Payment Sent, please Wait"
+		var data = 'transactionId='+t.transactions[0].transactionId+'&countryId='+t.user.country.countryId+
+		'&affiliateId='+t.user.affiliate.affiliateId+'&transactionType=purchase'
+		
+		return Api.PaymentServices.post(data).$promise.then(function(result) {
+			alert('Done');
+			
+	    	$scope.refreshBillings();
+	    }, function(error) {
+		    alert('Error');
+	    })   
+	  };
+	
+	$scope.refreshBillings();
+}]);
+
+app.controller('DeclinedUsersController', ['$scope','$filter','$http','Api','$window',function($scope, $filter, $http, Api, $window) {
+	
+	$scope.billings = [];
+	$scope.dt = moment().format('DD.MM.YYYY');
+    $scope.stDate = parseInt(moment().format('DD'));
+    
+	$scope.refreshBillings = function() {
+		
+		Api.DeclinedUserServices.get().$promise.then(function(data) {
+			$scope.billings = data;
+		})
+	}
+	$scope.startDates = [];
+	
+	$scope.sendPayment = function(t) {
+		var data = 'transactionId='+t.transactions.transactionId+'&countryId='+t.user.country.countryId+
+		'&affiliateId='+t.user.affiliate.affiliateId+'&transactionType=payment'
+		
+		return Api.PaymentServices.post(data).$promise.then(function(result) {
+			alert('Done');
+	    	$scope.refreshBillings();
+	    }, function(error) {
+		    alert('Error');
+	    })   
+	  };
+	$scope.cancel = function(t) {
+		deleteUser = $window.confirm('Are you sure you want to cancel the User Account?');
+	    if(deleteUser){
+	      $scope.cancelling = true;
+	      $scope.cancelCause;
+	      $scope.userToCancel = t;
+	    }
+	}
+	
+	$scope.sendCancel = function () {
+		$scope.cancelling = false;
+	    $scope.cancelCause = "";
+	    $scope.userToCancel = "";
+	}
+	
+	$scope.refreshBillings();
+}]);
 
 app.controller('LoggedInController', ['$scope','$filter','$http','Api',function($scope, $filter, $http, Api) {
 	$scope.loggedInUsers = [];
@@ -300,9 +557,7 @@ app.controller('TransactionController', ['$scope','$filter','$http','Api',functi
 		})
 	}
 	
-	$scope.checkPayment = function(t){
-		sendPayment(t);
-	}
+	
 	$scope.refreshTransactions();
 } ]);
 
@@ -372,7 +627,67 @@ app.controller('AffiliateController', ['$scope','$filter','$http','Api',function
 	$scope.refreshAffiliates();
 } ]);
 
+app.controller('IPController', ['$scope','$filter','$http','Api',function($scope, $filter, $http, Api) {
+	$scope.IPs = [];
 
+	$scope.refreshIPs = function() {Api.IPService.get().$promise.then(function(data) {
+		$scope.IPs = data;
+		})
+	}
+	// new Affiliate
+	$scope.addIP = function() {
+		$scope.update = true;
+	}
+	$scope.saveIP = function(ip) {
+		var data = 'ip='+ip.ip+'&name='+ip.name
+		
+	    return Api.IPService.post(data).$promise.then(function(result) {
+	    	$scope.update = false;
+	    	$scope.refreshIPs();
+	    }, function(error) {
+		    alert('ERROR');
+	    })   
+	  };
+	  $scope.addIP = function(ip) {
+			$scope.update = true;
+			$scope.IpToUpdate = ip;
+		}
+	  $scope.updateIP = function(ip){
+		  var data = 'id='+ip.id+'&ip='+ip.ip+'&name='+ip.name
+	  }
+	
+	$scope.refreshIPs();
+} ]);
+
+app.controller('AgregatorsController', ['$scope','$filter','$http','Api',function($scope, $filter, $http, Api) {
+	$scope.agregators = [];
+
+	$scope.refreshAgregator = function() {Api.AgregarorService.get().$promise.then(function(data) {
+		$scope.agregators = data;
+		})
+	}
+	
+	$scope.addAgregator = function() {
+		$scope.update = true;
+	}
+	// new agregator
+	$scope.saveAgregator = function(agregator) {
+		var data = 'agregatorName='+agregator.name
+		
+	    return Api.AgregarorService.post(data).$promise.then(function(result) {
+	    	$scope.refreshAgregator();
+	    	$scope.update = false;
+	    	 $scope.agregator = "";
+	    }, function(error) {
+		    alert('Error');
+	    })   
+	  };
+	  $scope.cancel = function() {
+		  $scope.update = false;
+		  $scope.agregator = "";
+	  }
+	$scope.refreshAgregator();
+} ]);
 
 app.controller('LanguagesController', ['$scope','$filter','$http','Api',function($scope, $filter, $http, Api) {
 	$scope.languages = [];
@@ -423,10 +738,10 @@ app.controller('SupportController', ['$scope','$filter','$http','Api',function($
 	}
 	
 	$scope.updateStatus = function(support) {
-//		data = "supportRequestId"+support.
+// data = "supportRequestId"+support.
 //			
-//			@FormParam("supportRequestId") String supportRequestId,
-//			@FormParam("status") String status
+// @FormParam("supportRequestId") String supportRequestId,
+// @FormParam("status") String status
 	}
 	$scope.refreshSupportRequests();
 
@@ -572,6 +887,18 @@ app.controller('TabsCtrl', ['$scope','$filter','$http','Api',function($scope, $f
 	} , {
 		title : 'Transactions ',
 		url : 'Transactions.tpl.html'
+	} , {
+		title : 'Billings ',
+		url : 'Billing.tpl.html'
+	}, {
+		title : 'Declined Users ',
+		url : 'DeclinedUsers.tpl.html'
+	}, {
+		title : 'Agregators ',
+		url : 'Agregators.tpl.html'
+	}, {
+		title : 'Allowed IPs ',
+		url : 'AllowedIPs.tpl.html'
 	}
 	
 	];

@@ -13,6 +13,8 @@
 	<link rel="stylesheet" href="http://s3-eu-west-1.amazonaws.com/vodresources/css/style.css" id="amazonCSS">
 		
 	<link rel="stylesheet" href="css/style.css" id="LHCSS">
+	<script src="http://s3-eu-west-1.amazonaws.com/vodresources/js/bower_components/jquery/dist/jquery.min.js"></script>
+	
 	<script src="js/utils.js" id="LHUtilsJS"></script>
 	<script src="js/mainPage.js" id="LHJS"></script>
 	
@@ -165,18 +167,17 @@
 	              <input type="email" placeholder="E-mail" required id="email">
 	              <input type="password" placeholder="Password" pattern=".{5,12}" required id="psw">
 	              <input type="password" placeholder="Confirm password" pattern=".{5,12}" required id="psw2">
-	              <p class="note">By clicking the "Sing-Up" button, you are agree to our <a href="TermsAndCondition.html" target="_black">Terms & Conditions</a> and certify than you are 18 year of age</p>
+	              <p class="note">By clicking the "Sign-Up" button, you are agree to our <a href="http://www.muvflix.com/TermsAndConditions.html" target="_black">Terms & Conditions</a> and certify than you are 18 year of age</p>
 	              <button class="greenBtn" onclick="SignUp()">Sign Up</button>
 	            </div>
 	       	</div>
           	<p class="note">We value your privacy. We will not provide your email address to thrird parties. <br>
-          See our <a href="TermsAndConditions.html" target="_blank">Terms & Conditions</a> and <a href="PrivacyPolicy.html" target="_blank">Privacy Policy</a> for more details.</p>
+          See our <a href="http://www.muvflix.com/TermsAndConditions.html" target="_blank">Terms & Conditions</a> and <a href="PrivacyPolicy.html" target="_blank">Privacy Policy</a> for more details.</p>
         </div>
     </div>
     <div class="btnWrapper">
-    	<button class="greenBtn bigBtn" onclick="openLogin()">
+    	<button class="greenBtn bigBtn">
     		<span class="title">Start your 5-Day free trial NOW</span>
-    		<span class="subtitle">Click here to Continue</span>
     	</button>
     </div>
     <div class="languages">{{#each lang in App.LanguageController}}
@@ -205,7 +206,7 @@
           		<div class="littleTitle">Privacy Guaranteed</div>
           		<p>In order to keep your personal information private, we use encryption security tehnology. Our site employs <b>Secure Sockets Layering (SSL)</b> to encript your personal information such as credit card number, name, and address before it travels over the internet. Your data is encrypted and password-protected to make sure no one ever sees your personal information!!! </p>
           		<div class="littleTitle">No Hidden Fees</div>
-          		<p>We always provide our members with a detailed purchase history in order for them to know exactly what they are paying for. Your payment method information is requiered to future purchases only. <b>NO CHARGES</b> will appear on your credit card statement unless you upgrade to a Premium Membership or make a purchase. By creating an account, you agree our <span class="underlined"><a href="TermsAndConditions.html" target="_blank">Terms & Conditions</a></span></p>
+          		<p>We always provide our members with a detailed purchase history in order for them to know exactly what they are paying for. Your payment method information is requiered to future purchases only. <b>NO CHARGES</b> will appear on your credit card statement unless you upgrade to a Premium Membership or make a purchase. By creating an account, you agree our <span class="underlined"><a href="http://www.muvflix.com/TermsAndConditions.html" target="_blank">Terms & Conditions</a></span></p>
           		<div class="help">
           			Questions? Comments?<br>
             		Give us a call at 1-800-851-2403 <br>
@@ -402,7 +403,7 @@
     <div class="logo"><div>Need help? Support@movflix.com</div></div>
     <div class="menu">
       <ul>
-        <li><a href="TermsAndConditions.html" target="_blank">Terms of Use</a></li>|
+        <li><a href="http://www.muvflix.com/TermsAndConditions.html" target="_blank">Terms of Use</a></li>|
          <li><a href="PrivacyPolicy.html" target="_blank">Privacy</a></li>|
       </ul>
       <span>Copyright © 2015</span>
@@ -412,7 +413,6 @@
   </div></div>
   </script>
 
-	<script src="http://s3-eu-west-1.amazonaws.com/vodresources/js/bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	<script src="http://s3-eu-west-1.amazonaws.com/vodresources/js/bower_components/handlebars/handlebars.min.js"></script>

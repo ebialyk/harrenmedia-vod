@@ -148,7 +148,8 @@ function verifyAccount() {
 				token_id : response.token_id,
 				transaction_id : response.transaction_id,
 				transaction_state : response.transaction_state,
-				transaction_type : response.transaction_type
+				transaction_type : response.transaction_type,
+				agregatorId : 4000
 			}
 			$.ajax({
 				url : "rest/client/verifyAccount",

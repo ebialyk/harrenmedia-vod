@@ -70,6 +70,9 @@ dependencies{
 	compile 'com.google.oauth-client:google-oauth-client-jetty:1.13.1-beta'
 	compile 'org.jsoup:jsoup:1.8.3'
 	compile 'com.googlecode.json-simple:json-simple:1.1.1'
+	compile group: 'com.maxmind.geoip2', name: 'geoip2', version: '2.7.0'
+	compile group: 'com.google.code.gson', name: 'gson', version: '1.7.2'
+	
 }
 
 

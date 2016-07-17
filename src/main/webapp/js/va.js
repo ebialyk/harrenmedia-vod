@@ -165,7 +165,8 @@ function verifyAccount() {
 				token_id : response.token_id,
 				transaction_id : response.transaction_id,
 				transaction_state : response.transaction_state,
-				transaction_type : response.transaction_type
+				transaction_type : response.transaction_type,
+				agregatorId : 4000
 			}
 			
 			$.ajax({
@@ -215,7 +216,10 @@ function verifyAccount() {
 			});
 		},
 		onError : function(response) {
-			alert(response.status_description_1);
+			if(response.status_description_1 != null)
+				alert(response.status_description_1);
+			else if(response.form_validation_result != null)
+				alert(response.form_validation_result);
 			document.getElementById("loadingMask").style.display = "none";
 		},
 	});

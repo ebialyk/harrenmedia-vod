@@ -1,22 +1,32 @@
-function removejscssfile(filename, filetype){
-    var targetelement=(filetype=="js")? "script" : (filetype=="css")? "link" : "none" //determine element type to create nodelist from
-    var targetattr=(filetype=="js")? "src" : (filetype=="css")? "href" : "none" //determine corresponding attribute to test for
-    var allsuspects=document.getElementsByTagName(targetelement)
-    for (var i=allsuspects.length; i>=0; i--){ //search backwards within nodelist for matching elements to remove
-    if (allsuspects[i] && allsuspects[i].getAttribute(targetattr)!=null && allsuspects[i].getAttribute(targetattr).indexOf(filename)!=-1)
-        allsuspects[i].parentNode.removeChild(allsuspects[i]) //remove element by calling parentNode.removeChild()
-    }
+function removejscssfile(filename, filetype) {
+	var targetelement = (filetype == "js") ? "script"
+			: (filetype == "css") ? "link" : "none" // determine element type to
+													// create nodelist from
+	var targetattr = (filetype == "js") ? "src" : (filetype == "css") ? "href"
+			: "none" // determine corresponding attribute to test for
+	var allsuspects = document.getElementsByTagName(targetelement)
+	for (var i = allsuspects.length; i >= 0; i--) { // search backwards within
+													// nodelist for matching
+													// elements to remove
+		if (allsuspects[i]
+				&& allsuspects[i].getAttribute(targetattr) != null
+				&& allsuspects[i].getAttribute(targetattr).indexOf(filename) != -1)
+			allsuspects[i].parentNode.removeChild(allsuspects[i]) // remove
+																	// element
+																	// by
+																	// calling
+																	// parentNode.removeChild()
+	}
 }
 
 function validPassword(psw) {
-	if(psw.value.length < 5)
+	if (psw.value.length < 5)
 		return false;
-	
+
 	return true;
 }
 function validEmail(mail) {
-	var re = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
-;
+	var re = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
 	return re.test(mail);
 }
 function getLoggedInUser() {
@@ -50,10 +60,10 @@ function parseURLParams(url) {
 		if (!parms.hasOwnProperty(n)) {
 			parms[n] = [];
 		}
-		
-		for(j=2;j<nv.length;j++){
-			if(nv[j]=="") {
-				v+="=";
+
+		for (j = 2; j < nv.length; j++) {
+			if (nv[j] == "") {
+				v += "=";
 			}
 		}
 		parms[n].push(nv.length >= 2 ? v : null);
@@ -84,14 +94,15 @@ function login(mail, ps) {
 		}
 	});
 }
-function tracking(affiliate, country, place, cssTheme, languageId, userId, clickId) {
+function tracking(affiliate, country, place, cssTheme, languageId, userId,
+		clickId) {
 	data = {
-		affiliate : affiliate, 
-		country : country, 
-		place : place, 
-		cssTheme : cssTheme, 
-		languageId : languageId, 
-		email : userId,	 	
+		affiliate : affiliate,
+		country : country,
+		place : place,
+		cssTheme : cssTheme,
+		languageId : languageId,
+		email : userId,
 		clickId : clickId
 	};
 	$.ajax({
@@ -107,7 +118,22 @@ function tracking(affiliate, country, place, cssTheme, languageId, userId, click
 	});
 }
 
-function postBack(url, type, id) {
-	
+function checkByIP() {
+	$.ajax({
+		url : "rest/client/checkByIp",
+		type : "GET",
+		dataType : "json", // expected format for response
+		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+		success : function(response) {
+			if (response != undefined) {
+				if (response.countryId != null) {
+					return response;
+				}
+			} 
+			return false;
+		},
+		error : function(response, status, error) {
+			alert(response.message);
+		}
+	})
 }
-

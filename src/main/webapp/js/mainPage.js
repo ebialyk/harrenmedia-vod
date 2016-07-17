@@ -1,6 +1,28 @@
 var MAIL;
 var PSW;
+var COUNTRYCODE;
+$('html').css('display', 'none');
+$.ajax({
+	url : "rest/client/checkByIp",
+	type : "GET",
+	dataType : "json", // expected format for response
+	contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+	success : function(response) {
+		if (response != undefined && response.countryId != null) {
+			$('html').css('display', 'block');
+			COUNTRYCODE = response.countryId;
+		} else {
+			confirmOnExit = false;
+			window.open("https://www.google.co.il/", '_self', false);
+		}
+	},
+	error : function(response, status, error) {
+		confirmOnExit = false;
+		window.open("https://www.google.co.il/", '_self', false);
+	}
+})
 window.onload = function() {
+
 	var disableExternal = (location.hostname == "localhost");
 		
 		document.getElementById('amazonCSS').disabled  = disableExternal;

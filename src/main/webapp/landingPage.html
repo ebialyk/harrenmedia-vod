@@ -5,83 +5,89 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Muvflix</title>
 
+<script	src="http://s3-eu-west-1.amazonaws.com/vodresources/js/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="js/index.js" id="LHIndexJS"></script>
 <link rel="icon" href="favicon.ico">
-<link rel="stylesheet" href="http://s3-eu-west-1.amazonaws.com/vodresources/css/normalize.css">
+<link rel="stylesheet"	href="http://s3-eu-west-1.amazonaws.com/vodresources/css/normalize.css">
+<link rel="stylesheet"	href="http://s3-eu-west-1.amazonaws.com/vodresources/css/bootstrap.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-
-<link rel="stylesheet" href="http://s3-eu-west-1.amazonaws.com/vodresources/css/bootstrap.css">
- 
-<link rel="stylesheet" href="http://s3-eu-west-1.amazonaws.com/vodresources/css/style.css" id="amazonCSS">
-<link rel="stylesheet" href="http://s3-eu-west-1.amazonaws.com/vodresources/css/mobile.css" id="amazonMobileCSS" >
-
+<link rel="stylesheet"	href="http://s3-eu-west-1.amazonaws.com/vodresources/css/style.css"	id="amazonCSS">
+<link rel="stylesheet"	href="http://s3-eu-west-1.amazonaws.com/vodresources/css/mobile.css" id="amazonMobileCSS">
 <link rel="stylesheet" href="css/style.css" id="LHCSS">
-<link rel="stylesheet" href="css/mobile.css" id="LHMobileCSS"> 
- 
-<script src="http://s3-eu-west-1.amazonaws.com/vodresources/js/bower_components/jquery/dist/jquery.min.js"></script>
- 
+<link rel="stylesheet" href="css/mobile.css" id="LHMobileCSS">
+
 
 
 <script src="js/utils.js" id="LHUtilsJS"></script>
-<script src="js/index.js"  id="LHIndexJS"></script>
+
 </head>
 <body id="body" class="preload-01 preload-02">
-  <div id="LandingPage">
-    <div id="content">
-      <div id="header" onclick="openCreateAccountDialog()">
-        <div id="titles">
-          <div class="title"><div id="logo"></div><span>start watching movies instantly!</span></div>
-          <div class="subtitle" id="movieTitle">HD Streaming(720)</div>
-        </div>
-        <div class="download">
-          <button class="greenBtn">
-            <span class="title">DOWNLOAD</span>
-            <span class="subtitle">TO YOUR COMPUTER</span>
-          </button>
-          <div id="stars"><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i></div>
-        </div>
-      </div>
-      <div class="playerContainer">
-        <div class="width ratio16-9">
-          <div class="content">
-            <div class="loading" id="loading">
-            </div>
-            <div class="screen" id="screen">
-              <div class="movie"></div>
-              <div class="movieTimer" onclick="openCreateAccountDialog()">
-                <div id="circularG">
-                </div><span id="loadSpan">Loading...</span>
-                <div class="contentBar" id="contentBar">
-                  <span class="expand "></span>
-                  <span class="expand expandRed"></span>
-                </div>
-              </div>
-            </div>
-            <div class="controllers" onclick="openCreateAccountDialog()"></div>
-          </div>
-        </div>
-      </div>
-      <div id="languages">
-        
-      </div>
-      <div class="mask" id="mask"></div>
-      <div id="loadingMask"></div>
-      <div id="CreateAccount"> 
-      	<div class="registrationWrapper">
-        	<div id="registration" >
-          		<p>Only registered friends can watch all the movies!</p>
-          		<p class="enlargedText">you must create a <span class="green">FREE</span> account to <span class="green">STREAM</span> this movie</p>
-          		<input type="email" id="email" placeholder="E-mail" data-index="1" >
-          		<input type="password" id="psw" maxlength="12" pattern=".{5,12}" required  placeholder="Password" data-index="2">
-          		<input type="Password" id="psw2" maxlength="12" pattern=".{5,12}" required  placeholder="Confirm Password" data-index="3" onkeydown=checkEnter(event)>
-          		<button class="greenBtn" onclick="CreateAccountValidation()" data-index="4">CREATE MY FREE ACCOUNT NOW</button>
-        	</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script>
+	<div id="LandingPage">
+		<div id="content">
+			<div id="header" onclick="openCreateAccountDialog()">
+				<div id="titles">
+					<div class="title">
+						<div id="logo"></div>
+						<span>start watching movies instantly!</span>
+					</div>
+					<div class="subtitle" id="movieTitle">HD Streaming(720)</div>
+				</div>
+				<div class="download">
+					<button class="greenBtn">
+						<span class="title">DOWNLOAD</span> <span class="subtitle">TO
+							YOUR COMPUTER</span>
+					</button>
+					<div id="stars">
+						<i class="material-icons">star</i><i class="material-icons">star</i><i
+							class="material-icons">star</i><i class="material-icons">star</i><i
+							class="material-icons">star</i>
+					</div>
+				</div>
+			</div>
+			<div class="playerContainer">
+				<div class="width ratio16-9">
+					<div class="content">
+						<div class="loading" id="loading"></div>
+						<div class="screen" id="screen">
+							<div class="movie"></div>
+							<div class="movieTimer" onclick="openCreateAccountDialog()">
+								<div id="circularG"></div>
+								<span id="loadSpan">Loading...</span>
+								<div class="contentBar" id="contentBar">
+									<span class="expand "></span> <span class="expand expandRed"></span>
+								</div>
+							</div>
+						</div>
+						<div class="controllers" onclick="openCreateAccountDialog()"></div>
+					</div>
+				</div>
+			</div>
+			<div id="languages"></div>
+			<div class="mask" id="mask"></div>
+			<div id="loadingMask"></div>
+			<div id="CreateAccount">
+				<div class="registrationWrapper">
+					<div id="registration">
+						<p>Only registered friends can watch all the movies!</p>
+						<p class="enlargedText">
+							you must create a <span class="green">FREE</span> account to <span
+								class="green">STREAM</span> this movie
+						</p>
+						<input type="email" id="email" placeholder="E-mail" data-index="1">
+						<input type="password" id="psw" maxlength="12" pattern=".{5,12}"
+							required placeholder="Password" data-index="2"> <input
+							type="Password" id="psw2" maxlength="12" pattern=".{5,12}"
+							required placeholder="Confirm Password" data-index="3"
+							onkeydown=checkEnter(event)>
+						<button class="greenBtn" onclick="CreateAccountValidation()"
+							data-index="4">CREATE MY FREE ACCOUNT NOW</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

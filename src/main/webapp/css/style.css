@@ -1932,13 +1932,16 @@ button.redBtn {
 	display: -ms-flex;
 	display: -o-flex;
 	display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 #moviePreview .movieTrailer .galleryImages div {
-	width: 48px;
-	height: 51px;
-	margin: 0 3.5px;
-	background-color: gray;
-	overflow: hidden;
+	width: 83px;
+    height: 42px;
+    margin: 9px 12px;
+    background-color: gray;
+    overflow: hidden;
+    flex-wrap: inherit;
 }
 #pricingPage {
 	display: none;
@@ -1999,6 +2002,9 @@ button.redBtn {
 	height: 39px;
 	width: 160px;
 	font-size: 18px;
+}
+.eula img {
+	width:800px;
 }
 .eula .content {
 	padding-top: 44px;

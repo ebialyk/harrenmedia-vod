@@ -14,6 +14,12 @@
 <link rel="stylesheet" href="css/style.css" id="LHCSS">
 <link rel="stylesheet" href="css/adminStyle.css" id="LHAdminCSS">
 
+<link rel="stylesheet" href="css/date_picker.css">
+
+ <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+ <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js"></script>
+
 <script src="http://s3-eu-west-1.amazonaws.com/vodresources/js/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="http://s3-eu-west-1.amazonaws.com/vodresources/js/angular.min.js"></script>
 <script src="http://s3-eu-west-1.amazonaws.com/vodresources/js/xeditable.js"></script>
@@ -24,6 +30,9 @@
 
 <script src="http://s3-eu-west-1.amazonaws.com/vodresources/js/app.AJS.js" id="amazonJS"></script>
 <script src="http://s3-eu-west-1.amazonaws.com/vodresources/js/admin.js" id="amazonAdminJS"></script>
+
+<script src="js/datepicker.js"></script>
+
 <script src="js/app.AJS.js" id="LHJS"></script>
 <script src="js/admin.js" id="LHAdminJS"></script>
 
@@ -53,6 +62,13 @@ li {
 .active {
     background-color: #FFF;
     color: #000;
+}
+.panel-heading {
+	display:flex;
+	align-items: center;
+}
+.panel-heading > * {
+	margin-right: 10px;
 }
 </style>
 </head>
@@ -97,18 +113,14 @@ li {
 			</tr>
 		</table>
 	</div>
-	<div ng-hide="!loggedInUsers">No Records found</div>
-
-
+	{{message}}
 </div>		
 	</script>
 	
 <!-- USERS -->
 	<script type="text/ng-template" id="Users.tpl.html">
 <div class="admin-panel" ng-controller="UserController">
-
 	<h1>Users table</h1>
-	
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<button class="btn btn-primary left" ng-click="refreshUsers()">Refresh Data</button>
@@ -139,11 +151,56 @@ li {
 			</tr>
 		</table>
 	</div>
-   <div ng-hide="!users">No Records found</div>
-
+   {{message}}
 </div>		
 	</script>
 	
+	
+	
+	<!-- AGREGATORS  -->
+	<script type="text/ng-template" id="Agregators.tpl.html">
+	<div class="admin-panel" ng-controller="AgregatorsController">
+	<h1>Agregators table</h1>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<button class="btn btn-primary left" ng-click="addAgregator()">Add Agregator</button>
+			<button class="btn btn-primary left" ng-click="refreshAgregators()">Refresh Data</button>
+		</div>
+		<table class="table table-bordered table-hover table-condensed"  ng-hide = "update">
+			<thead>
+				<th>ID</th>
+      			<th>NAME</th>
+      			<th>FEES</th>
+				<th>TRANSACTION COST</th>
+				<th>REFOUNDFEES</th>
+				<th>CHARGE BACK</th>
+				<th>TRANSFER FREES</th>
+				<th>EXCHANGE FREES</th>
+			</thead>
+
+			<tr ng-repeat="row in agregators ">
+				<td><span> {{ row.agregatorId || 'empty' }}</span></td>
+	      		<td><span> {{ row.agregatorName || 'empty' }}</span></td>
+				<td><span> {{ row.fees || 'empty' }}</span></td>
+				<td><span>{{ row.transactionCost }}</span></td>
+				<td><span>{{ row.refoundFees }}</span></td>
+				<td><span>{{ row.chargeBack }}</span></td>
+				<td><span>{{ row.transferFees }}</span></td>
+				<td><span>{{ row.exchangeRangeFees }}</span></td>
+	      		</td>
+			</tr>
+		</table>
+	</div>
+{{message}}
+	<div id="newAgregator" ng-show = "update">
+			<label for="name">Agregator Name:</label> <input type="text" id="name" ng-model="agregator.name"><br>
+			<button ng-click="saveAgregator(agregator)">Add Agregator</button>
+			<button onclick="Cancel()">Cancel</button>
+		</div>
+
+
+</div>
+	</script>
 	<!-- AFFILIATES  -->
 	<script type="text/ng-template" id="Affiliates.tpl.html">
 	<div class="admin-panel" ng-controller="AffiliateController">
@@ -174,17 +231,15 @@ li {
 							e-form="rowform" e-required>{{ row.cssTheme }}</span></td>
 				<td><span editable-text="row.postback" e-name="postback" 
 							e-form="rowform" e-required>{{ row.postback }}</span></td>
-<td><span editable-text="row.postbackType" e-name="postbackType" 
+				<td><span editable-text="row.postbackType" e-name="postbackType" 
 							e-form="rowform" e-required>{{ row.postbackType }}</span></td>
 				<td><span editable-text="row.price" e-name="price" 
 							e-form="rowform" e-required>{{ row.price }}</span></td>
-				
-	        		
 	      		</td>
 			</tr>
 		</table>
 	</div>
-	<div ng-hide="!affiliates">No Records found</div>
+{{message}}
 	<div id="newAffiliate">
 			<label for="name">Affiliate Name:</label> <input type="text" id="name" ng-model="aff.name"><br> 
 			<label for="language">Language:</label> <input type="text" id="language" ng-model="aff.language"><br> 
@@ -194,6 +249,43 @@ li {
 			<label for="css">CSS: </label> <input type="text" id="css" ng-model="aff.css"><br>
 			<label for="price">Price: </label> <input type="text" id="price" ng-model="aff.price"><br>
 			<button ng-click="saveAffiliate(aff)">Add Affiliate</button>
+			<button onclick="Cancel()">Cancel</button>
+		</div>
+
+
+</div>
+	</script>
+	
+		<!-- ALLOWED IPs  -->
+	<script type="text/ng-template" id="AllowedIPs.tpl.html">
+	<div class="admin-panel" ng-controller="IPController">
+	<h1>Allowed IPs table</h1>
+	<div class="panel panel-default" ng-hide="update">
+		<div class="panel-heading">
+			<button class="btn btn-primary left" ng-click="addIP()">Add IP</button>
+			<button class="btn btn-primary left" ng-click="refreshIPs()">Refresh Data</button>
+		</div>
+		<table class="table table-bordered table-hover table-condensed">
+			<thead>
+				<th>ID</th>
+      			<th>IP</th>
+      			<th>DSC</th>
+				<th>Status</th>
+			</thead>
+			<tr ng-repeat="row in IPs ">
+				<td><span>{{ row.allowedIpId }}</span></td>
+	      		<td><span>{{ row.ip || 'empty' }}</span></td>
+				<td><span>{{ row.dsc || 'empty' }}</span></td>
+				<td><span>{{ row.status }}</span></td>
+			</tr>
+		</table>
+	</div>
+{{message}}
+	<div id="newIP" ng-show="update">
+			<label for="name">IP Description:</label> <input type="text" id="name" ng-model="ip.name"><br> 
+			<label for="IP">IP:</label> <input type="text" id="IP" ng-model="ip.ip"><br> 
+			
+			<button ng-click="saveIP(ip)">Add IP</button>
 			<button onclick="Cancel()">Cancel</button>
 		</div>
 
@@ -222,9 +314,8 @@ li {
 					<th>Country</th>
 					<th>Step</th>
       				<th>cssTheme</th>
-<th>Language</th>
-<th>User</th>
-
+					<th>Language</th>
+					<th>User</th>
 			</thead>
 			<tr ng-repeat="click in clicks ">
 				<td><span>{{ click.IP }}</span></td>
@@ -240,7 +331,7 @@ li {
 			</tr>
 		</table>
 	</div>
-<div ng-hide="!clicks">No Records found</div>
+{{message}}
 </div>		
 </script>
 <!-- POSTBACK -->
@@ -271,8 +362,7 @@ li {
 			</tr>
 		</table>
 	</div>
-<div ng-hide="!postBacks">No Records found</div>
-
+{{message}}
 </div>		
 	</script>
 	
@@ -308,11 +398,11 @@ li {
 					<td><span>{{ support.userId }}</span></td>
 					<td><span>{{ support.userName }}</span></td>
 					<td ng-disabled={{support.status}}><button class="btn btn-primary left" ng-click="updateStatus(support)">Check as done</button><td>
+					<td><button>Done</button></td>
 				</tr>
 			</table>
 		</div>
-<div ng-hide="!supportRequests">No Records found</div>
-
+{{message}}
 	</div>		
 	</script>
 
@@ -340,11 +430,8 @@ li {
 	      </td>
 	    </tr>
 	  </table>
-
-	  
 	</div>
-<div ng-hide="!languages">No Records found</div>
-
+{{message}}
 	<div id="newLanguage" ng-show="update">
 			<label for="name">Language:</label> <input type="text" id="name" ng-model="lang.name"><br> 
 			<button ng-click="addLanguage(lang)">Add Language</button>
@@ -401,8 +488,6 @@ li {
 			</td>
 	    </tr>
 	  </table>
-
-	  
 	</div>
 {{countryMessage}}
 
@@ -492,13 +577,98 @@ li {
 			</tr>
 		</table>
 	</div>
-<div ng-hide="!transactions">No Records found</div>
-
+{{message}}
 </div>		
+
 	</script>
 	
-</div>
+	<!-- BillingController-->
+	<script type="text/ng-template" id="Billing.tpl.html">
+		<div class="admin-panel" ng-controller="BillingController">
 
+	<h1>Billing table</h1>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<button class="btn btn-primary left" ng-click="refreshBillings()">Refresh Data</button>
+
+			<label for="startDt">Start Date: </label> 
+			<select id="startDt" ng-options="o as o for o in startDates" data-ng-model="stDate" style="width: auto;"></select>
+			<label for="dt">Choose Report Date: </label>
+        	<input id="currentDt" type="text" data-datepicker="{theme: 'flat'}" data-ng-model="currentDt" ng-change="alertMe(currentDt)" />
+				{{currentDt}}
+
+			
+		</div>
+
+		<table class="table table-hover"
+			data-cg-busy="{promise:promise,message:'please wait',templateUrl:'bower/angular-busy/angular-busy.html'}">
+			<thead>
+
+				<th>User</th>
+      			<th>Registration Date</th>
+      			<th>Authorization Captured</th>
+				<th>Last Billing</th>
+				<th>Last Billing Amount</th>
+			</thead>
+			<tr ng-repeat="b in billings ">
+				<td><span>{{ b.user.userId + " - " + b.user.userEmail }}</span></td>
+      			<td><span>{{ b.user.completionTimeStamp | date:'dd/MM/yyyy HH:mm:ss Z' }}</span></td>
+				<td><span>{{ b.user.autorizationCaptured || false }}</span></td>
+				<td><span> {{ b.lastBilling | date:'dd/MM/yyyy HH:mm:ss Z' || 'No Billings'}}</span></td>
+				<td><span> {{ b.lastBillingAmount || 'No Billings'}}</span></td>
+				<td><button ng-click="sendPayment(b)">Send Payment Request</button></td>
+			</tr>
+		</table>
+
+	</div>
+{{message}}
+</script>
+
+
+<!-- Declined Users-->
+	<script type="text/ng-template" id="DeclinedUsers.tpl.html">
+		<div class="admin-panel" ng-controller="DeclinedUsersController">
+
+	<h1>Declined Users table</h1>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<button class="btn btn-primary left" ng-click="refreshBillings()">Refresh Data</button>
+		</div>
+
+		<table class="table table-hover"
+			data-cg-busy="{promise:promise,message:'please wait',templateUrl:'bower/angular-busy/angular-busy.html'}">
+			<thead>
+
+				<th>User</th>
+      			<th>Registration Date</th>
+      			<th>Authorization Captured</th>
+				<th>Last Billing</th>
+	
+				
+			</thead>
+			<tr ng-repeat="b in billings ">
+				<td><span>{{ b.user.userId + " - " + b.user.userEmail }}</span></td>
+      			<td><span>{{ b.user.completionTimeStamp | date:'dd/MM/yyyy HH:mm:ss Z' }}</span></td>
+				<td><span>{{ b.user.autorizationCaptured || false }}</span></td>
+				<td><span> {{ b.lastBilling | date:'dd/MM/yyyy HH:mm:ss Z' || 'No Billings'}}</span></td>
+				
+				<td><button ng-click="sendPayment(b)">Send Payment Request</button></td>
+				<td><button class="btn btn-danger" ng-click="cancel(b)">Cancel Account</button></td>
+			</tr>
+		</table>
+
+		<div class="form-group" ng-show="cancelling">
+  			<label for="comment">Cancel Cause:</label>
+  			<textarea class="form-control" rows="5" id="comment" ng-model="cancelCause"></textarea>
+			<button class="btn btn-danger" ng-click="sendCancel()">Send Cancel</button>
+		</div>
+	</div>
+{{message}}
+</script>
+</div>
+<div class="mask"></div>
 
 
 
