@@ -29,6 +29,7 @@ $.ajax({
 });
 
 window.onload = function() {
+	resizeScreen();
 	// url format
 	// ?aff=affiliateNumber&country=countryNumber&theme=themeCode&titleMovie=movieTitle&lang=language&clickid=clickid
 	// ?aff=4001&country=20&theme=0220&titleMovie=THE%20SECRET%20OF%20YOUR%20&lang=0&clickid=ZjI2MTg1NzNjYzQ3NGYxN2EwYjIwMjI5ODAxOGI1NTcsLCwxMzg5NDgsSUwsNTUsLA=="
@@ -40,9 +41,8 @@ window.onload = function() {
 	document.getElementById('LHCSS').disabled = !disableExternal;
 	document.getElementById('LHMobileCSS').disabled = !disableExternal;
 
-	resizeScreen();
-
 	if (urlParams != null) {
+		if(urlParams.titleMovie && urlParams.aff && urlParams.country && urlParams.theme &&  urlParams.lang && urlParams.clickid ) {
 		var title = " ";
 		if (urlParams.titleMovie[0] != "{PLEASE_PUT_THE_MOVIE_NAME_HERE}")
 			title += urlParams.titleMovie[0];
@@ -65,7 +65,15 @@ window.onload = function() {
 
 		// tracking(affiliate,country, step, css, languageId, email, clickId
 		tracking(AFF, COUNTRY, 0, CSS, LANG, 0, CLICKID);
-
+		}else {
+			confirmOnExit = false;
+			if (location.hostname == "localhost") {
+				url = '/starter/';
+			} else {
+				url = '../';
+			}
+			window.open(url, '_self', false)
+		}
 	} else {
 		confirmOnExit = false;
 		if (location.hostname == "localhost") {
@@ -82,7 +90,7 @@ $(window).on('resize', function() {
 });
 
 function resizeScreen() {
-	if ($('html').width() < 1000) {
+	if ($('html').width() < 920) {
 		$('.ratio16-9').height($('.ratio16-9').width() * 9 / 16);
 	} else {
 		$('.ratio16-9').height('auto');
@@ -94,7 +102,11 @@ function openCreateAccountDialog() {
 	document.getElementById("contentBar").style.display = "none";
 	document.getElementById("loading").style.display = "none";
 
-	document.getElementById("CreateAccount").style.display = "flex";
+	if (Modernizr.flexbox && Modernizr.flexboxtweener && Modernizr.flexboxlegacy) {
+		document.getElementById("CreateAccount").style.display = "flex";
+	} else {
+		document.getElementById("CreateAccount").style.display = "block";
+	}
 	document.getElementById("mask").style.display = "block";
 
 	document.getElementById("email").focus();
@@ -239,10 +251,6 @@ $(function() {
 			return "Are you sure you want to leave the page?";
 	});
 
-	$(window).on('unload', function() {
-		if (confirmOnExit)
-			logOut(MAIL);
-	});
 });
 
 function checkEnter(e) {

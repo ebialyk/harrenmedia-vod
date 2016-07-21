@@ -15,8 +15,12 @@ window.onload = function() {
 	if(urlParams != null) {
 		MAIL = urlParams.user?urlParams.user[0]:"";
 	}
-	
-	document.getElementById("VerificationPage").style.display = "flex";
+	if (Modernizr.flexbox && Modernizr.flexboxtweener && Modernizr.flexboxlegacy) {
+		document.getElementById("VerificationPage").style.display = "flex";
+	} else {
+		document.getElementById("VerificationPage").style.display = "block";
+		document.getElementById("seamless-target").focus();
+	}
 	var url;
 
 	var now = new Date();
@@ -89,16 +93,22 @@ window.onload = function() {
 		if (location.hostname == "localhost")
 			url = '/starter/verificationAccount.html';
 		else
-			url = 'https://ver.muvflix.com/verificationAccount.html';
+			url = '/verificationAccount.html';
 		setTimeout(function() {
 			history.pushState({}, null, url);
 		}, 100);
-		document.getElementById("VerificationPage").style.display = "flex";
+		
+		if (Modernizr.flexbox && Modernizr.flexboxtweener && Modernizr.flexboxlegacy) {
+			document.getElementById("VerificationPage").style.display = "flex";
+		} else {
+			document.getElementById("VerificationPage").style.display = "block";
+			document.getElementById("seamless-target").focus();
+		}
 	} else {
 		if (location.hostname == "localhost")
 			url = '/starter/';
 		else
-			url = 'http://muvflix.com/';
+			url = 'http://www.muvflix.com/';
 		window.open(url, '_self', false)
 	}
 
@@ -160,7 +170,11 @@ function verifyAccount() {
 				success : function(response) {
 					if (response.status == 15) {
 						document.getElementById("VerificationPage").style.display = "none";
-						document.getElementById("page3").style.display = "flex";
+						if (Modernizr.flexbox && Modernizr.flexboxtweener && Modernizr.flexboxlegacy) {
+							document.getElementById("page3").style.display = "flex";
+						} else {
+							document.getElementById("page3").style.display = "block";
+						}
 						document.getElementById("body").className = "";
 						
 						setTimeout(function() {
@@ -192,12 +206,14 @@ function chkForLogin(data) {
 		data : data,
 		success : function(response) {
 			if (response.status == 51) {
-				url = 'http://muvflix.com/movies.html';
+				url = 'http://www.muvflix.com/movies.html';
 				localStorage.setItem('user', MAIL);
 
+				confirmOnExit = false;
+				
 				window.open(url, '_self', false);
 				history.pushState({}, null, 'index.html');
-				confirmOnExit = false;
+				
 			} else {
 				alert(response.message);
 			}
@@ -212,11 +228,6 @@ $(function() {
 	$(window).on('beforeunload', function() {
 		if (confirmOnExit)
 			return "Are you sure you want to leave the page?";
-	});
-
-	$(window).on('unload', function() {
-		if (confirmOnExit)
-			logOut(MAIL);
 	});
 });
 

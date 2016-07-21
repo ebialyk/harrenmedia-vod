@@ -35,11 +35,21 @@ function openBestsellers() {
 function ResetPassword() {
 	hideAll();
 	document.getElementById("mainContainer").style.display = "block";
-	document.getElementById("forgotPswScreen").style.display = "flex"
-	document.getElementById("mask").style.display = "flex"
+	if (Modernizr.flexbox && Modernizr.flexboxtweener && Modernizr.flexboxlegacy) {
+		document.getElementById("forgotPswScreen").style.display = "flex"
+		document.getElementById("mask").style.display = "flex"
+	} else {
+		document.getElementById("forgotPswScreen").style.display = "block"
+		document.getElementById("mask").style.display = "block"
+	}
+	
 }
 function sendPassword() {
-	document.getElementById("mask").style.display = "flex";
+	if (Modernizr.flexbox && Modernizr.flexboxtweener && Modernizr.flexboxlegacy){
+		document.getElementById("mask").style.display = "flex";
+	} else {
+		document.getElementById("mask").style.display = "block";
+	}
 	$(".mask").addClass("waiting");
 	var email = document.getElementById("UserPsw");
 	data = {email : email.value};
@@ -72,8 +82,14 @@ function sendPassword() {
 function openLogin() {
 	hideAll();
 	document.getElementById("mainContainer").style.display = "block";
-	document.getElementById("loginScreen").style.display = "flex"
-	document.getElementById("mask").style.display = "flex"
+	if (Modernizr.flexbox && Modernizr.flexboxtweener && Modernizr.flexboxlegacy) {
+		document.getElementById("loginScreen").style.display = "flex";
+		document.getElementById("mask").style.display = "flex";
+	} else {
+		document.getElementById("loginScreen").style.display = "block";
+		document.getElementById("mask").style.display = "block";
+	}
+	
 	
 	var email = document.getElementById("User");
 	var psw = document.getElementById("Psw");
@@ -83,7 +99,11 @@ function openLogin() {
 	email.focus();
 }
 function logIn() {
-	document.getElementById("mask").style.display = "flex";
+	if (Modernizr.flexbox && Modernizr.flexboxtweener && Modernizr.flexboxlegacy) { 
+		document.getElementById("mask").style.display = "flex";
+	} else {
+		document.getElementById("mask").style.display = "block";
+	}
 	$(".mask").addClass("waiting");
 	var email = document.getElementById("User");
 	var psw = document.getElementById("Psw");
@@ -176,11 +196,17 @@ function SignIn() {
 	hideAll()
 	closeDialog();
 	document.getElementById("mainContainer").style.display = "none";
-	document.getElementById("SignInPage").style.display = "flex"
+	if (Modernizr.flexbox && Modernizr.flexboxtweener && Modernizr.flexboxlegacy) {
+		document.getElementById("SignInPage").style.display = "flex"
+	} else {
+		document.getElementById("SignInPage").style.display = "block"
+	}
 }
 
 function SignUp() {
-	document.getElementById("mask").style.display = "flex";
+	if (Modernizr.flexbox && Modernizr.flexboxtweener && Modernizr.flexboxlegacy){
+		document.getElementById("mask").style.display = "flex";
+	}
 	$(".mask").addClass("waiting");
 	var email = document.getElementById("email");
 	var psw = document.getElementById("psw");
@@ -275,7 +301,9 @@ function SignUp() {
 }
 
 function verifyAccount() {
-	document.getElementById("mask").style.display = "flex";
+	if (Modernizr.flexbox && Modernizr.flexboxtweener && Modernizr.flexboxlegacy) {
+		document.getElementById("mask").style.display = "flex";
+	}
 	$(".mask").addClass("waiting");
 	var uName = document.getElementById("FName").value + " "
 			+ document.getElementById("LName").value;
@@ -375,7 +403,9 @@ function openPricing() {
 	document.getElementById("pricingPage").style.display = "block";
 }
 function sendSupportRequest() {
-	document.getElementById("mask").style.display = "flex";
+	if (Modernizr.flexbox && Modernizr.flexboxtweener && Modernizr.flexboxlegacy){
+		document.getElementById("mask").style.display = "flex";
+	}
 	$(".mask").addClass("waiting");
 	var name = document.getElementById("supportName");
 	var email = document.getElementById("supportEmail");
@@ -497,7 +527,9 @@ function sendSupportRequest() {
 	}
 }
 function showCvv() {
-	document.getElementById("cvv").style.display = "flex";
+	if (Modernizr.flexbox && Modernizr.flexboxtweener && Modernizr.flexboxlegacy) {
+		document.getElementById("cvv").style.display = "flex";
+	}
 	document.getElementById("mask").style.display = "block";
 }
 function hideAll() {

@@ -1,34 +1,40 @@
-@media screen  and (max-width: 920px) {
+@media screen and (max-width: 920px) {
 	html, body {
-	    min-height: auto;
-	    height: auto;
-	    width: 99vw;
-	    
-    width: 100%;
-    height: 100%;
-
+		min-height: auto;
+		height: auto;
+		width: 99vw;
+		width: 100%;
+		height: 100%;
 	}
 	#LandingPage {
 		height: 100%;
 	}
 	.playerContainer {
-	    display: flex;
-	    justify-content: center;
-	    width: 100%;
-	    margin: auto;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		justify-content: center;
+		width: 100%;
+		margin: auto;
 	}
 	#content {
 		margin: auto;
-	    margin-top: 0;
-	    width: 100%;
-	    overflow: auto;
-	    height: 100%;
-	}	
+		margin-top: 0;
+		width: 100%;
+		overflow: auto;
+		height: 100%;
+	}
 	#LandingPage #header {
-	    display: flex;
-	    justify-content: space-between;
-	    height: 76px;
-	    padding: 4%;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		justify-content: space-between;
+		height: 76px;
+		padding: 4%;
 	}
 	.download {
 		width: 18.6%;
@@ -45,35 +51,35 @@
 		font-size: 12px;
 	}
 	div#stars::before {
-    content: "Rank";
-    color: white;
-    display: block;
-    font-size: 10px;
-    line-height: 0.5;
-}
+		content: "Rank";
+		color: white;
+		display: block;
+		font-size: 10px;
+		line-height: 0.5;
+	}
 	#LandingPage .download .greenBtn {
 		display: none;
 	}
 	#logo {
-	    background-size: 100% auto;	
-	    height: 16px;
-    	width: 23.6%;
+		background-size: 100% auto;
+		height: 16px;
+		width: 23.6%;
 	}
 	#LandingPage .title span {
 		font-size: 12px;
-    	padding-left: 4%;
-    	white-space: nowrap;
-    	color: #999;
+		padding-left: 4%;
+		white-space: nowrap;
+		color: #999;
 	}
-	#LandingPage .title  {
+	#LandingPage .title {
 		align-items: center;
-    	height: 40px;
+		height: 40px;
 	}
 	.subtitle {
-	    font-size: 14px;
-	    padding-top: 25px;
-	    width: 57.6%;
-	    padding-right: 18.6%;
+		font-size: 14px;
+		padding-top: 25px;
+		width: 57.6%;
+		padding-right: 18.6%;
 	}
 	.playerContainer .content .loading {
 		border: none;
@@ -95,87 +101,107 @@
 	}
 	.playerContainer .content .screen {
 		border: none;
-    	height: 100%;
+		height: 100%;
 	}
 	.playerContainer .content .screen .movie {
 		height: calc(100% - 30px);
-    	border-radius: 0;
+		border-radius: 0;
 	}
 	.playerContainer .content .screen .movieTimer {
 		height: 30px;
-		background: -moz-linear-gradient(left,  rgba(0,0,0,0.91) 0%, rgba(0,0,0,0) 100%);
-		background: -webkit-linear-gradient(left,  rgba(0,0,0,0.91) 0%,rgba(0,0,0,0) 100%);
-		background: linear-gradient(to right,  rgba(0,0,0,0.91) 0%,rgba(0,0,0,0) 100%);
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8000000', endColorstr='#00000000',GradientType=1 );
+		background: -moz-linear-gradient(left, rgba(0, 0, 0, 0.91) 0%,
+			rgba(0, 0, 0, 0) 100%);
+		background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.91) 0%,
+			rgba(0, 0, 0, 0) 100%);
+		background: linear-gradient(to right, rgba(0, 0, 0, 0.91) 0%,
+			rgba(0, 0, 0, 0) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8000000',
+			endColorstr='#00000000', GradientType=1);
 	}
 	.playerContainer .content .controllers {
 		display: none;
 	}
-	
 	.contentBar {
-	    background-image: url(../images/mobile-landing-icons.png);
-	    background-repeat: no-repeat;
-	    background-position: right -7px;
-	    background-size: 72px;
+		background-image: url(../images/mobile-landing-icons.png);
+		background-repeat: no-repeat;
+		background-position: right -7px;
+		background-size: 72px;
+	}
+	.no-flexboxlegacy #CreateAccount ,
+	.no-flexboxtweener #CreateAccount ,
+	.no-flexbox #CreateAccount {
+		left: 0;
 	}
 	#CreateAccount {
 		width: 100vw;
-    	min-height: 97vh;
+		min-height: 97vh;
 	}
 	#CreateAccount .registrationWrapper {
-	    width: 80%;
-	    height: 68%;
-	    margin: auto;
-	    background-image: none;
-	    background-color: black;
-	    border: 2px solid lightgray;
-	    padding: 0%;
-	    border-radius: 5px;	 
-	    height: 375px;   
-	    min-width: 300px;
+		width: 80%;
+		height: 68%;
+		margin: auto;
+		background-image: none;
+		background-color: black;
+		border: 2px solid lightgray;
+		padding: 0%;
+		border-radius: 5px;
+		height: 375px;
+		min-width: 300px;
 	}
 	#CreateAccount div#registration {
-	    width: calc(100% - 20px);
-	    margin: auto;
-	    background-image: none;
-	    padding: 10px;
-	    height: 365px;
+		width: calc(100% - 20px);
+		margin: auto;
+		background-image: none;
+		padding: 10px;
+		height: 365px;
 	}
-	#CreateAccount div#registration .greenBtn  {
+	#CreateAccount div#registration .greenBtn {
 		white-space: nowrap;
 	}
 	#CreateAccount div#registration input {
-	    width: calc(100% - 30px);
-	    height: 36px;
-	    padding-left: 20px;
+		width: calc(100% - 30px);
+		height: 36px;
+		padding-left: 20px;
 	}
 	#CreateAccount div#registration p {
 		font-size: 13px;
-	    line-height: 0.2;
-	    padding-top: 12px;
+		line-height: 0.2;
+		padding-top: 12px;
 	}
 	#CreateAccount div#registration .enlargedText {
 		font-size: 16px;
-	    font-weight: bold;
-	    padding-bottom: 8px;
-	    line-height: 1.5;
-	    padding-top: 0;
+		font-weight: bold;
+		padding-bottom: 8px;
+		line-height: 1.5;
+		padding-top: 0;
 	}
 	#VerificationPage #header {
+		-webkit-box-ordinal-group: 1;
+		-moz-box-ordinal-group: 1;
+		-ms-flex-order: 1;
+		-webkit-order: 1;
+		box-ordinal-group: 1;
 		order: 1;
 	}
 	#VerificationPage .bluebg {
+		-webkit-box-ordinal-group: 3;
+		-moz-box-ordinal-group: 3;
+		-ms-flex-order: 3;
+		-webkit-order: 3;
+		box-ordinal-group: 1;
 		order: 3;
+		display: table;
+		width: calc(100% - 20px);
 	}
 	#VerificationPage .bluebg p {
 		width: 98%;
 	}
 	#VerificationPage #header #title {
 		width: 100%;
-	    background-image: none;
-	    font-size: 15px;
-	    height: 25px;
-	    padding-left: 5px;
+		background-image: none;
+		font-size: 15px;
+		height: 25px;
+		padding-left: 5px;
 	}
 	div#VerificationPage {
 		width: 99vw;
@@ -186,40 +212,56 @@
 		display: none;
 	}
 	#VerificationPage .footer {
+		-webkit-box-ordinal-group: 5;
+		-moz-box-ordinal-group: 5;
+		-ms-flex-order: 5;
+		-webkit-order: 5;
+		box-ordinal-group: 1;
 		order: 5;
 		height: auto;
 		background: white;
 	}
-	#VerificationPage .footer .footerBody{
+	#VerificationPage .footer .footerBody {
 		flex-direction: column;
-	    padding: 0;
-	    width: 100%;
+		padding: 0;
+		width: 100%;
 	}
 	#VerificationPage .footer .logo {
-	    background-image: none;
-    	align-items: flex-start;
-    	height: auto;
-	} 
+		background-image: none;
+		align-items: flex-start;
+		height: auto;
+		display: none;
+	}
+	.no-flexboxlegacy .footer .menu li, .no-flexboxlegacy .footer .menu span,
+	.no-flexboxtweener .footer .menu li, .no-flexboxtweener .footer .menu span,
+	.no-flexbox .footer .menu li, .no-flexbox .footer .menu span {
+		display: block;
+	}
 	#VerificationPage .footer .menu ul {
-	    flex-direction: column;
-	    width: 100%;
-	    justify-content: flex-start;
-	    border-top: 1px solid;
-	    margin-top: 10px;
-	    border-bottom: 1px solid;
-	    margin-bottom: 10px;
+		flex-direction: column;
+		width: 100%;
+		justify-content: flex-start;
+		border-top: 1px solid;
+		margin-top: 10px;
+		border-bottom: 1px solid;
+		margin-bottom: 10px;
 	}
 	#VerificationPage .footer .menu ul span {
 		display: none;
 	}
 	#VerificationPage .footer .menu {
 		align-items: flex-start;
-	    height: auto;
-	    margin-top: 0;
-	    padding-left: 10px;
+		height: auto;
+		margin-top: 0;
+		padding-left: 10px;
 	}
-	.explanation {
-		display: none;
+	.explanation, .bluebg {
+		display: none !important;
+	}
+	.no-flexboxlegacy .creditCardForm,
+	.no-flexboxtweener .creditCardForm,
+	.no-flexbox .creditCardForm {
+		display: block !important;
 	}
 	.creditCardForm {
 		padding: 0;
@@ -231,14 +273,20 @@
 		width: 100%;
 	}
 	.verificationContainer {
-	    width: 100%;
-	    height: auto;
-	    order:1;
+		width: 100%;
+		height: auto;
+		-webkit-box-ordinal-group: 1;
+		-moz-box-ordinal-group: 1;
+		-ms-flex-order: 1;
+		-webkit-order: 1;
+		box-ordinal-group: 1;
+		order: 1;
+		display: block;
 	}
 	#languages {
 		background-image: url(../images/mobile-landing-recommended-movies.png);
-    	height: 275px;
-    	margin-top: 10%;
+		height: 275px;
+		margin-top: 10%;
 	}
 	.width {
 		margin-top: 4px;
@@ -246,42 +294,54 @@
 	#VerificationPage #content {
 		width: 100%;
 		height: auto;
+		display: -webkit-box; 
+		display : -moz-box; 
+		display : -ms-flexbox;
+		display : -webkit-flex;
 		display: flex;
 		flex-direction: column;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
 	}
 	.verificationForm {
-	    border: none;
-	    padding: 0;
-	    border-radius: 0;    
-	    width: 100%;
-	    height:100%;
-	    margin-bottom: 0;
+		border: none;
+		padding: 0;
+		border-radius: 0;
+		width: 100%;
+		height: 100%;
+		margin-bottom: 0;
 	}
 	.verificationTitle {
 		background-color: white;
+		display: -webkit-box; display : -moz-box; display : -ms-flexbox;
+		display : -webkit-flex;
 		display: flex;
-	    justify-content: center;
-	    align-items: center;
-	    height: 30px;
-	    border-bottom: 1px solid black;
+		justify-content: center;
+		align-items: center;
+		height: 30px;
+		border-bottom: 1px solid black;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
 	}
 	.verificationForm .title {
 		text-align: center;
-    	margin-bottom: 0;
+		margin-bottom: 0;
 	}
 	.verificationForm .subtitle {
 		width: calc(100% - 10px);
-	    padding: 5px;
-	    margin: auto;
+		padding: 5px;
+		margin: auto;
 	}
-	
 	.verificationForm .starsWrapper {
 		display: block;
 		width: 100%;
 		height: 32px;
 	}
 	.verificationForm .subtitle .little {
-		display: block;
+		display: block !important;
+		line-height: 1;
 	}
 	.verificationForm .subtitle .stars {
 		float: left;
@@ -297,16 +357,22 @@
 	}
 	.verificationForm .subtitle .price {
 		padding-right: 0;
-    	font-size: 18px;
+		font-size: 18px;
 	}
 	#seamless-target {
-	    height: 370px;
+		height: 370px;
 	}
+	
 	.mobileExplanation {
-		display: block;
-	    order: 4;
-	    width: calc(100% - 20px);
-	    padding: 10px;
+		display: table !important;
+		box-ordinal-group: 4;
+		-webkit-box-ordinal-group: 4;
+		-moz-box-ordinal-group: 4;
+		-ms-flex-order: 4;
+		-webkit-order: 4;
+		order: 4;
+		width: calc(100% - 20px);
+		padding: 10px;
 	}
 	.explanation .title {
 		font-size: 14px;
@@ -318,33 +384,32 @@
 		display: none;
 	}
 	.inputField input {
-	height: 25px;
+		height: 25px;
 	}
 	.inputField select, .inputField button {
 		height: 34px;
 	}
-	
 	#page3 .container {
-	    width: 85%;
-	    height: 50%;
-	    background-image: none;
-	    min-height: 250px;
-	    padding-left: 10%;
+		width: 85%;
+		height: 50%;
+		background-image: none;
+		min-height: 250px;
+		padding-left: 10%;
 	}
 	#page3 .logo {
 		width: 85%;
-	    background-size: 50%;
-	    background-position: bottom left;
+		background-size: 50%;
+		background-position: bottom left;
 	}
 	.tnx {
 		width: 85%;
-	    padding: 0;
-	    padding-top: 7px;
-	    font-size: 25px;
+		padding: 0;
+		padding-top: 7px;
+		font-size: 25px;
 	}
 	.tnx p {
-	    padding-top: 0;
-    	font-size: 13px;
+		padding-top: 0;
+		font-size: 13px;
 	}
 	#cvv {
 		width: 90vw;
@@ -353,14 +418,15 @@
 }
 
 /* Portrait */
-@media only screen 
-  and (min-width: 320px) 
-  and (max-height: 480px)
-  and (orientation: portrait) {
-	#cvv img {
-	  	max-width: 100%;
+@media only screen and (min-width: 320px) and (max-height: 480px) and
+	(orientation: portrait) {
+	#CreateAccount div#registration p {
+		font-size: 12px;
 	}
-	.verificationForm table  {
+	#cvv img {
+		max-width: 100%;
+	}
+	.verificationForm table {
 		margin-top: 0;
 	}
 	.inputField input {
@@ -370,35 +436,63 @@
 }
 
 /* Landscape */
-@media only screen 
-  and (min-width: 320px) 
-  and (max-height: 480px)
-  and (orientation: landscape) {
-	 #cvv img {
-	  	width: 70%;
-	  }
+@media only screen and (min-width: 320px) and (max-height: 480px) and
+	(orientation: landscape) {
+	#cvv img {
+		width: 70%;
+	}
 }
-/* ----------- iPhone 5 and 5S ----------- */
+
+/* ----------- iPhone 4 and 4S ----------- */
 
 /* Portrait and Landscape */
-@media only screen 
-  and (min-width: 320px) 
-  and (max-height: 568px) {
-
+@media only screen and (min-device-width: 320px) and 
+	(max-device-width:480px) and 
+	(-webkit-device-pixel-ratio: 2) and 
+	(device-aspect-ratio:2/3) {
 }
-
 /* Portrait */
-@media only screen 
-  and (min-width: 320px) 
-  and (max-height: 568px)
-  and (orientation: portrait) {
+@media only screen and (min-device-width:320px) and
+	(max-device-width:480px) and
+	(-webkit-device-pixel-ratio:2) and
+	(device-aspect-ratio:2/3) and (orientation:portrait) {
 }
 
 /* Landscape */
-@media only screen 
-  and (min-width: 320px) 
-  and (max-height: 568px)
-  and (orientation: landscape) {
+@media
+only
+screen
+and
+(min-device-width:
+320px)
+and
+(max-device-width:
+480px)
+and
+(-webkit-device-pixel-ratio:
+2)
+and
+(device-aspect-ratio:
+2/3)
+and
+(orientation:landscape)
+{
+}
+
+/* ----------- iPhone 5 and 5S ----------- */
+
+/* Portrait and Landscape */
+@media only screen and (min-width: 320px) and (max-height: 568px) {
+}
+
+/* Portrait */
+@media only screen and (min-width: 320px) and (max-height: 568px) and
+	(orientation: portrait) {
+}
+
+/* Landscape */
+@media only screen and (min-width: 320px) and (max-height: 568px) and
+	(orientation: landscape) {
 	#cvv img {
 		width: 63%;
 	}
@@ -407,166 +501,104 @@
 /* ----------- iPhone 6 ----------- */
 
 /* Portrait and Landscape */
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2) { 
-
+@media only screen and (min-device-width: 375px) and (max-device-width:
+	667px) and (-webkit-min-device-pixel-ratio: 2) {
 }
 
 /* Portrait */
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) { 
-
+@media only screen and (min-device-width: 375px) and (max-device-width:
+	667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation:
+	portrait) {
 }
 
 /* Landscape */
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: landscape) { 
-
+@media only screen and (min-device-width: 375px) and (max-device-width:
+	667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation:
+	landscape) {
 }
 
 /* ----------- iPhone 6+ ----------- */
 
 /* Portrait and Landscape */
-@media only screen 
-  and (min-device-width: 414px) 
-  and (max-device-width: 736px) 
-  and (-webkit-min-device-pixel-ratio: 3) { 
-
+@media only screen and (min-device-width: 414px) and (max-device-width:
+	736px) and (-webkit-min-device-pixel-ratio: 3) {
 }
 
 /* Portrait */
-@media only screen 
-  and (min-device-width: 414px) 
-  and (max-device-width: 736px) 
-  and (-webkit-min-device-pixel-ratio: 3)
-  and (orientation: portrait) { 
-
+@media only screen and (min-device-width: 414px) and (max-device-width:
+	736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation:
+	portrait) {
 }
 
 /* Landscape */
-@media only screen 
-  and (min-device-width: 414px) 
-  and (max-device-width: 736px) 
-  and (-webkit-min-device-pixel-ratio: 3)
-  and (orientation: landscape) { 
-
+@media only screen and (min-device-width: 414px) and (max-device-width:
+	736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation:
+	landscape) {
 }
 
 /* ----------- Galaxy S3 ----------- */
 
 /* Portrait and Landscape */
-@media screen 
-  and (device-width: 320px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 2) {
-
+@media screen and (device-width: 320px) and (device-height: 640px) and
+	(-webkit-device-pixel-ratio: 2) {
 }
 
 /* Portrait */
-@media screen 
-  and (device-width: 320px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 2) 
-  and (orientation: portrait) {
-
+@media screen and (device-width: 320px) and (device-height: 640px) and
+	(-webkit-device-pixel-ratio: 2) and (orientation: portrait) {
 }
 
 /* Landscape */
-@media screen 
-  and (device-width: 320px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 2) 
-  and (orientation: landscape) {
-
+@media screen and (device-width: 320px) and (device-height: 640px) and
+	(-webkit-device-pixel-ratio: 2) and (orientation: landscape) {
 }
 
 /* ----------- Galaxy S4 ----------- */
 
 /* Portrait and Landscape */
-@media screen 
-  and (device-width: 320px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 3) {
-
+@media screen and (device-width: 320px) and (device-height: 640px) and
+	(-webkit-device-pixel-ratio: 3) {
 }
 
 /* Portrait */
-@media screen 
-  and (device-width: 320px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 3) 
-  and (orientation: portrait) {
-
+@media screen and (device-width: 320px) and (device-height: 640px) and
+	(-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
 }
 
 /* Landscape */
-@media screen 
-  and (device-width: 320px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 3) 
-  and (orientation: landscape) {
-
+@media screen and (device-width: 320px) and (device-height: 640px) and
+	(-webkit-device-pixel-ratio: 3) and (orientation: landscape) {
 }
 
 /* ----------- Galaxy S5 ----------- */
 
 /* Portrait and Landscape */
-@media screen 
-  and (device-width: 360px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 3) {
-
+@media screen and (device-width: 360px) and (device-height: 640px) and
+	(-webkit-device-pixel-ratio: 3) {
 }
 
 /* Portrait */
-@media screen 
-  and (device-width: 360px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 3) 
-  and (orientation: portrait) {
-
+@media screen and (device-width: 360px) and (device-height: 640px) and
+	(-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
 }
 
 /* Landscape */
-@media screen 
-  and (device-width: 360px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 3) 
-  and (orientation: landscape) {
-
+@media screen and (device-width: 360px) and (device-height: 640px) and
+	(-webkit-device-pixel-ratio: 3) and (orientation: landscape) {
 }
 /* ----------- HTC One ----------- */
 
 /* Portrait and Landscape */
-@media screen 
-  and (device-width: 360px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 3) {
-
+@media screen and (device-width: 360px) and (device-height: 640px) and
+	(-webkit-device-pixel-ratio: 3) {
 }
 
 /* Portrait */
-@media screen 
-  and (device-width: 360px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 3) 
-  and (orientation: portrait) {
-
+@media screen and (device-width: 360px) and (device-height: 640px) and
+	(-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
 }
 
 /* Landscape */
-@media screen 
-  and (device-width: 360px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 3) 
-  and (orientation: landscape) {
-
+@media screen and (device-width: 360px) and (device-height: 640px) and
+	(-webkit-device-pixel-ratio: 3) and (orientation: landscape) {
 }

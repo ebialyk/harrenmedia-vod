@@ -380,3 +380,7 @@ function logout() {
 	});
 }
 
+$(window).on('unload', function() {
+	if (confirmOnExit)
+		logOut();
+});

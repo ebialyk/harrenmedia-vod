@@ -904,7 +904,7 @@ App.AccountFaqs = Ember.ArrayController
 							.create({
 								"id" : 5,
 								"title" : "Why was I immediately charged an amount when signing up with a credit/debit card?",
-								"description" : "It's for verification purposes. When you sign up for the free trial we may charge a small amount (up to $2.00) from your card to verify it is operational and valid. The amount will be immediately refunded when you cancel the account.",
+								"description" : "It's for verification purposes. When you signup for the free trial we may charge a small amount (up to $2.00) from your card to verify it is operational and valid. The amount will be immediately refunded when you cancel the account.",
 								"category" : 1
 							}),
 					App.Support
