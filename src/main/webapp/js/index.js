@@ -8,6 +8,7 @@ var LANG;
 var COUNTRY;
 var COUNTRYCODE;
 $('html').css('display', 'none');
+resizeScreen();
 $.ajax({
 	url : "rest/client/checkByIp",
 	type : "GET",
@@ -15,8 +16,96 @@ $.ajax({
 	contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 	success : function(response) {
 		if (response != undefined && response.countryId != null) {
+			urlParams = parseURLParams(window.location.href);
+			CSS = urlParams.theme ? urlParams.theme[0] : "";
+
+			if (CSS != null && CSS == '0320') { // TV STYLE
+				document.getElementById('LHMovieCSS').disabled = true;
+				document.getElementById('LHMobileCSS').disabled = true;
+				document.getElementById('LHSportCSS').disabled = true;
+				document.getElementById('LHSportMobileCSS').disabled = true;
+				document.getElementById('LHBrazilCSS').disabled = true;
+				document.getElementById('LHBrazilMobileCSS').disabled = true;
+
+				document.getElementById('LHTVCSS').disabled = false;
+				document.getElementById('LHTVMobileCSS').disabled = false;
+				document.getElementById('numLoaderCSS').disabled = false;
+
+				document.getElementById("link1").innerHTML = 'besttvnow.com';
+				document.getElementById("link2").innerHTML = 'moviesme.com';
+				document.getElementById("link3").innerHTML = 'goodmoviesonline.com';
+				document.getElementById("link4").innerHTML = 'gozlan.cc';
+				document.getElementById("link5").innerHTML = 'movies.tv';
+				
+				$('.radial-progress').attr('data-progress', 0);
+				document.getElementById('radial-progress').display = "block";
+				setTimeout(function() {
+					window.randomize = function() {
+						$('.radial-progress').attr('data-progress', 100);
+					}
+					window.randomize();
+				}, 800);
+
+			} else if (CSS != null && CSS == '0420') { // SPORT STYLE
+				document.getElementById('LHMovieCSS').disabled = true;
+				document.getElementById('LHMobileCSS').disabled = true;
+				document.getElementById('LHTVCSS').disabled = true;
+				document.getElementById('LHTVMobileCSS').disabled = true;
+				document.getElementById('numLoaderCSS').disabled = true;
+				document.getElementById('LHBrazilCSS').disabled = true;
+				document.getElementById('LHBrazilMobileCSS').disabled = true;
+
+
+				document.getElementById('LHSportCSS').disabled = false;
+				document.getElementById('LHSportMobileCSS').disabled = false;
+
+				document.getElementById("link1").innerHTML = 'sat1';
+				document.getElementById("link2").innerHTML = 'sat2';
+				document.getElementById("link3").innerHTML = 'sat3';
+				document.getElementById("link4").innerHTML = 'sat4';
+				document.getElementById("link5").innerHTML = 'sat5';
+				
+				runLoader();
+				
+
+			}  else if (CSS != null && CSS == '0520') { // SPORT STYLE
+				document.getElementById('LHMovieCSS').disabled = true;
+				document.getElementById('LHMobileCSS').disabled = true;
+				document.getElementById('LHTVCSS').disabled = true;
+				document.getElementById('LHTVMobileCSS').disabled = true;
+				document.getElementById('numLoaderCSS').disabled = true;
+				document.getElementById('LHSportCSS').disabled = true;
+				document.getElementById('LHSportMobileCSS').disabled = true;
+				
+				document.getElementById('LHBrazilCSS').disabled = false;
+				document.getElementById('LHBrazilMobileCSS').disabled = false;
+
+				document.getElementById("link1").innerHTML = 'sat1';
+				document.getElementById("link2").innerHTML = 'sat2';
+				document.getElementById("link3").innerHTML = 'sat3';
+				document.getElementById("link4").innerHTML = 'sat4';
+				document.getElementById("link5").innerHTML = 'sat5';
+				
+				runLoader();
+
+			} else {
+				document.getElementById('LHMovieCSS').disabled = false;
+				document.getElementById('LHMobileCSS').disabled = false;
+				document.getElementById('LHSportCSS').disabled = true;
+				document.getElementById('LHSportMobileCSS').disabled = true;
+				document.getElementById('LHBrazilCSS').disabled = true;
+				document.getElementById('LHBrazilMobileCSS').disabled = true;
+
+				document.getElementById('LHTVCSS').disabled = true;
+				document.getElementById('LHTVMobileCSS').disabled = true;
+				document.getElementById('numLoaderCSS').disabled = true;
+
+				document.getElementById('radial-progress').display = "none";
+			}
+
 			$('html').css('display', 'block');
 			COUNTRYCODE = response.countryId;
+			resizeScreen();
 		} else {
 			confirmOnExit = false;
 			window.open("https://www.google.co.il/", '_self', false);
@@ -30,42 +119,36 @@ $.ajax({
 
 window.onload = function() {
 	resizeScreen();
-	// url format
-	// ?aff=affiliateNumber&country=countryNumber&theme=themeCode&titleMovie=movieTitle&lang=language&clickid=clickid
-	// ?aff=4001&country=20&theme=0220&titleMovie=THE%20SECRET%20OF%20YOUR%20&lang=0&clickid=ZjI2MTg1NzNjYzQ3NGYxN2EwYjIwMjI5ODAxOGI1NTcsLCwxMzg5NDgsSUwsNTUsLA=="
 	urlParams = parseURLParams(window.location.href);
 	var disableExternal = (location.hostname == "localhost");
 
-	document.getElementById('amazonCSS').disabled = disableExternal;
-	document.getElementById('amazonMobileCSS').disabled = disableExternal;
-	document.getElementById('LHCSS').disabled = !disableExternal;
-	document.getElementById('LHMobileCSS').disabled = !disableExternal;
-
 	if (urlParams != null) {
-		if(urlParams.titleMovie && urlParams.aff && urlParams.country && urlParams.theme &&  urlParams.lang && urlParams.clickid ) {
-		var title = " ";
-		if (urlParams.titleMovie[0] != "{PLEASE_PUT_THE_MOVIE_NAME_HERE}")
-			title += urlParams.titleMovie[0];
-		AFF = urlParams.aff ? urlParams.aff[0] : 0;
-		COUNTRY = urlParams.country ? urlParams.country[0] : 0;
-		CSS = urlParams.theme ? urlParams.theme[0] : "";
-		LANG = urlParams.lang ? urlParams.lang[0] : 0;
-		CLICKID = urlParams.clickid ? urlParams.clickid[0] : "";
+		if (urlParams.aff && urlParams.country
+				&& urlParams.theme && urlParams.lang && urlParams.clickid) {
+			var title = " ";
+			if(!urlParams.titleMovie) title = "";
+			else if (urlParams.titleMovie[0] != "{PLEASE_PUT_THE_MOVIE_NAME_HERE}")
+				title += urlParams.titleMovie[0];
+			AFF = urlParams.aff ? urlParams.aff[0] : 0;
+			COUNTRY = urlParams.country ? urlParams.country[0] : 0;
+			CSS = urlParams.theme ? urlParams.theme[0] : "";
+			LANG = urlParams.lang ? urlParams.lang[0] : 0;
+			CLICKID = urlParams.clickid ? urlParams.clickid[0] : "";
 
-		document.getElementById("movieTitle").innerHTML += title;
+			document.getElementById("movieTitle").innerHTML += title;
 
-		setTimeout(function() {
-			document.getElementById("screen").style.display = "block";
-			document.getElementById("loading").style.position = "absolute";
-		}, 1500);
+			setTimeout(function() {
+				document.getElementById("screen").style.display = "block";
+				document.getElementById("loading").style.position = "absolute";
+			}, 1500);
 
-		setTimeout(function() {
-			openCreateAccountDialog();
-		}, 5000);
+			setTimeout(function() {
+				openCreateAccountDialog();
+			}, 5000);
 
-		// tracking(affiliate,country, step, css, languageId, email, clickId
-		tracking(AFF, COUNTRY, 0, CSS, LANG, 0, CLICKID);
-		}else {
+			// tracking(affiliate,country, step, css, languageId, email, clickId
+			tracking(AFF, COUNTRY, 0, CSS, LANG, 0, CLICKID);
+		} else {
 			confirmOnExit = false;
 			if (location.hostname == "localhost") {
 				url = '/starter/';
@@ -97,16 +180,20 @@ function resizeScreen() {
 	}
 }
 function openCreateAccountDialog() {
-	document.getElementById("circularG").style.display = "none";
-	document.getElementById("loadSpan").style.display = "none";
-	document.getElementById("contentBar").style.display = "none";
-	document.getElementById("loading").style.display = "none";
+	/*
+	 * document.getElementById("circularG").style.display = "none";
+	 * document.getElementById("loadSpan").style.display = "none";
+	 * document.getElementById("contentBar").style.display = "none";
+	 * document.getElementById("loading").style.display = "none";
+	 */
 
-	if (Modernizr.flexbox && Modernizr.flexboxtweener && Modernizr.flexboxlegacy) {
+	if (Modernizr.flexbox && Modernizr.flexboxtweener
+			&& Modernizr.flexboxlegacy) {
 		document.getElementById("CreateAccount").style.display = "flex";
 	} else {
 		document.getElementById("CreateAccount").style.display = "block";
 	}
+	document.getElementById("CreateAccount").style.opacity = "1";
 	document.getElementById("mask").style.display = "block";
 
 	document.getElementById("email").focus();
@@ -220,10 +307,6 @@ function CreateAccountValidation() {
 								alert(response.message);
 							}
 						})
-				.done(
-						function() {
-							document.getElementById("loadingMask").style.display = "none";
-						});
 	} else {
 		alert(alertTXT);
 		document.getElementById("loadingMask").style.display = "none";
@@ -253,8 +336,46 @@ $(function() {
 
 });
 
-function checkEnter(e) {
+function checkEnter(e,obj) {
 	if (e.which == 13 || e.keyCode == 13) {
-		CreateAccountValidation();
+		if(obj.id == "email") {
+			document.getElementById("psw").focus();
+		} else if (obj.id == "psw") {
+			document.getElementById("psw2").focus();
+		} else {
+			CreateAccountValidation();
+		}
 	}
 }
+
+function runLoader() {
+	var width = 0;
+	var id = setInterval(frame, 150);
+	function frame() {
+		if (width >= 100) {
+			clearInterval(id);
+		} else {
+			width++;
+			document.getElementById("loaderPercentage").innerHTML = 'loading ' + width * 1
+					+ '%';
+		}
+	}
+}
+var images = new Array()  
+function preload() {
+    for (i = 0; i < preload.arguments.length; i++) {
+          images[i] = new Image()
+          images[i].src = preload.arguments[i]
+      }
+  } 
+  preload(
+		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/frame.png',
+		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/MF-allpages-TOPLOGO.png', 
+		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/spin.svg',
+		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/player_V2-greenBG.jpg',
+		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/loading.svg',
+		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/MF-L1_Vplayer-HDbut.png',
+		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/MF-L1_Vplayer-playbut.png',
+		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/MF-L1_Vplayer-indicators.png',
+		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/flags.png'
+);

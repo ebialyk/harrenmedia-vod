@@ -158,6 +158,9 @@
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/1.7.2/112366d8158749e25532ebce162232c6e0fb20a5/gson-1.7.2.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.hazelcast/hazelcast-all/2.4/d6fbbc398afaa4e8d58d88821ea4c108584f20e6/hazelcast-all-2.4.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
@@ -455,7 +458,7 @@
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-commons/1.8.1.RELEASE/add55d3fa4046f096567e08aee504b1baac25a29/spring-data-commons-1.8.1.RELEASE.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.8.0/95505afd940fedb0d674a83583ae65a9c25ec9f/jackson-databind-2.8.0.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.8.1/c04eb2cc599cd1742889bfa7cc41878db0d152f5/jackson-databind-2.8.1.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.12/8e20852d05222dc286bf1c71d78d0531e177c317/slf4j-api-1.7.12.jar">
@@ -476,7 +479,7 @@
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.8.0/45b426f7796b741035581a176744d91090e2e6fb/jackson-annotations-2.8.0.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.8.0/eeed20590bf2a6e367e6e5ce33f44d353881fa23/jackson-core-2.8.0.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.8.1/fd13b1c033741d48291315c6370f7d475a42dccf/jackson-core-2.8.1.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client-jackson2/1.21.0/8ce17bdd15fff0fd8cf359757f29e778fc7191ad/google-http-client-jackson2-1.21.0.jar">

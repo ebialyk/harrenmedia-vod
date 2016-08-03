@@ -20,6 +20,7 @@ window.onload = function() {
 	} else {
 		document.getElementById("VerificationPage").style.display = "block";
 		document.getElementById("seamless-target").focus();
+		document.getElementById("seamless-target").blur();
 	}
 	var url;
 
@@ -102,7 +103,6 @@ window.onload = function() {
 			document.getElementById("VerificationPage").style.display = "flex";
 		} else {
 			document.getElementById("VerificationPage").style.display = "block";
-			document.getElementById("seamless-target").focus();
 		}
 	} else {
 		if (location.hostname == "localhost")

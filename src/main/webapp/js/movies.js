@@ -6,6 +6,7 @@ function openGenres() {
 	document.getElementById("genres").style.display = "flex";
 	document.getElementById("moreMovies").style.display = "block";
 	document.getElementById("moreMovies").style.display = "block";
+	document.getElementById("genresContent").style.opacity = "1";
 	document.getElementById("G-LI").className = "selected";
 }
 function openBestsellers() {

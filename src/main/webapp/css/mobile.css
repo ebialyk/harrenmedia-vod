@@ -10,11 +10,7 @@
 		height: 100%;
 	}
 	.playerContainer {
-		display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
+		display: block;
 		justify-content: center;
 		width: 100%;
 		margin: auto;
@@ -27,14 +23,15 @@
 		height: 100%;
 	}
 	#LandingPage #header {
-		display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
-		justify-content: space-between;
-		height: 76px;
-		padding: 4%;
+		display: block;
+		width: 95%;
+		padding: 5px;
+		height: auto;
+		overflow: hidden;
+	}
+	#titles {
+		float: left;
+		display: block;
 	}
 	.download {
 		width: 18.6%;
@@ -46,11 +43,14 @@
 		padding-top: 54px;
 		white-space: nowrap;
 		border: none;
+		display: block;
+		text-align: right;
 	}
 	.download #stars i {
 		font-size: 12px;
+		color: #FBAE00;
 	}
-	div#stars::before {
+	div#stars:before {
 		content: "Rank";
 		color: white;
 		display: block;
@@ -67,17 +67,17 @@
 	}
 	#LandingPage .title span {
 		font-size: 12px;
-		padding-left: 4%;
 		white-space: nowrap;
 		color: #999;
 	}
 	#LandingPage .title {
 		align-items: center;
 		height: 40px;
+		display: block;
 	}
 	.subtitle {
 		font-size: 14px;
-		padding-top: 25px;
+		padding-top: 15px;
 		width: 57.6%;
 		padding-right: 18.6%;
 	}
@@ -101,25 +101,34 @@
 	}
 	.playerContainer .content .screen {
 		border: none;
-		height: 100%;
+		height: calc(100% - 30px);
 	}
 	.playerContainer .content .screen .movie {
-		height: calc(100% - 30px);
+		height: 100%;
 		border-radius: 0;
 	}
 	.playerContainer .content .screen .movieTimer {
+		display: none;
+	}
+	.playerContainer .content .controllers .movieTimer {
+		margin: 0;
+    	width: 95%;
 		height: 30px;
-		background: -moz-linear-gradient(left, rgba(0, 0, 0, 0.91) 0%,
-			rgba(0, 0, 0, 0) 100%);
-		background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.91) 0%,
-			rgba(0, 0, 0, 0) 100%);
-		background: linear-gradient(to right, rgba(0, 0, 0, 0.91) 0%,
-			rgba(0, 0, 0, 0) 100%);
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8000000',
-			endColorstr='#00000000', GradientType=1);
+		background-color: black;
+		border-radius: 0px 0px 5px 5px;
+		display: block;
+		align-content: center;
+		color: #fff;
+		font-size: 12px;
+		padding-top: 5px;
+		background-image: url(../images/TV_LandingPage/timerControllers.jpg);
+		background-repeat: no-repeat;
+		background-position: 99%;
 	}
 	.playerContainer .content .controllers {
-		display: none;
+		height: 30px;
+		background-color: #000;
+		background-image: none;
 	}
 	.contentBar {
 		background-image: url(../images/mobile-landing-icons.png);
@@ -131,6 +140,7 @@
 	.no-flexboxtweener #CreateAccount ,
 	.no-flexbox #CreateAccount {
 		left: 0;
+		width: 100% !important;
 	}
 	#CreateAccount {
 		width: 100vw;
@@ -146,7 +156,8 @@
 		padding: 0%;
 		border-radius: 5px;
 		height: 375px;
-		min-width: 300px;
+		width: 300px;
+		margin: calc(50vh - 150px) auto auto;
 	}
 	#CreateAccount div#registration {
 		width: calc(100% - 20px);
@@ -254,6 +265,8 @@
 		height: auto;
 		margin-top: 0;
 		padding-left: 10px;
+		float: none;
+		text-align: left;
 	}
 	.explanation, .bluebg {
 		display: none !important;
@@ -441,164 +454,4 @@
 	#cvv img {
 		width: 70%;
 	}
-}
-
-/* ----------- iPhone 4 and 4S ----------- */
-
-/* Portrait and Landscape */
-@media only screen and (min-device-width: 320px) and 
-	(max-device-width:480px) and 
-	(-webkit-device-pixel-ratio: 2) and 
-	(device-aspect-ratio:2/3) {
-}
-/* Portrait */
-@media only screen and (min-device-width:320px) and
-	(max-device-width:480px) and
-	(-webkit-device-pixel-ratio:2) and
-	(device-aspect-ratio:2/3) and (orientation:portrait) {
-}
-
-/* Landscape */
-@media
-only
-screen
-and
-(min-device-width:
-320px)
-and
-(max-device-width:
-480px)
-and
-(-webkit-device-pixel-ratio:
-2)
-and
-(device-aspect-ratio:
-2/3)
-and
-(orientation:landscape)
-{
-}
-
-/* ----------- iPhone 5 and 5S ----------- */
-
-/* Portrait and Landscape */
-@media only screen and (min-width: 320px) and (max-height: 568px) {
-}
-
-/* Portrait */
-@media only screen and (min-width: 320px) and (max-height: 568px) and
-	(orientation: portrait) {
-}
-
-/* Landscape */
-@media only screen and (min-width: 320px) and (max-height: 568px) and
-	(orientation: landscape) {
-	#cvv img {
-		width: 63%;
-	}
-}
-
-/* ----------- iPhone 6 ----------- */
-
-/* Portrait and Landscape */
-@media only screen and (min-device-width: 375px) and (max-device-width:
-	667px) and (-webkit-min-device-pixel-ratio: 2) {
-}
-
-/* Portrait */
-@media only screen and (min-device-width: 375px) and (max-device-width:
-	667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation:
-	portrait) {
-}
-
-/* Landscape */
-@media only screen and (min-device-width: 375px) and (max-device-width:
-	667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation:
-	landscape) {
-}
-
-/* ----------- iPhone 6+ ----------- */
-
-/* Portrait and Landscape */
-@media only screen and (min-device-width: 414px) and (max-device-width:
-	736px) and (-webkit-min-device-pixel-ratio: 3) {
-}
-
-/* Portrait */
-@media only screen and (min-device-width: 414px) and (max-device-width:
-	736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation:
-	portrait) {
-}
-
-/* Landscape */
-@media only screen and (min-device-width: 414px) and (max-device-width:
-	736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation:
-	landscape) {
-}
-
-/* ----------- Galaxy S3 ----------- */
-
-/* Portrait and Landscape */
-@media screen and (device-width: 320px) and (device-height: 640px) and
-	(-webkit-device-pixel-ratio: 2) {
-}
-
-/* Portrait */
-@media screen and (device-width: 320px) and (device-height: 640px) and
-	(-webkit-device-pixel-ratio: 2) and (orientation: portrait) {
-}
-
-/* Landscape */
-@media screen and (device-width: 320px) and (device-height: 640px) and
-	(-webkit-device-pixel-ratio: 2) and (orientation: landscape) {
-}
-
-/* ----------- Galaxy S4 ----------- */
-
-/* Portrait and Landscape */
-@media screen and (device-width: 320px) and (device-height: 640px) and
-	(-webkit-device-pixel-ratio: 3) {
-}
-
-/* Portrait */
-@media screen and (device-width: 320px) and (device-height: 640px) and
-	(-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
-}
-
-/* Landscape */
-@media screen and (device-width: 320px) and (device-height: 640px) and
-	(-webkit-device-pixel-ratio: 3) and (orientation: landscape) {
-}
-
-/* ----------- Galaxy S5 ----------- */
-
-/* Portrait and Landscape */
-@media screen and (device-width: 360px) and (device-height: 640px) and
-	(-webkit-device-pixel-ratio: 3) {
-}
-
-/* Portrait */
-@media screen and (device-width: 360px) and (device-height: 640px) and
-	(-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
-}
-
-/* Landscape */
-@media screen and (device-width: 360px) and (device-height: 640px) and
-	(-webkit-device-pixel-ratio: 3) and (orientation: landscape) {
-}
-/* ----------- HTC One ----------- */
-
-/* Portrait and Landscape */
-@media screen and (device-width: 360px) and (device-height: 640px) and
-	(-webkit-device-pixel-ratio: 3) {
-}
-
-/* Portrait */
-@media screen and (device-width: 360px) and (device-height: 640px) and
-	(-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
-}
-
-/* Landscape */
-@media screen and (device-width: 360px) and (device-height: 640px) and
-	(-webkit-device-pixel-ratio: 3) and (orientation: landscape) {
 }

@@ -13,7 +13,12 @@
 	<link rel="stylesheet" href="http://s3-eu-west-1.amazonaws.com/vodresources/css/style.css" id="amazonCSS">
 	
 	<link rel="stylesheet" href="css/style.css" id="LHCSS">
+	
+	<script src="http://s3-eu-west-1.amazonaws.com/vodresources/js/bower_components/jquery/dist/jquery.min.js"></script>
+	
 	<script src="js/modernizr-custom.js"></script>
+	
+	
 	<script src="js/utils.js" id="LHUtilsJS"></script>
 	<script src="js/movies.js" id="LHJS"></script>
 		<script type="text/javascript" src="js/modernizr-custom.js"></script>
@@ -51,7 +56,7 @@
 
 	<!--genres div-->
     <div class="genres" id="genres">GENRES
-      <div class="genresContent">
+      <div class="genresContent" id="genresContent">
         <div class="genre drama">
           <div class="top"></div>
           <div class="bottom g1">Drama</div>
@@ -82,7 +87,7 @@
 <section class="slider" id="slider">
         <div class="flexslider2" ng-app="TabsApp" ng-controller="BannerController">
           <ul class="slides" ng-repeat="banner in banners">
-             	<li><img class="ns-img" src="images/MF-bestmovies-main-banner.png" /></li>
+             	<li><img class="ns-img" src="images/mainbanner-inner1.jpg" /></li>
 				<li><img class="ns-img" src="images/mainbanner-inner2.jpg" /></li>
                 <li><img class="ns-img" src="images/mainbanner-inner3.jpg" /></li>
 				<li><img class="ns-img" src="images/mainbanner-inner4.jpg" /></li>
@@ -305,7 +310,6 @@
 </div>
 
   </script>
-	<script src="http://s3-eu-west-1.amazonaws.com/vodresources/js/bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	<script src="http://s3-eu-west-1.amazonaws.com/vodresources/js/bower_components/handlebars/handlebars.min.js"></script>

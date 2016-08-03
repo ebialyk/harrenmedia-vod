@@ -11,6 +11,7 @@ $.ajax({
 		if (response != undefined && response.countryId != null) {
 			$('html').css('display', 'block');
 			COUNTRYCODE = response.countryId;
+			
 		} else {
 			confirmOnExit = false;
 			window.open("https://www.google.co.il/", '_self', false);
@@ -22,7 +23,7 @@ $.ajax({
 	}
 })
 window.onload = function() {
-
+	document.getElementById("genresContent").style.opacity = "1";
 	var disableExternal = (location.hostname == "localhost");
 		
 		document.getElementById('amazonCSS').disabled  = disableExternal;
@@ -217,13 +218,17 @@ function SignUp() {
 	var okPsw2 = false;
 	var okPswEquals = false;
 
+	var alertTXT = "";
+
 	// not allow empty fields
 	if (email.value === undefined || email.value == "") {
 		email.className = "error";
 		email.title = "Please enter an email";
+		alertTXT = "\nPlease enter an email";
 	} else if (!validEmail(email.value)) { // validate entered email
 		email.className = "error";
 		email.title = "Please enter a valid email";
+		alertTXT += "\nPlease enter  a valid email";
 	} else { // no email errors
 		email.className = "";
 		email.title = "";
@@ -232,6 +237,7 @@ function SignUp() {
 	if (psw.value === undefined || psw.value == "") {
 		psw.className = "error";
 		psw.title = "Please enter a password";
+		alertTXT += "\nPlease enter a password";
 	} else {
 		psw.className = "";
 		psw.title = "";
@@ -240,6 +246,7 @@ function SignUp() {
 	if (psw2.value === undefined || psw2.value == "") {
 		psw2.className = "error";
 		psw2.title = "Please confirm your password";
+		alertTXT += "\nPlease confirm your password";
 	} else {
 		psw2.className = "";
 		psw2.title = "";
@@ -254,9 +261,11 @@ function SignUp() {
 		psw2.className = "error";
 		psw.title = "password and confirm password are not the same, please type again";
 		psw2.title = "password and confirm password are not the same, please type again";
+		alertTXT += "\npassword and confirm password are not the same, please type again";
 	}
 
 	if (okEmail && okPsw && okPsw2 && okPswEquals) {
+		alertTXT = "";
 		data = {
 			email : email.value,
 			pw : psw.value,
@@ -295,6 +304,7 @@ function SignUp() {
 			}
 		});
 	} else {
+		alert(alertTXT);
 		document.getElementById("mask").style.display = "none";
 		$(".mask").removeClass("waiting");
 	}
@@ -422,10 +432,13 @@ function sendSupportRequest() {
 	var okMsg = false;
 	var okSubj1 = false;
 	var okSubj2 = false;
+	
+	var alertTXT = "";
 
 	if (name.value === undefined || name.value == "") {// no empty name
 		name.className = "error";
 		name.title = "Please type your name";
+		alertTXT += "Please type your name";
 	} else {
 		name.className = "";
 		name.title = "";
@@ -434,7 +447,8 @@ function sendSupportRequest() {
 	if (message.value === undefined || message.value == "") {// no empty
 		// message
 		message.className = "error";
-		message.title = "Please type your name";
+		message.title = "Please type a message";
+		alertTXT += "\nPlease type a message";
 	} else {
 		message.className = "";
 		message.title = "";
@@ -443,9 +457,11 @@ function sendSupportRequest() {
 	if (email.value === undefined || email.value == "") {// no empty email
 		email.className = "error";
 		email.title = "Please type your email";
+		alertTXT += "\nPlease type your email";
 	} else if (!validEmail(email.value)) { // validate entered email
 		email.className = "error";
 		email.title = "Please enter a valid email";
+		alertTXT += "\nPlease enter a valid email";
 	} else {
 		email.className = "";
 		email.title = "";
@@ -456,6 +472,7 @@ function sendSupportRequest() {
 			&& cancelRequest) { // validate card digits
 		cardDigits.className = "error";
 		cardDigits.title = "Please type the last 4 digits of your credit card";
+		alertTXT += "\nPlease type the last 4 digits of your credit card";
 	} else {
 		cardDigits.className = "";
 		cardDigits.title = "";
@@ -466,6 +483,7 @@ function sendSupportRequest() {
 		if (subjectSupport2.value == "") {
 			subjectSupport2.className = "error";
 			subjectSupport2.title = "Please select a subject";
+			alertTXT += "\nPlease select a subject";
 		} else {
 			subjectSupport2.className = "";
 			subjectSupport2.title = "";
@@ -476,6 +494,7 @@ function sendSupportRequest() {
 		if (subjectSupport.value == "") {
 			subjectSupport.className = "error";
 			subjectSupport.title = "Please select a subject";
+			alertTXT += "\nPlease select a subject";
 		} else {
 			subjectSupport.className = "";
 			subjectSupport.title = "";
@@ -522,6 +541,7 @@ function sendSupportRequest() {
 			}
 		});
 	} else {
+		alert(alertTXT)
 		document.getElementById("mask").style.display = "none";
 		$(".mask").removeClass("waiting");
 	}
@@ -543,4 +563,30 @@ function hideAll() {
 	document.getElementById("supportPage").style.display = "none";
 	document.getElementById("cvv").style.display = "none";
 	document.getElementById("forgotPswScreen").style.display = "none";
+}
+
+function checkEnter(e,obj) {
+	if (e.which == 13 || e.keyCode == 13) {
+		if(obj.id == "email") {
+			document.getElementById("psw").focus();
+		} else if (obj.id == "psw") {
+			document.getElementById("psw2").focus();
+		} else if (obj.id == "psw2") {
+			SignUp();
+		} else if (obj.id == "User") {
+			document.getElementById("Password").focus();
+		} else if (obj.id == "Password") {
+			logIn();
+		} else if (obj.id == "UserPsw") {
+			sendPassword();
+		} else if (obj.id == "supportName") {
+			document.getElementById("supportEmail").focus();
+		} else if (obj.id == "supportEmail") {
+			document.getElementById("subjectSupport").focus();
+		} else if (obj.id == "subjectSupport") {
+			document.getElementById("supportContent").focus();
+		} else if (obj.id == "supportContent") {
+			sendSupportRequest();
+		} 
+	}
 }
