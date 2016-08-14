@@ -1,0 +1,302 @@
+/*Landing Page - movie*/
+#LandingPage {
+	height: 100%;
+}
+#content {
+	margin: auto;
+	margin-top: 20px;
+	width: 920px;
+	height: 100%;
+}
+#LandingPage #header {
+	display: -webkit-flex;
+	display: -webkit-box;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-moz-box-pack: justify;
+	-ms-flex-pack: justify;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+	height: 78px;
+}
+
+#titles {
+	display: -webkit-flex;
+	display: -webkit-box;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	flex-direction: column;
+	-webkit-box-orient: vertical;
+	-webkit-flex-direction: column;
+	-webkit-box-pack: justify;
+	-moz-box-pack: justify;
+	-ms-flex-pack: justify;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.title {
+	display: -webkit-flex;
+	display: -webkit-box;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+}
+#logo {
+	background-image: url(../images/MF-allpages-TOPLOGO.png);
+	background-repeat: no-repeat;
+	background-size: auto 25px;
+	height: 25px;
+	width: 133px;
+}
+#logo:HOVER {
+	cursor: pointer;
+}
+.title  span {
+	font-size: 22px;
+	color: #fff;
+	vertical-align: middle;
+	align-self: center;
+}
+#LandingPage .greenBtn {
+	width: 187px;
+	height: 54px;
+}
+.subtitle {
+	color: #fff;
+	font-size: 32px;
+}
+.download button {
+	width: 178px;
+	height: 53px;
+	margin-bottom: 10px;
+}
+
+.download span {
+	display: block;
+	line-height: 1;
+}
+
+.download .title {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.download .subtitle {
+	font-size: 13px;
+	padding-top: 5px;
+	font-weight: bold;
+}
+.download #stars {
+	color: #FBAE00;
+	width: 100%;
+	text-align: right;
+}
+/*Player ratio 16:9*/
+.no-flexboxlegacy .playerContainer,
+.no-flexboxtweener .playerContainer,
+.no-flexbox .playerContainer {
+	display: block;
+}
+.playerContainer {
+	display: -webkit-flex;
+	display: -webkit-box;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-moz-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	width: 920px;
+	margin: auto;
+}
+.no-flexboxlegacy .playerContainer .content .loading ,
+.no-flexboxtweener .playerContainer .content .loading ,
+.no-flexbox .playerContainer .content .loading {
+	display: block;
+}
+.playerContainer .content .loading {
+	height: calc(100% - 112px);
+	display: -webkit-flex;
+	display: -webkit-box;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	align-content: center;
+	-webkit-box-pack: center;
+	-moz-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	/* position: absolute; */
+	width: 910px;
+	border-radius: 8px 8px 0px 0px;
+	border: 5px solid #B5BDB9;
+	border-bottom: none;
+	background-image: url("../images/LandingPage/spin.svg");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.playerContainer .content .screen {
+	border: 5px solid #B5BDB9;
+	height: calc(100% - 112px);
+	border-radius: 8px 8px 0px 0px;
+	background-color: #B5BDB9;
+	display: none;
+	-webkit-animation: fadeInOut 15s ease-out forwards;
+	-o-animation: fadeInOut 15s ease-out forwards;
+	-moz-animation: fadeInOut 15s ease-out forwards;
+	animation: fadeInOut 15s ease-out forwards;
+	border-bottom: none;
+}
+
+.playerContainer .content .screen .movie {
+	height: 406px;
+	background-color: green;
+	border-radius: 5px 5px 0px 0px;
+	background-image: url(../images/LandingPage/player_V2-greenBG.jpg);
+	background-size: 100%;
+}
+.no-flexboxlegacy .playerContainer .content .controllers .movieTimer ,
+.no-flexboxtweener .playerContainer .content .controllers .movieTimer ,
+.no-flexbox .playerContainer .content .controllers .movieTimer {
+	display: block;
+    width: calc(100% - 18px);
+    background-repeat: no-repeat;
+    padding-left: 8px;
+    margin-left: 5px;
+}
+.playerContainer .content .screen .movieTimer {
+	display: none;
+}
+.playerContainer .content .controllers .movieTimer {
+	height: 30px;
+	background-color: black;
+	border-radius: 0px 0px 5px 5px;
+	display: -webkit-flex;
+	display: -webkit-box;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	align-content: center;
+	color: #fff;
+	font-size: 12px;
+	padding-top: 5px;
+	background-image:
+		url(../images/LandingPage/MF-L1_Vplayer-indicators.png);
+	background-repeat: no-repeat;
+	background-position: 99%;
+}
+
+.playerContainer .content .controllers {
+	height: 92px;
+	background-color: #A7ABAA;
+	border-radius: 0px 0px 5px 5px;
+	background-image: url(../images/LandingPage/MF-L1_Vplayer-HDbut.png),
+		url(../images/LandingPage/MF-L1_Vplayer-playbut.png);
+	background-position: right 30px, left 30px;
+	background-repeat: no-repeat;
+}
+
+.contentBar {
+	width: 1%;
+	display: -webkit-flex;
+	display: -webkit-box;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	justify-content: flex-start;
+}
+/*litle loading icon*/
+.no-flexboxlegacy #circularG, .no-flexboxlegacy .contentBar , .no-flexboxlegacy #loadSpan,
+.no-flexboxtweener #circularG, .no-flexboxtweener .contentBar , .no-flexboxtweener #loadSpan,
+.no-flexbox #circularG, .no-flexbox .contentBar , .no-flexbox #loadSpan {
+	display: table-cell;
+}
+#circularG {
+	position: relative;
+	width: 19px;
+	height: 17px;
+	margin-right: 10px;
+	margin-left: 5px;
+	background-image: url("../images/LandingPage/loading.svg");
+	background-size: 19px 17px;
+	background-repeat: no-repeat;
+	padding: 5px;
+}
+#languages {
+	color: #fff;
+	max-width: 920px;
+	margin: auto;
+	height: 17px;
+	background-image: url(../images/LandingPage/flags.png);
+	background-repeat: no-repeat;
+}
+#languages span {
+	margin-right: 10px;
+}
+@-moz-keyframes fadeInOut { 
+	0% {
+		opacity: 0;
+		background-color: #000;
+		display: none;
+	}
+	20%{
+		opacity:1;
+		background-color:#387100;
+	}
+	100%	{
+		opacity:1;
+		background-color:#387100;
+	}
+}
+@-webkit-keyframes fadeInOut { 
+	0% {
+		opacity: 0;
+		background-color: #000;
+		display: none;
+	}
+	20% {
+		opacity:1;
+		background-color:#387100;
+	}
+	100% {
+		opacity:1;
+		background-color:#387100;
+	}
+}
+@keyframes fadeInOut { 
+	0% {
+		opacity: 0;
+		background-color: #000;
+		display: none;
+	}
+	20% {
+		opacity:1;
+		background-color:#387100;
+	}
+	100% {
+		opacity:1;
+		background-color:#387100;
+	}
+}
+
+/*Other LP Elements*/
+.LP_TV_TopMenu {display: none;}
+.tvContent {display: none;}
+.radial-progress {display: none; }
+#label {display: none;}

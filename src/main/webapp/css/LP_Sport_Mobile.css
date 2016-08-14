@@ -1,0 +1,362 @@
+@media screen and (max-width: 920px) {
+	#CreateAccount 	.registrationWrapper .dialogMask {
+		display: none;
+	}
+	#languages {
+		background-image:
+			url(../images/Sport_LandingPage/mobile_landingr-channels.png);
+		height: 275px;
+		margin-top: 10%;
+		display: block;
+		background-repeat: no-repeat;
+	}
+	div#content {
+		background-image: none;
+	}
+	#LandingPage #header {
+		display: block;
+		width: 95%;
+		padding: 5px;
+		height: auto;
+		overflow: hidden;
+	}
+	#LandingPage #header #movieTitle {
+		display: block;
+		color: white;
+		padding-top: 45px;
+		width: auto;
+	}
+	div#titles {
+		height: auto;
+		background-position: top left;
+		
+	}
+	.download {
+		background-image: url(../images/TV_LandingPage/hd.jpg);
+		background-repeat: no-repeat;
+		background-position: top right;
+		margin-right: 5px;
+		width: auto;
+	}
+	.download #stars {
+		width: 100%;
+		font-size: 12px;
+		height: 100%;
+		padding-top: 54px;
+		white-space: nowrap;
+		border: none;
+		display: block;
+		text-align: right;
+	}
+	.download #stars i {
+		font-size: 12px;
+		color: #FBAE00;
+	}
+	div#stars:before {
+		content: "Rank";
+		color: white;
+		display: block;
+		font-size: 10px;
+		line-height: 0.5;
+	}
+	.LP_TV_TopBar {
+		display: none;
+	}
+	.playerContainer {
+		display: block;
+		width: 100%;
+		margin: auto;
+	}
+	.playerContainer .content .loading {
+		border: none;
+		width: 100%;
+		height: 100%;
+		background-size: 10% auto;
+	}
+	.playerContainer .content .loading #label .loaderImg {
+		width: 100%;
+		height: 76px;
+		margin-top: 0%;
+		background-size: 30px;
+	}
+	.playerContainer .content .loading #label .loaderSmallTitle {
+		font-family: Helvetica;
+		font-size: 0.7rem;
+	}
+	.playerContainer .content .loading #label .loaderBigTitle {
+		font-family: Helvetica;
+		font-size: 1rem;
+		line-height: 2;
+	}
+	.playerContainer .content .screen {
+		border: none;
+		height: calc(100% - 30px);
+	}
+	.playerContainer .content .screen .movie {
+		height: 100%;
+		border-radius: 0;
+	}
+	.playerContainer .content .controllers .movieTimer {
+		background-image: url(../images/TV_LandingPage/timerControllers.jpg);
+	}
+	.contentBar {
+		background-image: none;
+		background-size: 72px;
+		position: relative;
+		width: 42vw;
+	}
+	.expand {
+		width: 90%;
+		position: absolute;
+		top: 0;
+	}
+	.expandRed {
+		width: 40%;
+	}
+	.tvContent {
+		display: none;
+	}
+
+	/*CREATE ACCOUNT DIALOG*/
+	#CreateAccount {
+		width: 100vw !important;
+		min-height: 97vh;
+		left: 0 !important;
+	}
+	#CreateAccount .registrationWrapper {
+		width: 80%;
+		height: 68%;
+		margin: auto;
+		background-image: none;
+		background-color: black;
+		border: 2px solid lightgray;
+		padding: 0%;
+		border-radius: 5px;
+		height: 375px;
+		width: 300px;
+		margin: calc(50vh - 150px) auto auto;
+	}
+	#CreateAccount div#registration {
+		width: calc(100% - 20px);
+		margin: auto;
+		background-image: none;
+		padding: 10px;
+		height: 365px;
+	}
+	#CreateAccount div#registration .greenBtn {
+		white-space: nowrap;
+	}
+	#CreateAccount div#registration input {
+		width: calc(100% - 30px);
+		height: 36px;
+		padding-left: 20px;
+	}
+	#CreateAccount div#registration p {
+		font-size: 13px;
+		line-height: 0.2;
+		padding-top: 12px;
+	}
+	#CreateAccount div#registration .enlargedText {
+		font-size: 16px;
+		font-weight: bold;
+		padding-bottom: 8px;
+		line-height: 1.5;
+		padding-top: 0;
+	}
+
+	/*Progress Bar animation */
+	@
+	-moz-keyframes fullexpand { 0% {
+		width: 0px;
+	}
+	100%{
+	width
+	
+	
+	
+	
+	
+	
+	:
+	
+	
+	
+	
+	
+	
+	45%;
+}
+
+}
+@
+-webkit-keyframes fullexpand { 0% {
+	width: 0px;
+}
+
+100%{
+width
+
+
+
+
+
+
+:
+
+
+
+
+
+
+45%;
+}
+}
+@
+keyframes fullexpand { 0% {
+	width: 0px;
+}
+
+100%{
+width
+
+
+
+
+
+
+:
+
+
+
+
+
+
+45%;
+}
+}
+@
+-moz-keyframes midleExpand { 0% {
+	width: 0px;
+}
+
+100%{
+width
+
+
+
+
+
+
+:
+
+
+
+
+
+
+40%;
+}
+}
+@
+-webkit-keyframes midleExpand { 0% {
+	width: 0px;
+}
+
+100%{
+width
+
+
+
+
+
+
+:
+
+
+
+
+
+
+40%;
+}
+}
+@
+keyframes midleExpand { 0% {
+	width: 0px;
+}
+
+100%{
+width
+
+
+
+
+
+
+:
+
+
+
+
+
+
+40%;
+}
+}
+.radial-progress {
+	width: 60px;
+	height: 60px;
+}
+
+.radial-progress .circle .loaderMask, .radial-progress .circle .fill,
+	.radial-progress .circle .shadow {
+	width: 60px;
+	height: 60px;
+}
+
+.radial-progress .circle .loaderMask {
+	clip: rect(0px, 60px, 60px, 30px);
+}
+
+.radial-progress .circle .loaderMask .fill {
+	clip: rect(0px, 30px, 60px, 0px);
+}
+
+.radial-progress .inset {
+	width: 45px;
+	height: 45px;
+	margin-left: 7.5px;
+	margin-top: 7.5px;
+}
+
+.radial-progress .inset .percentage {
+	height: 15px;
+	top: 15px;
+	left: -6px;
+}
+
+.radial-progress .inset .percentage .numbers {
+	margin-top: -15px;
+}
+
+.radial-progress .inset .percentage .numbers span {
+	font-size: 15px;
+}
+}
+/* Portrait */
+@media only screen and (min-width: 320px) and (max-height: 480px) and
+	(orientation: portrait) {
+	#CreateAccount div#registration p {
+		font-size: 12px;
+	}
+	#cvv img {
+		max-width: 100%;
+	}
+	.verificationForm table {
+		margin-top: 0;
+	}
+	.inputField input {
+		margin: 0;
+		height: 20px;
+	}
+}
