@@ -8,13 +8,16 @@ html, body {
 	min-height: 600px;
 	color: black;
 }
+
 a {
 	color: gray;
 	cursor: pointer;
 }
+
 textarea {
 	resize: none;
 }
+
 .mask {
 	display: none;
 	opacity: 0.6;
@@ -28,6 +31,7 @@ textarea {
 	min-height: 600px;
 	cursor: pointer;
 }
+
 #loadingMask {
 	display: none;
 	opacity: 0.6;
@@ -38,22 +42,28 @@ textarea {
 	width: 100vw;
 	left: 0;
 	z-index: 999;
-	background-image: url("../images/ring.gif");
+	background-image: url("http://s3-us-west-2.amazonaws.com/vod.resources/images/ring.gif");
 	background-repeat: no-repeat;
 	background-position: center;
 }
+
 video.loading {
-	background: black url(../images/ring.gif) center center no-repeat;
+	background: black url(http://s3-us-west-2.amazonaws.com/vod.resources/images/ring.gif) center center no-repeat;
 }
+
 video.videoNotFound {
-	background: black url(../images/NotAvailable.gif) center center no-repeat;
+	background: black url(http://s3-us-west-2.amazonaws.com/vod.resources/images/NotAvailable.gif) center center
+		no-repeat;
 }
+
 .red {
 	color: red;
 }
+
 .header {
 	background-color: #2E2A29;
 }
+
 .header .headerBody {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -73,21 +83,22 @@ video.videoNotFound {
 	margin: auto;
 	width: 920px;
 }
-.no-flexboxlegacy .headerBody,
-.no-flexboxtweener .headerBody,
-.no-flexbox .headerBody {
+
+.no-flexboxlegacy .headerBody, .no-flexboxtweener .headerBody,
+	.no-flexbox .headerBody {
 	display: table;
 }
-.no-flexboxlegacy .headerBody>* ,
-.no-flexboxtweener .headerBody>* ,
-.no-flexbox .headerBody>* {
+
+.no-flexboxlegacy .headerBody>*, .no-flexboxtweener .headerBody>*,
+	.no-flexbox .headerBody>* {
 	display: table-cell;
 }
-.no-flexboxlegacy .header ul,
-.no-flexboxtweener .header ul,
-.no-flexbox .header ul {
+
+.no-flexboxlegacy .header ul, .no-flexboxtweener .header ul, .no-flexbox .header ul
+	{
 	display: table;
 }
+
 .header ul {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -103,11 +114,12 @@ video.videoNotFound {
 	margin: 0;
 	padding: 0;
 }
-.no-flexboxlegacy .header ul li, .login,
-.no-flexboxtweener .header ul li, .login,
-.no-flexbox .header ul li, .login {
+
+.no-flexboxlegacy .header ul li, .login, .no-flexboxtweener .header ul li,
+	.login, .no-flexbox .header ul li, .login {
 	display: table-cell;
 }
+
 .header ul li, .login {
 	line-height: 20px;
 	padding-left: 3px;
@@ -117,16 +129,20 @@ video.videoNotFound {
 	cursor: pointer;
 	font-size: 13px;
 }
+
 .header ul li:hover, .login:hover {
 	color: red;
 }
+
 .header ul li.selected {
 	color: #999;
 }
+
 .header .support {
 	color: red;
 	cursor: pointer;
 }
+
 .header .languages select {
 	width: auto;
 	background-color: transparent;
@@ -134,9 +150,11 @@ video.videoNotFound {
 	color: white;
 	margin: 0;
 }
+
 .header .languages select option {
 	background-color: black;
 }
+
 .footer {
 	background: #2f2b2a;
 	background: -moz-linear-gradient(top, #2f2b2a 32%, #000000 100%);
@@ -144,16 +162,17 @@ video.videoNotFound {
 	background: linear-gradient(to bottom, #2f2b2a 32%, #000000 100%);
 	height: 70px;
 }
-.no-flexboxlegacy .footer .footerBody,
-.no-flexboxtweener .footer .footerBody,
-.no-flexbox .footer .footerBody {
+
+.no-flexboxlegacy .footer .footerBody, .no-flexboxtweener .footer .footerBody,
+	.no-flexbox .footer .footerBody {
 	display: table;
 }
-.no-flexboxlegacy .footer .footerBody>*,
-.no-flexboxtweener .footer .footerBody>*,
-.no-flexbox .footer .footerBody>* {
+
+.no-flexboxlegacy .footer .footerBody>*, .no-flexboxtweener .footer .footerBody>*,
+	.no-flexbox .footer .footerBody>* {
 	display: table-cell;
 }
+
 .footer .footerBody {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -171,8 +190,9 @@ video.videoNotFound {
 	width: 920px;
 	margin: auto;
 }
+
 .footer .logo {
-	background-image: url(../images/MF-allpages-footer-smallLOGO.png);
+	background-image: url(https://s3-us-west-2.amazonaws.com/vod.resources/images/MF-allpages-footer-smallLOGO.png);
 	height: 55px;
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -184,10 +204,12 @@ video.videoNotFound {
 	background-position: 10px 20px;
 	padding-left: 10px;
 }
+
 .footer .logo div {
 	color: gray;
 	font-size: 11px;
 }
+
 .footer .menu {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -210,16 +232,17 @@ video.videoNotFound {
 	text-align: right;
 	float: right;
 }
-.no-flexboxlegacy .footer .menu ul,
-.no-flexboxtweener .footer .menu ul,
-.no-flexbox .footer .menu ul {
+
+.no-flexboxlegacy .footer .menu ul, .no-flexboxtweener .footer .menu ul,
+	.no-flexbox .footer .menu ul {
 	display: table;
 }
-.no-flexboxlegacy .footer .menu li,
-.no-flexboxtweener .footer .menu li,
-.no-flexbox .footer .menu li {
+
+.no-flexboxlegacy .footer .menu li, .no-flexboxtweener .footer .menu li,
+	.no-flexbox .footer .menu li {
 	display: table-cell;
 }
+
 .footer .menu ul {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -236,11 +259,13 @@ video.videoNotFound {
 	justify-content: space-between;
 	margin: 0;
 }
+
 .footer .menu ul li {
 	color: gray;
 	cursor: pointer;
 	font-size: 11px;
 }
+
 .footer .menu span {
 	font-size: 11px;
 }
@@ -250,6 +275,7 @@ input.error, select.error, textarea.error {
 	background-color: floralwhite;
 	color: red;
 }
+
 .greenBtn {
 	background: rgba(128, 197, 1, 1);
 	background: -moz-linear-gradient(top, rgba(128, 197, 1, 1) 0%,
@@ -288,13 +314,16 @@ input.error, select.error, textarea.error {
 	border: 1px solid;
 	margin-top: 23px;
 }
+
 .width:before {
 	content: '';
 	display: block;
 }
+
 .ratio16-9:before {
 	padding-top: 56.25%;
 }
+
 .playerContainer .content {
 	position: absolute;
 	top: 0;
@@ -310,31 +339,31 @@ input.error, select.error, textarea.error {
 	background: gray;
 	position: absolute;
 	opacity: 0.7;
-	-webkit-animation:fullexpand 30s ease-out;
-  	-moz-animation:fullexpand 30s ease-out;
-  	-o-animation:fullexpand 30s ease-out;
+	-webkit-animation: fullexpand 30s ease-out;
+	-moz-animation: fullexpand 30s ease-out;
+	-o-animation: fullexpand 30s ease-out;
 	animation: fullexpand 30s ease-out;
-	
 }
 
 .expandRed {
 	width: 60%;
 	background: red;
-	-webkit-animation:midleExpand 30s ease-out;
-  	-moz-animation:midleExpand 30s ease-out;
-  	-o-animation:midleExpand 30s ease-out;
+	-webkit-animation: midleExpand 30s ease-out;
+	-moz-animation: midleExpand 30s ease-out;
+	-o-animation: midleExpand 30s ease-out;
 	animation: midleExpand 30s ease-out;
-	-webkit-animation-delay:-0.1s;
-  	-moz-animation-delay:-0.1s;
-  	-o-animation-delay:-0.1s;
+	-webkit-animation-delay: -0.1s;
+	-moz-animation-delay: -0.1s;
+	-o-animation-delay: -0.1s;
 	animation-delay: -0.1s;
 }
-.no-flexboxlegacy #CreateAccount, 
-.no-flexboxtweener #CreateAccount, 
-.no-flexbox #CreateAccount {
-	left: calc(50% - 278px );
+
+.no-flexboxlegacy #CreateAccount, .no-flexboxtweener #CreateAccount,
+	.no-flexbox #CreateAccount {
+	left: calc(50% - 278px);
 	width: auto;
 }
+
 #CreateAccount {
 	display: none;
 	transition: 1s all;
@@ -355,16 +384,19 @@ input.error, select.error, textarea.error {
 	min-height: 600px;
 	height: 97vh;
 }
+
 .preload-02 {
-	background: url(../images/LandingPage/frame.png) no-repeat -9999px
+	background: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/frame.png) no-repeat -9999px
 		-9999px;
 }
+
 #CreateAccount .registrationWrapper {
-	background-image: url(../images/LandingPage/frame.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/frame.png);
 	width: 557px;
 	height: 600px;
 	background-repeat: no-repeat;
 }
+
 #CreateAccount div#registration {
 	width: 307px;
 	border: none;
@@ -385,25 +417,30 @@ input.error, select.error, textarea.error {
 	padding-top: 85px;
 	margin-left: 29px;
 }
+
 #CreateAccount div#registration input {
 	width: 280px;
 	height: 36px;
 	padding-left: 20px;
 }
+
 #CreateAccount div#registration p {
 	color: #fff;
 	font-size: 14px;
 	margin: 0;
 	text-align: center;
 }
+
 #CreateAccount div#registration p .green {
 	color: #AAE728;
 }
+
 #CreateAccount div#registration .enlargedText {
 	font-size: 16px;
 	font-weight: bold;
 	padding-bottom: 20px;
 }
+
 #CreateAccount div#registration .greenBtn {
 	width: 100%;
 	height: 46px;
@@ -417,21 +454,26 @@ div#VerificationPage {
 	-webkit-box-orient: vertical;
 	-webkit-flex-direction: column;
 }
+
 #seamless-target {
 	height: 370px;
 }
+
 html.whiteBg, body.whiteBg {
 	background-color: white;
 }
+
 #VerificationPage #content {
 	width: 100vw;
 	height: 98vh;
 	margin: 0;
 	padding: 0;
 }
+
 .whiteBg #header {
 	background-color: #FFF;
 }
+
 #VerificationPage .bluebg {
 	font-family: Arial;
 	font-size: 12px;
@@ -442,17 +484,19 @@ html.whiteBg, body.whiteBg {
 	padding-bottom: 5px;
 	text-align: justify;
 	width: 920px;
-    margin: auto;
-    display: table;
+	margin: auto;
+	display: table;
 }
+
 #VerificationPage .bluebg p {
 	width: 100%;
 	margin: auto;
 }
+
 #VerificationPage #header #title {
 	width: 920px;
 	margin: auto;
-	background-image: url(../images/LandingPage/MF-logo-header.png);
+	background-image: url(https://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/MF-logo-header.png);
 	height: 54px;
 	background-repeat: no-repeat;
 	background-position: right;
@@ -466,9 +510,11 @@ html.whiteBg, body.whiteBg {
 	font-size: 20px;
 	font-weight: bold;
 }
+
 .whiteBg #header span {
 	color: #000;
 }
+
 #VerificationPage .footerVA {
 	background-color: #413D3C;
 	width: 100%;
@@ -480,20 +526,22 @@ html.whiteBg, body.whiteBg {
 	display: -o-flex;
 	display: flex;
 }
+
 #VerificationPage .footerVA .footerBody {
 	width: 920px;
 	margin: auto;
 	height: 30px;
 	background-image:
-		url(../images/LandingPage/MF-L1_verificationfooter.png);
+		url(https://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/MF-L1_verificationfooter.png);
 	background-repeat: no-repeat;
 	background-position: center;
 }
-.no-flexboxlegacy .verificationContainer,
-.no-flexbox.no-flexboxtweener .verificationContainer,
-.no-flexbox   .verificationContainer {
+
+.no-flexboxlegacy .verificationContainer, .no-flexbox.no-flexboxtweener .verificationContainer,
+	.no-flexbox   .verificationContainer {
 	display: table;
 }
+
 .verificationContainer {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -504,20 +552,24 @@ html.whiteBg, body.whiteBg {
 	width: 920px;
 	margin: auto;
 }
-.no-flexboxlegacy .explanation , .no-flexboxlegacy .creditCardForm ,
-.no-flexboxtweener .explanation , .no-flexboxtweener .creditCardForm  
-.no-flexbox .explanation ,  .no-flexbox .creditCardForm {
+
+.no-flexboxlegacy .explanation, .no-flexboxlegacy .creditCardForm,
+	.no-flexboxtweener .explanation, .no-flexboxtweener .creditCardForm  
+.no-flexbox .explanation, .no-flexbox .creditCardForm {
 	display: table-cell;
 }
+
 .explanation {
 	width: 334px;
 	padding-top: 23px;
 	padding-right: 94px;
 	padding-left: 30px;
 }
+
 .mobileExplanation {
 	display: none !important;
 }
+
 .creditCardForm {
 	width: 444px;
 	padding-top: 20px;
@@ -531,39 +583,47 @@ html.whiteBg, body.whiteBg {
 	-webkit-box-orient: vertical;
 	-webkit-flex-direction: column;
 }
+
 .explanation .title {
 	color: #36bbf4;
 	font-size: 18px;
 	font-weight: bold;
 }
+
 .explanation p {
 	color: #8E8F93;
 	font-size: 13px;
 	text-align: justify;
 }
+
 .explanation hr {
 	height: 2px;
 	background-color: #8E8F93;
 }
+
 .explanation .underlined {
 	text-decoration: underline;
 }
+
 .creditCardForm .timer {
 	font-weight: bold;
 	font-size: 16px;
 	margin-bottom: 10px;
 }
+
 .creditCardForm #time {
 	color: #006FA4;
 	font-size: 21px;
 }
+
 .explanation ul {
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
 }
+
 .explanation li {
-	background-image: url(../images/MF_pre-reg_verification-VBlue2.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/MF_pre-reg_verification-VBlue2.png);
 	background-repeat: no-repeat;
 	background-position: 0px 5px;
 	padding-left: 30px;
@@ -571,29 +631,32 @@ html.whiteBg, body.whiteBg {
 	color: black;
 	font-weight: bold;
 }
+
 .verificationForm {
 	padding: 0;
 	width: 444px;
 	margin-bottom: 10px;
 	padding-bottom: 0;
 }
+
 .verificationForm .title {
 	color: #0071A4;
 	font-size: 21px;
 	font-weight: bold;
 	margin-bottom: 23px;
 }
-.no-flexboxlegacy .verificationForm .subtitle ,
-.no-flexboxtweener .verificationForm .subtitle ,
-.no-flexbox .verificationForm .subtitle {
+
+.no-flexboxlegacy .verificationForm .subtitle, .no-flexboxtweener .verificationForm .subtitle,
+	.no-flexbox .verificationForm .subtitle {
 	display: table;
 }
-.no-flexboxlegacy .verificationForm .subtitle > * ,
-.no-flexboxtweener .verificationForm .subtitle > * ,
-.no-flexbox .verificationForm .subtitle > * {
+
+.no-flexboxlegacy .verificationForm .subtitle>*, .no-flexboxtweener .verificationForm .subtitle>*,
+	.no-flexbox .verificationForm .subtitle>* {
 	display: table-cell;
-    vertical-align: middle;
+	vertical-align: middle;
 }
+
 .verificationForm .subtitle {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -611,12 +674,13 @@ html.whiteBg, body.whiteBg {
 	justify-content: space-between;
 	font-weight: bold;
 }
-.no-flexboxlegacy .verificationForm .starsWrapper,
-.no-flexboxtweener .verificationForm .starsWrapper,
-.no-flexbox .verificationForm .starsWrapper {
+
+.no-flexboxlegacy .verificationForm .starsWrapper, .no-flexboxtweener .verificationForm .starsWrapper,
+	.no-flexbox .verificationForm .starsWrapper {
 	display: table-cell;
 	line-height: 37px;
 }
+
 .verificationForm .starsWrapper {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -633,7 +697,9 @@ html.whiteBg, body.whiteBg {
 	height: 32px;
 	align-items: center;
 }
-.verificationForm .starsWrapper .stars, .verificationForm .starsWrapper .divFree {
+
+.verificationForm .starsWrapper .stars, .verificationForm .starsWrapper .divFree
+	{
 	height: 32px;
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -643,84 +709,101 @@ html.whiteBg, body.whiteBg {
 	display: flex;
 	align-items: center;
 }
-.no-flexboxlegacy .verificationForm .starsWrapper > *, 
-.no-flexboxtweener .verificationForm .starsWrapper > *, 
-.no-flexbox .verificationForm .starsWrapper > * {
-    display: inline !important;
+
+.no-flexboxlegacy .verificationForm .starsWrapper>*, .no-flexboxtweener .verificationForm .starsWrapper>*,
+	.no-flexbox .verificationForm .starsWrapper>* {
+	display: inline !important;
 }
-.verificationForm .starsWrapper .divFree,
-.verificationForm .starsWrapper .divFree,
-.verificationForm .starsWrapper .divFree {
+
+.verificationForm .starsWrapper .divFree, .verificationForm .starsWrapper .divFree,
+	.verificationForm .starsWrapper .divFree {
 	float: right;
 }
+
 .verificationForm .subtitle .litle {
 	color: #6F6F6F;
 	font-size: 12px;
 	font-weight: bold;
 	margin-right: 5px;
 }
+
 .verificationForm .subtitle img {
 	padding-right: 5px;
 	width: 32px;
 	height: 32px;
 	min-width: 32px;
 }
+
 .verificationForm .subtitle i {
 	font-size: 15px;
 	color: #FFE70D;
 	text-shadow: 0.2px 0.2px 0.2px rgba(0, 0, 0, 1);
 }
+
 .verificationForm .subtitle .free {
 	color: #6AA900;
 	font-size: 27px;
 	padding-right: 10px;
 }
+
 .verificationForm .greenBtn {
 	width: 100%;
 	height: 41px;
 }
+
 .verificationForm .subtitle .price {
 	font-size: 25px;
 	font-weight: normal;
 	padding-right: 10px;
 }
+
 .verificationForm label {
 	display: inline-block;
 }
+
 .verificationForm td {
 	white-space: nowrap;
 }
+
 .okIcon {
 	display: inline-block;
 }
+
 #Zip, .smallInput {
 	max-width: 50px;
 }
+
 #ExpDT select {
 	max-width: 35%;
 	display: inline-block;
 }
+
 .cardIcons {
-	background-image: url("../images/MF_pre-reg_verification-payments.png");
+	background-image: url("http://s3-us-west-2.amazonaws.com/vod.resources/images/MF_pre-reg_verification-payments.png");
 	background-repeat: no-repeat;
 	width: 100%;
 	height: 50px;
 	background-size: 100%;
 }
+
 .inputField {
 	width: 100%;
 }
+
 .inputField input {
 	width: 96%;
 	height: 31px;
 }
+
 .inputField select, .inputField button {
 	width: 100%;
 	height: 41px
 }
+
 .verificationForm .info {
 	font-size: 10px;
 }
+
 #cvv {
 	display: none;
 	position: absolute;
@@ -738,6 +821,7 @@ html.whiteBg, body.whiteBg {
 	-webkit-box-orient: vertical;
 	-webkit-flex-direction: column;
 }
+
 #cvv div {
 	z-index: 100;
 }
@@ -755,13 +839,16 @@ html.whiteBg, body.whiteBg {
 	flex-direction: column;
 	-webkit-box-orient: vertical;
 	-webkit-flex-direction: column;
+	padding-top: 15%;
 }
+
 .preload-01 {
-	background: url(../images/MF-Thankspage-Popcorn.png) no-repeat -9999px
+	background: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/MF-Thankspage-Popcorn.png) no-repeat -9999px
 		-9999px;
 }
+
 #page3 .container {
-	background-image: url("../images/MF-Thankspage-Popcorn.png");
+	background-image: url("http://s3-us-west-2.amazonaws.com/vod.resources/images/MF-Thankspage-Popcorn.png");
 	background-position: right center;
 	width: 700px;
 	height: 325px;
@@ -784,25 +871,29 @@ html.whiteBg, body.whiteBg {
 	-webkit-flex-direction: column;
 	border: 1px solid darkgray;
 }
+
 .logo {
-	background-image: url(../images/MF-allpages-TOPLOGO.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/MF-allpages-TOPLOGO.png);
 	width: 40%;
 	height: 55px;
 	background-repeat: no-repeat;
 }
+
 #logo {
-	background-image: url(../images/MF-allpages-TOPLOGO.png);
-    width: 189px;
-    height: 55px;
-    background-repeat: no-repeat;
-    background-size: 139px;
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/MF-allpages-TOPLOGO.png);
+	width: 189px;
+	height: 55px;
+	background-repeat: no-repeat;
+	background-size: 139px;
 }
+
 #page3 .logo {
-	background-image: url(../images/MF-allpages-TOPLOGO.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/MF-allpages-TOPLOGO.png);
 	width: 476px;
 	height: 55px;
 	background-repeat: no-repeat;
 }
+
 .tnx {
 	padding-left: 105px;
 	font-size: 36px;
@@ -810,6 +901,7 @@ html.whiteBg, body.whiteBg {
 	width: 360px;
 	font-weight: bold;
 }
+
 .tnx p {
 	font-size: 16px;
 	color: #7A7A7A;
@@ -821,25 +913,31 @@ html.whiteBg, body.whiteBg {
 	width: 920px;
 	margin: auto;
 }
+
 .slick-slide {
 	margin: 0px 5px;
 }
+
 .slick-slide img {
 	width: 100%;
 	height: 222px;
 	transition: 1s all;
 }
+
 .slick-slide img:hover {
 	width: 149px;
 	height: 224px;
 	transition: 1s all;
 }
+
 .slick-prev:before, .slick-next:before {
 	color: white;
 }
+
 .slick-dots {
 	display: none !important;
 }
+
 #moviesPage .moreMovies .moreMoviesWrapper {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -857,6 +955,7 @@ html.whiteBg, body.whiteBg {
 	width: 920px;
 	padding-top: 10px;
 }
+
 #moviesPage .moreMovies .title {
 	width: 100%;
 	display: -webkit-flex;
@@ -874,6 +973,7 @@ html.whiteBg, body.whiteBg {
 	padding-left: 42px;
 	padding-right: 38px;
 }
+
 #moviesPage .moreMovies .title div {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -883,18 +983,22 @@ html.whiteBg, body.whiteBg {
 	display: flex;
 	align-items: center;
 }
+
 #moviesPage .moreMovies .title div select {
 	margin: 0;
 	color: white;
 	background-color: transparent;
 }
+
 #moviesPage .moreMovies .title div option {
 	color: black;
 }
+
 #moviesPage .moreMovies .title span {
 	font-size: medium;
 	padding-right: 15px;
 }
+
 #moviesPage .moreMovies .movie {
 	width: 150px;
 	height: 273px;
@@ -916,16 +1020,20 @@ html.whiteBg, body.whiteBg {
 	align-items: center;
 	cursor: pointer;
 }
+
 #moviesPage .moreMovies .movie:first-child {
 	margin-left: 0;
 }
+
 #moviesPage .moreMovies .movie:last-child {
 	margin-right: 0;
 }
+
 #moviesPage .moreMovies .movie img {
 	width: 200px;
 	height: 250px;
 }
+
 #moviesPage .moreMovies .movie .movieTitle {
 	font-size: small;
 	width: 100%;
@@ -938,6 +1046,7 @@ html.whiteBg, body.whiteBg {
 	display: flex;
 	padding-top: 5px;
 }
+
 #moviesPage .moreMovies .movie .subtitle {
 	width: 100%;
 	display: -webkit-flex;
@@ -952,23 +1061,28 @@ html.whiteBg, body.whiteBg {
 	-webkit-justify-content: space-between;
 	justify-content: space-between;
 }
+
 #moviesPage .moreMovies .movie .subtitle .stars {
 	white-space: nowrap;
 }
+
 #moviesPage .moreMovies .movie .subtitle .movieCategory {
 	text-align: right;
 }
+
 #moviesPage .moreMovies .movie .subtitle i {
 	color: #FBAE00;
 	font-size: 10px;
 }
+
 #moviesPage .moreMovies .movie .subtitle div {
 	font-size: small;
 	color: #fff;
 }
+
 .sliderWrapper {
 	height: 375px;
-	background-image: url(../images/MF-bestmovies-cinema-backgournd.png.jpg);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/MF-bestmovies-cinema-backgournd.png.jpg);
 	background-size: 100%;
 	background-position: bottom;
 	width: 920px;
@@ -976,13 +1090,16 @@ html.whiteBg, body.whiteBg {
 	padding-top: 25px;
 	background-repeat: no-repeat;
 }
+
 .littleMoviesSlider .title {
 	padding-bottom: 15px;
 	padding-left: 15px;
 }
+
 .littleMoviesSlider .title span {
 	font-size: medium;
 }
+
 #moviesPage hr {
 	height: 7px;
 	background-color: #313131;
@@ -991,6 +1108,7 @@ html.whiteBg, body.whiteBg {
 	width: 920px;
 	margin: auto;
 }
+
 #genres {
 	display: none;
 	-webkit-flex-direction: column;
@@ -1002,6 +1120,7 @@ html.whiteBg, body.whiteBg {
 	padding-left: 15px;
 	padding-top: 15px;
 }
+
 .genresContent {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -1016,52 +1135,60 @@ html.whiteBg, body.whiteBg {
 	-webkit-justify-content: center;
 	justify-content: center;
 	align-items: baseline;
-	background-image: url(../images/MF-bestmovies-cinema-backgournd.png.jpg);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/MF-bestmovies-cinema-backgournd.png.jpg);
 	background-size: 100%;
 	background-position: center 80%;
 	opacity: 0;
 	transition: opacity 1s;
 }
+
 #genres .genre {
 	width: 121px;
-    height: 125px;
+	height: 125px;
 	border-radius: 100%;
 	background-color: transparent;
 	margin: 17px;
 	overflow: auto;
 	cursor: pointer;
-	background-repeat:no-repeat;
+	background-repeat: no-repeat;
 	transition: opacity 1s;
 }
+
 #genres .genre:hover {
 	opacity: 0.5;
 	transition: opacity 1s;
 }
+
 .drama {
-	background-image: url(../images/genres.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/genres.png);
 	background-position: -4px -4px;
 }
+
 .action {
-	background-image: url(../images/genres.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/genres.png);
 	background-position: -146px -4px;
 }
+
 .comedy {
-	background-image: url(../images/genres.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/genres.png);
 	background-position: -286px -4px;
-	
 }
+
 .romance {
-	background-image: url(../images/genres.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/genres.png);
 	background-position: -428px -4px;
 }
+
 .sciFi {
-	background-image: url(../images/genres.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/genres.png);
 	background-position: -571px -4px;
 }
+
 #genres .genre .top {
 	width: 100%;
 	height: 70%;
 }
+
 #genres .genre .bottom {
 	width: 100%;
 	height: 26%;
@@ -1082,18 +1209,23 @@ html.whiteBg, body.whiteBg {
 	padding-top: 4%;
 	color: white;
 }
+
 .g1 {
 	background-color: #373A4D;
 }
+
 .g2 {
 	background-color: #F59A0D;
 }
+
 .g3 {
 	background-color: #B57AE4;
 }
+
 .g4 {
 	background-color: #E10813;
 }
+
 .g5 {
 	background-color: #019330;
 }
@@ -1102,20 +1234,22 @@ html.whiteBg, body.whiteBg {
 #mainPage {
 	margin: auto;
 }
+
 #mainPage .container {
 	width: 920px;
 	margin: auto;
 }
-.no-flexboxlegacy #mainPage .icons ,
-.no-flexboxtweener #mainPage .icons ,
-.no-flexbox #mainPage .icons {
+
+.no-flexboxlegacy #mainPage .icons, .no-flexboxtweener #mainPage .icons,
+	.no-flexbox #mainPage .icons {
 	display: table;
 }
-.no-flexboxlegacy #mainPage .icons>div,
-.no-flexboxtweener #mainPage .icons>div,
-.no-flexbox #mainPage .icons>div {
+
+.no-flexboxlegacy #mainPage .icons>div, .no-flexboxtweener #mainPage .icons>div,
+	.no-flexbox #mainPage .icons>div {
 	display: table-cell;
 }
+
 #mainPage .icons {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -1127,9 +1261,10 @@ html.whiteBg, body.whiteBg {
 	align-items: center;
 	padding-top: 20px;
 	padding-bottom: 20px;
-	background-image: url(../images/MF_HP_icons.jpg);
-    width: 920px;
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/MF_HP_icons.jpg);
+	width: 920px;
 }
+
 #mainPage .icons>div {
 	width: 250px;
 	height: 120px;
@@ -1152,38 +1287,48 @@ html.whiteBg, body.whiteBg {
 	background-size: auto 50px;
 	padding: 20px 12px;
 }
+
 #mainPage .icons>div:first-child {
 	border-left: none;
 }
+
 #mainPage .icons>div:last-child {
 	border-right: none;
 }
+
 #mainPage .icons div .title {
 	font-size: medium;
 	text-align: center;
 	margin-top: 50px;
 	justify-content: center;
 }
+
 #mainPage .icons div .subtitle {
 	font-size: small;
 	text-align: center;
 }
+
 #mainPage .icons div.cancel {
-	background-image: url(../images/MF_HP-cancelanytime-icon.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/MF_HP-cancelanytime-icon.png);
 }
+
 #mainPage .icons div.nolimits {
-	background-image: url(../images/MF_HP-nolimits-icon.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/MF_HP-nolimits-icon.png);
 }
+
 #mainPage .icons div.adsfree {
-	background-image: url(../images/MF_HP-adsfree-icon.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/MF_HP-adsfree-icon.png);
 }
+
 #mainPage .icons div.anywhere {
-	background-image: url(../images/MF_HP-anywhere-icon.jpg.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/MF_HP-anywhere-icon.jpg.png);
 }
+
 .flexslider {
 	padding-left: 15px;
 	padding-right: 15px;
 }
+
 .slider div.titles {
 	color: white;
 	position: absolute;
@@ -1201,13 +1346,16 @@ html.whiteBg, body.whiteBg {
 	height: 50%;
 	align-items: flex-end;
 }
+
 .slider div.titles .title {
 	font-size: 46px;
 	line-height: 37px;
 }
+
 .slider div.titles .subtitle {
 	font-size: small;
 }
+
 button.redBtn {
 	background-color: red;
 	border: none;
@@ -1217,13 +1365,14 @@ button.redBtn {
 	color: #fff;
 	margin-top: 30px;
 }
-.no-flexboxlegacy #mainPage .genresWrapper,
-.no-flexboxtweener #mainPage .genresWrapper,
-.no-flexbox #mainPage .genresWrapper {
+
+.no-flexboxlegacy #mainPage .genresWrapper, .no-flexboxtweener #mainPage .genresWrapper,
+	.no-flexbox #mainPage .genresWrapper {
 	text-align: center;
 }
+
 #mainPage .genresWrapper {
-	background-image: url(../images/MF_HP-lower-background_temp.jpg);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/MF_HP-lower-background_temp.jpg);
 	width: 100%;
 	height: 505px;
 	background-size: 100%;
@@ -1239,15 +1388,18 @@ button.redBtn {
 	align-items: center;
 	padding-top: 55px;
 }
+
 #mainPage .genresWrapper span {
 	color: white;
 	font-size: 36px;
 	line-height: 1.2;
 }
+
 #mainPage .genresWrapper .redBtn {
 	font-size: 20px;
 	padding: 10px 20px;
 }
+
 #mainPage #genres {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -1259,16 +1411,19 @@ button.redBtn {
 	height: 200px;
 	margin: 0;
 }
+
 #mainPage #genres .genresContent {
 	background-image: none;
 }
-.no-flexboxlegacy #loginScreen, .no-flexboxlegacy #forgotPswScreen ,
-.no-flexboxtweener #loginScreen, .no-flexboxtweener #forgotPswScreen ,
-.no-flexbox #loginScreen, .no-flexbox #forgotPswScreen {
+
+.no-flexboxlegacy #loginScreen, .no-flexboxlegacy #forgotPswScreen,
+	.no-flexboxtweener #loginScreen, .no-flexboxtweener #forgotPswScreen,
+	.no-flexbox #loginScreen, .no-flexbox #forgotPswScreen {
 	z-index: 99;
 	text-align: center;
 	margin-top: 10%;
 }
+
 #loginScreen, #forgotPswScreen {
 	display: none;
 	position: absolute;
@@ -1287,12 +1442,15 @@ button.redBtn {
 	-webkit-box-orient: vertical;
 	height: 97vh;
 }
-.no-flexboxlegacy #loginScreen .formWrapper,.no-flexboxlegacy #forgotPswScreen .formWrapper,
-.no-flexboxtweener #loginScreen .formWrapper,.no-flexboxtweener #forgotPswScreen .formWrapper,
-.no-flexbox #loginScreen .formWrapper,.no-flexbox #forgotPswScreen .formWrapper {
+
+.no-flexboxlegacy #loginScreen .formWrapper, .no-flexboxlegacy #forgotPswScreen .formWrapper,
+	.no-flexboxtweener #loginScreen .formWrapper, .no-flexboxtweener #forgotPswScreen .formWrapper,
+	.no-flexbox #loginScreen .formWrapper, .no-flexbox #forgotPswScreen .formWrapper
+	{
 	display: inline-block;
 	text-align: left;
 }
+
 #loginScreen .formWrapper, #forgotPswScreen .formWrapper {
 	-webkit-box-pack: center;
 	-moz-box-pack: center;
@@ -1305,6 +1463,7 @@ button.redBtn {
 	-webkit-box-orient: vertical;
 	z-index: 100;
 }
+
 #loginScreen .form, #forgotPswScreen .form {
 	background: #6d696c;
 	background: -moz-radial-gradient(center, ellipse cover, #6d696c 24%, #363435 75%,
@@ -1319,10 +1478,14 @@ button.redBtn {
 	padding: 20px 60px;
 	border-radius: 5px;
 }
-#loginScreen .form table td:first-child, #forgotPswScreen .form table td:first-child {
+
+#loginScreen .form table td:first-child, #forgotPswScreen .form table td:first-child
+	{
 	padding-right: 10px;
 }
-#loginScreen .form table td.formTitle, #forgotPswScreen  .form table td.formTitle {
+
+#loginScreen .form table td.formTitle, #forgotPswScreen  .form table td.formTitle
+	{
 	color: white;
 	font-size: 16px;
 	font-weight: bold;
@@ -1332,9 +1495,11 @@ button.redBtn {
 	display: block;
 	font-size: 10px;
 }
+
 #forgotPswScreen  .form table {
 	text-align: center;
 }
+
 #loginScreen .form table button, #forgotPswScreen .form table button {
 	background-color: #090504;
 	border: none;
@@ -1344,6 +1509,7 @@ button.redBtn {
 	color: #7F7B78;
 	width: 100%;
 }
+
 #loginScreen .newUser {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -1357,20 +1523,23 @@ button.redBtn {
 	-webkit-justify-content: space-between;
 	justify-content: space-between;
 }
+
 #loginScreen .newUser a {
 	color: white;
 	text-decoration: none;
 	font-size: 10px;
 	cursor: pointer;
 }
+
 #supportPage {
 	display: none;
 }
-.no-flexboxlegacy #supportPage .content,
-.no-flexboxtweener #supportPage .content,
-.no-flexbox #supportPage .content {
+
+.no-flexboxlegacy #supportPage .content, .no-flexboxtweener #supportPage .content,
+	.no-flexbox #supportPage .content {
 	display: table;
 }
+
 #supportPage .content {
 	max-width: 920px;
 	min-width: 920px;
@@ -1382,57 +1551,70 @@ button.redBtn {
 	display: -o-flex;
 	display: flex;
 }
-.no-flexboxlegacy #supportPage .supportForm ,
-.no-flexboxtweener #supportPage .supportForm ,
-.no-flexbox #supportPage .supportForm  {
+
+.no-flexboxlegacy #supportPage .supportForm, .no-flexboxtweener #supportPage .supportForm,
+	.no-flexbox #supportPage .supportForm {
 	display: table-cell;
 }
+
 #supportPage .supportForm {
 	width: 50%;
 }
+
 #supportPage .supportForm>.title {
 	color: lightgrey;
 	font-size: 26px;
 	padding-top: 45px;
 	padding-bottom: 50px;
 }
+
 #supportPage .supportForm .contactUs {
 	padding-bottom: 20px;
 	padding-right: 108px;
 }
+
 #supportPage .supportForm .contactUs  .title {
 	color: lightgrey;
 	font-size: 20px;
 }
+
 #supportPage .supportForm .contactUs  .subtitle {
 	color: lightgrey;
 	font-size: 14px;
 }
+
 #supportPage .form input {
 	height: 28px;
 }
+
 #supportPage .form select {
 	height: 38px;
 }
+
 #supportPage .form .formTitle {
 	color: lightgray;
 	font-size: 18px;
 }
+
 #supportPage .form textarea {
 	width: 97%;
 }
+
 #supportPage .form .note {
 	color: lightgray;
 	font-size: 11px;
 	vertical-align: top;
 }
+
 #supportPage .form .redBtn {
 	margin: 0;
 	width: 100%;
 }
+
 .no-flexbox #supportPage .faqs {
 	display: table-cell;
 }
+
 #supportPage .faqs {
 	padding-top: 50px;
 	position: relative;
@@ -1442,6 +1624,7 @@ button.redBtn {
 #supportPage li:hover {
 	text-decoration: underline;
 }
+
 #supportPage #tooltip {
 	display: none;
 	width: 300px;
@@ -1451,6 +1634,7 @@ button.redBtn {
 	position: absolute;
 	z-index: 999;
 }
+
 #supportPage #tooltip #tooltipTitle {
 	background-color: black;
 	border-radius: 6px 6px 0 0;
@@ -1462,6 +1646,7 @@ button.redBtn {
 	font-size: 12px;
 	line-height: 1.5;
 }
+
 #supportPage #tooltip #tooltipDSC {
 	background-color: #353130;
 	border-radius: 0 0 6px 6px;
@@ -1470,6 +1655,7 @@ button.redBtn {
 	padding: 5px;
 	line-height: 1.5;
 }
+
 #supportPage .faqs .announcements {
 	background-color: #353130;
 	border: 1px solid gray;
@@ -1481,21 +1667,26 @@ button.redBtn {
 	background-repeat: no-repeat;
 	background-position: 20px center;
 }
+
 #supportPage .faqs .announcements .title {
 	color: lightgray;
 	font-size: 16px;
 	font-weight: bold;
 }
+
 #supportPage .faqs .announcements .subtitle {
 	color: lightgray;
 	font-size: 14px;
 }
+
 #supportPage .faqs .lock {
-	background-image: url(../images/MF-support-lock.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/MF-support-lock.png);
 }
+
 #supportPage .faqs .ribbon {
-	background-image: url(../images/MF-support-ribbon.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/MF-support-ribbon.png);
 }
+
 #supportPage .faqs>.title {
 	color: white;
 	font-size: 20px;
@@ -1512,19 +1703,22 @@ button.redBtn {
 	-webkit-justify-content: space-between;
 	justify-content: space-between;
 }
+
 #supportPage .faqs>.subtitle {
 	color: red;
 	font-size: 20px;
 	padding-bottom: 12px;
 }
+
 #supportPage .faqs ul {
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
 	padding-bottom: 20px;
 }
+
 #supportPage .faqs li {
-	background-image: url(../images/muvflix_support-arrow.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/muvflix_support-arrow.png);
 	background-repeat: no-repeat;
 	background-position: left 5px;
 	padding-left: 30px;
@@ -1532,9 +1726,11 @@ button.redBtn {
 	font-size: 14px;
 	cursor: pointer;
 }
+
 #supportPage #logout {
 	display: none;
 }
+
 #supportPage #cancelAccount {
 	display: none;
 	color: red;
@@ -1542,12 +1738,15 @@ button.redBtn {
 	border: 1px solid gray;
 	padding: 3px 20px;
 }
+
 #supportPage #cancelText {
 	display: none;
 }
+
 #supportPage .form #CancelFields {
 	display: none;
 }
+
 #warningScreen {
 	display: none;
 	position: absolute;
@@ -1567,6 +1766,7 @@ button.redBtn {
 	-webkit-box-orient: vertical;
 	height: 97vh;
 }
+
 #warningScreen .formWrapper {
 	-webkit-box-pack: center;
 	-moz-box-pack: center;
@@ -1579,31 +1779,37 @@ button.redBtn {
 	-webkit-box-orient: vertical;
 	width: 570px;
 }
+
 #warningScreen .form {
 	background-color: #A80000;
 	padding: 20px 60px;
 	border-radius: 5px;
 }
+
 #warningScreen .form .formHeader {
 	padding-bottom: 20px;
 	padding-top: 20px;
 	padding-left: 100px;
 	border-bottom: 7px double white;
 	margin-bottom: 20px;
-	background-image: url(../images/MF-cancel-popup-warning.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/MF-cancel-popup-warning.png);
 	background-repeat: no-repeat;
 	height: 61px;
 }
+
 #warningScreen .form .title {
 	color: white;
 	font-size: 18px;
 }
+
 #warningScreen .form .subtitle {
 	font-size: 14px;
 }
+
 #warningScreen .form table td:first-child {
 	padding-right: 10px;
 }
+
 #warningScreen .form table button {
 	background-color: #000;
 	border: none;
@@ -1613,9 +1819,11 @@ button.redBtn {
 	color: red;
 	width: 100%;
 }
+
 .no-flexbox .closeBtn {
 	display: block;
 }
+
 .closeBtn {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -1626,28 +1834,28 @@ button.redBtn {
 	justify-content: flex-end;
 	align-self: flex-end;
 }
+
 .no-flexbox .closeBtn i {
 	font-family: arial;
 }
+
 .closeBtn i {
 	color: white;
 	cursor: pointer;
-
-  /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: antialiased;
-
-  /* Support for Safari and Chrome. */
-  text-rendering: optimizeLegibility;
-
-  /* Support for Firefox. */
-  -moz-osx-font-smoothing: grayscale;
-
-  /* Support for IE. */
-  font-feature-settings: 'liga';
+	/* Support for all WebKit browsers. */
+	-webkit-font-smoothing: antialiased;
+	/* Support for Safari and Chrome. */
+	text-rendering: optimizeLegibility;
+	/* Support for Firefox. */
+	-moz-osx-font-smoothing: grayscale;
+	/* Support for IE. */
+	font-feature-settings: 'liga';
 }
+
 .closeBtn i:hover {
 	opacity: 0.5;
 }
+
 #warningScreen .closeBtn {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -1657,17 +1865,21 @@ button.redBtn {
 	display: flex;
 	justify-content: flex-end;
 }
+
 #warningScreen .closeBtn i {
 	color: white;
 	cursor: pointer;
 }
+
 #warningScreen .closeBtn i:hover {
 	opacity: 0.5;
 }
+
 #moviePreview {
 	display: none;
 	outline: none !important;
 }
+
 #moviePreview .moviePreviewWrapper {
 	padding-left: 40px;
 	padding-bottom: 40px;
@@ -1693,25 +1905,30 @@ button.redBtn {
 		endColorstr='#0e0e0e', GradientType=1);
 	/* IE6-9 fallback on horizontal gradient */
 }
+
 #moviePreview .movieImage {
 	width: 240px;
 	height: 330px;
 }
+
 #moviePreview .movieData {
 	width: 465px;
 	height: 312px;
 	padding: 9px 25px;;
 }
+
 #moviePreview .movieData .title {
 	font-size: 20px;
 	padding-bottom: 19px;
 	color: white;
 }
+
 #moviePreview .movieData .subtitle {
 	font-size: 16px;
 	padding-bottom: 2px;
 	color: white;
 }
+
 #moviePreview .movieData .content {
 	color: white;
 	font-size: 12px;
@@ -1719,11 +1936,13 @@ button.redBtn {
 	overflow: auto;
 	margin-bottom: 17px;
 }
+
 #moviePreview  .content p {
 	font-size: 10px;
 	line-height: 1.3;
 	padding: 2px;
 }
+
 #moviePreview .movieData .playNow {
 	border: none;
 	background-color: transparent;
@@ -1743,9 +1962,11 @@ button.redBtn {
 	justify-content: space-between;
 	width: 135px;
 }
+
 #moviePreview .movieTrailer {
 	width: 215px;
 }
+
 #moviePreview .movieTrailer .stars {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -1755,18 +1976,22 @@ button.redBtn {
 	display: flex;
 	justify-content: flex-end;
 }
+
 #moviePreview .movieTrailer .stars  i {
 	color: #FBAE00;
 	font-size: 18px;
 }
+
 #moviePreview .movieTrailer .title {
 	color: white;
 	font-size: 14px;
 	padding-top: 19px;
 }
+
 #moviePreview .movieTrailer video {
 	background-color: black;
 }
+
 #moviePreview .movieTrailer .galleryImages {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -1778,6 +2003,7 @@ button.redBtn {
 	justify-content: space-between;
 	width: 215px;
 }
+
 #moviePreview .movieTrailer .galleryImages div {
 	width: 83px;
 	height: 42px;
@@ -1787,6 +2013,7 @@ button.redBtn {
 	display: inline-block;
 	flex-wrap: inherit;
 }
+
 #pricingPage {
 	display: none;
 	padding-top: 44px;
@@ -1795,15 +2022,18 @@ button.redBtn {
 	width: 920px;
 	margin: auto;
 }
+
 #pricingPage  .title {
 	padding-bottom: 24px;
 	color: white;
 	font-size: 24px;
 }
+
 #pricingPage  .subtitle {
 	font-size: 15px;
 	padding-bottom: 5px;
 }
+
 #pricingPage  .offers {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -1812,6 +2042,7 @@ button.redBtn {
 	display: -o-flex;
 	display: flex;
 }
+
 #pricingPage  .offers .offer {
 	width: 300px;
 	height: 228px;
@@ -1834,24 +2065,30 @@ button.redBtn {
 	margin-left: 20px;
 	margin-right: 20px;
 }
+
 #pricingPage .offers .offer:first-child {
 	margin-left: 0;
 }
+
 #pricingPage  .offers .offer:last-child {
 	margin-right: 0;
 }
+
 #pricingPage  .offers .offer .price {
 	color: white;
 	font-size: 48px;
 }
+
 #pricingPage  .offers .offer .redBtn {
 	height: 39px;
 	width: 160px;
 	font-size: 18px;
 }
+
 .eula img {
 	width: 800px;
 }
+
 .eula .content {
 	padding-top: 44px;
 	padding-bottom: 83px;
@@ -1859,29 +2096,36 @@ button.redBtn {
 	margin: auto;
 	color: white;
 }
+
 .eula  .content .title {
 	font-size: 24px;
 	padding-bottom: 35px;
 }
+
 .eula  .content .subtitle {
 	font-size: 20px;
 	padding-bottom: 35px;
 }
+
 .eula .content ol {
 	margin-left: 40px;
 	counter-reset: item;
 }
+
 .eula  .content ol li {
 	padding: 20px 0px 5px 10px;
 	display: block;
 }
+
 .eula  .content ol li:before {
 	content: counters(item, ".") ". ";
 	counter-increment: item
 }
+
 #SignInPage {
 	display: none;
 }
+
 .SignInPage {
 	-webkit-flex-direction: column;
 	flex-direction: column;
@@ -1889,16 +2133,19 @@ button.redBtn {
 	margin: auto;
 	align-items: center;
 }
+
 .SignInPage  .verificationContainer {
 	width: 920px;
 	background-color: white;
 	min-height: 460px;
 	margin-top: 20px;
 }
+
 .SignInPage .verificationContainer .explanation {
 	position: relative;
 	width: 450px;
 }
+
 .SignInPage .verificationContainer .explanation .title {
 	font-size: 28px;
 	color: black;
@@ -1914,47 +2161,57 @@ button.redBtn {
 	flex-direction: column;
 	-webkit-box-orient: vertical;
 }
+
 .SignInPage .verificationContainer .explanation .subtitle {
 	color: black;
 	font-size: 18px;
 	padding-bottom: 15px;
 }
+
 .SignInPage .verificationContainer  .explanation li {
-	background-image: url(../images/MF_pre-reg_verification-Vgreen.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/MF_pre-reg_verification-Vgreen.png);
 	font-weight: normal;
 	font-size: 13px;
 }
+
 .SignInPage .verificationContainer .explanation .help {
 	bottom: 30px;
 	padding-left: 60px;
-	background-image: url(../images/MF_pre-reg_verification-info.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/MF_pre-reg_verification-info.png);
 	background-repeat: no-repeat;
 	background-position: left center;
 	background-size: 50px;
 }
+
 .SignInPage .verificationContainer .verificationForm {
 	padding-bottom: 18px;
 	width: 338px;
 }
+
 .SignInPage .verificationContainer .verificationForm .title {
 	color: black;
 	font-size: 12px;
 	line-height: 1;
 	padding-bottom: 10px;
 }
+
 .SignInPage .creditCardForm {
 	width: 450px;
 }
+
 .SignInPage .note {
 	font-size: 10px;
 	line-height: 1;
 }
+
 .no-placeholder .SignInPage .inputTitle {
 	display: inline;
 }
+
 .SignInPage .inputTitle {
 	display: none;
 }
+
 .SignInPage input {
 	width: 295px;
 	height: 30px;
@@ -1967,9 +2224,11 @@ button.redBtn {
 	vertical-align: middle;
 	border-radius: 4px;
 }
+
 .SignInPage select {
 	width: 246px;
 }
+
 .SignInPage .form {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -1987,11 +2246,13 @@ button.redBtn {
 	justify-content: center;
 	align-items: center;
 }
+
 .SignInPage .form button {
 	width: 145px;
 	height: 35px;
 	margin-top: 26px;
 }
+
 .SignInPage .btnWrapper {
 	padding-top: 50px;
 	display: -webkit-flex;
@@ -2006,6 +2267,7 @@ button.redBtn {
 	-webkit-justify-content: center;
 	justify-content: center;
 }
+
 .SignInPage .btnWrapper button {
 	width: 470px;
 	height: 120px;
@@ -2025,12 +2287,15 @@ button.redBtn {
 	justify-content: center;
 	align-items: center;
 }
+
 .SignInPage .btnWrapper button .title {
 	font-size: 28px;
 }
+
 .SignInPage .btnWrapper button .subtitle {
 	font-size: 12px;
 }
+
 .SignInPage .languages {
 	width: 100%;
 	display: -webkit-flex;
@@ -2047,51 +2312,64 @@ button.redBtn {
 	color: white;
 	font-size: 12px;
 }
+
 .SignInPage .languages span {
 	padding: 5px;
 }
+
 #SignUpPage {
 	display: none;
 }
+
 #SignUpPage .title .subtitle {
 	font-size: 12px;
 	font-weight: bold;
 }
+
 .SignInPage .littleTitle {
 	color: #136484;
 	font-size: 14px;
 	font-weight: bold;
 }
+
 #SignUpPage  .verificationContainer  .explanation li {
-	background-image: url(../images/MF_pre-reg_verification-VBlue2.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/MF_pre-reg_verification-VBlue2.png);
 	font-weight: normal;
 	font-size: 13px;
 }
+
 .explanation p {
 	line-height: 1.4;
 }
+
 #SignUpPage .verificationContainer .explanation .help {
 	position: initial;
 }
+
 #SignUpPage .verificationForm .title {
 	color: #0071A4;
 	font-size: 18px;
 	font-weight: bold;
 }
+
 #SignUpPage .verificationForm table td {
 	max-width: 200px;
 }
+
 #SignUpPage input {
 	max-width: 232px;
 	height: 36px;
 }
+
 #SignUpPage td.cvv  input {
 	max-width: 100px;
 }
+
 #MoviePage {
 	width: 920px;
 	margin: auto;
 }
+
 #movieWrapper {
 	display: none;
 	position: fixed;
@@ -2112,12 +2390,14 @@ button.redBtn {
 	-webkit-box-orient: vertical;
 	height: 97vh;
 }
+
 #selectedMovie {
 	width: 920px;
 	margin: auto;
 	background-color: transparent;
 	min-height: 600px;
 }
+
 #movieWrapper .closeBtn {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -2127,10 +2407,12 @@ button.redBtn {
 	display: flex;
 	justify-content: flex-end;
 }
+
 #movieWrapper .closeBtn i {
 	color: white;
 	cursor: pointer;
 }
+
 #movieWrapper .closeBtn i:hover {
 	opacity: 0.5;
 }
@@ -2138,12 +2420,14 @@ button.redBtn {
 @-moz-keyframes fadeOut { 
 	0% {
 		opacity: 0;
+		background-color: #000;
 		display: block;
 	}
-	80% {opacity:1;}
-	100% {
+	80%{opacity:1;}
+	100%{
 		opacity:0;
 		display:none;
+		background-color: #000;
 	}
 }
 @-webkit-keyframes fadeOut { 
@@ -2152,7 +2436,7 @@ button.redBtn {
 		background-color: #000;
 		display: none;
 	}
-	80% {opacity:1;}
+	80%{opacity:1;}
 	100%{
 		opacity:0;
 		background-color:#000;
@@ -2165,8 +2449,8 @@ button.redBtn {
 		background-color: #000;
 		display: none;
 	}
-	80% {opacity:1;}
-	100% {
+	80%{opacity:1;}
+	100%{
 		opacity:0;
 		background-color:#000;
 		display:none;
@@ -2174,7 +2458,7 @@ button.redBtn {
 }
 /*Progress Bar animation */
 @-moz-keyframes fullexpand { 
-	0% {width: 0px;	}
+	0% {width: 0px;}
 	100%{width:65%;}
 }
 @-webkit-keyframes fullexpand { 

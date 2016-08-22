@@ -2,12 +2,12 @@
 .flex-prev {
 	left: -50px;
 	opacity: 0;
-	 background-image: url("../images/MF-bestmovies-Larrow.png");
+	 background-image: url("http://s3-us-west-2.amazonaws.com/vod.resources/images/MF-bestmovies-Larrow.png");
 }
 .flex-next {
 	right: -50px;
 	opacity: 0;
-	background-image: url("../images/MF-bestmovies-Rarrow.png");
+	background-image: url("http://s3-us-west-2.amazonaws.com/vod.resources/images/MF-bestmovies-Rarrow.png");
 }
 .flexslider2:hover .flex-prev {
 	left:10px;
@@ -56,7 +56,7 @@
 }
 .flexslider .slides:after, .flexslider2 .slides:after {
   left: -55px;
-  background-image: url("../images/MF-bestmovies-Larrow.png");
+  background-image: url("http://s3-us-west-2.amazonaws.com/vod.resources/images/MF-bestmovies-Larrow.png");
 }
 html[xmlns] .flexslider .slides, html[xmlns] .flexslider2 .slides {
   display: block;

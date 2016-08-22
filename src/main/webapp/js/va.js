@@ -11,23 +11,19 @@ window.onload = function() {
 
 	var disableExternal = (location.hostname == "localhost");
 
-	document.getElementById('amazonCSS').disabled = disableExternal;
-	document.getElementById('amazonMobileCSS').disabled = disableExternal;
-	document.getElementById('LHCSS').disabled = !disableExternal;
-	document.getElementById('LHMobileCSS').disabled = !disableExternal;
-
 	urlParams = parseURLParams(window.location.href);
 
 	if (urlParams != null) {
 		AFF = urlParams.aff ? urlParams.aff[0] : 0;
-		COUNTRY = urlParams.country ? urlParams.country[0] : 0;
+		COUNTRY = urlParams.countryCode ? urlParams.countryCode[0] : 0;
 		CSS = urlParams.theme ? urlParams.theme[0] : "";
 		LANG = urlParams.lang ? urlParams.lang[0] : 0;
 		CLICKID = urlParams.clickid ? urlParams.clickid[0] : "";
 		MAIL = urlParams.user ? urlParams.user[0] : "";
 	}
 
-	if (Modernizr.flexbox && Modernizr.flexboxtweener && Modernizr.flexboxlegacy) {
+	if (Modernizr.flexbox && Modernizr.flexboxtweener
+			&& Modernizr.flexboxlegacy) {
 		document.getElementById("VerificationPage").style.display = "flex";
 	} else {
 		document.getElementById("VerificationPage").style.display = "block";
@@ -84,11 +80,12 @@ window.onload = function() {
 										requestData : {
 											request_id : reqId,
 											request_time_stamp : now_utc,
-											merchant_account_id : "51b671b8-17da-4ab6-af90-d86d46d774c9",
+											merchant_account_id : "e1e6433e-6540-11e6-a487-005056a96a4d",
 											transaction_type : transactionType,
 											requested_amount : amount,
 											requested_amount_currency : currency,
 											payment_method : "creditcard",
+											attempt_three_d : true,
 											request_signature : sign,
 											template_name : "default-cc-template",
 										},
@@ -112,10 +109,11 @@ window.onload = function() {
 		else
 			url = '/verification.html';
 		setTimeout(function() {
-			history.pushState({}, null, url);
+			// history.pushState({}, null, url);
 		}, 100);
-		
-		if (Modernizr.flexbox && Modernizr.flexboxtweener && Modernizr.flexboxlegacy) {
+
+		if (Modernizr.flexbox && Modernizr.flexboxtweener
+				&& Modernizr.flexboxlegacy) {
 			document.getElementById("VerificationPage").style.display = "flex";
 		} else {
 			document.getElementById("VerificationPage").style.display = "block";
@@ -154,6 +152,8 @@ function verifyAccount() {
 	WirecardPaymentPage
 			.seamlessSubmitForm({
 				onSuccess : function(response) {
+					tracking(AFF, 16, CSS, LANG, MAIL, CLICKID);
+
 					data = {
 						email : MAIL,
 						affiliate : AFF,
@@ -184,28 +184,31 @@ function verifyAccount() {
 						transaction_type : response.transaction_type,
 						agregatorId : 4000
 					}
-
 					$
 							.ajax(
 									{
 										url : "rest/client/verifyAccount",
 										type : "POST",
 										dataType : "json", // expected format
-															// for response
+										// for response
 										contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 										data : data,
 										success : function(response) {
 											if (response.status == 15) {
 												document
 														.getElementById("VerificationPage").style.display = "none";
-												if (Modernizr.flexbox && Modernizr.flexboxtweener && Modernizr.flexboxlegacy) {
-													document.getElementById("page3").style.display = "flex";
+												if (Modernizr.flexbox
+														&& Modernizr.flexboxtweener
+														&& Modernizr.flexboxlegacy) {
+													document
+															.getElementById("page3").style.display = "flex";
 												} else {
-													document.getElementById("page3").style.display = "block";
+													document
+															.getElementById("page3").style.display = "block";
 												}
-												document.getElementById("body").className = "";
-												tracking(AFF, COUNTRY, 4, CSS,
-														LANG, MAIL, CLICKID);
+												document.getElementById("body").style.backgroundColor = "black";
+												tracking(AFF, 4, CSS, LANG,
+														MAIL, CLICKID);
 												data = {
 													affiliate : AFF,
 													clickID : CLICKID
@@ -238,8 +241,8 @@ function verifyAccount() {
 															});
 												}
 											} else {
-												tracking(AFF, COUNTRY, 9, CSS,
-														LANG, MAIL, CLICKID);
+												tracking(AFF, 9, CSS, LANG,
+														MAIL, CLICKID);
 												alert(response.message);
 											}
 										},
@@ -259,6 +262,7 @@ function verifyAccount() {
 					else if (response.form_validation_result != null)
 						alert(response.form_validation_result);
 					document.getElementById("loadingMask").style.display = "none";
+					tracking(AFF, 15, CSS, LANG, MAIL, CLICKID);
 				},
 			});
 }
@@ -272,9 +276,9 @@ function chkForLogin(data) {
 		success : function(response) {
 			if (response.status == 51) {
 				if (location.hostname == "localhost") {
-					url = '/starter/movies.html';
+					url = '/starter/movies.html?user=' + MAIL;
 				} else {
-					url = 'http://www.muvflix.com/movies.html';
+					url = 'http://www.muvflix.com/movies.html?user=' + MAIL;
 				}
 				localStorage.setItem('user', MAIL);
 
@@ -288,7 +292,7 @@ function chkForLogin(data) {
 							'http://www.muvflix.com/landingPage.html');
 				}
 
-				tracking(AFF, COUNTRY, 5, CSS, LANG, MAIL, CLICKID);
+				tracking(AFF, 5, CSS, LANG, MAIL, CLICKID);
 			} else {
 				alert(response.message);
 			}

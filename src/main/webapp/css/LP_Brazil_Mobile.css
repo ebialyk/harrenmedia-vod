@@ -4,7 +4,7 @@
 	}
 	#languages {
 		background-image:
-			url(../images/Sport_LandingPage/mobile_landingr-channels.png);
+			url(http://s3-us-west-2.amazonaws.com/vod.resources/images/Sport_LandingPage/mobile_landingr-channels.png);
 		height: 275px;
 		margin-top: 10%;
 		display: block;
@@ -32,7 +32,7 @@
 		
 	}
 	.download {
-		background-image: url(../images/TV_LandingPage/hd.jpg);
+		background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/TV_LandingPage/hd.jpg);
 		background-repeat: no-repeat;
 		background-position: top right;
 		margin-right: 5px;
@@ -97,7 +97,7 @@
 		border-radius: 0;
 	}
 	.playerContainer .content .controllers .movieTimer {
-		background-image: url(../images/TV_LandingPage/timerControllers.jpg);
+		background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/TV_LandingPage/timerControllers.jpg);
 	}
 	.contentBar {
 		background-image: none;

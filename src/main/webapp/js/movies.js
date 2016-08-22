@@ -15,13 +15,13 @@ function openBestsellers() {
 	document.getElementById("littleSlider").style.display = "block";
 	document.getElementById("hrGray").style.display = "block";
 	document.getElementById("moreMovies").style.display = "block";
-	document.getElementById("BS-LI").className = "selected";	
+	document.getElementById("BS-LI").className = "selected";
 }
 function openMovies() {
 	hideAll();
 	document.getElementById("moreMovies").style.display = "block";
 	document.getElementById("M-LI").className = "selected";
-	
+
 }
 function openMovie(url) {
 	var myVideo = document.getElementsByTagName('video')[0];
@@ -31,22 +31,21 @@ function openMovie(url) {
 	myVideo.style.paddingTop = "20px";
 	document.getElementById("mask").style.display = "flex";
 	document.getElementById("movieWrapper").style.display = "flex";
-	
-	 
-	 if(url == "") {
-		 $('#video').removeClass('loading');
-		 $('#video').addClass('videoNotFound');
-	 } else {
-		 $('#video').removeClass('videoNotFound');
-		 $('#video').on('loadstart', function (event) {
-			    $(this).addClass('loading');
-			  });
-		 $('#video').on('canplay', function (event) {
-			    $(this).removeClass('loading');
-			    $(this).attr('poster', '');
-			  });
-	 }
-	
+
+	if (url == "") {
+		$('#video').removeClass('loading');
+		$('#video').addClass('videoNotFound');
+	} else {
+		$('#video').removeClass('videoNotFound');
+		$('#video').on('loadstart', function(event) {
+			$(this).addClass('loading');
+		});
+		$('#video').on('canplay', function(event) {
+			$(this).removeClass('loading');
+			$(this).attr('poster', '');
+		});
+	}
+
 }
 function openSupport() {
 	hideAll();
@@ -60,8 +59,8 @@ function cancelAccount() {
 	var psw = document.getElementById("Password").value = "";
 	document.getElementById("warningScreen").style.display = "flex";
 	document.getElementById("mask").style.display = "flex";
-	tracking(0, 0, 6, 0, 0, email, "");
-	
+	tracking(0, 6, 0, 0, email, "");
+
 }
 function clearForm() {
 	document.getElementById("supportName").value = "";
@@ -106,7 +105,7 @@ function accountVerification() {
 	if (psw.value === undefined || psw.value == "") {// no empty message
 		psw.className = "error";
 		psw.title = "Please type your password";
-	} else if(!validPassword(psw)) {
+	} else if (!validPassword(psw)) {
 		psw.className = "error";
 		psw.title = "Please type a valid password";
 	} else {
@@ -116,14 +115,15 @@ function accountVerification() {
 	}
 
 	if (okMail && okPsw) {
-		
-		tracking(0, 0, 7, 0, 0, email.value, "");
+
+		tracking(0,  7, 0, 0, email.value, "");
 		var data = {
 			email : email.value,
 			psw : psw.value
 		};
 
-		$.ajax({
+		$
+				.ajax({
 					url : "rest/client/accountVerification",
 					type : "POST",
 					dataType : "json", // expected format for response
@@ -141,9 +141,9 @@ function accountVerification() {
 							document.getElementById("supportContent").placeholder = "Please cancel my account.";
 							document.getElementById("subjectSupport2").style.display = "block";
 							document.getElementById("subjectSupport2").value = 0;
-							tracking(0, 0, 10, 0, 0, email,"");
+							tracking(0, 10, 0, 0, email, "");
 						} else {
-							tracking(0, 0, 11, 0, 0, email,"");
+							tracking(0, 11, 0, 0, email, "");
 							alert(response.message);
 						}
 					},
@@ -235,7 +235,7 @@ function sendSupportRequest() {
 
 	if (okName && okMail && okCardD && okMsg
 			&& ((okSubj1 && !cancelRequest) || (okSubj2 && cancelRequest))) {
-		tracking(0, 0, 12, 0, 0, email.value,"");
+		tracking(0,  12, 0, 0, email.value, "");
 		var data = {
 			name : name.value,
 			email : email.value,
@@ -254,12 +254,12 @@ function sendSupportRequest() {
 				if (response.status === 40) {
 					alert(response.message);
 					openBestsellers();
-					if(msgCode == 0) {
-						tracking(0, 0, 13, 0, 0, email, "");
+					if (msgCode == 0) {
+						tracking(0,  13, 0, 0, email, "");
 					}
 				} else {
-					if(msgCode == 0) {
-						tracking(0, 0, 14, 0, 0, email, "");
+					if (msgCode == 0) {
+						tracking(0,  14, 0, 0, email, "");
 					}
 					alert(response.message);
 				}
@@ -283,7 +283,7 @@ function hideAll() {
 	document.getElementById("moreMovies").style.display = "none";
 	document.getElementById("subjectSupport2").style.display = "none";
 	var lis = document.getElementById("topMenu").getElementsByTagName("li");
-	
+
 	for (i = 0; i < lis.length; i++) {
 		lis[i].className = "";
 	}
@@ -301,30 +301,33 @@ function closeDialog() {
 }
 window.onload = function() {
 	var disableExternal = (location.hostname == "localhost");
-	
-	document.getElementById('amazonCSS').disabled  = disableExternal;
-	document.getElementById('LHCSS').disabled  = !disableExternal;
-	
-	MAIL = localStorage.getItem('user');
-	
+	urlParams = parseURLParams(window.location.href);
+
+	if (urlParams != null) {
+		MAIL = urlParams.user ? urlParams.user[0] : "";
+	}
+
+	//MAIL = localStorage.getItem('user');
+
 	var url;
-	
-	document.getElementById("BS-LI").className = "selected";	
+
+	document.getElementById("BS-LI").className = "selected";
+
 	if (MAIL != null && MAIL != undefined) {
 		checkLoggedInUser(MAIL);
-		if(location.hostname == "localhost") 
-			url='/starter/movies.html';
+		if (location.hostname == "localhost")
+			url = '/starter/movies.html';
 		else
-			url='../movies.html';
+			url = '../movies.html';
 		setTimeout(function() {
-			history.pushState({}, null,url);
-		}, 2000);
+			// history.pushState({}, null, url);
+		}, 100);
 
 	} else {
-		if(location.hostname == "localhost") 
-			url='/starter/';
+		if (location.hostname == "localhost")
+			url = '/starter/';
 		else
-			url='../';
+			url = '../';
 		window.open(url, '_self', false)
 	}
 }
@@ -339,13 +342,13 @@ function checkLoggedInUser(user) {
 		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 		data : data,
 		success : function(response) {
-			if (response.status == 51 ) {
+			if (response.status == 51) {
 				document.getElementById("logout").style.display = "block";
 			} else {
-				if(location.hostname == "localhost") 
-					url='/starter/';
+				if (location.hostname == "localhost")
+					url = '/starter/';
 				else
-					url='../';
+					url = '../';
 				window.open(url, '_self', false)
 			}
 		},
@@ -367,12 +370,12 @@ function logout() {
 		data : data,
 		success : function(response) {
 			var url;
-			if(location.hostname == "localhost") 
-				url='/starter/';
+			if (location.hostname == "localhost")
+				url = '/starter/';
 			else
-				url='../';
-				window.open(url, '_self', false)
-				localStorage.removeItem('user');
+				url = '../';
+			window.open(url, '_self', false)
+			localStorage.removeItem('user');
 
 		},
 		error : function(response, status, error) {

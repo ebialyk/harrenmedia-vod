@@ -114,7 +114,7 @@ a {
 .trafficDiv {
 	width: 100%;
 	height: 350px;
-	background-image: url('../images/bg.png');
+	background-image: url('http://s3-us-west-2.amazonaws.com/vod.resources/images/bg.png');
 	
 }
 

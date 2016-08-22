@@ -50,7 +50,7 @@
 	display: flex;
 }
 #logo {
-	background-image: url(../images/MF-allpages-TOPLOGO.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/MF-allpages-TOPLOGO.png);
 	background-repeat: no-repeat;
 	background-size: auto 25px;
 	height: 25px;
@@ -144,7 +144,7 @@
 	border-radius: 8px 8px 0px 0px;
 	border: 5px solid #B5BDB9;
 	border-bottom: none;
-	background-image: url("../images/LandingPage/spin.svg");
+	background-image: url("http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/spin.svg");
 	background-repeat: no-repeat;
 	background-position: center;
 }
@@ -166,7 +166,7 @@
 	height: 406px;
 	background-color: green;
 	border-radius: 5px 5px 0px 0px;
-	background-image: url(../images/LandingPage/player_V2-greenBG.jpg);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/player_V2-greenBG.jpg);
 	background-size: 100%;
 }
 .no-flexboxlegacy .playerContainer .content .controllers .movieTimer ,
@@ -196,7 +196,7 @@
 	font-size: 12px;
 	padding-top: 5px;
 	background-image:
-		url(../images/LandingPage/MF-L1_Vplayer-indicators.png);
+		url(http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/MF-L1_Vplayer-indicators.png);
 	background-repeat: no-repeat;
 	background-position: 99%;
 }
@@ -205,8 +205,8 @@
 	height: 92px;
 	background-color: #A7ABAA;
 	border-radius: 0px 0px 5px 5px;
-	background-image: url(../images/LandingPage/MF-L1_Vplayer-HDbut.png),
-		url(../images/LandingPage/MF-L1_Vplayer-playbut.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/MF-L1_Vplayer-HDbut.png),
+		url(http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/MF-L1_Vplayer-playbut.png);
 	background-position: right 30px, left 30px;
 	background-repeat: no-repeat;
 }
@@ -233,7 +233,7 @@
 	height: 17px;
 	margin-right: 10px;
 	margin-left: 5px;
-	background-image: url("../images/LandingPage/loading.svg");
+	background-image: url("http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/loading.svg");
 	background-size: 19px 17px;
 	background-repeat: no-repeat;
 	padding: 5px;
@@ -243,7 +243,7 @@
 	max-width: 920px;
 	margin: auto;
 	height: 17px;
-	background-image: url(../images/LandingPage/flags.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/flags.png);
 	background-repeat: no-repeat;
 }
 #languages span {

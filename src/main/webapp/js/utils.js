@@ -94,11 +94,10 @@ function login(mail, ps) {
 		}
 	});
 }
-function tracking(affiliate, country, place, cssTheme, languageId, userId,
+function tracking(affiliate, place, cssTheme, languageId, userId,
 		clickId) {
 	data = {
 		affiliate : affiliate,
-		country : country,
 		place : place,
 		cssTheme : cssTheme,
 		languageId : languageId,

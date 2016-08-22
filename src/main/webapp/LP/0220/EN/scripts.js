@@ -6,13 +6,13 @@ function preload() {
       }
   } 
 preload(
-		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/frame.png',
-		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/MF-allpages-TOPLOGO.png', 
-		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/spin.svg"',
-		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/player_V2-greenBG.jpg',
-		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/loading.svg',
-		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/MF-L1_Vplayer-HDbut.png',
-		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/MF-L1_Vplayer-playbut.png',
-		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/MF-L1_Vplayer-indicators.png',
-		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/flags.png'
+		  'http://s3-eu-west-1.amazonaws.com/vod.resources/images/LandingPage/frame.png',
+		  'http://s3-eu-west-1.amazonaws.com/vod.resources/images/MF-allpages-TOPLOGO.png', 
+		  'http://s3-eu-west-1.amazonaws.com/vod.resources/images/LandingPage/spin.svg"',
+		  'http://s3-eu-west-1.amazonaws.com/vod.resources/images/LandingPage/player_V2-greenBG.jpg',
+		  'http://s3-eu-west-1.amazonaws.com/vod.resources/images/LandingPage/loading.svg',
+		  'http://s3-eu-west-1.amazonaws.com/vod.resources/images/LandingPage/MF-L1_Vplayer-HDbut.png',
+		  'http://s3-eu-west-1.amazonaws.com/vod.resources/images/LandingPage/MF-L1_Vplayer-playbut.png',
+		  'http://s3-eu-west-1.amazonaws.com/vod.resources/images/LandingPage/MF-L1_Vplayer-indicators.png',
+		  'http://s3-eu-west-1.amazonaws.com/vod.resources/images/LandingPage/flags.png'
 );

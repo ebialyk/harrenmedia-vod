@@ -7,6 +7,7 @@ html, body {
 	min-height: 600px;
 	color: black;
 }
+
 .mask {
 	display: none;
 	opacity: 0.6;
@@ -20,6 +21,7 @@ html, body {
 	min-height: 600px;
 	cursor: pointer;
 }
+
 #loadingMask {
 	display: none;
 	opacity: 0.6;
@@ -30,7 +32,8 @@ html, body {
 	width: 100vw;
 	left: 0;
 	z-index: 999;
-	background-image: url("../images/ring.gif");
+	background-image:
+		url("http://s3-us-west-2.amazonaws.com/vod.resources/images/ring.gif");
 	background-repeat: no-repeat;
 	background-position: center;
 }
@@ -40,6 +43,7 @@ input.error, select.error, textarea.error {
 	background-color: floralwhite;
 	color: red;
 }
+
 .greenBtn {
 	background: rgba(128, 197, 1, 1);
 	background: -moz-linear-gradient(top, rgba(128, 197, 1, 1) 0%,
@@ -78,13 +82,16 @@ input.error, select.error, textarea.error {
 	border: 1px solid;
 	margin-top: 23px;
 }
+
 .width:before {
 	content: '';
 	display: block;
 }
+
 .ratio16-9:before {
 	padding-top: 56.25%;
 }
+
 .playerContainer .content {
 	position: absolute;
 	top: 0;
@@ -100,31 +107,31 @@ input.error, select.error, textarea.error {
 	background: gray;
 	position: absolute;
 	opacity: 0.7;
-	-webkit-animation:fullexpand 30s ease-out;
-  	-moz-animation:fullexpand 30s ease-out;
-  	-o-animation:fullexpand 30s ease-out;
+	-webkit-animation: fullexpand 30s ease-out;
+	-moz-animation: fullexpand 30s ease-out;
+	-o-animation: fullexpand 30s ease-out;
 	animation: fullexpand 30s ease-out;
-	
 }
 
 .expandRed {
 	width: 60%;
 	background: red;
-	-webkit-animation:midleExpand 30s ease-out;
-  	-moz-animation:midleExpand 30s ease-out;
-  	-o-animation:midleExpand 30s ease-out;
+	-webkit-animation: midleExpand 30s ease-out;
+	-moz-animation: midleExpand 30s ease-out;
+	-o-animation: midleExpand 30s ease-out;
 	animation: midleExpand 30s ease-out;
-	-webkit-animation-delay:-0.1s;
-  	-moz-animation-delay:-0.1s;
-  	-o-animation-delay:-0.1s;
+	-webkit-animation-delay: -0.1s;
+	-moz-animation-delay: -0.1s;
+	-o-animation-delay: -0.1s;
 	animation-delay: -0.1s;
 }
-.no-flexboxlegacy #CreateAccount, 
-.no-flexboxtweener #CreateAccount, 
-.no-flexbox #CreateAccount {
-	left: calc(50% - 278px );
+
+.no-flexboxlegacy #CreateAccount, .no-flexboxtweener #CreateAccount,
+	.no-flexbox #CreateAccount {
+	left: calc(50% - 278px);
 	width: auto;
 }
+
 #CreateAccount {
 	display: none;
 	width: 99vw;
@@ -143,16 +150,21 @@ input.error, select.error, textarea.error {
 	min-height: 600px;
 	height: 97vh;
 }
+
 .preload-02 {
-	background: url(../images/LandingPage/frame.png) no-repeat -9999px
-		-9999px;
+	background:
+		url(http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/frame.png)
+		no-repeat -9999px -9999px;
 }
+
 #CreateAccount .registrationWrapper {
-	background-image: url(../images/LandingPage/frame.png);
+	background-image:
+		url(http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/frame.png);
 	width: 557px;
 	height: 600px;
 	background-repeat: no-repeat;
 }
+
 #CreateAccount div#registration {
 	width: 307px;
 	border: none;
@@ -173,40 +185,48 @@ input.error, select.error, textarea.error {
 	padding-top: 85px;
 	margin-left: 29px;
 }
+
 #CreateAccount div#registration input {
 	width: 280px;
 	height: 36px;
 	padding-left: 20px;
 }
+
 #CreateAccount div#registration p {
 	color: #fff;
 	font-size: 14px;
 	margin: 0;
 	text-align: center;
 }
+
 #CreateAccount div#registration p .green {
 	color: #AAE728;
 }
+
 #CreateAccount div#registration .enlargedText {
 	font-size: 16px;
 	font-weight: bold;
 	padding-bottom: 20px;
 }
+
 #CreateAccount div#registration .greenBtn {
 	width: 100%;
 	height: 46px;
 	font-weight: bold;
 	text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
 }
+
 #LandingPage {
 	height: 100%;
 }
+
 #content {
 	margin: auto;
 	margin-top: 20px;
 	width: 920px;
 	height: 100%;
 }
+
 #LandingPage #header {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -240,6 +260,7 @@ input.error, select.error, textarea.error {
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
+
 .title {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -248,30 +269,37 @@ input.error, select.error, textarea.error {
 	display: -o-flex;
 	display: flex;
 }
+
 #logo {
-	background-image: url(http://s3-eu-west-1.amazonaws.com/vodresources/images/MF-allpages-TOPLOGO.png);
+	background-image:
+		url(http://s3-eu-west-1.amazonaws.com/vod.resources/images/MF-allpages-TOPLOGO.png);
 	background-repeat: no-repeat;
 	background-size: auto 25px;
 	height: 25px;
 	width: 133px;
 }
+
 #logo:HOVER {
 	cursor: pointer;
 }
+
 .title  span {
 	font-size: 22px;
 	color: #fff;
 	vertical-align: middle;
 	align-self: center;
 }
+
 #LandingPage .greenBtn {
 	width: 187px;
 	height: 54px;
 }
+
 .subtitle {
 	color: #fff;
 	font-size: 32px;
 }
+
 .download button {
 	width: 178px;
 	height: 53px;
@@ -293,17 +321,18 @@ input.error, select.error, textarea.error {
 	padding-top: 5px;
 	font-weight: bold;
 }
+
 .download #stars {
 	color: #FBAE00;
 	width: 100%;
 	text-align: right;
 }
 /*Player ratio 16:9*/
-.no-flexboxlegacy .playerContainer,
-.no-flexboxtweener .playerContainer,
-.no-flexbox .playerContainer {
+.no-flexboxlegacy .playerContainer, .no-flexboxtweener .playerContainer,
+	.no-flexbox .playerContainer {
 	display: block;
 }
+
 .playerContainer {
 	display: -webkit-flex;
 	display: -webkit-box;
@@ -319,11 +348,12 @@ input.error, select.error, textarea.error {
 	width: 920px;
 	margin: auto;
 }
-.no-flexboxlegacy .playerContainer .content .loading ,
-.no-flexboxtweener .playerContainer .content .loading ,
-.no-flexbox .playerContainer .content .loading {
+
+.no-flexboxlegacy .playerContainer .content .loading, .no-flexboxtweener .playerContainer .content .loading,
+	.no-flexbox .playerContainer .content .loading {
 	display: block;
 }
+
 .playerContainer .content .loading {
 	height: calc(100% - 112px);
 	display: -webkit-flex;
@@ -343,7 +373,8 @@ input.error, select.error, textarea.error {
 	border-radius: 8px 8px 0px 0px;
 	border: 5px solid #B5BDB9;
 	border-bottom: none;
-	background-image: url("http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/spin.svg");
+	background-image:
+		url("http://s3-eu-west-1.amazonaws.com/vod.resources/images/LandingPage/spin.svg");
 	background-repeat: no-repeat;
 	background-position: center;
 }
@@ -365,21 +396,25 @@ input.error, select.error, textarea.error {
 	height: 406px;
 	background-color: green;
 	border-radius: 5px 5px 0px 0px;
-	background-image: url(http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/player_V2-greenBG.jpg);
+	background-image:
+		url(http://s3-eu-west-1.amazonaws.com/vod.resources/images/LandingPage/player_V2-greenBG.jpg);
 	background-size: 100%;
 }
-.no-flexboxlegacy .playerContainer .content .controllers .movieTimer ,
-.no-flexboxtweener .playerContainer .content .controllers .movieTimer ,
-.no-flexbox .playerContainer .content .controllers .movieTimer {
+
+.no-flexboxlegacy .playerContainer .content .controllers .movieTimer,
+	.no-flexboxtweener .playerContainer .content .controllers .movieTimer,
+	.no-flexbox .playerContainer .content .controllers .movieTimer {
 	display: block;
-    width: calc(100% - 18px);
-    background-repeat: no-repeat;
-    padding-left: 8px;
-    margin-left: 5px;
+	width: calc(100% - 18px);
+	background-repeat: no-repeat;
+	padding-left: 8px;
+	margin-left: 5px;
 }
+
 .playerContainer .content .screen .movieTimer {
 	display: none;
 }
+
 .playerContainer .content .controllers .movieTimer {
 	height: 30px;
 	background-color: black;
@@ -395,7 +430,7 @@ input.error, select.error, textarea.error {
 	font-size: 12px;
 	padding-top: 5px;
 	background-image:
-		url(http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/MF-L1_Vplayer-indicators.png);
+		url(http://s3-eu-west-1.amazonaws.com/vod.resources/images/LandingPage/MF-L1_Vplayer-indicators.png);
 	background-repeat: no-repeat;
 	background-position: 99%;
 }
@@ -404,8 +439,9 @@ input.error, select.error, textarea.error {
 	height: 92px;
 	background-color: #A7ABAA;
 	border-radius: 0px 0px 5px 5px;
-	background-image: url(http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/MF-L1_Vplayer-HDbut.png),
-		url(http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/MF-L1_Vplayer-playbut.png);
+	background-image:
+		url(http://s3-eu-west-1.amazonaws.com/vod.resources/images/LandingPage/MF-L1_Vplayer-HDbut.png),
+		url(http://s3-eu-west-1.amazonaws.com/vod.resources/images/LandingPage/MF-L1_Vplayer-playbut.png);
 	background-position: right 30px, left 30px;
 	background-repeat: no-repeat;
 }
@@ -421,81 +457,162 @@ input.error, select.error, textarea.error {
 	justify-content: flex-start;
 }
 /*litle loading icon*/
-.no-flexboxlegacy #circularG, .no-flexboxlegacy .contentBar , .no-flexboxlegacy #loadSpan,
-.no-flexboxtweener #circularG, .no-flexboxtweener .contentBar , .no-flexboxtweener #loadSpan,
-.no-flexbox #circularG, .no-flexbox .contentBar , .no-flexbox #loadSpan {
+.no-flexboxlegacy #circularG, .no-flexboxlegacy .contentBar,
+	.no-flexboxlegacy #loadSpan, .no-flexboxtweener #circularG,
+	.no-flexboxtweener .contentBar, .no-flexboxtweener #loadSpan,
+	.no-flexbox #circularG, .no-flexbox .contentBar, .no-flexbox #loadSpan
+	{
 	display: table-cell;
 }
+
 #circularG {
 	position: relative;
 	width: 19px;
 	height: 17px;
 	margin-right: 10px;
 	margin-left: 5px;
-	background-image: url("http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/loading.svg");
+	background-image:
+		url("http://s3-eu-west-1.amazonaws.com/vod.resources/images/LandingPage/loading.svg");
 	background-size: 19px 17px;
 	background-repeat: no-repeat;
 	padding: 5px;
 }
+
 #languages {
 	color: #fff;
 	max-width: 920px;
 	margin: auto;
 	height: 17px;
-	background-image: url(http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/flags.png);
+	background-image:
+		url(http://s3-eu-west-1.amazonaws.com/vod.resources/images/LandingPage/flags.png);
 	background-repeat: no-repeat;
 }
+
 #languages span {
 	margin-right: 10px;
 }
-@-moz-keyframes fadeInOut { 
-	0% {
-		opacity: 0;
-		background-color: #000;
-		display: none;
-	}
-	20%{
-		opacity:1;
-		background-color:#387100;
-	}
-	100%	{
-		opacity:1;
-		background-color:#387100;
-	}
+
+@
+-moz-keyframes fadeInOut { 0% {
+	opacity: 0;
+	background-color: #000;
+	display: none;
 }
-@-webkit-keyframes fadeInOut { 
-	0% {
-		opacity: 0;
-		background-color: #000;
-		display: none;
-	}
-	20% {
-		opacity:1;
-		background-color:#387100;
-	}
-	100% {
-		opacity:1;
-		background-color:#387100;
-	}
+
+20%{
+opacity
+:
+1;
+
+		
+background-color
+:
+#387100
+;
+
+	
 }
-@keyframes fadeInOut { 
-	0% {
-		opacity: 0;
-		background-color: #000;
-		display: none;
-	}
-	20% {
-		opacity:1;
-		background-color:#387100;
-	}
-	100% {
-		opacity:1;
-		background-color:#387100;
-	}
+100%
+{
+opacity
+:
+1;
+
+		
+background-color
+:
+#387100
+;
+
+	
+}
+}
+@
+-webkit-keyframes fadeInOut { 0% {
+	opacity: 0;
+	background-color: #000;
+	display: none;
+}
+
+20%
+{
+opacity
+:
+1;
+
+		
+background-color
+:
+#387100
+;
+
+	
+}
+100%
+{
+opacity
+:
+1;
+
+		
+background-color
+:
+#387100
+;
+
+	
+}
+}
+@
+keyframes fadeInOut { 0% {
+	opacity: 0;
+	background-color: #000;
+	display: none;
+}
+
+20%
+{
+opacity
+:
+1;
+
+		
+background-color
+:
+#387100
+;
+
+	
+}
+100%
+{
+opacity
+:
+1;
+
+		
+background-color
+:
+#387100
+;
+
+	
+}
 }
 
 /*Other LP Elements*/
-.LP_TV_TopMenu {display: none;}
-.tvContent {display: none;}
-.radial-progress {display: none; }
-#label {display: none;}
+.LP_TV_TopMenu {
+	display: none;
+}
+
+.tvContent {
+	display: none;
+}
+
+.radial-progress {
+	display: none;
+}
+
+#label {
+	display: none;
+}

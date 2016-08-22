@@ -14,7 +14,7 @@ div#content {
     width: 100%;
     height: 100%;
     margin: auto;
-    background-image: url("../images/Brazil_LandingPage/brazil-page-bg.png");
+    background-image: url("http://s3-us-west-2.amazonaws.com/vod.resources/images/Brazil_LandingPage/brazil-page-bg.png");
     background-repeat: no-repeat;
     background-position: center 10px;
     background-size: 100%;
@@ -25,7 +25,7 @@ div#content {
     margin: auto;
 }
 div#titles {
-    background-image: url("../images/TV_LandingPage/HD-logo-topbar.png");
+    background-image: url("http://s3-us-west-2.amazonaws.com/vod.resources/images/TV_LandingPage/HD-logo-topbar.png");
     height: 53px;
     background-repeat: no-repeat;
     float: left;
@@ -36,18 +36,18 @@ div#titles {
 .download {
     float: right;
     height: 51px;
-    background-image: url("../images/TV_LandingPage/search-field-topbar.png");
+    background-image: url("http://s3-us-west-2.amazonaws.com/vod.resources/images/TV_LandingPage/search-field-topbar.png");
     width: 239px;
 }
 .LP_TV_TopBar {
     height: 41px;
-    background-image: url(../images/Sport_LandingPage/MF-Lsoccer-menu-bg-pixel.png");
+    background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/Sport_LandingPage/MF-Lsoccer-menu-bg-pixel.png");
 }
 .LP_TV_TopMenu {
 	width: 692px;
     height: 41px;
     margin: auto;
-    background-image: url("../images/Sport_LandingPage/MF-Lsoccer-menu.png");
+    background-image: url("http://s3-us-west-2.amazonaws.com/vod.resources/images/Sport_LandingPage/MF-Lsoccer-menu.png");
     background-repeat: no-repeat;
 }
 .LP_TV_TopMenu span {
@@ -97,7 +97,7 @@ div#titles {
     height: 120px;
     margin-top: 0px;
     position: relative;
-    background-image: url(../images/Sport_LandingPage/radio.svg);
+    background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/Sport_LandingPage/radio.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 50px auto;
@@ -135,7 +135,7 @@ div#titles {
 .playerContainer .content .screen .movie {
 	height: 100%;
 	background-color: #000000;
-	background-image: url(../images/Brazil_LandingPage/player-bg-brazil.png);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/Brazil_LandingPage/player-bg-brazil.png);
 	background-size: 100%;
     background-repeat: no-repeat;
 }
@@ -152,7 +152,7 @@ div#titles {
 	font-size: 12px;
 	padding-top: 5px;
 	background-image:
-		url(../images/LandingPage/MF-L1_Vplayer-indicators.png);
+		url(http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/MF-L1_Vplayer-indicators.png);
 	background-repeat: no-repeat;
 	background-position: 99%;
 }
@@ -165,7 +165,7 @@ div#circularG {
     display: table-cell !important;
     width: 40px;
     height: 31px;
-    background-image: url("../images/LandingPage/play.png");
+    background-image: url("http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/play.png");
     background-repeat: no-repeat;
     background-position: top center;
     padding-left: 20px;
@@ -208,7 +208,7 @@ div#circularG {
 .headerTvContent {
     height: 51px;
     line-height: 88px;
-    background-image: url(../images/TV_LandingPage/MF-L3-social-icons.png);
+    background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/TV_LandingPage/MF-L3-social-icons.png);
     background-repeat: no-repeat;
     background-position: right bottom;
     margin-bottom: 13px;
@@ -227,7 +227,7 @@ div#circularG {
 	cursor: pointer;
 }
 .tvContent table tr td.watchBtn {
-    background-image: url(../images/LandingPage/MF-L3-connect-but.png);
+    background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/MF-L3-connect-but.png);
     height: 26px;
     background-repeat: no-repeat;
     background-position: center left;
@@ -240,14 +240,14 @@ div#circularG {
 }
 
 .tvContent table tr td span.star {
-    background-image: url(../images/TV_LandingPage/MF-L3-star.png);
+    background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/TV_LandingPage/MF-L3-star.png);
     width: 15px;
     height: 15px;
     display: inline-block;
     background-repeat: no-repeat;
 }
 .tvContent table tr td span.starEmpty {
-    background-image: url(../images/TV_LandingPage/MF-L3-star-outline.png);
+    background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/TV_LandingPage/MF-L3-star-outline.png);
     width: 15px;
     height: 15px;
     display: inline-block;
@@ -258,7 +258,7 @@ div#circularG {
 	font-size: 10px;
 }
 .tvContent table tr td.voteBtn {
-    background-image: url(../images/TV_LandingPage/MF-L3-vote-but.png);
+    background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/TV_LandingPage/MF-L3-vote-but.png);
     height: 26px;
     background-repeat: no-repeat;
     background-position: center right;

@@ -17,7 +17,15 @@ $.ajax({
 	success : function(response) {
 		if (response != undefined && response.countryId != null) {
 			urlParams = parseURLParams(window.location.href);
-			CSS = urlParams.theme ? urlParams.theme[0] : "";
+
+			if (urlParams != null) {
+				AFF = urlParams.aff ? urlParams.aff[0] : 0;
+				COUNTRY = urlParams.countryCode ? urlParams.countryCode[0] : 0;
+				CSS = urlParams.theme ? urlParams.theme[0] : "";
+				LANG = urlParams.lang ? urlParams.lang[0] : 0;
+				CLICKID = urlParams.clickid ? urlParams.clickid[0] : "";
+				MAIL = urlParams.user ? urlParams.user[0] : "";
+			}
 
 			if (CSS != null && CSS == '0320') { // TV STYLE
 				document.getElementById('LHMovieCSS').disabled = true;
@@ -105,6 +113,10 @@ $.ajax({
 
 			$('html').css('display', 'block');
 			COUNTRYCODE = response.countryId;
+			COUNTRY = COUNTRYCODE;
+			
+			// tracking(affiliate, step, css, languageId, email, clickId
+			tracking(AFF, 0, CSS, LANG, 0, CLICKID);
 			resizeScreen();
 		} else {
 			confirmOnExit = false;
@@ -125,12 +137,8 @@ window.onload = function() {
 	if (urlParams != null) {
 		if (urlParams.aff && urlParams.country
 				&& urlParams.theme && urlParams.lang && urlParams.clickid) {
-			var title = " ";
-			if(!urlParams.titleMovie) title = "";
-			else if (urlParams.titleMovie[0] != "{PLEASE_PUT_THE_MOVIE_NAME_HERE}")
-				title += urlParams.titleMovie[0];
+			var title = "";
 			AFF = urlParams.aff ? urlParams.aff[0] : 0;
-			COUNTRY = urlParams.country ? urlParams.country[0] : 0;
 			CSS = urlParams.theme ? urlParams.theme[0] : "";
 			LANG = urlParams.lang ? urlParams.lang[0] : 0;
 			CLICKID = urlParams.clickid ? urlParams.clickid[0] : "";
@@ -146,8 +154,7 @@ window.onload = function() {
 				openCreateAccountDialog();
 			}, 5000);
 
-			// tracking(affiliate,country, step, css, languageId, email, clickId
-			tracking(AFF, COUNTRY, 0, CSS, LANG, 0, CLICKID);
+			
 		} else {
 			confirmOnExit = false;
 			if (location.hostname == "localhost") {
@@ -262,7 +269,7 @@ function CreateAccountValidation() {
 
 	if (okEmail && okPsw && okPsw2 && okPswEquals) {
 
-		tracking(AFF, COUNTRY, 1, CSS, LANG, email.value, CLICKID);
+		tracking(AFF,  1, CSS, LANG, email.value, CLICKID);
 		data = {
 			email : email.value,
 			pw : psw.value,
@@ -289,22 +296,26 @@ function CreateAccountValidation() {
 									localStorage.setItem('PSW', PSW);
 
 									openVerificationPage();
-									tracking(AFF, COUNTRY, 2, CSS, LANG, MAIL,
+									tracking(AFF, 2, CSS, LANG, MAIL,
 											CLICKID);
 								} else {
 									alert(response.message);
+									document.getElementById("loadingMask").style.display = "none";
+
 									if (response.status == 61
 											|| response.status == 62) {
 										email.value = "";
 										email.readOnly = true;
 									} else {
-										tracking(AFF, COUNTRY, 8, CSS, LANG,
+										tracking(AFF, 8, CSS, LANG,
 												email.value, CLICKID);
 									}
 								}
 							},
 							error : function(response, status, error) {
 								alert(response.message);
+								document.getElementById("loadingMask").style.display = "none";
+
 							}
 						})
 	} else {
@@ -314,17 +325,17 @@ function CreateAccountValidation() {
 }
 function openVerificationPage() {
 	if (location.hostname == "localhost") {
-		url = '/starter/verification.html' + window.location.search + '&user='
-				+ MAIL;
+		url = '/starter/verification.html' + window.location.search + '&user=' 
+				+ MAIL + '&countryCode=' + COUNTRYCODE ;
 	} else {
 		url = 'https://ver.muvflix.com/verification.html'
-				+ window.location.search + '&user=' + MAIL;
+				+ window.location.search + '&user=' + MAIL + '&countryCode=' + COUNTRYCODE;
 	}
 
 	confirmOnExit = false;
 	window.open(url, '_self', false)
 
-	tracking(AFF, COUNTRY, 3, CSS, LANG, MAIL, CLICKID);
+	tracking(AFF, 3, CSS, LANG, MAIL, CLICKID);
 }
 
 // prevent to leave the page before ends the inscription
@@ -369,13 +380,15 @@ function preload() {
       }
   } 
   preload(
-		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/frame.png',
-		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/MF-allpages-TOPLOGO.png', 
-		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/spin.svg',
-		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/player_V2-greenBG.jpg',
-		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/loading.svg',
-		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/MF-L1_Vplayer-HDbut.png',
-		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/MF-L1_Vplayer-playbut.png',
-		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/MF-L1_Vplayer-indicators.png',
-		  'http://s3-eu-west-1.amazonaws.com/vodresources/images/LandingPage/flags.png'
+		  'http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/frame.png',
+		  'http://s3-us-west-2.amazonaws.com/vod.resources/images/MF-allpages-TOPLOGO.png', 
+		  'http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/spin.svg',
+		  'http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/player_V2-greenBG.jpg',
+		  'http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/loading.svg',
+		  'http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/MF-L1_Vplayer-HDbut.png',
+		  'http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/MF-L1_Vplayer-playbut.png',
+		  'http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/MF-L1_Vplayer-indicators.png',
+		  'http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/flags.png'
+		  
+		  
 );

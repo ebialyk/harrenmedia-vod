@@ -6,15 +6,12 @@
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 <title>Muvflix</title>
 
-<script
-	src="http://s3-eu-west-1.amazonaws.com/vodresources/js/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="js/bower_components/jquery/dist/jquery.min.js"></script>
 
-
+<link rel="stylesheet" href="css/bootstrap.css">
 <link rel="icon" href="favicon.ico">
-<link rel="stylesheet"
-	href="http://s3-eu-west-1.amazonaws.com/vodresources/css/normalize.css">
-<link rel="stylesheet"
-	href="http://s3-eu-west-1.amazonaws.com/vodresources/css/bootstrap.css">
+<link rel="stylesheet" href="css/normalize.css">
+
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css"
@@ -30,10 +27,12 @@
 <link rel="stylesheet" href="css/LP_TV_Mobile.css" id="LHTVMobileCSS">
 
 <link rel="stylesheet" href="css/LP_Sport.css" id="LHSportCSS">
-<link rel="stylesheet" href="css/LP_Sport_Mobile.css" id="LHSportMobileCSS">
+<link rel="stylesheet" href="css/LP_Sport_Mobile.css"
+	id="LHSportMobileCSS">
 
 <link rel="stylesheet" href="css/LP_Brazil.css" id="LHBrazilCSS">
-<link rel="stylesheet" href="css/LP_Brazil_Mobile.css" id="LHBrazilMobileCSS">
+<link rel="stylesheet" href="css/LP_Brazil_Mobile.css"
+	id="LHBrazilMobileCSS">
 
 <script src="js/modernizr-custom.js"></script>
 <script src="js/index.js" id="LHIndexJS"></script>
@@ -74,12 +73,10 @@
 					<div class="content">
 						<div class="loading" id="loading">
 							<div id="label">
-								<div class="loaderImg">
-									
-								</div>
+								<div class="loaderImg"></div>
 								<div id="loaderPercentage"></div>
 								<div class="loaderBigTitle">CONNECTING TO SATELITE</div>
-								<div class="loaderSmallTitle">Strean No.16</div>
+								<div class="loaderSmallTitle">Stream No.16</div>
 
 
 							</div>
@@ -115,14 +112,14 @@
 							</div>
 						</div>
 						<div class="controllers" onclick="openCreateAccountDialog()">
-						<div class="movieTimer" onclick="openCreateAccountDialog()">
+							<div class="movieTimer" onclick="openCreateAccountDialog()">
 								<div id="circularG"></div>
 								<span id="loadSpan">Loading...</span>
 								<div class="contentBar" id="contentBar">
 									<span class="expand "></span> <span class="expand expandRed"></span>
 								</div>
 							</div>
-						
+
 						</div>
 					</div>
 				</div>
@@ -191,12 +188,15 @@
 							you must create a <span class="green">FREE</span> account to <span
 								class="green">STREAM</span> this movie
 						</p>
-						<input type="email" id="email" placeholder="E-mail"	onkeydown=checkEnter(event,this)>
-						<input type="password" id="psw" maxlength="12" pattern=".{5,12}"
-							required placeholder="Password" onkeydown=checkEnter(event,this)> 
+						<input type="email" id="email" placeholder="E-mail"
+							onkeydown=checkEnter(event,this)> <input type="password"
+							id="psw" maxlength="12" pattern=".{5,12}" required
+							placeholder="Password" onkeydown=checkEnter(event,this)>
 						<input type="Password" id="psw2" maxlength="12" pattern=".{5,12}"
-							required placeholder="Confirm Password" onkeydown=checkEnter(event,this)>
-						<button class="greenBtn" onclick="CreateAccountValidation()">CREATE MY FREE ACCOUNT NOW</button>
+							required placeholder="Confirm Password"
+							onkeydown=checkEnter(event,this)>
+						<button class="greenBtn" onclick="CreateAccountValidation()">CREATE
+							MY FREE ACCOUNT NOW</button>
 					</div>
 				</div>
 			</div>

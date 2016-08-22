@@ -5,17 +5,13 @@ window.onload = function() {
 
 	var disableExternal = (location.hostname == "localhost");
 
-	document.getElementById('amazonCSS').disabled = disableExternal;
-	document.getElementById('amazonMobileCSS').disabled = disableExternal;
-	document.getElementById('LHCSS').disabled = !disableExternal;
-	document.getElementById('LHMobileCSS').disabled = !disableExternal;
-
 	urlParams = parseURLParams(window.location.href);
-	
-	if(urlParams != null) {
-		MAIL = urlParams.user?urlParams.user[0]:"";
+
+	if (urlParams != null) {
+		MAIL = urlParams.user ? urlParams.user[0] : "";
 	}
-	if (Modernizr.flexbox && Modernizr.flexboxtweener && Modernizr.flexboxlegacy) {
+	if (Modernizr.flexbox && Modernizr.flexboxtweener
+			&& Modernizr.flexboxlegacy) {
 		document.getElementById("VerificationPage").style.display = "flex";
 	} else {
 		document.getElementById("VerificationPage").style.display = "block";
@@ -40,55 +36,62 @@ window.onload = function() {
 		}
 	}
 
-	data = { 
+	data = {
 		timestamp : now_utc,
-		transactionType :  "authorization",
-		
+		transactionType : "authorization",
+
 	}
 	document.getElementById("loadingMask").style.display = "block";
 
-	$.ajax({
-		url : "rest/agregator/createSignature",
-		type : "POST",
-		dataType : "html", // expected format for response
-		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-		data : data,
-		success : function(response) {
-			response = response.replace("{", '').trim()
-					.replace("}", '').trim().replace(/"/g, '')
-					.trim();
-			var res = response.split(",");
-			var sign = res[0].split(":")[1];
-			var reqId = res[1].split(":")[1];
-			var transactionType = res[2].split(":")[1];
-			var amount = res[3].split(":")[1];
-			var currency = res[4].split(":")[1];
+	$
+			.ajax(
+					{
+						url : "rest/agregator/createSignature",
+						type : "POST",
+						dataType : "html", // expected format for response
+						contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+						data : data,
+						success : function(response) {
+							response = response.replace("{", '').trim()
+									.replace("}", '').trim().replace(/"/g, '')
+									.trim();
+							var res = response.split(",");
+							var sign = res[0].split(":")[1];
+							var reqId = res[1].split(":")[1];
+							var transactionType = res[2].split(":")[1];
+							var amount = res[3].split(":")[1];
+							var currency = res[4].split(":")[1];
 
-			WirecardPaymentPage.seamlessRenderForm({
-				requestData : {
-					request_id : reqId,
-					request_time_stamp : now_utc,
-					merchant_account_id : "51b671b8-17da-4ab6-af90-d86d46d774c9",
-					transaction_type : transactionType,
-					requested_amount : amount,
-					requested_amount_currency : currency,
-					payment_method : "creditcard",
-					request_signature : sign,
-					template_name : "default-cc-template",
-				},
-				wrappingDivId : "seamless-target",
-				onSuccess : function(response) {
-				},
-				onError : function(response) {
-				},
+							WirecardPaymentPage
+									.seamlessRenderForm({
+										requestData : {
+											request_id : reqId,
+											request_time_stamp : now_utc,
+											merchant_account_id : "e1e6433e-6540-11e6-a487-005056a96a4d",
+											transaction_type : transactionType,
+											requested_amount : amount,
+											requested_amount_currency : currency,
+											payment_method : "creditcard",
+											attempt_three_d : true,
+											request_signature : sign,
+											template_name : "default-cc-template",
+										},
+										wrappingDivId : "seamless-target",
+										onSuccess : function(response) {
+											
+										},
+										onError : function(response) {
+											document.getElementById("loadingMask").style.display = "none";
+										},
+									});
+						},
+						error : function(response, status, error) {
+							document.getElementById("loadingMask").style.display = "none";
+							alert(response.message);
+						}
+					}).done(function() {
+				document.getElementById("loadingMask").style.display = "none";
 			});
-		},
-		error : function(response, status, error) {
-			alert(response.message);
-		}
-	}).done(function() {
-		document.getElementById("loadingMask").style.display = "none";
-	});
 
 	if (MAIL != null && MAIL != undefined) {
 		if (location.hostname == "localhost")
@@ -96,10 +99,11 @@ window.onload = function() {
 		else
 			url = '/verificationAccount.html';
 		setTimeout(function() {
-			history.pushState({}, null, url);
+		//	history.pushState({}, null, url);
 		}, 100);
-		
-		if (Modernizr.flexbox && Modernizr.flexboxtweener && Modernizr.flexboxlegacy) {
+
+		if (Modernizr.flexbox && Modernizr.flexboxtweener
+				&& Modernizr.flexboxlegacy) {
 			document.getElementById("VerificationPage").style.display = "flex";
 		} else {
 			document.getElementById("VerificationPage").style.display = "block";
@@ -112,7 +116,8 @@ window.onload = function() {
 		window.open(url, '_self', false)
 	}
 
-	var display = document.querySelector('#time'), timer = new CountDownTimer(480);
+	var display = document.querySelector('#time'), timer = new CountDownTimer(
+			480);
 	timer.onTick(format).onTick(restart).start();
 
 	function restart() {
@@ -132,88 +137,104 @@ window.onload = function() {
 
 function verifyAccount() {
 	document.getElementById("loadingMask").style.display = "block";
-	WirecardPaymentPage.seamlessSubmitForm({
-		onSuccess : function(response) {
-			data = {
-				email : MAIL,
-				authorization_code : response.authorization_code,
-				card_type : response.card_type,
-				completion_time_stamp : response.completion_time_stamp,
-				expiration_month : response.expiration_month,
-				expiration_year : response.expiration_year,
-				first_name : response.first_name,
-				last_name : response.last_name,
-				masked_account_number : response.masked_account_number,
-				merchant_account_id : response.merchant_account_id,
-				parent_transaction_id : response.parent_transaction_id,
-				payment_method : response.payment_method,
-				request_id : response.request_id,
-				requested_amount : response.requested_amount,
-				requested_amount_currency : response.requested_amount_currency,
-				response_signature : response.response_signature,
-				self : response.self,
-				status_code_1 : response.status_code_1,
-				status_description_1 : response.status_description_1,
-				status_severity_1 : response.status_severity_1,
-				token_id : response.token_id,
-				transaction_id : response.transaction_id,
-				transaction_state : response.transaction_state,
-				transaction_type : response.transaction_type,
-				agregatorId : 4000
-			}
-			$.ajax({
-				url : "rest/client/verifyAccount",
-				type : "POST",
-				dataType : "json", // expected format for response
-				contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-				data : data,
-				success : function(response) {
-					if (response.status == 15) {
-						document.getElementById("VerificationPage").style.display = "none";
-						if (Modernizr.flexbox && Modernizr.flexboxtweener && Modernizr.flexboxlegacy) {
-							document.getElementById("page3").style.display = "flex";
-						} else {
-							document.getElementById("page3").style.display = "block";
-						}
-						document.getElementById("body").className = "";
-						
-						setTimeout(function() {
-							data = {
-								email : MAIL
-							}
-						chkForLogin(data);
-						}, 2000);
+	WirecardPaymentPage
+			.seamlessSubmitForm({
+				onSuccess : function(response) {
+					data = {
+						email : MAIL,
+						authorization_code : response.authorization_code,
+						card_type : response.card_type,
+						completion_time_stamp : response.completion_time_stamp,
+						expiration_month : response.expiration_month,
+						expiration_year : response.expiration_year,
+						first_name : response.first_name,
+						last_name : response.last_name,
+						masked_account_number : response.masked_account_number,
+						merchant_account_id : response.merchant_account_id,
+						parent_transaction_id : response.parent_transaction_id,
+						payment_method : response.payment_method,
+						request_id : response.request_id,
+						requested_amount : response.requested_amount,
+						requested_amount_currency : response.requested_amount_currency,
+						response_signature : response.response_signature,
+						self : response.self,
+						status_code_1 : response.status_code_1,
+						status_description_1 : response.status_description_1,
+						status_severity_1 : response.status_severity_1,
+						token_id : response.token_id,
+						transaction_id : response.transaction_id,
+						transaction_state : response.transaction_state,
+						transaction_type : response.transaction_type,
+						agregatorId : 4000
 					}
+					$
+							.ajax(
+									{
+										url : "rest/client/verifyAccount",
+										type : "POST",
+										dataType : "json", // expected format
+										// for response
+										contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+										data : data,
+										success : function(response) {
+											if (response.status == 15) {
+												document
+														.getElementById("VerificationPage").style.display = "none";
+												if (Modernizr.flexbox
+														&& Modernizr.flexboxtweener
+														&& Modernizr.flexboxlegacy) {
+													document
+															.getElementById("page3").style.display = "flex";
+												} else {
+													document
+															.getElementById("page3").style.display = "block";
+												}
+												document.getElementById("body").style.backgroundColor = "black";
+
+												setTimeout(function() {
+													data = {
+														email : MAIL
+													}
+													chkForLogin(data);
+												}, 2000);
+											}
+										},
+										error : function(response, status,
+												error) {
+											alert(response.message);
+										}
+									})
+							.done(
+									function() {
+										document.getElementById("loadingMask").style.display = "none";
+									});
 				},
-				error : function(response,status, error) {
-					alert(response.message);
-				}
-			}).done(function() {
-			document.getElementById("loadingMask").style.display = "none";
-			});
-		},
-		onError : function(response) {
-			alert(response);
-		},
-	})
+				onError : function(response) {
+					alert(response);
+				},
+			})
 }
 function chkForLogin(data) {
 	$.ajax({
 		url : "rest/client/setLoggedIn",
 		type : "POST",
-		dataType : "json", // expected format for response
+		dataType : "json",
 		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 		data : data,
 		success : function(response) {
 			if (response.status == 51) {
-				url = 'http://www.muvflix.com/movies.html';
+				if (location.hostname == "localhost") {
+					url = '/starter/movies.html?user=' + MAIL;
+				} else {
+					url = 'http://www.muvflix.com/movies.html?user=' + MAIL;
+				}
 				localStorage.setItem('user', MAIL);
 
 				confirmOnExit = false;
-				
+
 				window.open(url, '_self', false);
 				history.pushState({}, null, 'index.html');
-				
+
 			} else {
 				alert(response.message);
 			}
@@ -223,7 +244,7 @@ function chkForLogin(data) {
 		}
 	});
 }
-	// prevent to leave the page before ends the inscription
+// prevent to leave the page before ends the inscription
 $(function() {
 	$(window).on('beforeunload', function() {
 		if (confirmOnExit)

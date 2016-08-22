@@ -121,7 +121,7 @@
 		color: #fff;
 		font-size: 12px;
 		padding-top: 5px;
-		background-image: url(../images/TV_LandingPage/timerControllers.jpg);
+		background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/TV_LandingPage/timerControllers.jpg);
 		background-repeat: no-repeat;
 		background-position: 99%;
 	}
@@ -131,7 +131,7 @@
 		background-image: none;
 	}
 	.contentBar {
-		background-image: url(../images/mobile-landing-icons.png);
+		background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/mobile-landing-icons.png);
 		background-repeat: no-repeat;
 		background-position: right -7px;
 		background-size: 72px;
@@ -297,7 +297,7 @@
 		display: block;
 	}
 	#languages {
-		background-image: url(../images/mobile-landing-recommended-movies.png);
+		background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/mobile-landing-recommended-movies.png);
 		height: 275px;
 		margin-top: 10%;
 	}

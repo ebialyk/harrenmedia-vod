@@ -479,7 +479,9 @@ app.controller('BillingController', ['$scope','$filter','$http','Api','$window',
 		    alert('Error');
 	    })   
 	  };
-	
+	 
+	  
+	  
 	$scope.refreshBillings();
 }]);
 
@@ -557,7 +559,24 @@ app.controller('TransactionController', ['$scope','$filter','$http','Api',functi
 		})
 	}
 	
-	
+	 $scope.captureAuthorization = function(t) {
+			$scope.message = "Capture Authorization Sent, please Wait"
+			var data = 
+				'transactionId='+t.transactionId+
+				'&countryId='+t.country.countryId+
+				'&affiliateId='+t.affiliate.affiliateId+
+				'&amount='+t.requestedAmount+
+				'&amountCurrency='+t.requestedAmountCurrency+
+				'&transactionType=capture-authorization'
+				
+			return Api.PaymentServices.post(data).$promise.then(function(result) {
+				alert('Done');
+				
+		    	$scope.refreshBillings();
+		    }, function(error) {
+			    alert('Error');
+		    })   
+		  };
 	$scope.refreshTransactions();
 } ]);
 
@@ -579,7 +598,9 @@ app.controller('ClickController', ['$scope','$filter','$http','Api',function($sc
 	                        {"code":11,"dsc":"cancel account: account not verified"},
 	                        {"code":12,"dsc":"cancel account – sent cancellation form"},
 	                        {"code":13,"dsc":"cancel account – cancellation received"},
-	                        {"code":14,"dsc":"cancel account – cancellation rejected"}];
+	                        {"code":14,"dsc":"cancel account – cancellation rejected"},
+	                        {"code":15,"dsc":"credit card error"},
+	                        {"code":16,"dsc":"credit card approved"}];
 	
 	$scope.showTrackingCodes = function(tracking) {
 		var selected = [];

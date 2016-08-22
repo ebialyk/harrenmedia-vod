@@ -17,7 +17,7 @@ div#content {
     margin: auto;
 }
 div#titles {
-    background-image: url("../images/TV_LandingPage/HD-logo-topbar.png");
+    background-image: url("http://s3-us-west-2.amazonaws.com/vod.resources/images/TV_LandingPage/HD-logo-topbar.png");
     height: 51px;
     background-repeat: no-repeat;
     float: left;
@@ -27,11 +27,11 @@ div#titles {
 .download {
     float: right;
     height: 51px;
-    background-image: url("../images/TV_LandingPage/search-field-topbar.png");
+    background-image: url("http://s3-us-west-2.amazonaws.com/vod.resources/images/TV_LandingPage/search-field-topbar.png");
     width: 239px;
 }
 .LP_TV_TopBar {
-    background-image: url("../images/TV_LandingPage/MF-L3_menubar-pixel.png");
+    background-image: url("http://s3-us-west-2.amazonaws.com/vod.resources/images/TV_LandingPage/MF-L3_menubar-pixel.png");
     height: 41px;
 }
 .LP_TV_TopMenu {
@@ -75,7 +75,7 @@ div#titles {
 	height: 300px;
 	display: block;
 	width: 920px;
-	background-image: url("../images/LandingPage/spin.svg");
+	background-image: url("http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/spin.svg");
 	background-repeat: no-repeat;
 	background-position: center;
 	z-index: 2;
@@ -93,7 +93,7 @@ div#titles {
 .playerContainer .content .screen .movie {
 	height: 440px;
 	background-color: #000000;
-	background-image: url(../images/TV_LandingPage/MF-L3_player_background.jpg);
+	background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/TV_LandingPage/MF-L3_player_background.jpg);
 	background-size: 100%;
     background-repeat: no-repeat;
 }
@@ -110,7 +110,7 @@ div#titles {
 	font-size: 12px;
 	padding-top: 5px;
 	background-image:
-		url(../images/LandingPage/MF-L1_Vplayer-indicators.png);
+		url(http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/MF-L1_Vplayer-indicators.png);
 	background-repeat: no-repeat;
 	background-position: 99%;
 }
@@ -129,7 +129,7 @@ div#circularG {
     display: table-cell !important;
     width: 40px;
     height: 31px;
-    background-image: url("../images/LandingPage/play.png");
+    background-image: url("http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/play.png");
     background-repeat: no-repeat;
     background-position: top center;
     padding-left: 20px;
@@ -169,7 +169,7 @@ div#circularG {
 .headerTvContent {
     height: 51px;
     line-height: 88px;
-    background-image: url(../images/TV_LandingPage/MF-L3-social-icons.png);
+    background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/TV_LandingPage/MF-L3-social-icons.png);
     background-repeat: no-repeat;
     background-position: right bottom;
     margin-bottom: 13px;
@@ -188,7 +188,7 @@ div#circularG {
 	cursor: pointer;
 }
 .tvContent table tr td.watchBtn {
-    background-image: url(../images/TV_LandingPage/MF-L3-watchthislink-but.png);
+    background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/TV_LandingPage/MF-L3-watchthislink-but.png);
     height: 26px;
     background-repeat: no-repeat;
     background-position: center left;
@@ -198,14 +198,14 @@ div#circularG {
 }
 
 .tvContent table tr td span.star {
-    background-image: url(../images/TV_LandingPage/MF-L3-star.png);
+    background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/TV_LandingPage/MF-L3-star.png);
     width: 15px;
     height: 15px;
     display: inline-block;
     background-repeat: no-repeat;
 }
 .tvContent table tr td span.starEmpty {
-    background-image: url(../images/TV_LandingPage/MF-L3-star-outline.png);
+    background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/TV_LandingPage/MF-L3-star-outline.png);
     width: 15px;
     height: 15px;
     display: inline-block;
@@ -216,7 +216,7 @@ div#circularG {
 	font-size: 10px;
 }
 .tvContent table tr td.voteBtn {
-    background-image: url(../images/TV_LandingPage/MF-L3-vote-but.png);
+    background-image: url(http://s3-us-west-2.amazonaws.com/vod.resources/images/TV_LandingPage/MF-L3-vote-but.png);
     height: 26px;
     background-repeat: no-repeat;
     background-position: center right;
