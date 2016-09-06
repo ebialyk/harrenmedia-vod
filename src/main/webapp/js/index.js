@@ -388,6 +388,4 @@ function preload() {
 		  'http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/MF-L1_Vplayer-playbut.png',
 		  'http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/MF-L1_Vplayer-indicators.png',
 		  'http://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/flags.png'
-		  
-		  
 );
