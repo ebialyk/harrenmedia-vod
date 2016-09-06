@@ -74,7 +74,6 @@ $.ajax({
 				document.getElementById("link5").innerHTML = 'sat5';
 				
 				runLoader();
-				
 
 			}  else if (CSS != null && CSS == '0520') { // SPORT STYLE
 				document.getElementById('LHMovieCSS').disabled = true;
@@ -82,8 +81,8 @@ $.ajax({
 				document.getElementById('LHTVCSS').disabled = true;
 				document.getElementById('LHTVMobileCSS').disabled = true;
 				document.getElementById('numLoaderCSS').disabled = true;
-				document.getElementById('LHSportCSS').disabled = true;
-				document.getElementById('LHSportMobileCSS').disabled = true;
+				document.getElementById('LHSportCSS').disabled = false;
+				document.getElementById('LHSportMobileCSS').disabled = false;
 				
 				document.getElementById('LHBrazilCSS').disabled = false;
 				document.getElementById('LHBrazilMobileCSS').disabled = false;

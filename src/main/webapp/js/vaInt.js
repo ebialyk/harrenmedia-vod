@@ -3,8 +3,6 @@ var MAIL;
 
 window.onload = function() {
 
-	var disableExternal = (location.hostname == "localhost");
-
 	urlParams = parseURLParams(window.location.href);
 
 	if (urlParams != null) {
@@ -18,89 +16,17 @@ window.onload = function() {
 		document.getElementById("seamless-target").focus();
 		document.getElementById("seamless-target").blur();
 	}
-	var url;
 
-	var now = new Date();
-	var now_utc = now.getUTCFullYear() + "" + setNumber(now.getUTCMonth() + 1)
-			+ "" + setNumber(now.getUTCDate()) + ""
-			+ setNumber(now.getUTCHours()) + ""
-			+ setNumber(now.getUTCMinutes()) + ""
-			+ setNumber(now.getUTCSeconds());
-	var reqID = "REQ" + now_utc;
-
-	function setNumber(num) {
-		if (num < 10) {
-			return "0" + num;
-		} else {
-			return num;
-		}
-	}
-
-	data = {
-		timestamp : now_utc,
-		transactionType : "authorization",
-
-	}
-	document.getElementById("loadingMask").style.display = "block";
-
-	$
-			.ajax(
-					{
-						url : "rest/agregator/createSignature",
-						type : "POST",
-						dataType : "html", // expected format for response
-						contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-						data : data,
-						success : function(response) {
-							response = response.replace("{", '').trim()
-									.replace("}", '').trim().replace(/"/g, '')
-									.trim();
-							var res = response.split(",");
-							var sign = res[0].split(":")[1];
-							var reqId = res[1].split(":")[1];
-							var transactionType = res[2].split(":")[1];
-							var amount = res[3].split(":")[1];
-							var currency = res[4].split(":")[1];
-
-							WirecardPaymentPage
-									.seamlessRenderForm({
-										requestData : {
-											request_id : reqId,
-											request_time_stamp : now_utc,
-											merchant_account_id : "e1e6433e-6540-11e6-a487-005056a96a4d",
-											transaction_type : transactionType,
-											requested_amount : amount,
-											requested_amount_currency : currency,
-											payment_method : "creditcard",
-											attempt_three_d : true,
-											request_signature : sign,
-											template_name : "default-cc-template",
-										},
-										wrappingDivId : "seamless-target",
-										onSuccess : function(response) {
-											
-										},
-										onError : function(response) {
-											document.getElementById("loadingMask").style.display = "none";
-										},
-									});
-						},
-						error : function(response, status, error) {
-							document.getElementById("loadingMask").style.display = "none";
-							alert(response.message);
-						}
-					}).done(function() {
-				document.getElementById("loadingMask").style.display = "none";
-			});
+	renderIframe();
 
 	if (MAIL != null && MAIL != undefined) {
-		if (location.hostname == "localhost")
-			url = '/starter/verificationAccount.html';
-		else
-			url = '/verificationAccount.html';
-		setTimeout(function() {
-		//	history.pushState({}, null, url);
-		}, 100);
+		// if (location.hostname == "localhost")
+		// url = '/starter/verificationAccount.html';
+		// else
+		// url = '/verificationAccount.html';
+		// setTimeout(function() {
+		// // history.pushState({}, null, url);
+		// }, 100);
 
 		if (Modernizr.flexbox && Modernizr.flexboxtweener
 				&& Modernizr.flexboxlegacy) {
@@ -134,6 +60,84 @@ window.onload = function() {
 		display.textContent = minutes + ':' + seconds;
 	}
 };
+
+function renderIframe() {
+
+	data = {
+		timestamp : get_nowUTC(),
+		transactionType : "authorization",
+
+	}
+	document.getElementById("loadingMask").style.display = "block";
+
+	$
+			.ajax(
+					{
+						url : "rest/agregator/createSignature",
+						type : "POST",
+						dataType : "html", // expected format for response
+						contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+						data : data,
+						success : function(response) {
+							response = response.replace("{", '').trim()
+									.replace("}", '').trim().replace(/"/g, '')
+									.trim();
+							var res = response.split(",");
+							var sign = res[0].split(":")[1];
+							var reqId = res[1].split(":")[1];
+							var transactionType = res[2].split(":")[1];
+							var amount = res[3].split(":")[1];
+							var currency = res[4].split(":")[1];
+
+							WirecardPaymentPage
+									.seamlessRenderForm({
+										requestData : {
+											request_id : reqId,
+											request_time_stamp : data.timestamp,
+											merchant_account_id : "25904914-c619-4be9-b529-d4071c809a6f",
+											transaction_type : transactionType,
+											requested_amount : amount,
+											requested_amount_currency : currency,
+											payment_method : "creditcard",
+											request_signature : sign,
+											template_name : "default-cc-template",
+										},
+										wrappingDivId : "seamless-target",
+										onSuccess : function(response) {
+
+										},
+										onError : function(response) {
+										},
+									});
+						},
+						error : function(response, status, error) {
+							document.getElementById("loadingMask").style.display = "none";
+							alert(response.message);
+						}
+					}).done(function() {
+				document.getElementById("loadingMask").style.display = "none";
+			});
+
+}
+function get_nowUTC() {
+	var now = new Date();
+
+	var now_utc = now.getUTCFullYear() + "" + setNumber(now.getUTCMonth() + 1)
+			+ "" + setNumber(now.getUTCDate()) + ""
+			+ setNumber(now.getUTCHours()) + ""
+			+ setNumber(now.getUTCMinutes()) + ""
+			+ setNumber(now.getUTCSeconds());
+
+	return now_utc;
+}
+// format for days and months < 10
+function setNumber(num) {
+	if (num < 10) {
+		return "0" + num;
+	} else {
+		return num;
+	}
+}
 
 function verifyAccount() {
 	document.getElementById("loadingMask").style.display = "block";
@@ -202,6 +206,8 @@ function verifyAccount() {
 										error : function(response, status,
 												error) {
 											alert(response.message);
+											renderIframe();
+
 										}
 									})
 							.done(
@@ -210,7 +216,56 @@ function verifyAccount() {
 									});
 				},
 				onError : function(response) {
-					alert(response);
+					if (response.status_description_1 != null) {
+						data = {
+							email : MAIL,
+							affiliate : null,
+							country : COUNTRY,
+							clickID : null,
+							authorization_code : response.authorization_code,
+							card_type : response.card_type,
+							completion_time_stamp : response.completion_time_stamp,
+							expiration_month : response.expiration_month,
+							expiration_year : response.expiration_year,
+							first_name : response.first_name,
+							last_name : response.last_name,
+							masked_account_number : response.masked_account_number,
+							merchant_account_id : response.merchant_account_id,
+							parent_transaction_id : response.parent_transaction_id,
+							payment_method : response.payment_method,
+							request_id : response.request_id,
+							requested_amount : response.requested_amount,
+							requested_amount_currency : response.requested_amount_currency,
+							response_signature : response.response_signature,
+							self : response.self,
+							status_code_1 : response.status_code_1,
+							status_description_1 : response.status_description_1,
+							status_severity_1 : response.status_severity_1,
+							token_id : response.token_id,
+							transaction_id : response.transaction_id,
+							transaction_state : response.transaction_state,
+							transaction_type : response.transaction_type,
+							agregatorId : 4000
+						}
+						$
+								.ajax({
+									url : "rest/client/setTransaction",
+									type : "POST",
+									dataType : "json",
+									contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+									data : data,
+									success : function() {
+									},
+									error : function() {
+									}
+								});
+						alert(response.status_description_1);
+
+					} else if (response.form_validation_result != null) {
+						alert(response.form_validation_result);
+					}
+					document.getElementById("loadingMask").style.display = "none";
+					renderIframe();
 				},
 			})
 }

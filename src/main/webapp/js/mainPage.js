@@ -172,7 +172,7 @@ function logIn() {
 					email.value = "";
 					psw.value = "";
 
-					url = 'movies.html';
+					url = 'movies.html?user=' + MAIL;
 					localStorage.setItem('user', MAIL);
 					window.open(url, '_self', false)
 
