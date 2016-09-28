@@ -1,6 +1,12 @@
 var MAIL;
 var PSW;
 var COUNTRYCODE;
+
+var URL;
+
+URL = document.URL;
+
+
 $('html').css('display', 'none');
 $.ajax({
 	url : "rest/client/checkByIp",
@@ -8,22 +14,23 @@ $.ajax({
 	dataType : "json", // expected format for response
 	contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 	success : function(response) {
-		if (response != undefined && response.countryId != null) {
+		if (response != undefined && response.country != null) {
 			$('html').css('display', 'block');
-			COUNTRYCODE = response.countryId;
+			COUNTRYCODE = response.country.countryId;
 			COUNTRY = COUNTRYCODE;
+			
 		} else {
 			confirmOnExit = false;
-			window.open("https://www.google.co.il/", '_self', false);
+			window.open("https://hmnlta.adk2x.com/imp?p=74932690&ct=html&ap=1304", '_self', false);
 		}
 	},
 	error : function(response, status, error) {
 		confirmOnExit = false;
-		window.open("https://www.google.co.il/", '_self', false);
+		window.open("https://hmnlta.adk2x.com/imp?p=74932690&ct=html&ap=1304", '_self', false);
 	}
 })
 window.onload = function() {
-	document.getElementById("genresContent").style.opacity = "1";
+	
 	var disableExternal = (location.hostname == "localhost");
 
 }
@@ -345,100 +352,6 @@ function SignUp() {
 	}
 }
 
-function verifyAccount() {
-	if (Modernizr.flexbox && Modernizr.flexboxtweener
-			&& Modernizr.flexboxlegacy) {
-		document.getElementById("mask").style.display = "flex";
-	}
-	$(".mask").addClass("waiting");
-	document.getElementById("loadingMask").style.display = "block";
-
-	var uName = document.getElementById("FName").value + " "
-			+ document.getElementById("LName").value;
-
-	data = {
-		email : MAIL,
-		affiliate : 0,
-		country : COUNTRYCODE,
-		userName : uName
-	};
-	$
-			.ajax({
-				url : "rest/client/verifyAccount",
-				type : "POST",
-				dataType : "json", // expected format for response
-				contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-				data : data,
-				success : function(response) {
-					if (response.status == 15) {
-						tracking(0, 4, 0, 0, MAIL, "");
-						setTimeout(
-								function() {
-									data = {
-										email : MAIL,
-										pw : PSW
-									}
-									$
-											.ajax({
-												url : "rest/client/logIn",
-												type : "POST",
-												dataType : "json", // expected
-																	// format
-																	// for
-																	// response
-												contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-												data : data,
-												success : function(response) {
-													if (response.status == 51) {
-														url = 'movies.html';
-														localStorage.setItem(
-																'user', MAIL);
-														window.open(url,
-																'_self', false);
-														confirmOnExit = false;
-														tracking(0,  5, 0, 0,
-																MAIL, "");
-													} else {
-														document
-																.getElementById("mask").style.display = "none";
-														$(".mask").removeClass(
-																"waiting");
-														document.getElementById("loadingMask").style.display = "none";
-
-														alert(response.message);
-													}
-												},
-												error : function(response,
-														status, error) {
-													document
-															.getElementById("mask").style.display = "none";
-													$(".mask").removeClass(
-															"waiting");
-													document.getElementById("loadingMask").style.display = "none";
-
-													alert(response.message);
-												}
-											});
-								}, 100);
-					} else {
-						document.getElementById("mask").style.display = "none";
-						$(".mask").removeClass("waiting");
-						document.getElementById("loadingMask").style.display = "none";
-
-						alert(response.message);
-					}
-				},
-				error : function(response, status, error) {
-					document.getElementById("mask").style.display = "none";
-					$(".mask").removeClass("waiting");
-					document.getElementById("loadingMask").style.display = "none";
-
-					tracking(0,  9, 0, 0, MAIL, "");
-					alert(response.message);
-				}
-			});
-}
-
 function openSupport() {
 	hideAll();
 	clearForm();
@@ -591,7 +504,7 @@ function sendSupportRequest() {
 							hideAll();
 							document.getElementById("mainContainer").style.display = "block";
 							if (msgCode == 0) {
-								tracking(0, 7, 0, 0, email);
+								tracking(0, 7, 0, 0, email, "");
 							}
 						} else {
 							document.getElementById("mask").style.display = "none";

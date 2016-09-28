@@ -1,0 +1,639 @@
+/*LANDING PAGE 1 - MOVIES*/
+/*HEADER*/
+.header1 {
+	margin-top: 5px;
+}
+
+.greenBtn {
+	width: 187px;
+	height: 54px;
+}
+
+.btnTitle {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.btnSubTitle {
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.HeaderLogo img {
+	height: 25px;
+	width: auto;
+}
+
+.HeaderLogo span {
+	vertical-align: bottom;
+	font-size: 22px;
+	line-height: 15px;
+}
+
+h3 {
+	padding-top: 0;
+	margin-top: 5px;
+}
+
+.starWrapper {
+	padding-right: 0;
+}
+
+.starWrapper i {
+	color: #FBAE00;
+}
+
+/*PLAYER*/
+.frame {
+	width: 100%;
+	height: 100%;
+	padding: 5px;
+	border-radius: 8px;
+	background-color: #A7ABAA;
+}
+
+.frame #circularG {
+    width: 79px;
+    height: 30px;
+    background-image: url(../images/LandingPage/loading.svg);
+    background-size: 19px 17px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    background-position: left center;
+    padding-left: 27px;
+    float: left;
+    line-height: 30px;
+}
+
+.frame span {
+	color: #fff;
+	font-size: 12px;
+	vertical-align: super;
+    max-width: calc(100% - 377px);
+}
+
+.frame .loadingBar {
+	height: 30px;
+	background-color: black;
+	border-radius: 0px 0px 5px 5px;
+	align-content: center;
+	color: #fff;
+	font-size: 12px;
+}
+
+.frame .contentBar {
+	display: inline-block;
+	height: 25px;
+    width: calc(100% - 302px);
+ }
+
+.frame .controls {
+	height: 62px;
+	background-color: #A7ABAA;
+	border-radius: 0px 0px 5px 5px;
+	background-image: url(../images/LandingPage/MF-L1_Vplayer-HDbut.png), url(../images/LandingPage/MF-L1_Vplayer-playbut.png);
+	background-position: right 0px, left 0px;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+.frame .innerControls {
+    height: 30px;
+    width: 215px;
+    display: inline-block;
+    background-image: url(../images/LandingPage/MF-L1_Vplayer-indicators2.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+/*Movie Timer Bar*/
+.expand {
+	width: 67%;
+	height: 5px;
+	margin: 8px 10px;
+	background: gray;
+	position: absolute;
+	opacity: 0.7;
+	-webkit-animation: fullexpand 30s ease-out;
+	-moz-animation: fullexpand 30s ease-out;
+	-o-animation: fullexpand 30s ease-out;
+	animation: fullexpand 30s ease-out;
+}
+
+.expandRed {
+	width: 60%;
+	background: red;
+	-webkit-animation: midleExpand 30s ease-out;
+	-moz-animation: midleExpand 30s ease-out;
+	-o-animation: midleExpand 30s ease-out;
+	animation: midleExpand 30s ease-out;
+	-webkit-animation-delay: -0.1s;
+	-moz-animation-delay: -0.1s;
+	-o-animation-delay: -0.1s;
+	animation-delay: -0.1s;
+}
+/*Loading Screen*/
+.loading {
+	height: 100%;
+	display: block;
+	width: 100%;
+	background-image: url("../images/LandingPage/spin.svg");
+	background-repeat: no-repeat;
+	background-position: center;
+	position: absolute;
+	background-color: black;
+}
+
+.screen {
+	height: 100%;
+	background-color: #B5BDB9;
+	display: none;
+	-webkit-animation: fadeInOut 15s ease-out forwards;
+	-o-animation: fadeInOut 15s ease-out forwards;
+	-moz-animation: fadeInOut 15s ease-out forwards;
+	animation: fadeInOut 15s ease-out forwards;
+	border-bottom: none;
+	position: absolute;
+	z-index: 99;
+	width: 100%;
+	background-image: url(../images/LandingPage/player_V2-greenBG.jpg);
+	background-size: 100%;
+}
+
+.embed-responsive-16by9 {
+	padding-bottom: 46.25%;
+}
+
+.languages {
+	height: 17px;
+	background-image: url(../images/LandingPage/flags.png);
+	background-repeat: no-repeat;
+	margin-left: 15px;
+	margin-top: 10px;
+}
+
+.CreateAccount {
+	display: none;
+	opacity: 0;
+	transition: 1s all;
+	opacity: 0;
+	width: 99vw;
+	height: 70vh;
+	position: absolute;
+	top: 0;
+	margin: auto;
+	z-index: 100;
+	left: 0;
+	min-height: 600px;
+}
+
+.vcenter {
+	display: inline-block;
+	vertical-align: middle;
+	float: none;
+}
+
+/*LANDING PAGE 2 - SERIES*/
+.header2 {
+	height: 50px;
+	background-image: url(../images/TV_LandingPage/HD-logo-topbar.png), url( ../images/TV_LandingPage/search-field-topbar.png);
+	background-position: left center, right center;
+	background-repeat: no-repeat;
+}
+
+.topBar {
+	background-image: url(../images/TV_LandingPage/MF-L3_menubar-pixel.png);
+	height: 41px;
+}
+
+.topBar .menu li {
+	color: white;
+	font-family: "Open sans", sans-serif;
+	font-size: 13px;
+	line-height: 41px;
+	padding-right: 20px;
+	display: inline-block;
+	cursor: pointer;
+}
+.topBar .menu li:hover {
+	background-color: #444;
+}
+.player2 .frame {
+	background-color: transparent;
+	border: 1px solid #333;
+}
+.player2 .frame .loadingBar {
+    height: 50px;
+    background-image: url(../images/LandingPage/player1.png),url(../images/LandingPage/player2.png);
+    background-repeat: no-repeat;
+    background-position: left bottom, right bottom;
+    background-size: auto;
+}
+.player2 .frame .contentBar {
+    height: 33px;
+    display: block;
+    width: 100%;
+}
+.player2 .screen {
+	background-image: url(../images/TV_LandingPage/MF-L3_player_background.jpg);
+}
+.player2  .frame span {
+    max-width: 100%;
+}
+.player2  .expand {
+    width: 92%;
+}
+/*Bottom Table*/
+bottom-table1 {
+	color: white;
+	font-size: 13px;
+}
+
+.bottomTable1Header {
+	height: 51px;
+	line-height: 88px;
+	background-image: url(../images/TV_LandingPage/MF-L3-social-icons.png);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+	margin-bottom: 13px;
+}
+
+bottom-table1 tr {
+	border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    height: 42px;
+}
+bottom-table1 tr span {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+bottom-table1 tr span.votes {
+	color: #999;
+    font-family: Arial;
+    font-size: 10px;
+    text-decoration: none;
+    padding-left: 5px;
+} 
+.fullStar {
+	background-image: url(../images/TV_LandingPage/MF-L3-star.png);
+    width: 14px;
+    height: 13px;
+    background-repeat: no-repeat;
+    float: left;
+}
+.emptyStar {
+    background-image: url(../images/TV_LandingPage/MF-L3-star-outline.png);
+    width: 14px;
+    height: 13px;
+    background-repeat: no-repeat;
+    float: left;
+}
+td.watchBtn button {
+    background-image: url(../images/LandingPage/btnBg.png);
+    border: none;
+    height: 27px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+        white-space: nowrap;
+}
+td.voteBtn button{
+    background-color: #343434;
+    height: 27px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: bold;
+    border: none;
+    width: 70%;
+    float: right;
+    
+}
+/*CREATE ACCOUNT DIALOG 1*/
+.dialog {
+	display: table-cell;
+}
+
+.registrationWrapper {
+    height: auto;
+    margin: auto;
+    border: 2px solid gray;
+    border-radius: 8px;
+    position: relative;
+    width: 350px;
+}
+.dialogMask {
+    background-color: black;
+    opacity: 0.5;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+}
+#registration {
+	padding: 0px 20px;
+    background-color: transparent;
+    height: auto;
+    margin: auto;
+    margin-top: 0;
+    padding-top: 20px;
+}
+
+#registration p {
+	color: #fff;
+	font-size: 14px;
+	margin: 0;
+	text-align: center;
+}
+
+#registration .enlargedText {
+	font-size: 16px;
+	font-weight: bold;
+	padding-bottom: 20px;
+}
+
+#registration p .green {
+	color: #AAE728;
+	background-color: transparent !important;
+}
+
+#registration button {
+	bottom: 0;
+    margin-bottom: 25px;
+    left: 0;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#registration input {
+	height: 36px;
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+	-moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+	-o-transition: border linear 0.2s, box-shadow linear 0.2s;
+	transition: border linear 0.2s, box-shadow linear 0.2s;
+	display: inline-block;
+	margin-bottom: 10px;
+	font-size: 14px;
+	line-height: 20px;
+	color: #555555;
+	vertical-align: middle;
+	border-radius: 4px;
+}
+#registration input.danger {
+	color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+} 
+
+#registration span.danger {
+	padding: 0;
+	margin: 0;
+	color: white;
+	font-size: 9px;
+}
+
+@media ( max-width : 768px) { /*Mobile xs*/
+	.container {
+		margin: 0;
+		padding: 0;
+		width: 100vw;
+	}
+	/*LANDING PAGE 1 -MOVIES*/
+	.HeaderLogo img {
+		height: 16px;
+		display: block;
+	}
+	.HeaderLogo span {
+		font-size: 12px;
+	}
+	h3 {
+		font-size: 14px;
+	}
+	.rank {
+		margin: 0;
+		padding: 0;
+	}
+	.rank span {
+		font-size: 10px;
+	}
+	.starWrapper i {
+		font-size: 12px;
+	}
+	landing1-player>div {
+		margin: 0;
+		padding: 0 !important;
+	}
+	.frame {
+		padding: 0;
+	}
+	.frame .loadingBar {
+		background-image: url(../images/mobile-landing-icons.png);
+		background-repeat: no-repeat;
+		background-position: right 4px;
+		background-size: 58px 29px;
+	}
+	.frame .contentBar {
+		width: calc(100% - 128px);
+	}
+	.frame span {
+		margin: 14px 10px;
+		max-width: calc(100% - 150px);
+	}
+	.languages {
+		background-image: url(../images/mobile-landing-recommended-movies.png);
+		height: 275px;
+		margin-top: 10%;
+	}
+	.loading {
+	    background-size: 10%;
+	}
+	/*LANDING PAGE 2*/
+	.header2 {
+		height: 35px;
+		background-image: url(../images/TV_LandingPage/HD-logo-topbar.png), url( ../images/TV_LandingPage/hd.jpg);
+		background-position: 5px 0px, 98% 0px;
+		background-repeat: no-repeat;
+	}
+	.subHeader2 {
+		color: white;
+	}
+	landing2-header .rank {     
+		padding-right: 2%;
+	}
+	.radial-progress {
+	    width: 60px;
+	    height: 60px;
+	}
+	.radial-progress .circle .loaderMask .fill {
+    clip: rect(0px, 30px, 60px, 0px);
+	}
+	.radial-progress .inset .percentage .numbers span {
+		font-size: 15px;
+	}
+	.radial-progress .inset .percentage .numbers {
+		margin-top: -15px;
+	}
+	.radial-progress .circle .loaderMask {
+		clip: rect(0px, 60px, 60px, 30px);
+	}
+	.radial-progress .circle .loaderMask, .radial-progress .circle .fill, .radial-progress .circle .shadow {
+		width: 60px;
+		height: 60px;
+	}
+	.radial-progress .inset {
+		width: 45px;
+		height: 45px;
+		margin-left: 7.5px;
+		margin-top: 7.5px;
+	}
+	.radial-progress .inset .percentage {
+	    width: 100%;
+	    margin: auto;
+	    padding-top: 15px;
+	    height: auto;
+	    position: initial;
+	}
+	.radial-progress .inset .percentage  span {
+	    font-size: 12px;
+	    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	}
+	bottom-table1 table tr td {
+		padding-left: 5px !important;
+		padding-right: 0 !important;
+	}
+	bottom-table1 tr span {
+		font-size: 10px;
+	}
+	.player2 .expand {
+		    max-width: calc(100% - 50px);
+	}
+	landing2-player2 .container, bottom-table1 {
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+	.bottomTable1Header span {
+		padding-left: 5px;
+	}
+	
+}
+/*Progress Bar animation */
+@-moz-keyframes fullexpand { 
+	0% {width: 0px;}
+	100%{width:65%;}
+}
+@-webkit-keyframes fullexpand { 
+	0% {width: 0px;}
+	100%{width:65%;}
+}
+@keyframes fullexpand { 
+	0% {width: 0px;}
+	100%{width:65%;}
+}
+@-moz-keyframes midleExpand { 
+	0% {width: 0px;}
+	100%{width:45%;}
+}
+@-webkit-keyframes midleExpand { 
+	0% {width: 0px;}
+	100%{width:45%;}
+}
+@keyframes midleExpand { 
+	0% {width: 0px;}
+	100%{width:45%;}
+}
+
+/*Movie Screen Animation*/
+@-moz-keyframes fadeInOut { 
+	0% {
+		opacity: 0;
+		background-color: #000;
+		display: none;
+	}
+	20%{
+		opacity:1;
+		background-color:#387100;
+	}
+	100%{
+		opacity:1;
+		background-color:#387100;
+	}
+}
+@-webkit-keyframes fadeInOut { 
+	0% {
+		opacity: 0;
+		background-color: #000;
+		display: none;
+	}
+	20%{
+		opacity:1;
+		background-color:#387100;
+	}
+	100%{
+		opacity:1;
+		background-color:#387100;
+	}
+}
+@keyframes fadeInOut { 
+	0% {
+		opacity: 0;
+		background-color: #000;
+		display: none;
+	}
+	20%{
+		opacity:1;
+		background-color:#387100;
+	}
+	100%{
+		opacity:1;
+		background-color:#387100;
+	}
+}
+/*loading animation*/
+@-moz-keyframes fadeOut { 
+	0% {
+		opacity: 0;
+		background-color: #000;
+		display: block;
+	}
+	80%{opacity:1;}
+	100%{
+		opacity:0;
+		display:none;
+		background-color:#000;
+	}
+}
+@-webkit-keyframes fadeOut { 
+	0% {
+		opacity: 0;
+		background-color: #000;
+		display: block;
+	}
+	80%{opacity:1;}
+	100%{
+		opacity:0;
+		display:none;
+		background-color:#000;
+	}
+}
+@keyframes fadeOut { 
+	0% {
+		opacity: 0;
+		background-color: #000;
+		display: block;
+	}
+	80%{opacity:1;}
+	100%{
+		opacity:0;
+		display:none;
+		background-color:#000;
+	}
+}

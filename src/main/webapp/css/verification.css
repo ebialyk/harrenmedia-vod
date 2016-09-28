@@ -1,0 +1,192 @@
+.verificationHeader {
+	background-image: url(../images/LandingPage/MF-logo-header.png);
+	height: 54px;
+	line-height: 50px;
+	background-repeat: no-repeat;
+	background-position: right;
+	background-repeat: no-repeat;
+}
+
+.verificationHeader .title {
+	font-size: 20px;
+	font-weight: bold;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.blueBg {
+	font-family: Arial;
+	font-size: 12px;
+	color: white;
+	background-color: #36bbf4;
+	line-height: 1;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-align: justify;
+	margin-bottom: 10px;
+}
+
+.explanation .title {
+	color: #36bbf4;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.explanation p {
+	color: #8E8F93;
+	font-size: 13px;
+	text-align: justify;
+}
+
+#seamless-target {
+	height: 450px;
+}
+
+.timer {
+	font-weight: bold;
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+
+#time {
+	color: #006FA4;
+	font-size: 21px;
+}
+
+.little {
+	color: #282828;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.subtitle>* {
+	padding: 0;
+}
+
+.subtitle  * {
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.subtitle .stars.wrapStars {
+	display: block;
+}
+
+.subtitle i {
+	font-size: 15px;
+	color: #FFE70D;
+	text-shadow: 0.2px 0.2px 0.2px rgba(0, 0, 0, 1);
+}
+
+.divFree {
+	white-space: nowrap;
+}
+
+.subtitle .free {
+	color: #6AA900;
+	font-size: 27px;
+	padding-right: 10px;
+}
+
+.subtitle .price {
+	font-size: 25px;
+	font-weight: normal;
+	padding-right: 10px;
+}
+
+.cc-form1 {
+	margin-bottom: 100px;
+}
+
+.navbar {
+	min-height: 100px;
+}
+
+.navbar:before {
+	background-color: #413D3C;
+	width: 100%;
+	height: 30px;
+	display: block;
+	background-image: url(../images/LandingPage/MF-L1_verificationfooter.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.navbar .logo {
+	background-image: url(../images/MF-allpages-footer-smallLOGO.png);
+	background-repeat: no-repeat;
+	width: 53px;
+	background-position: center;
+}
+
+.navbar .footerCopyR {
+	height: 20px;
+	width: auto;
+	position: absolute;
+	bottom: 5px;
+	right: 0;
+	font-size: 10px;
+}
+
+.tnxPage {
+	width: 100%;
+	height: 100%;
+	color: white;
+}
+
+.tnxPage .content {
+	border: 1px solid white;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 50%;
+	width: 50%;
+	background-image: url(../images/MF-Thankspage-Popcorn.png);
+	background-position: right center;
+	background-repeat: no-repeat;
+	padding-top: 5%;
+}
+
+.tnxPage h1 {
+	font-weight: bold;
+}
+
+.tnxPage span {
+	font-size: 16px;
+	color: #7A7A7A;
+	padding: 20px 3px;
+	font-weight: normal;
+}
+
+.tnxPage .content .logo {
+	
+}
+
+@media ( max-width : 992px) {
+	.verificationHeader {
+		background-image: none;
+		height: auto;
+	}
+	.divFree {
+		margin: 0;
+		padding: 0;
+	}
+	.footerMenu ul {
+		border-top: 1px solid;
+		margin-top: 10px;
+		border-bottom: 1px solid;
+		margin-bottom: 10px;
+	}
+	.footerMenu ul li {
+		color: gray;
+		cursor: pointer;
+		font-size: 11px;
+	}
+	.tnxPage .content {
+		height: 50%;
+		width: 85%;
+		background-image: none;
+		padding-top: 7px;
+	}
+}

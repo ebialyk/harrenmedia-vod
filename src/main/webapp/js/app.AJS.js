@@ -335,6 +335,20 @@ app.factory(
 					isArray : true
 				},
 			}),
+			SendPostBackService : $resource('rest/client/postback', {}, {
+				post : {
+					method : 'POST',
+					headers : {
+						'Content-Type' : 'application/x-www-form-urlencoded'
+					},
+					interceptor : {
+						responseError : function(data) {
+							apiError(data);
+						}
+					},
+					isArray : true
+				},
+			}),
 			ClickServices : $resource('rest/admin/getClicks', {}, {
 				get : {
 					method : 'GET',
@@ -422,6 +436,14 @@ app.controller('PostBackController', ['$scope','$filter','$http','Api','$window'
 			}
 		})
 	}
+	
+	$scope.sendPostBack = function(p) {
+		var data = 'affiliate='+p.aff+'&clickID='+p.clickID+'&pub='+p.pub+'&sub_pub_id='+p.sub_pub_id+'&prog='+p.prog
+		
+		Api.SendPostBackService.post(data);
+		$scope.refreshPostBacks();
+	}
+	
 	$scope.refreshPostBacks();
 } ]);
 
@@ -492,24 +514,55 @@ app.controller('DeclinedUsersController', ['$scope','$filter','$http','Api','$wi
     $scope.stDate = parseInt(moment().format('DD'));
     
 	$scope.refreshBillings = function() {
-		
+		$scope.message = "Searching...";
+		$scope.billings = [];
 		Api.DeclinedUserServices.get().$promise.then(function(data) {
 			$scope.billings = data;
+			$scope.message = "";
 		})
 	}
 	$scope.startDates = [];
 	
 	$scope.sendPayment = function(t) {
-		var data = 'transactionId='+t.transactions.transactionId+'&countryId='+t.user.country.countryId+
-		'&affiliateId='+t.user.affiliate.affiliateId+'&transactionType=payment'
+		$scope.message = "Payment Sent, please Wait"
+
+		var data = 'transactionId='+t.user.transaction.transactionId+'&countryId='+t.user.user.country.countryId+
+		'&affiliateId='+t.user.user.affiliate.affiliateId+'&transactionType=purchase'
 		
 		return Api.PaymentServices.post(data).$promise.then(function(result) {
 			alert('Done');
+			$scope.message = "";
 	    	$scope.refreshBillings();
 	    }, function(error) {
 		    alert('Error');
+		    $scope.message = "";
 	    })   
 	  };
+	  
+	  $scope.captureAuthorization = function(t) {
+			$scope.message = "Capture Authorization Sent, please Wait";
+			if(t.user.user.autorizationCaptured == true) {
+					alert('Authorization already captured');
+					$scope.message = "";
+			} else {
+			var data = 
+				'transactionId='+t.user.transaction.transactionId+
+				'&countryId='+t.user.user.country.countryId+
+				'&affiliateId='+t.user.user.affiliate.affiliateId+
+				'&amount='+t.user.transaction.requestedAmount+
+				'&amountCurrency='+t.user.transaction.requestedAmountCurrency+
+				'&transactionType=capture-authorization';
+				
+			return Api.PaymentServices.post(data).$promise.then(function(result) {
+				alert('Done');
+		    	$scope.refreshBillings();
+				
+				}, function(error) {
+			    alert('Error');
+		    });
+			}
+		  };
+
 	$scope.cancel = function(t) {
 		deleteUser = $window.confirm('Are you sure you want to cancel the User Account?');
 	    if(deleteUser){

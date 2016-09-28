@@ -116,8 +116,8 @@
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close" p:driverClass="${db.driver}"
 		p:jdbcUrl="${db.url.prefix}${db.host.separator}${db.hostname}${db.port.separator}${db.port}${db.separator}${db.name}"
-		p:user="${db.user}" p:password="${db.pass}" p:initialPoolSize="21"
-		p:maxPoolSize="21" p:acquireRetryAttempts="5" p:acquireRetryDelay="3000"
+		p:user="${db.user}" p:password="${db.pass}" p:initialPoolSize="5"
+		p:maxPoolSize="500" p:acquireRetryAttempts="5" p:acquireRetryDelay="3000"
 		p:idleConnectionTestPeriod="300">
 	</bean>
 	

@@ -487,6 +487,10 @@ html.whiteBg, body.whiteBg {
 	margin: auto;
 	display: table;
 }
+#VerificationPage .footerVA .bluebg , #VerificationPage .bluebg2{
+	background-color: #413D3C;
+	width: 911px;
+}
 
 #VerificationPage .bluebg p {
 	width: 100%;
@@ -518,15 +522,13 @@ html.whiteBg, body.whiteBg {
 #VerificationPage .footerVA {
 	background-color: #413D3C;
 	width: 100%;
-	height: 50px;
-	display: -webkit-flex;
-	display: -webkit-box;
-	display: -moz-flex;
-	display: -ms-flex;
-	display: -o-flex;
-	display: flex;
+	height: auto;
+	display: block;
+	    margin-top: 60px;
 }
-
+#VerificationPage .mobileFooterVA {
+	display: none;
+}
 #VerificationPage .footerVA .footerBody {
 	width: 920px;
 	margin: auto;

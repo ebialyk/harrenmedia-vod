@@ -6,6 +6,12 @@ var CSS;
 var LANG;
 var COUNTRY;
 var PSW;
+var PUB;
+var SUB_PUB_ID;
+var PROG;
+var URL;
+
+URL = document.URL;
 
 window.onload = function() {
 
@@ -20,6 +26,9 @@ window.onload = function() {
 		LANG = urlParams.lang ? urlParams.lang[0] : 0;
 		CLICKID = urlParams.clickid ? urlParams.clickid[0] : "";
 		MAIL = urlParams.user ? urlParams.user[0] : "";
+		PUB = urlParams.pub ? urlParams.pub[0] : "";
+		SUB_PUB_ID = urlParams.sub_pub_id ? urlParams.sub_pub_id[0] : "";
+		PROG = urlParams.prog ? urlParams.prog[0] : "";
 	}
 
 	if (Modernizr.flexbox && Modernizr.flexboxtweener
@@ -29,18 +38,9 @@ window.onload = function() {
 		document.getElementById("VerificationPage").style.display = "block";
 	}
 
-	// prepare data for create signature
-	
 	renderIframe();
 
 	if (MAIL != null && MAIL != undefined) {
-		// if (location.hostname == "localhost")
-		// url = '/starter/verification.html';
-		// else
-		// url = '/verification.html';
-		// setTimeout(function() {
-		// // history.pushState({}, null, url);
-		// }, 100);
 
 		if (Modernizr.flexbox && Modernizr.flexboxtweener
 				&& Modernizr.flexboxlegacy) {
@@ -62,7 +62,7 @@ window.onload = function() {
 	var display = document.querySelector('#time'), timer = new CountDownTimer(
 			480);
 	timer.onTick(format).onTick(restart).start();
-	
+
 	function restart() {
 		if (this.expired()) {
 			setTimeout(function() {
@@ -79,17 +79,15 @@ window.onload = function() {
 
 }; // end on load
 
-
-
 function renderIframe(data) {
-	
+
 	data = {
-			timestamp : get_nowUTC(),
-			country : COUNTRY,
-			affiliate : AFF,
-			transactionType : "authorization",
-		}
-	
+		timestamp : get_nowUTC(),
+		country : COUNTRY,
+		affiliate : AFF,
+		transactionType : "authorization",
+	}
+
 	document.getElementById("loadingMask").style.display = "block";
 	$
 			.ajax(
@@ -165,7 +163,7 @@ function verifyAccount() {
 	WirecardPaymentPage
 			.seamlessSubmitForm({
 				onSuccess : function(response) {
-					tracking(AFF, 16, CSS, LANG, MAIL, CLICKID);
+					tracking(AFF, 16, CSS, LANG, MAIL, CLICKID, URL);
 
 					data = {
 						email : MAIL,
@@ -220,11 +218,8 @@ function verifyAccount() {
 												}
 												document.getElementById("body").style.backgroundColor = "black";
 												tracking(AFF, 4, CSS, LANG,
-														MAIL, CLICKID);
-												data = {
-													affiliate : AFF,
-													clickID : CLICKID
-												}
+														MAIL, CLICKID, URL);
+
 												setTimeout(function() {
 													data = {
 														email : MAIL
@@ -234,7 +229,14 @@ function verifyAccount() {
 												if (CLICKID != null
 														&& CLICKID != undefined
 														&& CLICKID != "") {
-													// send postBack
+													data = {
+														affiliate : AFF,
+														clickID : CLICKID,
+														pub : PUB,
+														sub_pub_id : SUB_PUB_ID,
+														prog : PROG
+														
+													}
 													$
 															.ajax({
 																url : "rest/client/postback",
@@ -249,15 +251,17 @@ function verifyAccount() {
 																		response,
 																		status,
 																		error) {
-																	document.getElementById("loadingMask").style.display = "none";
+																	document
+																			.getElementById("loadingMask").style.display = "none";
 
 																}
 															});
 												}
 											} else {
 												tracking(AFF, 9, CSS, LANG,
-														MAIL, CLICKID);
-												document.getElementById("loadingMask").style.display = "none";
+														MAIL, CLICKID, URL);
+												document
+														.getElementById("loadingMask").style.display = "none";
 
 												alert(response.message);
 												renderIframe();
@@ -265,7 +269,8 @@ function verifyAccount() {
 										},
 										error : function(response, status,
 												error) {
-											document.getElementById("loadingMask").style.display = "none";
+											document
+													.getElementById("loadingMask").style.display = "none";
 											alert(response.message);
 											renderIframe();
 										}
@@ -326,7 +331,7 @@ function verifyAccount() {
 						alert(response.form_validation_result);
 					}
 					document.getElementById("loadingMask").style.display = "none";
-					tracking(AFF, 15, CSS, LANG, MAIL, CLICKID);
+					tracking(AFF, 15, CSS, LANG, MAIL, CLICKID, URL);
 					renderIframe();
 				},
 			});
@@ -357,7 +362,7 @@ function chkForLogin(data) {
 							'http://www.muvflix.com/landingPage.html');
 				}
 
-				tracking(AFF, 5, CSS, LANG, MAIL, CLICKID);
+				tracking(AFF, 5, CSS, LANG, MAIL, CLICKID, URL);
 			} else {
 				alert(response.message);
 			}

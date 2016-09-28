@@ -1,5 +1,8 @@
 var confirmOnExit = true;
 var MAIL;
+var URL;
+
+URL = document.URL;
 
 window.onload = function() {
 
@@ -20,13 +23,6 @@ window.onload = function() {
 	renderIframe();
 
 	if (MAIL != null && MAIL != undefined) {
-		// if (location.hostname == "localhost")
-		// url = '/starter/verificationAccount.html';
-		// else
-		// url = '/verificationAccount.html';
-		// setTimeout(function() {
-		// // history.pushState({}, null, url);
-		// }, 100);
 
 		if (Modernizr.flexbox && Modernizr.flexboxtweener
 				&& Modernizr.flexboxlegacy) {

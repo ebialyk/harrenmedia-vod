@@ -1,5 +1,8 @@
 var MAIL;
 var PSW;
+var URL;
+
+URL = document.URL;
 
 function openGenres() {
 	hideAll();
@@ -59,7 +62,7 @@ function cancelAccount() {
 	var psw = document.getElementById("Password").value = "";
 	document.getElementById("warningScreen").style.display = "flex";
 	document.getElementById("mask").style.display = "flex";
-	tracking(0, 6, 0, 0, email, "");
+	tracking(0, 6, 0, 0, email, "", URL);
 
 }
 function clearForm() {
@@ -116,7 +119,7 @@ function accountVerification() {
 
 	if (okMail && okPsw) {
 
-		tracking(0,  7, 0, 0, email.value, "");
+		tracking(0,  7, 0, 0, email.value, "", URL);
 		var data = {
 			email : email.value,
 			psw : psw.value
@@ -141,9 +144,9 @@ function accountVerification() {
 							document.getElementById("supportContent").placeholder = "Please cancel my account.";
 							document.getElementById("subjectSupport2").style.display = "block";
 							document.getElementById("subjectSupport2").value = 0;
-							tracking(0, 10, 0, 0, email, "");
+							tracking(0, 10, 0, 0, email, "", URL);
 						} else {
-							tracking(0, 11, 0, 0, email, "");
+							tracking(0, 11, 0, 0, email, "", URL);
 							alert(response.message);
 						}
 					},
@@ -235,7 +238,7 @@ function sendSupportRequest() {
 
 	if (okName && okMail && okCardD && okMsg
 			&& ((okSubj1 && !cancelRequest) || (okSubj2 && cancelRequest))) {
-		tracking(0,  12, 0, 0, email.value, "");
+		tracking(0,  12, 0, 0, email.value, "", URL);
 		var data = {
 			name : name.value,
 			email : email.value,
@@ -255,11 +258,11 @@ function sendSupportRequest() {
 					alert(response.message);
 					openBestsellers();
 					if (msgCode == 0) {
-						tracking(0,  13, 0, 0, email, "");
+						tracking(0,  13, 0, 0, email, "", URL);
 					}
 				} else {
 					if (msgCode == 0) {
-						tracking(0,  14, 0, 0, email, "");
+						tracking(0,  14, 0, 0, email, "", URL);
 					}
 					alert(response.message);
 				}

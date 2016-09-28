@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="favicon.ico">
+<title>MuvFlix</title>
+
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+
+<!-- CSS -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+
+<link href="css/general.css" rel="stylesheet" type="text/css">
+<link href="css/numberedLoader.css" rel="stylesheet" type="text/css">
+<link href="css/landing.css" rel="stylesheet" type="text/css">
+
+
+
+
+</head>
+<body id="home" ng-cloak ng-app="MuvFlixApp" ng-controller="landingPageController" class="black">
+	<div>
+		<div ng-include="currentLanding"></div>
+		<div class="mask" id="mask"></div>
+		<div ng-include="createAccountDialog" class="CreateAccount center" id="CreateAccount"></div>
+		<div class="mask maskLoader" id="maskLoader"></div>
+	</div>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+	<script type="text/javascript" src="js/angular-resource.min.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+	<script src="js/script.js"></script>
+
+	<!-- Controllers -->
+	<script src="js/controllers/landingController.js"></script>
+
+	<!-- Directives -->
+	<script src="js/directives/header1.js"></script>
+	<script src="js/directives/player1.js"></script>
+	<script src="js/directives/landingPages/header2.js"></script>
+	<script src="js/directives/landingPages/topBar1.js"></script>
+	<script src="js/directives/landingPages/player2.js"></script>
+	<script src="js/directives/landingPages/bottomTable1.js"></script>
+	<script src="js/directives/stars.js"></script>
+	<script src="js/directives/landingPages/header3.js"></script>
+	
+	
+	<!-- Services -->
+	<script src="js/services/api.js"></script>
+	<script src="js/services/commonServices.js"></script>
+
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.0.2/ui-bootstrap.min.js"></script>
+</html>

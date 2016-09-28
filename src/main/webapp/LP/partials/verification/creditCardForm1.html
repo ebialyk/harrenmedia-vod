@@ -1,0 +1,24 @@
+<div class="creditCardForm">
+	<div class="timer col-md-12 hidden-sm hidden-xs">
+		{{data.content.timer}} <span id="time">0{{min}}:{{counter}}</span>
+	</div>
+	<div class="verificationForm col-xs-12">
+		<div class="subtitle">
+			<div class="col-xs-7">
+				<img src={{data.content.srcImg}}> <span class="little">{{data.content.starsTitle}}</span>
+				<div class="stars hidden-sm hidden-xs">
+					<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i>
+				</div>
+				<div class="stars wrapStars visible-sm visible-xs">
+					<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i>
+				</div>
+			</div>
+			<div class="divFree col-xs-5 text-right">
+				<font class="free">{{data.content.free}}</font> <font class="price">{{data.content.price}}</font>
+			</div>
+		</div>
+
+		<div id="seamless-target" tabindex="0" ng-init="renderIframe()"></div>
+		<button class="greenBtn col-xs-12" ng-click=" verifyAccount()">{{data.content.verificationTitle}}</button>
+	</div>
+</div>

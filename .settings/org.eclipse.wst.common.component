@@ -5,9 +5,6 @@
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/resources"/>
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/java"/>
 		<wb-resource deploy-path="/" source-path="src/main/webapp"/>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.0.6.RELEASE/d880beac77d42c5798aa2b632ddd0e4ae47c79ad/spring-core-4.0.6.RELEASE.jar">
-			<dependency-type>uses</dependency-type>
-		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/org.springframework/spring-test/4.0.6.RELEASE/b2f65445f300f1317fe694e6530cce39d7090ff6/spring-test-4.0.6.RELEASE.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
@@ -137,7 +134,7 @@
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/javax.mail/mail/1.4.7/9add058589d5d85adeb625859bf2c5eeaaedf12d/mail-1.4.7.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk/1.9.13/e581fd4de4ed1a2939019b1a20c3cd2170c38201/aws-java-sdk-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk/1.11.35/c65469176d3fac12930c67c6986fe7bc9d7f6700/aws-java-sdk-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.google.apis/google-api-services-adexchangeseller/v1-rev204-1.21.0/dcceb9df41cae8a49a7238a8a5374808ac99193e/google-api-services-adexchangeseller-v1-rev204-1.21.0.jar">
@@ -161,6 +158,12 @@
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.hazelcast/hazelcast-all/2.4/d6fbbc398afaa4e8d58d88821ea4c108584f20e6/hazelcast-all-2.4.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-gradle-plugin/1.4.0.RELEASE/35f6578f2434a89b97f14599a998f7bca709443b/spring-boot-gradle-plugin-1.4.0.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/commons-httpclient/commons-httpclient/3.1/964cd74171f427720480efdec40a7c7f6e58426a/commons-httpclient-3.1.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
@@ -174,12 +177,6 @@
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.rabbitmq/amqp-client/3.3.4/dc43828467f9efc5d065125757d3c31eac187d7d/amqp-client-3.3.4.jar">
-			<dependency-type>uses</dependency-type>
-		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.3.2/31fbbff1ddbf98f3aa7377c94d33b0447c646b6e/httpcore-4.3.2.jar">
-			<dependency-type>uses</dependency-type>
-		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.6/b7f0fc8f61ecadeb3695f0b9464755eee44374d4/commons-codec-1.6.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.containers/jersey-container-servlet-core/2.8/771e7adc6419d11296e9a8acbe4dca6e4747b894/jersey-container-servlet-core-2.8.jar">
@@ -254,130 +251,217 @@
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/javax.activation/activation/1.1/e6cb541461c2834bdea3eb920f1884d1eb508b50/activation-1.1.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-support/1.9.13/2da0449e6c79cb1020c26e6d52967d580372efe0/aws-java-sdk-support-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-support/1.11.35/faf7919c1e64d0fe79d7abbc19302d1d27c24531/aws-java-sdk-support-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-simpledb/1.9.13/4c351e170421d4f9f7df5232229bc3a739a9f337/aws-java-sdk-simpledb-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-simpledb/1.11.35/904ef9d069e275c034cc49d7c2b6381e27b4c5ff/aws-java-sdk-simpledb-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-simpleworkflow/1.9.13/a11408932818b2b91f8f4b15bad8abb520eac1b0/aws-java-sdk-simpleworkflow-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-servicecatalog/1.11.35/df92e9553a64ea18342915e4ffaf89c9afffeb4b/aws-java-sdk-servicecatalog-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-storagegateway/1.9.13/a13250b1c70435ebee5dee4487e3bd364034fde2/aws-java-sdk-storagegateway-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-simpleworkflow/1.11.35/156bd9ba47689f87f7f67a34bf3be7616219e31f/aws-java-sdk-simpleworkflow-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-route53/1.9.13/4bf4c7d181f1e1b3bc7821e1ac37fc56de730f48/aws-java-sdk-route53-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-storagegateway/1.11.35/898510f4b5942cedb308eb768ab3e3054aea9a76/aws-java-sdk-storagegateway-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-s3/1.9.13/aff1f9b961f0eafb887347818df7cf3d6f371ab1/aws-java-sdk-s3-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-route53/1.11.35/c6d89ddfee5f7bb6ec9fc1df446602dd5f5609ec/aws-java-sdk-route53-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-importexport/1.9.13/ec036968bc605fe58716aafa699d30dc38f893be/aws-java-sdk-importexport-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-s3/1.11.35/8cb1f3b538694870067753e3d061ddfcd3cf7699/aws-java-sdk-s3-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sts/1.9.13/c2ac4b3bdb9e537ec1711442152389def5a349b3/aws-java-sdk-sts-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-importexport/1.11.35/292eb2f2580b9277048018d9ccd70d94ee46973d/aws-java-sdk-importexport-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sqs/1.9.13/2412ccf10de96f84ecf11401f85b05796a77e27e/aws-java-sdk-sqs-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sts/1.11.35/18731aa568636eeed0e2efd94b53b41195f1560f/aws-java-sdk-sts-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-rds/1.9.13/72e1c67bb36ca798598c0e640bacb42ac29d2682/aws-java-sdk-rds-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sqs/1.11.35/f5ebc88d4aec2ad5be29c53d740c5110139ad933/aws-java-sdk-sqs-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-redshift/1.9.13/89f3d2b0aee75587cf6bb3f041c2e8eaab071087/aws-java-sdk-redshift-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-rds/1.11.35/64f69cc0580fd3b516b4fb75825ce2f99a82c9ef/aws-java-sdk-rds-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticbeanstalk/1.9.13/1be7745b7d26257456c1a9160c29a1b6e88465cc/aws-java-sdk-elasticbeanstalk-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-redshift/1.11.35/e51779f6d704379c87f5dc101dee2040c3043fe3/aws-java-sdk-redshift-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-glacier/1.9.13/4c795c4d7b0abe15dcd75edfe2238dbcec14045c/aws-java-sdk-glacier-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticbeanstalk/1.11.35/52699b711dc4849bfa4828a40b1d7c8c44363f67/aws-java-sdk-elasticbeanstalk-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-iam/1.9.13/cc74a79758040f7f93c562fbc54500ab8b8dcf66/aws-java-sdk-iam-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-glacier/1.11.35/9247a82573c9a4eaeb9bf7e200e9dd05c428e804/aws-java-sdk-glacier-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-datapipeline/1.9.13/320efd2a36f3871962fef46ba15788d6fbe100de/aws-java-sdk-datapipeline-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-iam/1.11.35/449bb7a7bb1da92a523b78ec83696a1a339a8a94/aws-java-sdk-iam-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticloadbalancing/1.9.13/7a40c5604846628e2a155527834f7aebf2f61a68/aws-java-sdk-elasticloadbalancing-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-datapipeline/1.11.35/af1956dc6f59644f841aa4d7a507964cf07add5c/aws-java-sdk-datapipeline-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-emr/1.9.13/883cfe37a1a874d4fbe5298dda391bb699aa18a4/aws-java-sdk-emr-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticloadbalancing/1.11.35/b2652fa9a006a0d032faaf19af918a3d9f4493d9/aws-java-sdk-elasticloadbalancing-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticache/1.9.13/c11ff70a11070654f8d6d6a1108e3b9dae33ee4a/aws-java-sdk-elasticache-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticloadbalancingv2/1.11.35/94ded48803715d96ef2f664b93019d7eeaf1464d/aws-java-sdk-elasticloadbalancingv2-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elastictranscoder/1.9.13/61b15b6431878b871bc441a63d78e4416ad8ed30/aws-java-sdk-elastictranscoder-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-emr/1.11.35/600fac76c2e6f99dd1cd288f9669f8958b426f61/aws-java-sdk-emr-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ec2/1.9.13/b0d0bfb8c861cfde63c9e56490dea71df30164e8/aws-java-sdk-ec2-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticache/1.11.35/b860ff87368703a89ab40da4fbe2b9fd6ce4ce15/aws-java-sdk-elasticache-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-dynamodb/1.9.13/81eccfa460d6989641f9c1d017b47835599fea28/aws-java-sdk-dynamodb-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elastictranscoder/1.11.35/62ea3d3e9d6c8403edfb2c2fb6ef1efa6c6239e/aws-java-sdk-elastictranscoder-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sns/1.9.13/1757dc512d190e7808090b0c71617aae9bafe3db/aws-java-sdk-sns-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ec2/1.11.35/d08dd7d2baf94b3f78eb84dbf97164dab8266fba/aws-java-sdk-ec2-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudtrail/1.9.13/b16009873b4b6d2edcd9a361e761fe7cb0092a01/aws-java-sdk-cloudtrail-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-dynamodb/1.11.35/6f2e7875915a7b921d9913d54cc25a12db8fe50/aws-java-sdk-dynamodb-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudwatch/1.9.13/9fce5716109e6f8d923eaa5aff12d5388b5e8bbc/aws-java-sdk-cloudwatch-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sns/1.11.35/fa7c89bd174b4c4b757717281b09a41558eb1374/aws-java-sdk-sns-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-logs/1.9.13/9e9e14e6b0b32fbfbcaf9f1abca4095aa3e47f98/aws-java-sdk-logs-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudtrail/1.11.35/116095e2adb111e160717d292862372d923ee573/aws-java-sdk-cloudtrail-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cognitoidentity/1.9.13/75009675c9611a33218bd64689d717888b1d3ca/aws-java-sdk-cognitoidentity-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudwatch/1.11.35/231ae85d6b5c3d495acbac16d3806205d4c8c9fe/aws-java-sdk-cloudwatch-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cognitosync/1.9.13/616b3c09d6de91312782b13753eb1d29d1256a64/aws-java-sdk-cognitosync-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-logs/1.11.35/4f52a5b52b0901fdc0ec272ccc2a3cc409242bc/aws-java-sdk-logs-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-directconnect/1.9.13/549705d978bbe1c0569282e0fde6d6d599b89e24/aws-java-sdk-directconnect-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-events/1.11.35/944b9a490a83af3afbd1106b6bf59ebca8dba0d/aws-java-sdk-events-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudformation/1.9.13/4168d78c20b5204ac2d24b3e0c9ffb4475a1ad78/aws-java-sdk-cloudformation-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cognitoidentity/1.11.35/6b630d7925ad69227f6b143f56b8f77058da985f/aws-java-sdk-cognitoidentity-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudfront/1.9.13/8fd1eb0ee78430803636984497561633608ba19/aws-java-sdk-cloudfront-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cognitosync/1.11.35/956138f52db19c322e4e7dd8a9f4f0bbe5df2485/aws-java-sdk-cognitosync-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kinesis/1.9.13/5a93fb7b910d5d09940781685710af7a3d6f6456/aws-java-sdk-kinesis-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-directconnect/1.11.35/b9c96177483336aa62e3c8793979f78c0a6512e5/aws-java-sdk-directconnect-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-opsworks/1.9.13/779724e8d3c6a44d3c3d8c78e5bfac393bbc25b8/aws-java-sdk-opsworks-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudformation/1.11.35/c2c9942b4cc4dac62a165f4b56569cb892b8d74d/aws-java-sdk-cloudformation-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ses/1.9.13/520ec876a461e051b90371277dd9bafd50d583d7/aws-java-sdk-ses-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudfront/1.11.35/f7bab7695d6ee1a26d15063194e34242b016ef5/aws-java-sdk-cloudfront-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-autoscaling/1.9.13/684852fc0d0df4f2f17e94c0ad8829142cf34f39/aws-java-sdk-autoscaling-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kinesis/1.11.35/c682a1ede645c386d253e247c9b820622dbea7b7/aws-java-sdk-kinesis-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudsearch/1.9.13/3f7b278bb89b926ec1fd379b943caa2e99156a7b/aws-java-sdk-cloudsearch-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-opsworks/1.11.35/9540dae3844b2e41b0876c316020aea1c2f7079a/aws-java-sdk-opsworks-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudwatchmetrics/1.9.13/9913016cfb340b91a1a1b649275e9331a850a8d6/aws-java-sdk-cloudwatchmetrics-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ses/1.11.35/9dda792f8d298f43e13821fd9fbdb0e1f64b8c45/aws-java-sdk-ses-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-swf-libraries/1.9.13/c67241a45c60c0bd6e22217508b4fb9e52e080ca/aws-java-sdk-swf-libraries-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-autoscaling/1.11.35/7fff4eb2c0bb710a801fe29ec9ead3fdcb73c52c/aws-java-sdk-autoscaling-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-codedeploy/1.9.13/d7d0f996f26bf8fdafca218d758a9000a410f524/aws-java-sdk-codedeploy-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudsearch/1.11.35/225fb17e0ecbf8b6bd8e09db74a63f3c42baea4f/aws-java-sdk-cloudsearch-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kms/1.9.13/4aa95ad71be08800a0561fa52e7def8802679687/aws-java-sdk-kms-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudwatchmetrics/1.11.35/a834c0e34ec402bd9e05be7922a349e902b0accc/aws-java-sdk-cloudwatchmetrics-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-config/1.9.13/5b9db18cf2bfe5b0c2abdd83088cdc6d5d77166d/aws-java-sdk-config-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-codedeploy/1.11.35/9e639d69eea69a9adf817bd237635e88c5c904f/aws-java-sdk-codedeploy-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-lambda/1.9.13/3bf8ea60dde862caeb9baf3240d93d4c89c368c0/aws-java-sdk-lambda-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-codepipeline/1.11.35/d9bde16a778a2b111951901bbdacf1c37b04e7b6/aws-java-sdk-codepipeline-1.11.35.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-core/1.9.13/efa00f07348600aa818c4994eb24d879e55b739d/aws-java-sdk-core-1.9.13.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kms/1.11.35/59ae6e9a8e7d9b90507af9481dc0d2eab0fcf8a1/aws-java-sdk-kms-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-config/1.11.35/16a7dee4613740822e34882bde712e8315ac3ce1/aws-java-sdk-config-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-lambda/1.11.35/26ddbfb1d167c64c6cc2c9c5ed1c6aef4154fcf6/aws-java-sdk-lambda-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ecs/1.11.35/2ea5a52c2af5b3b37abfbe3ad6c0d4ea01e913e1/aws-java-sdk-ecs-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ecr/1.11.35/3552a183014b89bd296b72868a6d24726debc6ee/aws-java-sdk-ecr-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudhsm/1.11.35/6c41f96fd8bb1ff6026c288eb1f9a053b18d2ec3/aws-java-sdk-cloudhsm-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ssm/1.11.35/56e861c84b3c81ea8ea1f060d7e03d01b8183a3/aws-java-sdk-ssm-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-workspaces/1.11.35/238daef9e25fd0cbcd707a1a01b65fa4759942cd/aws-java-sdk-workspaces-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-machinelearning/1.11.35/71f30e80af2ba88c5863634bb34e8d33ce09475b/aws-java-sdk-machinelearning-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-directory/1.11.35/c694864f0429525f511c68fa05469c806c713166/aws-java-sdk-directory-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-efs/1.11.35/a5815d950f221f1812563fb9fedaf0591c449ac0/aws-java-sdk-efs-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-codecommit/1.11.35/4232bf2ce38568470ff60a262e311ce06a427527/aws-java-sdk-codecommit-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-devicefarm/1.11.35/3de6794da92c6a3630e565a911552bdd44928308/aws-java-sdk-devicefarm-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticsearch/1.11.35/2b0fe508bf16023028ce32cf1bc103d9f88cb2b6/aws-java-sdk-elasticsearch-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-waf/1.11.35/d8ce914a5386bca93daeaf2ddf308b3738f9afb1/aws-java-sdk-waf-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-marketplacecommerceanalytics/1.11.35/5f0e02ee5379cf588a28857ec9cf48b7e4ece159/aws-java-sdk-marketplacecommerceanalytics-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-inspector/1.11.35/f5f139f9ffdfb45d6af6a0071e5760ab0f27b8f9/aws-java-sdk-inspector-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-iot/1.11.35/f091f9210536e0543635cec6bed0ae13db7fafa8/aws-java-sdk-iot-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-api-gateway/1.11.35/6bc002e7edbd512a9126ca95c80af7aff88a7a46/aws-java-sdk-api-gateway-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-acm/1.11.35/509454dd35f274fc31c9b6b463a41b38e83fbb4e/aws-java-sdk-acm-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-gamelift/1.11.35/3016eebd92d6313674c5bd8c0052489c1c7d4702/aws-java-sdk-gamelift-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-dms/1.11.35/2dd68bbb846713bee5cb10beb93ab9f04ce486bf/aws-java-sdk-dms-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-marketplacemeteringservice/1.11.35/e6bfd8fbc71af0d0b4cb3c08b4ecbb1745be2f10/aws-java-sdk-marketplacemeteringservice-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cognitoidp/1.11.35/c1d2fd860567ddd1524f07131f34f02f3bccb8a5/aws-java-sdk-cognitoidp-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-discovery/1.11.35/baa1d5b639035200b3cee167faee4029a2746da3/aws-java-sdk-discovery-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-applicationautoscaling/1.11.35/4336834d548b8cc72297f4099784ef356518e54/aws-java-sdk-applicationautoscaling-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-snowball/1.11.35/e24e2aa40849d98ed0d196f87a0fca3ae8ef7d77/aws-java-sdk-snowball-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-core/1.11.35/5f8c8804c22d98fcc41c57982d88d06b250f2e43/aws-java-sdk-core-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-models/1.11.35/2993e791864eeb729caf086981329734cb91d4ad/aws-java-sdk-models-1.11.35.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-swf-libraries/1.11.22/4bb64607f756c0c1f427bdb491db05b48402694/aws-java-sdk-swf-libraries-1.11.22.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.google.oauth-client/google-oauth-client-java6/1.13.1-beta/35435bbee8b96184b2b45b460c3f5dc9f50d5f5e/google-oauth-client-java6-1.13.1-beta.jar">
@@ -393,6 +477,12 @@
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client/1.21.0/42631630fe1276d4d6d6397bb07d53a4e4fec278/google-http-client-1.21.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-loader-tools/1.4.0.RELEASE/b89ffc08c740c441c009f9fe1577868d4e84c119/spring-boot-loader-tools-1.4.0.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/io.spring.gradle/dependency-management-plugin/0.6.0.RELEASE/8be3924e1790c9cc089e6a96dbf2ed3c8fa0ed3/dependency-management-plugin-0.6.0.RELEASE.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.2/479c1e06db31c432330183f5cae684163f186146/javax.annotation-api-1.2.jar">
@@ -434,6 +524,15 @@
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.mchange/mchange-commons-java/0.2.3.4/5eb5a801d96f65912bcf418a831fa23c663b029b/mchange-commons-java-0.2.3.4.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.amazonaws/jmespath-java/1.0/f797e463ddc2cabd2659e697787f0b0c53d90351/jmespath-java-1.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/software.amazon.ion/ion-java/1.0.0/1e81315b035f67d19b51397ff9be0020955548cf/ion-java-1.0.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.dataformat/jackson-dataformat-cbor/2.6.6/34c7b7ff495fc6b049612bdc9db0900a68e112f8/jackson-dataformat-cbor-2.6.6.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/org.mortbay.jetty/jetty-util/6.1.26/e5642fe0399814e1687d55a3862aa5a3417226a9/jetty-util-6.1.26.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
@@ -458,7 +557,10 @@
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-commons/1.8.1.RELEASE/add55d3fa4046f096567e08aee504b1baac25a29/spring-data-commons-1.8.1.RELEASE.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.8.2/1f12816593c1422be957471c98a80bfbace60fa2/jackson-databind-2.8.2.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.3.2.RELEASE/fd2f3cf45d3c84f293cb7ee3ab7d24c979495552/spring-core-4.3.2.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.8.3/cea3788c72271d45676ce32c0665991674b24cc5/jackson-databind-2.8.3.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.12/8e20852d05222dc286bf1c71d78d0531e177c317/slf4j-api-1.7.12.jar">
@@ -467,10 +569,10 @@
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.google.api-client/google-api-client/1.21.0/16a6b3c680f3bf7b81bb42790ff5c1b72c5bbedc/google-api-client-1.21.0.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.3.4/a9a1fef2faefed639ee0d0fba5b3b8e4eb2ff2d8/httpclient-4.3.4.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.5.2/733db77aa8d9b2d68015189df76ab06304406e50/httpclient-4.5.2.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.9.4/1c295b462f16702ebe720bbb08f62e1ba80da41b/joda-time-2.9.4.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.8.1/f5bfc718c95a7b1d3c371bb02a188a4df18361a9/joda-time-2.8.1.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.google.oauth-client/google-oauth-client/1.21.0/61ec42bbfc51aafde5eb8b4923c602c5b5965bc2/google-oauth-client-1.21.0.jar">
@@ -479,13 +581,19 @@
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.8.0/45b426f7796b741035581a176744d91090e2e6fb/jackson-annotations-2.8.0.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.8.2/80004060cc6f71a027b81e89ef4d74628f824f/jackson-core-2.8.2.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.8.3/5e1dc37c96308851c3ff609c250dc849c4b12022/jackson-core-2.8.3.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client-jackson2/1.21.0/8ce17bdd15fff0fd8cf359757f29e778fc7191ad/google-http-client-jackson2-1.21.0.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/com.google.guava/guava-jdk5/17.0/463f8378feba44df7ba7cd9272d01837dad62b36/guava-jdk5-17.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.4.4/b31526a230871fbe285fbcbe2813f9c0839ae9b0/httpcore-4.4.4.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/elena/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.9/9ce04e34240f674bc72680f8b843b1457383161a/commons-codec-1.9.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 	</wb-module>

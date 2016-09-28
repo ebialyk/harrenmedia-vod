@@ -1,0 +1,20 @@
+<div class="dialog  vcenter">
+	<div class="registrationWrapper">
+		<div class="dialogMask"></div>
+		<div id="registration">
+			<p>{{data.createAccount.title}}</p>
+			<p class="enlargedText">
+				{{data.createAccount.subTitle1}} <span class="green">{{data.createAccount.free}}</span> {{data.createAccount.subTitle2}} <span class="green">{{data.createAccount.stream}}</span>
+				{{data.createAccount.subTitle3}}
+			</p>
+			<span class="danger col-xs-12 text-left row">{{mailError}}</span>
+			<input type="email" id="email" placeholder="E-mail" ng-model="form.email" ng-keydown=checkEnter(event,this) ng-class="{ 'danger': wrongMail}"> 
+			<span class="danger col-xs-12 text-left row">{{pwsError}}</span>
+			<input type="password" id="psw" maxlength="12"
+				pattern=".{5,12}" required ng-model="form.psw" placeholder="Password" ng-keydown=checkEnter(event,this) ng-class="{ 'danger': wrongPassword}">
+
+			<button class="greenBtn waves-effect waves-light" ng-click="CreateAccountValidation(form)">{{data.createAccount.btnTitle}}</button>
+		</div>
+		<div class="dialogMask"  id="dialogMask"></div>
+	</div>
+</div>

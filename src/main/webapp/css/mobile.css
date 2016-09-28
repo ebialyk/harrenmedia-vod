@@ -206,8 +206,44 @@
 		display: table;
 		width: calc(100% - 20px);
 	}
+	#VerificationPage .bluebg2 {
+		background-color: white;
+	}
+	#VerificationPage .bluebg2 p {
+		line-height: 1.4;
+		font-size: 13px;
+		background-color: white;
+		color: #8E8F93;
+	}
+	#VerificationPage .mobileFooterVA {
+		margin-top: 30px;
+		margin-bottom: 30px;
+		background-color: #413D3C;
+		width: 100%;
+		height: auto;
+		display: block !important;
+}
+#VerificationPage .mobileFooterBody {
+	color: white;
+	text-align: center;
+}
+#VerificationPage .mobileFooterBody i {
+	    vertical-align: middle;
+    padding-right: 12px;
+}
+	#VerificationPage .mobileFooterVA .footerBody {
+		width: 100%;
+		margin: auto;
+		height: 30px;
+		background-image:
+			url(https://s3-us-west-2.amazonaws.com/vod.resources/images/LandingPage/MF-L1_verificationfooter.png);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100%; 
+	}
 	#VerificationPage .bluebg p {
 		width: 98%;
+		
 	}
 	#VerificationPage #header #title {
 		width: 100%;
@@ -233,6 +269,7 @@
 		order: 5;
 		height: auto;
 		background: white;
+		display: block;
 	}
 	#VerificationPage .footer .footerBody {
 		flex-direction: column;
@@ -309,15 +346,7 @@
 	#VerificationPage #content {
 		width: 100%;
 		height: auto;
-		display: -webkit-box; 
-		display : -moz-box; 
-		display : -ms-flexbox;
-		display : -webkit-flex;
-		display: flex;
-		flex-direction: column;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
+		display: block;
 	}
 	.verificationForm {
 		border: none;

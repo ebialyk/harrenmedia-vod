@@ -1,0 +1,21 @@
+<div>
+	<div class="bottomTable1Header">
+		<span>{{data.bottomTable.title}}:</span>
+	</div>
+	<table class="bottomTable1">
+		<tr ng-repeat="row in data.bottomTable.rows">
+			<td class="col-sm-3 col-xs-4"><span>{{row.title}}</span></td>
+			<td class="watchBtn col-sm-3 col-xs-4"><button>{{data.bottomTable.watchBtn}}</button></td>
+			<td class="tableStarsWrapper col-sm-3 col-xs-4">
+				<stars ng-model="row"></stars>
+
+				<span class="votes hidden-xs">{{row.votes}}
+					{{data.bottomTable.votes}}</span>
+				<span class="votes visible-xs">({{row.votes}})
+					</span>
+			</td>
+			<td class="voteBtn col-sm-3 hidden-xs"><button>{{data.bottomTable.voteBtn}}</button></td>
+		</tr>
+		
+	</table>
+</div>

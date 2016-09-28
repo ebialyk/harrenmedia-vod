@@ -1,0 +1,58 @@
+.greenBtn {
+	background: rgba(128, 197, 1, 1);
+	background: -moz-linear-gradient(top, rgba(128, 197, 1, 1) 0%,
+		rgba(124, 190, 0, 1) 10%, rgba(77, 135, 0, 1) 28%, rgba(75, 133, 0, 1)
+		49%, rgba(70, 128, 0, 1) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(128, 197, 1,
+		1)), color-stop(10%, rgba(124, 190, 0, 1)),
+		color-stop(28%, rgba(77, 135, 0, 1)),
+		color-stop(49%, rgba(75, 133, 0, 1)),
+		color-stop(100%, rgba(70, 128, 0, 1)));
+	background: -webkit-linear-gradient(top, rgba(128, 197, 1, 1) 0%,
+		rgba(124, 190, 0, 1) 10%, rgba(77, 135, 0, 1) 28%, rgba(75, 133, 0, 1)
+		49%, rgba(70, 128, 0, 1) 100%);
+	background: -o-linear-gradient(top, rgba(128, 197, 1, 1) 0%,
+		rgba(124, 190, 0, 1) 10%, rgba(77, 135, 0, 1) 28%, rgba(75, 133, 0, 1)
+		49%, rgba(70, 128, 0, 1) 100%);
+	background: -ms-linear-gradient(top, rgba(128, 197, 1, 1) 0%,
+		rgba(124, 190, 0, 1) 10%, rgba(77, 135, 0, 1) 28%, rgba(75, 133, 0, 1)
+		49%, rgba(70, 128, 0, 1) 100%);
+	background: linear-gradient(to bottom, rgba(128, 197, 1, 1) 0%,
+		rgba(124, 190, 0, 1) 10%, rgba(77, 135, 0, 1) 28%, rgba(75, 133, 0, 1)
+		49%, rgba(70, 128, 0, 1) 100%);
+	border: none;
+	border-radius: 5px;
+	padding: 5px 20px;
+	margin-bottom: 12px;
+	color: #fff;
+}
+.mask {
+	display: none;
+	opacity: 0.6;
+	background-color: black;
+	position: fixed;
+	top: 0;
+	height: 100vh;
+	width: 100vw;
+	left: 0;
+	z-index: 99;
+	min-height: 600px;
+	cursor: pointer;
+}
+.maskLoader {
+	display: none;
+	z-index: 999;
+	background-image: url("../images/LandingPage/spin.svg");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+@media (min-width: 1200px){
+.container {
+    width: 920px;
+    padding: 0;
+}
+@media (min-width: 992px){
+.container {
+    width: 920px;
+    padding: 0;
+}

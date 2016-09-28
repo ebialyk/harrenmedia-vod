@@ -1,0 +1,35 @@
+<div class="col-sm-12 row player2" ng-init="initPlayer2()">
+	<div class="frame">
+		<div class="embed-responsive embed-responsive-16by9">
+			<div class="screen" id="screen"></div>
+			<div class="radial-progress" data-progress={{dataProgress}} id="radial-progress">
+				<div class="circle">
+					<div class="loaderMask full">
+						<div class="fill"></div>
+					</div>
+					<div class="loaderMask half">
+						<div class="fill"></div>
+						<div class="fill fix"></div>
+					</div>
+					<div class="shadow"></div>
+				</div>
+				<div class="inset">
+					<div class="percentage">
+						<div>
+							<span>{{numbers}}%</span>	
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+		<div class="loadingBar black">
+			<div class="play"></div>
+			<div class="contentBar" id="contentBar">
+				<span class="expand "></span> <span class="expand expandRed"></span>
+			</div>
+		</div>
+
+	</div>
+</div>

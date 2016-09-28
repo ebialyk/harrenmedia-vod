@@ -95,14 +95,15 @@ function login(mail, ps) {
 	});
 }
 function tracking(affiliate, place, cssTheme, languageId, userId,
-		clickId) {
+		clickId, url) {
 	data = {
 		affiliate : affiliate,
 		place : place,
 		cssTheme : cssTheme,
 		languageId : languageId,
 		email : userId,
-		clickId : clickId
+		clickId : clickId,
+		url : url
 	};
 	$.ajax({
 		url : "rest/client/tracking",

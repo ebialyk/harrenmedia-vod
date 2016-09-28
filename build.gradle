@@ -58,12 +58,13 @@ dependencies{
 	compile "org.hibernate:hibernate-validator:5.1.2.Final"
 	compile "org.hibernate:hibernate-c3p0:4.3.6.Final"
 	compile "org.postgresql:postgresql:9.4-1201-jdbc41"
+	
 	compile "net.sf.ehcache:ehcache:2.8.3"
 	compile "org.springframework.data:spring-data-commons:1.3.2.RELEASE"
 	compile "taglibs:standard:1.1.2"
 	compile "joda-time:joda-time:2.3"
 	compile "javax.mail:mail:1.4.7"
-	compile 'com.amazonaws:aws-java-sdk:1.9.13'
+	compile 'com.amazonaws:aws-java-sdk:1.11.35'
 	compile 'com.google.api-client:google-api-client:1.19.1'
 	compile 'com.google.apis:google-api-services-adexchangeseller:v1-rev204-1.21.0'
 	compile 'com.google.http-client:google-http-client-jackson2:1.17.0-rc'
@@ -72,8 +73,9 @@ dependencies{
 	compile 'com.googlecode.json-simple:json-simple:1.1.1'
 	compile group: 'com.maxmind.geoip2', name: 'geoip2', version: '2.7.0'
 	compile group: 'com.google.code.gson', name: 'gson', version: '1.7.2'
-	// https://mvnrepository.com/artifact/com.hazelcast/hazelcast-all
 	compile group: 'com.hazelcast', name: 'hazelcast-all', version: '2.4'
+	compile 'org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE'
+	
 }
 
 

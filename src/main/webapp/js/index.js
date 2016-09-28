@@ -7,6 +7,10 @@ var CSS;
 var LANG;
 var COUNTRY;
 var COUNTRYCODE;
+var URL;
+
+URL = document.URL;
+
 $('html').css('display', 'none');
 resizeScreen();
 $.ajax({
@@ -15,9 +19,9 @@ $.ajax({
 	dataType : "json", // expected format for response
 	contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 	success : function(response) {
-		if (response != undefined && response.countryId != null) {
+		if (response != undefined && response.country != null) {
 			urlParams = parseURLParams(window.location.href);
-
+			
 			if (urlParams != null) {
 				AFF = urlParams.aff ? urlParams.aff[0] : 0;
 				COUNTRY = urlParams.countryCode ? urlParams.countryCode[0] : 0;
@@ -26,6 +30,7 @@ $.ajax({
 				CLICKID = urlParams.clickid ? urlParams.clickid[0] : "";
 				MAIL = urlParams.user ? urlParams.user[0] : "";
 			}
+			$('html').css('display', 'block');
 
 			if (CSS != null && CSS == '0320') { // TV STYLE
 				document.getElementById('LHMovieCSS').disabled = true;
@@ -110,21 +115,21 @@ $.ajax({
 				document.getElementById('radial-progress').display = "none";
 			}
 
-			$('html').css('display', 'block');
-			COUNTRYCODE = response.countryId;
+			
+			COUNTRYCODE = response.country.countryId;
 			COUNTRY = COUNTRYCODE;
 			
 			// tracking(affiliate, step, css, languageId, email, clickId
-			tracking(AFF, 0, CSS, LANG, 0, CLICKID);
+			tracking(AFF, 0, CSS, LANG, 0, CLICKID, URL);
 			resizeScreen();
 		} else {
 			confirmOnExit = false;
-			window.open("https://www.google.co.il/", '_self', false);
+			window.open("https://hmnlta.adk2x.com/imp?p=74932690&ct=html&ap=1304", '_self', false);
 		}
 	},
 	error : function(response, status, error) {
 		confirmOnExit = false;
-		window.open("https://www.google.co.il/", '_self', false);
+		window.open("https://hmnlta.adk2x.com/imp?p=74932690&ct=html&ap=1304", '_self', false);
 	}
 });
 
@@ -186,13 +191,6 @@ function resizeScreen() {
 	}
 }
 function openCreateAccountDialog() {
-	/*
-	 * document.getElementById("circularG").style.display = "none";
-	 * document.getElementById("loadSpan").style.display = "none";
-	 * document.getElementById("contentBar").style.display = "none";
-	 * document.getElementById("loading").style.display = "none";
-	 */
-
 	if (Modernizr.flexbox && Modernizr.flexboxtweener
 			&& Modernizr.flexboxlegacy) {
 		document.getElementById("CreateAccount").style.display = "flex";
@@ -268,7 +266,7 @@ function CreateAccountValidation() {
 
 	if (okEmail && okPsw && okPsw2 && okPswEquals) {
 
-		tracking(AFF,  1, CSS, LANG, email.value, CLICKID);
+		tracking(AFF,  1, CSS, LANG, email.value, CLICKID, URL);
 		data = {
 			email : email.value,
 			pw : psw.value,
@@ -296,7 +294,7 @@ function CreateAccountValidation() {
 
 									openVerificationPage();
 									tracking(AFF, 2, CSS, LANG, MAIL,
-											CLICKID);
+											CLICKID, URL);
 								} else {
 									alert(response.message);
 									document.getElementById("loadingMask").style.display = "none";
@@ -307,7 +305,7 @@ function CreateAccountValidation() {
 										email.readOnly = true;
 									} else {
 										tracking(AFF, 8, CSS, LANG,
-												email.value, CLICKID);
+												email.value, CLICKID, URL);
 									}
 								}
 							},
@@ -334,7 +332,7 @@ function openVerificationPage() {
 	confirmOnExit = false;
 	window.open(url, '_self', false)
 
-	tracking(AFF, 3, CSS, LANG, MAIL, CLICKID);
+	tracking(AFF, 3, CSS, LANG, MAIL, CLICKID, URL);
 }
 
 // prevent to leave the page before ends the inscription
